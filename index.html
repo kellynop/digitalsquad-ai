@@ -25,26 +25,34 @@
         .gem-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: currentColor; opacity: 0.8; }
         .gem-card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15); border-color: #3b82f6; }
 
-        /* ระบบปฏิทิน */
+        /* ระบบปฏิทินแบบละเอียด */
         .calendar-wrapper { width: 100%; overflow-x: auto; padding-bottom: 10px; }
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(130px, 1fr)); min-width: 900px; gap: 1px; background-color: #e2e8f0; border-radius: 0.75rem; overflow: hidden; margin-top: 10px; border: 1px solid #cbd5e1; }
-        .calendar-day { background-color: white; min-height: 125px; padding: 10px; font-size: 16px; cursor: pointer; position: relative; transition: background 0.2s; text-align: left; }
-        .calendar-day:hover { background-color: #f1f5f9; }
-        .calendar-day.today { background-color: #fef9c3 !important; font-weight: 900; box-shadow: inset 0 0 0 2px #eab308; z-index: 10; }
-        .calendar-day.holiday { background-color: #fef2f2; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(130px, 1fr)); min-width: 900px; gap: 1px; background-color: #e2e8f0; border-radius: 1.5rem; overflow: hidden; margin-top: 10px; border: 1px solid #cbd5e1; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        .calendar-day { background-color: white; min-height: 140px; padding: 12px; font-size: 16px; cursor: pointer; position: relative; transition: all 0.2s; text-align: left; }
+        .calendar-day:hover { background-color: #f8fafc; }
         
-        .calendar-header { background-color: #f1f5f9; text-align: center; padding: 12px; font-weight: 800; font-size: 15px; color: #334155; text-transform: uppercase; }
+        /* ไฮไลต์ตามเงื่อนไขอาจารย์ */
+        .calendar-day.today { background-color: #fef9c3 !important; font-weight: 900; border: 2px solid #facc15 !important; z-index: 10; }
+        .calendar-day.holiday { background-color: #fef2f2; }
+        .calendar-day.holiday b { color: #dc2626; }
+        
+        .calendar-header { background-color: #f1f5f9; text-align: center; padding: 15px; font-weight: 800; font-size: 15px; color: #475569; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; }
+        .event-mini { font-size: 11px; padding: 4px 8px; border-radius: 6px; display: block; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700; border-left: 4px solid transparent; cursor: pointer; transition: all 0.2s; letter-spacing: 0.1px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .event-mini:hover { filter: brightness(0.95); transform: translateX(3px); }
         
         .progress-bar { height: 10px; border-radius: 5px; background: #f1f5f9; overflow: hidden; margin-top: 6px; border: 1px solid #e2e8f0; }
         .progress-fill { height: 100%; transition: width 1.5s ease-out; }
         
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-        .modal-content { background: white; border-radius: 2rem; width: 95%; max-width: 600px; padding: 2.5rem; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto; animation: modalPop 0.3s ease-out; }
+        .modal-content { background: white; border-radius: 2.5rem; width: 95%; max-width: 600px; padding: 2.5rem; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto; animation: modalPop 0.3s ease-out; }
+        @keyframes modalPop { 0% { opacity: 0; transform: scale(0.95) translateY(20px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
         
         #toast { visibility: hidden; min-width: 300px; background-color: #059669; color: #fff; text-align: center; border-radius: 12px; padding: 1.25rem; position: fixed; z-index: 100000; left: 50%; bottom: 40px; transform: translateX(-50%); font-weight: bold; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); opacity: 0; transition: all 0.4s; }
         #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(-10px); }
 
         .stat-update { transition: all 0.3s ease; }
+        .news-card-item { cursor: pointer; transition: all 0.2s; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.75rem; }
+        .news-card-item:hover { color: #2563eb; transform: translateX(4px); }
     </style>
 </head>
 <body class="min-h-screen">
@@ -64,11 +72,11 @@
                 <a onclick="switchTab('calendar')" id="nav-calendar" class="nav-link">ปฏิทินกิจกรรม</a>
                 <a onclick="switchTab('gems')" id="nav-gems" class="nav-link">AI AGENT</a>
                 <a onclick="switchTab('catalog')" id="nav-catalog" class="nav-link font-bold">ฐานปฏิบัติการยุทธศาสตร์</a>
-                <a onclick="switchTab('about')" id="nav-about" class="nav-link">เกี่ยวกับเรา</a>
+                <a onclick="switchTab('about')" id="nav-about" class="nav-link font-bold">เกี่ยวกับเรา</a>
             </nav>
             <div class="flex items-center space-x-4">
                 <span class="text-[11px] text-blue-200 hidden xl:flex items-center bg-blue-900/50 px-3 py-1 rounded-full border border-blue-700/50 font-bold">
-                    <i class="far fa-clock mr-2 text-blue-400"></i> <span id="current-date-display">-- -- ----</span>
+                    <i class="far fa-clock mr-2 text-blue-400 font-bold"></i> <span id="current-date-display">-- -- ----</span>
                 </span>
                 <button id="header-login-btn" onclick="toggleModal('login-modal')" class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full text-xs font-bold transition shadow-lg text-white uppercase font-bold">Profile / Login</button>
             </div>
@@ -77,11 +85,10 @@
 
     <main class="flex-grow container mx-auto px-4 py-8">
         
-        <!-- Tab: Home -->
         <div id="tab-home">
             <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 rounded-[2.5rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden text-left mb-8">
                 <div class="relative z-10 text-left font-bold">
-                    <h2 class="text-2xl md:text-4xl font-black mb-2 tracking-tight uppercase">DIGITAL SQUAD AI FOR TEACHERS THAILAND <span class="text-blue-400">V9.9</span></h2>
+                    <h2 class="text-2xl md:text-4xl font-black mb-2 tracking-tight uppercase font-bold">DIGITAL SQUAD AI FOR TEACHERS THAILAND <span class="text-blue-400">V9.9</span></h2>
                     <h3 class="text-lg md:text-xl font-bold text-yellow-300 mb-6 font-bold">ผู้ช่วย AI สำหรับครูไทย ที่ช่วยลดภาระงานเอกสารได้จริง ภายในไม่กี่คลิก</h3>
                     
                     <div class="text-blue-100 max-w-4xl text-base opacity-95 leading-relaxed font-light mb-10 space-y-4 font-bold">
@@ -95,9 +102,9 @@
                         </ul>
                     </div>
                     
-                    <div class="flex flex-wrap gap-5 mt-8">
-                        <button onclick="switchTab('catalog')" class="bg-white text-blue-900 px-10 py-4 rounded-2xl font-black shadow-2xl hover:bg-blue-50 transition active:scale-95 font-bold">✨ ทดลองใช้ AI ร่างโครงสร้างภารกิจ</button>
-                        <button onclick="switchTab('gems')" class="bg-blue-700/50 border border-blue-400 px-10 py-4 rounded-2xl font-black hover:bg-blue-600 transition active:scale-95 shadow-xl backdrop-blur-sm font-bold"><i class="fas fa-robot mr-2"></i> เลือก AI AGENT</button>
+                    <div class="flex flex-wrap gap-5 mt-8 font-bold">
+                        <button onclick="switchTab('catalog')" class="bg-white text-blue-900 px-10 py-4 rounded-2xl font-black shadow-2xl hover:bg-blue-50 transition active:scale-95">✨ ทดลองใช้ AI ร่างโครงสร้างภารกิจ</button>
+                        <button onclick="switchTab('gems')" class="bg-blue-700/50 border border-blue-400 px-10 py-4 rounded-2xl font-black hover:bg-blue-600 transition active:scale-95 shadow-xl backdrop-blur-sm"><i class="fas fa-robot mr-2 font-bold"></i> เลือก AI AGENT</button>
                     </div>
                 </div>
                 <img src="app%20icon.jpg" alt="BG Icon" class="absolute -right-10 -bottom-10 w-[350px] h-[350px] object-contain opacity-10 rotate-12" style="filter: brightness(0) invert(1);">
@@ -115,130 +122,72 @@
             </div>
         </div>
 
-        <!-- Tab: Progress (Fixed & Standardized per image_423bec.png) -->
-        <div id="tab-progress" class="hidden text-left font-bold font-bold font-bold font-bold">
-            <div class="flex justify-between items-center mb-8">
-                <div>
-                    <h2 class="text-3xl font-black text-gray-800 uppercase tracking-tight">แดชบอร์ดสถิติการใช้งานเชิงลึก</h2>
-                    <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">LIVE ANALYTICS DASHBOARD V9</p>
+        <div id="tab-progress" class="hidden text-left font-bold">
+            <h2 class="text-3xl font-black text-gray-800 mb-8 uppercase tracking-tight font-bold">แดชบอร์ดสถิติการใช้งานเชิงลึก</h2>
+            <div id="stats-summary" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 font-bold">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex items-center font-bold">
+                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mr-6 shadow-inner font-bold font-bold font-bold font-bold font-bold">U</div>
+                    <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest">ผู้เข้าใช้งานระบบรวม</p><p class="text-4xl font-black text-gray-800 font-bold font-bold">4,864</p></div>
                 </div>
-                <div class="flex items-center bg-green-50 text-green-700 px-3 py-1.5 rounded-full border border-green-100 shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
-                    <span class="text-[10px] font-black uppercase tracking-tighter">เซิร์ฟเวอร์เรียลไทม์</span>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex items-center">
+                    <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mr-6 shadow-inner font-bold font-bold font-bold font-bold">C</div>
+                    <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest">จำนวนการเรียกใช้ AI</p><p class="text-4xl font-black text-purple-700 font-bold font-bold">21,260</p></div>
                 </div>
-            </div>
-
-            <!-- Summary Cards 3 columns -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex items-center group hover:shadow-md transition">
-                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mr-6 shadow-inner group-hover:scale-110 transition font-bold">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">ผู้เข้าใช้งานระบบรวม</p>
-                        <p class="text-4xl font-black text-gray-800 mt-1" id="stat-total-users">4,864</p>
-                        <span class="text-[10px] text-gray-400 font-bold uppercase">คน</span>
-                    </div>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex items-center group hover:shadow-md transition">
-                    <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mr-6 shadow-inner group-hover:scale-110 transition font-bold">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest font-bold">จำนวนการเรียกใช้ AI</p>
-                        <p class="text-4xl font-black text-purple-700 mt-1" id="stat-total-calls">21,260</p>
-                        <span class="text-[10px] text-gray-400 font-bold uppercase">ครั้ง</span>
-                    </div>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex items-center group hover:shadow-md transition">
-                    <div class="w-16 h-16 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center text-3xl mr-6 shadow-inner group-hover:scale-110 transition font-bold">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest font-bold font-bold font-bold">ขุนพลยอดฮิตสูงสุด</p>
-                        <p class="text-3xl font-black text-gray-800 mt-1 uppercase tracking-tighter">AGENT 03</p>
-                        <span class="text-[10px] text-orange-500 font-black uppercase">Lesson Designer</span>
-                    </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex items-center">
+                    <div class="w-16 h-16 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center text-3xl mr-6 shadow-inner font-bold font-bold font-bold font-bold">A</div>
+                    <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest">ขุนพลยอดฮิตสูงสุด</p><p class="text-3xl font-black text-gray-800 uppercase tracking-tight font-bold font-bold">AGENT 03</p></div>
                 </div>
             </div>
 
-            <!-- Charts Section 2 columns -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10 font-bold">
                 <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-200/60 font-bold">
-                    <div class="flex items-center mb-8 border-b border-slate-100 pb-4">
-                        <i class="fas fa-building text-slate-400 mr-4 text-xl font-bold"></i>
-                        <h3 class="text-lg font-black text-slate-800 uppercase font-bold font-bold">สถิติแยกตามต้นสังกัด</h3>
-                    </div>
-                    <div id="container-affiliations" class="space-y-6"></div>
+                    <div class="flex items-center mb-8 border-b border-slate-100 pb-4"><i class="fas fa-building text-slate-400 mr-4 text-xl font-bold font-bold font-bold"></i><h3 class="text-xl font-black text-slate-800 uppercase">สถิติแยกตามต้นสังกัด</h3></div>
+                    <div id="container-affiliations" class="space-y-8"></div>
                 </div>
-                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-200/60 font-bold font-bold">
-                    <div class="flex items-center mb-8 border-b border-slate-100 pb-4">
-                        <i class="fas fa-id-badge text-slate-400 mr-4 text-xl font-bold font-bold"></i>
-                        <h3 class="text-lg font-black text-slate-800 uppercase font-bold font-bold">สถิติแยกตามตำแหน่ง (Top 5)</h3>
-                    </div>
-                    <div id="container-roles" class="space-y-6"></div>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-200/60 font-bold">
+                    <div class="flex items-center mb-8 border-b border-slate-100 pb-4"><i class="fas fa-id-badge text-slate-400 mr-4 text-xl font-bold font-bold font-bold"></i><h3 class="text-xl font-black text-slate-800 uppercase font-bold font-bold font-bold font-bold">สถิติแยกตามตำแหน่ง (Top 5)</h3></div>
+                    <div id="container-roles" class="space-y-8 font-bold font-bold font-bold"></div>
                 </div>
             </div>
 
-            <!-- Agent Grid Section -->
-            <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-200/60 font-bold font-bold font-bold font-bold font-bold">
-                <div class="flex items-center mb-8 border-b border-slate-100 pb-4">
-                    <i class="fas fa-chart-line text-slate-400 mr-4 text-xl font-bold font-bold font-bold"></i>
-                    <h3 class="text-lg font-black text-slate-800 uppercase font-bold font-bold font-bold font-bold">สถิติการเรียกใช้งาน AGENT 01-10</h3>
-                </div>
-                <div id="container-agents" class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6 font-bold font-bold font-bold"></div>
+            <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-200/60 font-bold">
+                <div class="flex items-center mb-8 border-b border-slate-100 pb-4 font-bold font-bold font-bold font-bold"><i class="fas fa-chart-line text-slate-400 mr-4 text-xl font-bold font-bold font-bold"></i><h3 class="text-xl font-black text-slate-800 uppercase">สถิติการเรียกใช้งาน AGENT 01-10</h3></div>
+                <div id="container-agents" class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8"></div>
             </div>
         </div>
 
-        <!-- Tab: Calendar -->
-        <div id="tab-calendar" class="hidden">
-            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden mb-12 text-left border border-slate-200 font-bold font-bold font-bold">
-                <div class="bg-[#1e3a8a] px-8 py-8 text-white flex justify-between items-center">
-                    <button onclick="changeMonth(-1)" class="hover:bg-white/20 p-3 rounded-full transition font-bold font-bold font-bold"><i class="fas fa-chevron-left text-xl font-bold font-bold font-bold"></i></button>
+        <div id="tab-calendar" class="hidden font-bold">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden mb-12 text-left border border-slate-200 font-bold">
+                <div class="bg-[#1e3a8a] px-8 py-8 text-white flex justify-between items-center font-bold">
+                    <button onclick="changeMonth(-1)" class="hover:bg-white/20 p-3 rounded-full transition font-bold font-bold"><i class="fas fa-chevron-left text-xl font-bold font-bold"></i></button>
                     <div class="text-center">
-                        <h2 id="calendar-month-year" class="text-2xl font-black uppercase tracking-widest font-bold font-bold font-bold font-bold font-bold">--</h2>
-                        <p class="text-[11px] text-blue-300 font-bold uppercase tracking-[0.2em] mt-1 font-bold">Strategic Timeline V9</p>
+                        <h2 id="calendar-month-year" class="text-2xl font-black uppercase tracking-widest font-bold font-bold">--</h2>
+                        <p class="text-[11px] text-blue-300 font-bold uppercase tracking-[0.2em] mt-1 font-bold">Strategic Timeline BE 2569</p>
                     </div>
-                    <button onclick="changeMonth(1)" class="hover:bg-white/20 p-3 rounded-full transition font-bold font-bold font-bold font-bold font-bold font-bold"><i class="fas fa-chevron-right text-xl font-bold font-bold font-bold font-bold"></i></button>
+                    <button onclick="changeMonth(1)" class="hover:bg-white/20 p-3 rounded-full transition font-bold font-bold"><i class="fas fa-chevron-right text-xl font-bold font-bold"></i></button>
                 </div>
-                <div class="calendar-wrapper px-4 md:px-8 py-6">
-                    <div class="calendar-grid shadow-inner shadow-slate-100 font-bold" id="calendar-body"></div>
+                
+                <div class="calendar-wrapper px-4 md:px-8 py-6 font-bold">
+                    <div class="calendar-grid shadow-inner shadow-slate-100" id="calendar-body"></div>
+                </div>
+
+                <div class="p-8 bg-slate-50 border-t border-slate-200 flex flex-wrap gap-6 text-[12px] font-bold text-slate-600 justify-center">
+                    <div class="flex items-center bg-white px-5 py-2.5 rounded-full shadow-sm border border-slate-200"><span class="w-3.5 h-3.5 bg-blue-500 rounded-full mr-3"></span> สพฐ. / สกศ.</div>
+                    <div class="flex items-center bg-white px-5 py-2.5 rounded-full shadow-sm border border-slate-200"><span class="w-3.5 h-3.5 bg-orange-500 rounded-full mr-3"></span> สอศ. (อาชีวะ)</div>
+                    <div class="flex items-center bg-white px-5 py-2.5 rounded-full shadow-sm border border-slate-200"><span class="w-3.5 h-3.5 bg-purple-500 rounded-full mr-3"></span> อว. / มหาวิทยาลัย</div>
+                    <div class="flex items-center bg-white px-5 py-2.5 rounded-full shadow-sm border border-slate-200"><span class="w-3.5 h-3.5 bg-emerald-500 rounded-full mr-3"></span> บริหาร / พัสดุ / การเงิน</div>
+                    <div class="flex items-center bg-red-100 px-5 py-2.5 rounded-full shadow-sm border border-red-200 text-red-700 font-black"><span class="w-3.5 h-3.5 bg-red-500 rounded-full mr-3"></span> วันหยุดราชการ</div>
+                    <div class="flex items-center bg-yellow-100 px-5 py-2.5 rounded-full shadow-sm border border-yellow-300 text-yellow-800 font-black"><span class="w-3.5 h-3.5 bg-yellow-500 rounded-full mr-3"></span> วันปัจจุบัน</div>
                 </div>
             </div>
         </div>
     </main>
 
-    <div id="login-modal" class="modal-overlay" onclick="toggleModal('login-modal')">
-        <div class="modal-content text-left font-bold font-bold font-bold font-bold" onclick="event.stopPropagation()">
-            <div class="text-center mb-10 font-bold">
-                <img src="app%20icon.jpg" alt="Login Icon" class="w-20 h-20 mx-auto mb-5 rounded-3xl shadow-inner object-cover">
-                <h3 class="text-3xl font-black text-blue-900 tracking-tighter uppercase font-bold text-center font-bold">วิเคราะห์ตัวตนบุคลากร</h3>
-            </div>
-            <form onsubmit="handleLogin(event)" class="space-y-5">
-                <div class="grid grid-cols-2 gap-5 font-bold">
-                    <select id="user-affiliation" class="bg-slate-50 border-2 border-slate-100 p-4 rounded-2xl text-sm font-black outline-none focus:border-blue-500 shadow-sm font-bold font-bold">
-                        <option value="A. สพฐ.">A. สพฐ.</option>
-                        <option value="B. สอศ.">B. สอศ.</option>
-                        <option value="C. อว.">C. อว.</option>
-                    </select>
-                    <select id="user-role-input" class="bg-slate-50 border-2 border-slate-100 p-4 rounded-2xl text-sm font-black outline-none focus:border-blue-500 shadow-sm font-bold">
-                        <option value="ครู ค.ศ. 1-3">ครู ค.ศ. 1-3</option>
-                        <option value="ผู้อำนวยการ">ผู้อำนวยการ</option>
-                        <option value="ครูผู้ช่วย">ครูผู้ช่วย</option>
-                        <option value="ธุรการ/พัสดุ">ธุรการ/พัสดุ</option>
-                    </select>
-                </div>
-                <input type="text" id="user-subject" placeholder="ระบุวิชาที่สอน / ฝ่ายที่รับผิดชอบ" class="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl text-sm font-black outline-none focus:border-blue-500 shadow-sm font-bold font-bold" required>
-                <button type="submit" class="w-full bg-slate-900 text-white py-5 mt-6 rounded-[1.5rem] font-black shadow-2xl transform active:scale-95 transition text-lg tracking-tight uppercase font-bold font-bold">บันทึกข้อมูลและเข้าใช้งาน</button>
-            </form>
-        </div>
-    </div>
-
     <footer class="bg-white py-12 px-6 border-t mt-auto font-bold font-bold">
         <div class="container mx-auto flex flex-col items-center justify-center text-center">
-            <img src="logo.jpg" alt="Digital Squad AI Full Logo" class="h-20 md:h-28 object-contain mb-6">
-            <p class="text-gray-900 font-black text-sm font-bold font-bold">พัฒนาโดย: กันตภณ ณพสิษฐ์ (ครูเอ). 2569</p>
-            <p class="text-gray-400 text-[10px] font-bold tracking-[0.2em] uppercase mt-2 font-bold font-bold font-bold">Official Supreme Version V9.9 (Ultimate Sync)</p>
+            <img src="logo.jpg" alt="Logo" class="h-20 md:h-28 object-contain mb-6">
+            <p class="text-gray-900 font-black text-sm font-bold font-bold font-bold font-bold">พัฒนาโดย: กันตภณ ณพสิษฐ์ (ครูเอ). 2569</p>
+            <p class="text-gray-400 text-[10px] font-bold tracking-[0.2em] uppercase mt-2 font-bold font-bold font-bold font-bold">Official Supreme Version V9.9 (Ultimate Sync)</p>
         </div>
     </footer>
 
@@ -246,6 +195,19 @@
         let currentMonth = new Date(2026, 3, 1);
         let currentActiveTask = null;
         let selectedTheme = 'all';
+
+        const AGENT_URLS = {
+            "AGENT 01": "https://gemini.google.com/gem/1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe",
+            "AGENT 02": "https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2",
+            "AGENT 03": "https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ",
+            "AGENT 04": "https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx",
+            "AGENT 05": "https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp",
+            "AGENT 06": "https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr",
+            "AGENT 07": "https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc",
+            "AGENT 08": "https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ",
+            "AGENT 09": "https://gemini.google.com/gem/1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM",
+            "AGENT 10": "https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc"
+        };
 
         const newsDatabase = [
             { cat: "สพฐ. & สกศ.", color: "blue", link: "https://www.obec.go.th/", items: [
@@ -274,6 +236,24 @@
             ]}
         ];
 
+        // Academic Calendar BE 2569
+        const calendarEvents = {
+            "2026-03-31": [{ text: "ปิดสรุปไตรมาส 2", type: "green" }],
+            "2026-04-01": [{ text: "เริ่มยื่นนวัตกรรม (สพฐ.)", type: "blue" }, { text: "เปิดรับข้อเสนอ TSRI", type: "purple" }, { text: "ปิดยอด e-GP (ธุรการ)", type: "green" }],
+            "2026-04-06": [{ text: "วันจักรี", type: "red" }],
+            "2026-04-07": [{ text: "ประชุม กก.บริหาร", type: "green" }, { text: "รับรายงานตัว ม.1", type: "blue" }],
+            "2026-04-13": [{ text: "วันสงกรานต์", type: "red" }],
+            "2026-04-14": [{ text: "วันสงกรานต์", type: "red" }],
+            "2026-04-15": [{ text: "วันสงกรานต์", type: "red" }],
+            "2026-04-18": [{ text: "สอบ NT ระดับชาติ", type: "blue" }],
+            "2026-04-20": [{ text: "ประกาศผลย้าย รอบ 1", type: "orange" }, { text: "เดดไลน์ผลงาน CEA", type: "orange" }],
+            "2026-04-25": [{ text: "ประชุมเตรียมหลักสูตร 68", type: "blue" }],
+            "2026-05-01": [{ text: "วันแรงงาน", type: "red" }],
+            "2026-05-04": [{ text: "วันฉัตรมงคล", type: "red" }],
+            "2026-05-15": [{ text: "กำหนดส่ง ID Plan / วPA", type: "blue" }],
+            "2026-05-16": [{ text: "เปิดภาคเรียน 1/2569", type: "orange" }]
+        };
+
         const statsData = {
             total: 4864,
             aff: { "สพฐ.": 2394, "สอศ.": 288, "อว.": 122, "สช.": 198, "สังกัดอื่นๆ": 110 },
@@ -286,7 +266,7 @@
             if(affCont) affCont.innerHTML = Object.entries(statsData.aff).map(([k, v]) => `
                 <div class="mb-4">
                     <div class="flex justify-between text-sm font-black mb-2 text-slate-700"><span>${k}</span><span class="text-slate-500 font-bold">${v} คน</span></div>
-                    <div class="progress-bar bg-slate-100 h-2 rounded-full overflow-hidden"><div class="progress-fill bg-blue-500 h-full rounded-full" style="width: ${(v / 3000) * 100}%"></div></div>
+                    <div class="progress-bar bg-slate-100 h-2.5 rounded-full overflow-hidden"><div class="progress-fill bg-blue-500 h-full rounded-full" style="width: ${(v / 3000) * 100}%"></div></div>
                 </div>
             `).join('');
             
@@ -294,15 +274,15 @@
             if(roleCont) roleCont.innerHTML = Object.entries(statsData.pos).map(([k, v]) => `
                 <div class="mb-4">
                     <div class="flex justify-between text-sm font-black mb-2 text-slate-700"><span>${k}</span><span class="text-slate-500 font-bold">${v} คน</span></div>
-                    <div class="progress-bar bg-slate-100 h-2 rounded-full overflow-hidden"><div class="progress-fill bg-emerald-500 h-full rounded-full" style="width: ${(v / 2000) * 100}%"></div></div>
+                    <div class="progress-bar bg-slate-100 h-2.5 rounded-full overflow-hidden"><div class="progress-fill bg-emerald-500 h-full rounded-full" style="width: ${(v / 2000) * 100}%"></div></div>
                 </div>
             `).join('');
 
             const agentCont = document.getElementById('container-agents');
             if(agentCont) agentCont.innerHTML = Object.entries(statsData.agt).map(([k, v]) => `
                 <div class="mb-4">
-                    <div class="flex justify-between text-[13px] font-black mb-2 text-slate-700 font-bold font-bold"><span>${k}</span><span class="text-orange-500 font-bold font-bold font-bold">${v} ครั้ง</span></div>
-                    <div class="progress-bar bg-slate-100 h-2 rounded-full overflow-hidden font-bold"><div class="progress-fill bg-orange-400 h-full rounded-full font-bold" style="width: ${(v / 5000) * 100}%"></div></div>
+                    <div class="flex justify-between text-[13px] font-black mb-2 text-slate-700 font-bold"><span>${k}</span><span class="text-orange-500 font-bold">${v} ครั้ง</span></div>
+                    <div class="progress-bar bg-slate-100 h-2.5 rounded-full overflow-hidden"><div class="progress-fill bg-orange-400 h-full rounded-full" style="width: ${(v / 5000) * 100}%"></div></div>
                 </div>
             `).join('');
         }
@@ -313,9 +293,7 @@
             container.innerHTML = newsDatabase.map(n => `
                 <div class="bg-white p-6 rounded-[2rem] border border-red-100 shadow-sm flex flex-col h-full hover:shadow-lg transition-all text-center">
                     <div class="mb-4">
-                        <span class="text-[10px] font-black text-${n.color}-600 uppercase bg-${n.color}-50 px-4 py-1.5 rounded-full inline-block border border-${n.color}-100">
-                            ${n.cat}
-                        </span>
+                        <span class="text-[10px] font-black text-${n.color}-600 uppercase bg-${n.color}-50 px-4 py-1.5 rounded-full inline-block border border-${n.color}-100 font-bold">${n.cat}</span>
                     </div>
                     <div class="space-y-4 flex-grow text-left">
                         ${n.items.map(item => `<h4 onclick="window.open('${item.url}', '_blank')" class="news-card-item text-[13px] font-extrabold text-slate-700 leading-snug">${item.title}</h4>`).join('')}
@@ -326,6 +304,37 @@
                 </div>
             `).join('');
         }
+
+        function renderCalendar() {
+            const body = document.getElementById('calendar-body');
+            if (!body) return;
+            const monthNames = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+            const monthYearEl = document.getElementById('calendar-month-year');
+            if (monthYearEl) monthYearEl.innerText = `${monthNames[currentMonth.getMonth()]} ${currentMonth.getFullYear() + 543}`;
+            
+            body.innerHTML = ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."].map(d => `<div class="calendar-header">${d}</div>`).join('');
+            const firstDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1).getDay();
+            const daysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate();
+            
+            for (let i = 0; i < firstDay; i++) body.innerHTML += `<div class="calendar-day bg-slate-50/50 opacity-40"></div>`;
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateKey = `${currentMonth.getFullYear()}-${(currentMonth.getMonth() + 1).toString().padStart(2, '0')}-${d.toString().padStart(2, '0')}`;
+                let evs = calendarEvents[dateKey] || [];
+                let isHoliday = evs.some(e => e.type === 'red');
+                const today = new Date();
+                const isToday = d === today.getDate() && currentMonth.getMonth() === today.getMonth() && currentMonth.getFullYear() === today.getFullYear();
+                
+                let evHtml = evs.map(e => {
+                    let colorMap = { 'blue': '#3b82f6', 'orange': '#f97316', 'purple': '#8b5cf6', 'green': '#10b981', 'red': '#ef4444' };
+                    let bgMap = { 'blue': '#eff6ff', 'orange': '#fff7ed', 'purple': '#f5f3ff', 'green': '#f0fdf4', 'red': '#fef2f2' };
+                    return `<span class="event-mini font-bold" style="background-color: ${bgMap[e.type]}; border-left-color: ${colorMap[e.type]}">${e.text}</span>`;
+                }).join('');
+                
+                body.innerHTML += `<div class="calendar-day ${isHoliday ? 'holiday' : ''} ${isToday ? 'today' : ''}"><b>${d}</b>${evHtml}</div>`;
+            }
+        }
+
+        function changeMonth(delta) { currentMonth.setMonth(currentMonth.getMonth() + delta); renderCalendar(); }
 
         function switchTab(tab) {
             ['home', 'progress', 'calendar', 'about'].forEach(t => {
@@ -348,24 +357,14 @@
             if (modal) modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        function renderCalendar() {
-            const body = document.getElementById('calendar-body');
-            if (!body) return;
-            body.innerHTML = ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."].map(d => `<div class="calendar-header font-bold text-slate-500">${d}</div>`).join('');
-            const days = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate();
-            for (let d = 1; d <= days; d++) body.innerHTML += `<div class="calendar-day"><b>${d}</b></div>`;
-        }
-
-        function changeMonth(delta) { currentMonth.setMonth(currentMonth.getMonth() + delta); renderCalendar(); }
-
         window.onload = () => {
             const now = new Date();
             const monthNames = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
             const dateEl = document.getElementById('current-date-display');
             if(dateEl) dateEl.innerText = `${now.getDate()} ${monthNames[now.getMonth()]} ${now.getFullYear()+543}`;
             renderNews();
-            renderStats();
             renderCalendar();
+            renderStats();
         };
 
         function handleLogin(e) { e.preventDefault(); toggleModal('login-modal'); }
