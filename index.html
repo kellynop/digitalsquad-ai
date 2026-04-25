@@ -47,6 +47,7 @@
         #toast { visibility: hidden; min-width: 300px; background-color: #059669; color: #fff; text-align: center; border-radius: 12px; padding: 1.25rem; position: fixed; z-index: 100000; left: 50%; bottom: 40px; transform: translateX(-50%); font-weight: bold; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); opacity: 0; transition: all 0.4s; }
         #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(-10px); }
 
+        /* Catalog Layout */
         .catalog-group-container { border: 2.5px solid #10b981; border-radius: 2.5rem; padding: 2rem; margin-bottom: 3.5rem; background: white; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.05); }
         .feature-icon-box { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 16px; margin-bottom: 16px; font-size: 1.8rem; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
         .filter-btn-active { background-color: #1e293b !important; color: white !important; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
@@ -67,8 +68,8 @@
     <header class="site-header sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4 flex items-center justify-between h-16">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
-                <!-- Header Icon: ใส่รูป app icon.jpg โดยลบระบบ Error Fallback ออกถาวร -->
-                <img src="app%20icon.jpg" alt="Digital Squad Logo" class="w-11 h-11 rounded-xl object-cover bg-white shadow-sm">
+                <!-- Header Icon: app icon.jpg -->
+                <img src="app%20icon.jpg" alt="Logo" class="w-11 h-11 rounded-xl object-cover bg-white shadow-sm">
                 <div class="text-left text-white">
                     <h1 class="font-bold text-lg leading-tight uppercase tracking-tighter">Digital Squad AI V9.9</h1>
                     <p class="text-[10px] text-blue-300 tracking-widest uppercase">Supreme Sync 2026</p>
@@ -97,68 +98,35 @@
         <div id="tab-home">
             <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 rounded-[2.5rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden text-left mb-8">
                 <div class="relative z-10 text-left">
-                    <!-- ข้อความหัวข้อตามแบบอาจารย์ -->
-                    <h2 class="text-2xl md:text-4xl font-black mb-2 tracking-tight leading-tight uppercase">Digital Squad AI: THE EDUCATIONAL ECOSYSTEM <span class="text-blue-400">V9.9</span></h2>
+                    <h2 class="text-2xl md:text-4xl font-black mb-2 tracking-tight uppercase leading-tight">Digital Squad AI for Teachers Thailand <span class="text-blue-400">V9.9</span></h2>
+                    <h3 class="text-lg md:text-xl font-bold text-yellow-300 mb-6 uppercase tracking-tight">ผู้ช่วย AI สำหรับครูไทย ที่ช่วยลดภาระงานเอกสารได้จริง ภายในไม่กี่คลิก</h3>
                     
-                    <!-- ข้อความบรรยายตามรูป rtrt.jpg -->
-                    <div class="text-blue-100 max-w-4xl text-base opacity-95 leading-relaxed font-light mb-10 space-y-4">
-                        <p>เพื่อนแท้ของครูและบุคลากรทางการศึกษา... ระบบนิเวศอัจฉริยะที่ถูกออกแบบมาเพื่อช่วยงานแทบทุกด้านทางการศึกษา เป็นผู้ช่วยทำงานตั้งแต่ระดับเจ้าหน้าที่ ครูอาจารย์ ไปจนถึงระดับฝ่ายบริหาร รองรับระบบการศึกษาทุกสายงานทั้งภาครัฐและเอกชน ทั้งการศึกษาขั้นพื้นฐาน (สพฐ.), อาชีวศึกษา (สอศ.), และในระดับอุดมศึกษา (อว.)</p>
-                        
-                        <p>ช่วยลดภาระและลดเวลาครูได้อย่างแท้จริง พร้อมอัปเดตสอดรับทุกกฎเกณฑ์ เงื่อนไข ระเบียบ และทุกนโยบายทางการศึกษาล่าสุด ปี 2569 ป้องกันการละเมิดลิขสิทธิ์ 100%</p>
+                    <div class="text-blue-100 max-w-4xl text-base opacity-95 leading-relaxed font-light mb-10 space-y-4 font-bold">
+                        <p>เปลี่ยนงานเอกสารที่ซับซ้อน ให้เสร็จในเวลาไม่กี่นาที ตั้งแต่เอกสารราชการ แผนการสอน รายงานผล ไปจนถึงงานบริหาร ให้ AI จัดการแทนคุณอย่างเป็นระบบ ถูกต้อง และพร้อมใช้งานทันที</p>
+                        <p>รองรับทุกบทบาทในวงการการศึกษา ทั้งระดับโรงเรียน อาชีวศึกษา และมหาวิทยาลัย ใช้งานได้ทั้งครู เจ้าหน้าที่ และผู้บริหาร</p>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 mt-6 text-white font-bold">
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i> ลดเวลางานเอกสารได้หลายชั่วโมงต่อวัน</li>
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i> อัปเดตกฎ ระเบียบ และนโยบายล่าสุดโดยอัตโนมัติ</li>
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i> ใช้งานง่าย ไม่ต้องมีพื้นฐานด้าน AI</li>
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i> ปลอดภัย มาตรฐานสูง และถูกลิขสิทธิ์ 100%</li>
+                        </ul>
                     </div>
-
+                    
                     <div class="flex flex-wrap gap-5 mt-8">
-                        <button onclick="switchTab('catalog')" class="bg-white text-blue-900 px-10 py-4 rounded-2xl font-black shadow-2xl hover:bg-blue-50 transition active:scale-95">เริ่มงานกับ AI AGENT</button>
-                        <button onclick="switchTab('catalog')" class="bg-blue-600 border border-blue-400 px-10 py-4 rounded-2xl font-black hover:bg-blue-500 transition active:scale-95 shadow-xl backdrop-blur-sm"><i class="fas fa-search mr-2"></i> ค้นหามหาคลังภารกิจ 1000+</button>
+                        <button onclick="switchTab('catalog')" class="bg-white text-blue-900 px-10 py-4 rounded-2xl font-black shadow-2xl hover:bg-blue-50 transition active:scale-95">✨ ทดลองใช้ AI ร่างโครงสร้างภารกิจ</button>
+                        <button onclick="switchTab('gems')" class="bg-blue-700/50 border border-blue-400 px-10 py-4 rounded-2xl font-black hover:bg-blue-600 transition active:scale-95 shadow-xl backdrop-blur-sm"><i class="fas fa-robot mr-2"></i> เลือก AI AGENT</button>
                     </div>
                 </div>
-                <!-- พื้นหลัง Hero: Monochrome D Icon จาก app icon.jpg -->
-                <img src="app%20icon.jpg" alt="BG Icon" class="absolute -right-10 -bottom-10 w-[350px] h-[350px] object-contain opacity-10 rotate-12" style="filter: brightness(0) invert(1);">
-            </div>
-
-            <!-- ถอดสถิติหน้าแรกออกตามสั่ง -->
-
-            <!-- Trending Cards -->
-            <div class="mb-10 text-left border-t border-slate-200 pt-8">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-xl font-black text-slate-800 border-l-4 border-rose-500 pl-3 flex items-center uppercase tracking-tighter">
-                        <i class="fas fa-fire text-rose-500 mr-2"></i> งานยอดฮิตประจำเดือน (Trending Now)
-                    </h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-5 text-white shadow-lg cursor-pointer transform hover:-translate-y-1 transition" onclick="showTaskModal('DS-8201')">
-                        <span class="bg-white/20 text-[10px] font-black px-2 py-1 rounded mb-3 inline-block uppercase tracking-wider">Agent 02 / 08</span>
-                        <h4 class="font-black text-lg leading-tight mb-2">ช่วยสรุป SAR 3 มาตรฐาน</h4>
-                        <p class="text-blue-100 text-[11px] mb-4">สรุปรายงานผลการประเมินตนเอง (SAR) ขั้นพื้นฐาน สกัดข้อมูลเด่นเขียนบทสรุปผู้บริหาร</p>
-                        <div class="mt-auto text-[10px] font-bold"><i class="fas fa-rocket mr-1 text-yellow-300"></i> เริ่มสร้างด้วย AI</div>
-                    </div>
-                    <div class="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-5 text-white shadow-lg cursor-pointer transform hover:-translate-y-1 transition" onclick="showTaskModal('DS-2017')">
-                        <span class="bg-white/20 text-[10px] font-black px-2 py-1 rounded mb-3 inline-block uppercase tracking-wider">Agent 06</span>
-                        <h4 class="font-black text-lg leading-tight mb-2">คิดโครงการ / แผนปฏิบัติการ</h4>
-                        <p class="text-emerald-100 text-[11px] mb-4">ร่างโครงการใหม่ที่สอดคล้องกับนโยบายชาติ ตั้งเป้าหมาย KPI และงบประมาณ</p>
-                        <div class="mt-auto text-[10px] font-bold"><i class="fas fa-rocket mr-1 text-yellow-300"></i> เริ่มสร้างด้วย AI</div>
-                    </div>
-                    <div class="bg-gradient-to-br from-orange-500 to-rose-500 rounded-2xl p-5 text-white shadow-lg cursor-pointer transform hover:-translate-y-1 transition" onclick="showTaskModal('DS-2111')">
-                        <span class="bg-white/20 text-[10px] font-black px-2 py-1 rounded mb-3 inline-block uppercase tracking-wider">Agent 03</span>
-                        <h4 class="font-black text-lg leading-tight mb-2">เนรมิตแผน Active Learning</h4>
-                        <p class="text-orange-100 text-[11px] mb-4">ออกแบบแผนการสอนแบบ 5E, 7E หรือการจัดการเรียนรู้ฐานสมรรถนะ (CBE)</p>
-                        <div class="mt-auto text-[10px] font-bold"><i class="fas fa-rocket mr-1 text-yellow-300"></i> เริ่มสร้างด้วย AI</div>
-                    </div>
-                    <div class="bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl p-5 text-white shadow-lg cursor-pointer transform hover:-translate-y-1 transition" onclick="showTaskModal('DS-3401')">
-                        <span class="bg-white/20 text-[10px] font-black px-2 py-1 rounded mb-3 inline-block uppercase tracking-wider">Agent 08</span>
-                        <h4 class="font-black text-lg leading-tight mb-2">ร่างข้อตกลง วPA</h4>
-                        <p class="text-amber-50 text-[11px] mb-4">คิดประเด็นท้าทายตามตัวชี้วัดวิทยฐานะ และออกแบบเกณฑ์การประเมินผล</p>
-                        <div class="mt-auto text-[10px] font-bold"><i class="fas fa-rocket mr-1 text-yellow-300"></i> เริ่มสร้างด้วย AI</div>
-                    </div>
-                </div>
+                <!-- Watermark Icon: app icon.jpg monochrome -->
+                <img src="app%20icon.jpg" alt="Background Icon" class="absolute -right-10 -bottom-10 w-[350px] h-[350px] object-contain opacity-10 rotate-12" style="filter: brightness(0) invert(1);">
             </div>
 
             <!-- News Sync Section -->
             <div id="emergency-section" class="mb-12 text-left">
                 <div class="bg-red-50 border-l-[10px] border-red-600 p-8 rounded-3xl shadow-sm flex flex-col gap-6">
                     <div class="flex items-center text-red-800 font-bold text-xl w-full border-b border-red-200 pb-4 uppercase tracking-tight">
-                        <i class="fas fa-satellite-dish mr-3 text-2xl text-red-600"></i> ศูนย์อัปเดตข่าวราชการการศึกษา
-                        <span class="ml-auto text-xs font-bold bg-red-600 text-white px-3 py-1 rounded-full uppercase tracking-widest">Verified Sync</span>
+                        <i class="fas fa-satellite-dish mr-3 text-2xl text-red-600"></i> ศูนย์อัปเดตข่าวราชการการศึกษา 2569 (Omni-Sync)
+                        <button class="ml-auto text-[11px] font-black bg-red-600 text-white px-4 py-2 rounded-full uppercase tracking-widest shadow-md">Verified Sync</button>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full items-stretch" id="news-container">
                     </div>
@@ -186,7 +154,7 @@
                                 </select>
                             </div>
                             <div class="md:col-span-2">
-                                <button onclick="draftPrompts()" class="w-full bg-purple-600 text-white py-3 rounded-xl text-sm font-bold shadow-md active:scale-95 transition">ร่างคำสั่ง</button>
+                                <button onclick="draftPrompts()" class="w-full bg-purple-600 text-white py-3 rounded-xl text-sm font-bold shadow-md active:scale-95 transition font-bold">ร่างคำสั่ง</button>
                             </div>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -222,15 +190,15 @@
 
         <!-- Tab: Progress -->
         <div id="tab-progress" class="hidden text-left font-bold">
-            <h2 class="text-2xl font-black text-gray-800 mb-6 uppercase tracking-tight">แดชบอร์ดสถิติการใช้งานเชิงลึก</h2>
+            <h2 class="text-2xl font-black text-gray-800 mb-6 uppercase tracking-tight font-bold">แดชบอร์ดสถิติการใช้งานเชิงลึก</h2>
             <div id="stats-summary" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 font-bold">
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center">
                     <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mr-4 font-bold">U</div>
-                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest font-bold">ผู้เข้าใช้งานรวม</p><p class="text-3xl font-black text-gray-800">2,580</p></div>
+                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest font-bold font-bold">ผู้เข้าใช้งานรวม</p><p class="text-3xl font-black text-gray-800 font-bold">2,580</p></div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center font-bold">
                     <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mr-4 font-bold">C</div>
-                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest font-bold">การเรียกใช้ AI</p><p class="text-3xl font-black text-gray-800">15,600</p></div>
+                    <div><p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest font-bold">การเรียกใช้ AI</p><p class="text-3xl font-black text-gray-800 font-bold">15,600</p></div>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center font-bold">
                     <div class="w-14 h-14 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center text-2xl mr-4 font-bold">A</div>
@@ -255,7 +223,7 @@
                     </div>
                     <button onclick="changeMonth(1)" class="hover:bg-white/20 p-3 rounded-full transition font-bold"><i class="fas fa-chevron-right text-xl font-bold"></i></button>
                 </div>
-                <div class="calendar-wrapper px-4 md:px-8 py-6">
+                <div class="calendar-wrapper px-4 md:px-8 py-6 font-bold">
                     <div class="calendar-grid shadow-inner shadow-slate-100 font-bold" id="calendar-body"></div>
                 </div>
             </div>
@@ -266,7 +234,7 @@
     <div id="login-modal" class="modal-overlay" onclick="toggleModal('login-modal')">
         <div class="modal-content text-left font-bold" onclick="event.stopPropagation()">
             <div class="text-center mb-10">
-                <!-- Login Logo: app icon.jpg (ลบ Error Fallback ออก) -->
+                <!-- Login Logo: app icon.jpg -->
                 <img src="app%20icon.jpg" alt="Login Icon" class="w-20 h-20 mx-auto mb-5 rounded-3xl shadow-inner object-cover">
                 <h3 class="text-3xl font-black text-blue-900 tracking-tighter uppercase font-bold text-center">วิเคราะห์ตัวตนบุคลากร</h3>
             </div>
@@ -290,12 +258,12 @@
         </div>
     </div>
 
-    <!-- Footer: ใช้ภาพ logo.jpg กึ่งกลางพรีเมียม (ลบ Error Fallback ออก) -->
+    <!-- Footer Logo: logo.jpg กึ่งกลางสวยงาม -->
     <footer class="bg-white py-12 px-6 border-t mt-auto font-bold">
         <div class="container mx-auto flex flex-col items-center justify-center text-center font-bold">
             <img src="logo.jpg" alt="Digital Squad AI Full Logo" class="h-20 md:h-28 object-contain mb-6">
-            <p class="text-gray-900 font-black text-sm font-bold">พัฒนาโดย: กันตภณ ณพสิษฐ์ (ครูเอ). 2569</p>
-            <p class="text-gray-400 text-[10px] font-bold tracking-[0.2em] uppercase mt-2 font-bold">Official Supreme Version V9.9 (Ultimate Sync)</p>
+            <p class="text-gray-900 font-black text-sm font-bold font-bold font-bold">พัฒนาโดย: กันตภณ ณพสิษฐ์ (ครูเอ). 2569</p>
+            <p class="text-gray-400 text-[10px] font-bold tracking-[0.2em] uppercase mt-2 font-bold font-bold">Official Supreme Version V9.9 (Ultimate Sync)</p>
         </div>
     </footer>
 
@@ -389,9 +357,9 @@
             container.innerHTML = `
                 <div class="bg-white p-6 rounded-3xl shadow-sm border border-amber-100 transform transition duration-300 hover:scale-[1.02] flex-grow flex flex-col justify-center text-center">
                     <span class="text-[10px] font-black bg-amber-100 text-amber-800 px-3 py-1 rounded-full uppercase tracking-wider shadow-sm w-fit mx-auto mb-4 font-bold">ไอเดียที่ ${tip.day}</span>
-                    <h4 class="font-black text-amber-900 text-lg mb-3 leading-tight font-bold font-bold">${tip.title}</h4>
+                    <h4 class="font-black text-amber-900 text-lg mb-3 leading-tight font-bold">${tip.title}</h4>
                     <p class="text-sm text-gray-600 leading-relaxed font-medium">${tip.desc}</p>
-                    <button onclick="window.open('${AGENT_URLS[tip.agent]}', '_blank')" class="mt-6 w-full bg-amber-50 border border-amber-200 hover:bg-amber-100 text-amber-800 text-sm font-black py-3 rounded-xl transition flex items-center justify-center shadow-sm">
+                    <button onclick="window.open('${AGENT_URLS[tip.agent]}', '_blank')" class="mt-6 w-full bg-amber-50 border border-amber-200 hover:bg-amber-100 text-amber-800 text-sm font-black py-3 rounded-xl transition flex items-center justify-center shadow-sm font-bold">
                         <i class="fas fa-magic mr-2"></i> ลองใช้ด้วย ${tip.agent}
                     </button>
                 </div>
@@ -399,8 +367,8 @@
         }
 
         function renderStats() {
-            const affCont = document.getElementById('container-affiliations');
-            if(affCont) affCont.innerHTML = Object.entries(statsData.aff).map(([k, v]) => `<div><div class="flex justify-between text-sm font-black mb-2 text-slate-700"><span>${k}</span><span class="text-slate-500">${v} คน</span></div><div class="progress-bar bg-slate-100 h-2 rounded-full overflow-hidden"><div class="progress-fill bg-blue-500 h-full rounded-full" style="width: ${(v / statsData.total) * 100}%"></div></div></div>`).join('');
+            const containerAff = document.getElementById('container-affiliations');
+            if(containerAff) containerAff.innerHTML = Object.entries(statsData.aff).map(([k, v]) => `<div><div class="flex justify-between text-sm font-black mb-2 text-slate-700"><span>${k}</span><span class="text-slate-500">${v} คน</span></div><div class="progress-bar bg-slate-100 h-2 rounded-full overflow-hidden"><div class="progress-fill bg-blue-500 h-full rounded-full" style="width: ${(v / statsData.total) * 100}%"></div></div></div>`).join('');
             
             const roleCont = document.getElementById('container-roles');
             if(roleCont) roleCont.innerHTML = Object.entries(statsData.pos).map(([k, v]) => `<div><div class="flex justify-between text-sm font-black mb-2 text-slate-700"><span>${k}</span><span class="text-slate-500">${v} คน</span></div><div class="progress-bar bg-slate-100 h-2 rounded-full overflow-hidden"><div class="progress-fill bg-emerald-500 h-full rounded-full" style="width: ${(v / statsData.total) * 100}%"></div></div></div>`).join('');
