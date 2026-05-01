@@ -230,7 +230,7 @@
             </div>
         </div>
 
-        <!-- Tab: Progress (Statistics) -->
+        <!-- Tab: Progress -->
         <div id="tab-progress" class="hidden text-left">
             <div class="flex justify-between items-center mb-8">
                 <div>
@@ -494,7 +494,6 @@
 
     <div id="toast"></div>
 
-    <!-- Footer Logo -->
     <footer class="bg-white py-12 px-6 border-t mt-auto">
         <div class="container mx-auto flex flex-col items-center justify-center text-center">
             <img src="logo.jpg" alt="Digital Squad AI Full Logo" class="h-20 md:h-28 object-contain mb-6" onerror="this.style.display='none'">
@@ -583,67 +582,69 @@
             { day: 31, title: "สรุปผลงานสิ้นปีด้วยกราฟปังๆ", desc: "ให้ AGENT 02 แนะนำเทคนิคการเขียนบรรยายประกอบกราฟผลสัมฤทธิ์ทางการเรียน เพื่อนำเสนอต่อคณะกรรมการสถานศึกษา", agent: "AGENT 02" }
         ];
 
-        const catalogDatabase = [
-            { id: "DS-8201", title: "ร่างรายงานการประเมินตนเอง (SAR) 3 มาตรฐาน", agent: "AGENT 02", theme: "strategy", role: "director", tags: ["SAR", "ประเมิน", "วิเคราะห์"], group: "urgent" },
-            { id: "DS-2017", title: "ร่างแผนปฏิบัติการและโครงการประจำปี", agent: "AGENT 06", theme: "strategy", role: "head_admin", tags: ["แผนงาน", "โครงการ", "งบประมาณ"], group: "urgent" },
-            { id: "DS-3401", title: "คิดประเด็นท้าทาย (Challenge) สำหรับทำ วPA", agent: "AGENT 08", theme: "academic", role: "secondary", tags: ["วPA", "วิทยฐานะ", "ประเมินผล"], group: "urgent" },
-            { id: "DS-2111", title: "ออกแบบแผนการจัดการเรียนรู้ Active Learning", agent: "AGENT 03", theme: "academic", role: "primary", tags: ["แผนการสอน", "รูปแบบ 5E"], group: "urgent" },
-            { id: "DS-2180", title: "ร่างเค้าโครงหลักสูตรสถานศึกษาอิง Curriculum 68", agent: "AGENT 03", theme: "strategy", role: "head_admin", tags: ["หลักสูตร", "CBE 68"], group: "urgent" },
-            { id: "DS-9602", title: "สรุปข้อมูลและสกัดเนื้อหาจากคู่มือ PDF", agent: "AGENT 03", theme: "academic", role: "preschool", tags: ["อ่านเอกสาร", "สรุปใจความ"], group: "urgent" },
-            { id: "DS-1031", title: "โครงสร้างโค้ด Apps Script: ระบบบันทึกข้อมูลและแจ้งเตือน LINE", agent: "AGENT 09", theme: "digital", role: "support_staff", tags: ["Apps Script", "Web App", "LINE Notify"], group: "academic" },
-            { id: "DS-2045", title: "โครงสร้างตารางสูตร Google Sheets: ประมวลผลและตัดเกรดอัตโนมัติ", agent: "AGENT 09", theme: "digital", role: "teacher", tags: ["วัดผล", "Google Sheets", "ระบบข้อมูล"], group: "academic" },
-            { id: "DS-5502", title: "สร้างสื่อและพอร์ตโฟลิโอด้วยโครงสร้าง Canva", agent: "AGENT 05", theme: "digital", role: "teacher", tags: ["สื่อการสอน", "Canva", "กราฟิก"], group: "academic" },
-            { id: "DS-9501", title: "ชุดคำสั่ง (Prompt) วิเคราะห์ข้อมูลผู้เรียนเชิงลึกด้วย AI (ChatGPT/Gemini)", agent: "AGENT 04", theme: "digital", role: "teacher", tags: ["Prompt", "AI Tools", "วิเคราะห์ข้อมูล"], group: "academic" },
-            { id: "DS-9905", title: "โครงสร้างสคริปต์สื่อวิดีโอเพื่อการสอน (อ้างอิงมัลติมีเดีย)", agent: "AGENT 05", theme: "digital", role: "teacher", tags: ["สคริปต์", "วิดีโอ", "สื่อมัลติมีเดีย"], group: "academic" },
-            { id: "DS-9102", title: "สกัดข้อความจากภาพถ่ายใบงานด้วยระบบ OCR", agent: "AGENT 09", theme: "digital", role: "vocational", tags: ["AI", "แปลงเอกสาร"], group: "academic" },
-            { id: "DS-2130", title: "สร้างโครงสร้างแผนการสอน 8 กลุ่มสาระ (โครงร่างต้นแบบ)", agent: "AGENT 03", theme: "academic", role: "teacher", tags: ["แผนการสอน", "รูปแบบ"], group: "academic" },
-            { id: "DS-2115", title: "ออกแบบกิจกรรมการเรียนรู้จากสื่อออนไลน์ (สกัดแนวคิด ประยุกต์ใหม่)", agent: "AGENT 03", theme: "academic", role: "primary", tags: ["สื่อการสอน", "แผนการสอน", "ประยุกต์"], group: "academic" },
-            { id: "DS-3405", title: "ร่างโครงสร้าง วPA คศ.3 (ปรับประยุกต์ใหม่)", agent: "AGENT 08", theme: "academic", role: "teacher", tags: ["วPA", "วิทยฐานะ", "แนวทาง"], group: "academic" },
-            { id: "DS-3201", title: "สร้างแบบทดสอบวิเคราะห์ PISA / O-NET", agent: "AGENT 04", theme: "academic", role: "secondary", tags: ["วัดผล", "ข้อสอบ"], group: "academic" },
-            { id: "DS-7402", title: "โครงร่างข้อเสนอโครงการวิจัย สกสว. (TSRI) 2569", agent: "AGENT 08", theme: "academic", role: "research", tags: ["วิจัย", "TSRI", "ทุน"], group: "academic" },
-            { id: "DS-5501", title: "สกัด Keyword งานวิจัยจากคลังวารสาร TCI", agent: "AGENT 01", theme: "academic", role: "university", tags: ["งานวิจัย", "สืบค้น"], group: "academic" },
-            { id: "DS-1060", title: "โครงสร้างฟอร์มเก็บข้อมูล (Google Forms) คัดกรองนักเรียนแบบประยุกต์", agent: "AGENT 07", theme: "wellbeing", role: "teacher", tags: ["เก็บข้อมูล", "Google Forms", "SDQ"], group: "academic" },
-            { id: "DS-4305", title: "วิเคราะห์พฤติกรรมเด็กจากแบบประเมิน SDQ", agent: "AGENT 07", theme: "wellbeing", role: "secondary", tags: ["จิตวิทยา", "ดูแลนักเรียน"], group: "academic" },
-            { id: "DS-4401", title: "แนวทางการดูแลนักเรียนกลุ่มเสี่ยง (ระบบดูแลช่วยเหลือ)", agent: "AGENT 07", theme: "wellbeing", role: "teacher", tags: ["แนะแนว", "ให้คำปรึกษา"], group: "academic" },
-            { id: "DS-8115", title: "ร่างโครงสร้างเอกสารประเมินโครงการ (ประยุกต์จากต้นแบบ)", agent: "AGENT 06", theme: "strategy", role: "admin", tags: ["ประเมินโครงการ", "Google Docs"], group: "admin" },
-            { id: "DS-5601", title: "ร่างโครงการเสนอชื่อรับรางวัล Creative Excellence Awards (CEA)", agent: "AGENT 06", theme: "strategy", role: "director", tags: ["ประกวด", "CEA", "นวัตกรรม"], group: "admin" },
-            { id: "DS-8110", title: "ร่างโครงสร้างคำสั่งโรงเรียนฉบับมาตรฐาน", agent: "AGENT 06", theme: "strategy", role: "admin", tags: ["บริหาร", "สารบรรณ", "คำสั่ง"], group: "admin" },
-            { id: "DS-2022", title: "แบบฟอร์มโครงสร้างบัญชีวัสดุและเบิกจ่ายเงิน", agent: "AGENT 06", theme: "strategy", role: "support_staff", tags: ["การเงิน", "พัสดุ"], group: "admin" },
-            { id: "DS-1051", title: "แนวทางประเมินความเสี่ยงและแผนเผชิญเหตุ", agent: "AGENT 10", theme: "strategy", role: "director", tags: ["บริหาร", "ความปลอดภัย"], group: "admin" },
-            { id: "DS-1001", title: "ร่างหนังสือราชการภายนอก/ภายใน", agent: "AGENT 06", theme: "strategy", role: "support_staff", tags: ["ธุรการ", "หนังสือราชการ"], group: "admin" },
-            { id: "DS-1014", title: "ตรวจสอบเอกสารตาม พ.ร.บ. PDPA", agent: "AGENT 10", theme: "strategy", role: "head_admin", tags: ["กฎหมาย", "PDPA"], group: "admin" }
-        ];
-
         const calendarEvents = {
-            "2026-03-31": [{ text: "ปิดสรุปไตรมาส 2", type: "green", url: "" }],
+            "2026-03-31": [{ text: "ปิดสรุปยอดงบประมาณไตรมาส 2", type: "green", url: "" }],
             "2026-04-01": [
-                { text: "เริ่มยื่นนวัตกรรม (สพฐ.)", type: "blue", url: "https://www.obec.go.th/" }, 
-                { text: "เปิดรับข้อเสนอวิจัย TSRI", type: "purple", url: "https://www.tsri.or.th/" }, 
-                { text: "ปิดยอด e-GP (ธุรการ)", type: "green", url: "https://www.gprocurement.go.th/" }
+                { text: "เริ่มเปิดระบบรายงาน DPA 3.0", type: "green", url: "https://otepc.go.th/" }, 
+                { text: "เปิดรับข้อเสนอวิจัย TSRI", type: "purple", url: "https://www.tsri.or.th/" }
             ],
-            "2026-04-03": [{ text: "แจกวุฒิบัตร ม.3 / ม.6", type: "blue", url: "" }, { text: "อัปเดตระบบ DPA 3.0", type: "green", url: "https://otepc.go.th/" }],
-            "2026-04-05": [{ text: "ยื่นทุนวิจัย บพค.", type: "purple", url: "https://www.nxpo.or.th/" }],
+            "2026-04-03": [{ text: "อนุมัติผลการเรียน (จบการศึกษา) ม.3 / ม.6", type: "blue", url: "" }],
+            "2026-04-05": [{ text: "ยื่นขอรับทุนวิจัย บพค.", type: "purple", url: "https://www.nxpo.or.th/" }],
             "2026-04-06": [{ text: "วันจักรี (วันหยุดราชการ)", type: "red", url: "" }],
-            "2026-04-07": [{ text: "ประชุม กก.บริหาร", type: "green", url: "" }, { text: "รับรายงานตัว ม.1", type: "blue", url: "" }],
-            "2026-04-08": [{ text: "ประชุมเครือข่าย Curriculum 68", type: "blue", url: "" }, { text: "รับรายงานตัว ม.4", type: "blue", url: "" }],
+            "2026-04-07": [{ text: "รับรายงานตัวนักเรียนใหม่ ม.1", type: "blue", url: "https://www.obec.go.th/" }],
+            "2026-04-08": [{ text: "รับรายงานตัวนักเรียนใหม่ ม.4", type: "blue", url: "https://www.obec.go.th/" }],
             "2026-04-10": [{ text: "อบรมออนไลน์ สสวท.", type: "blue", url: "https://www.ipst.ac.th/" }, { text: "อบรมคลังปัญญา AI (อว.)", type: "purple", url: "https://www.mhesi.go.th/" }],
             "2026-04-12": [{ text: "รับสมัคร KU Youth Camp", type: "purple", url: "https://www.ku.ac.th/" }],
             "2026-04-13": [{ text: "เทศกาลสงกรานต์", type: "red", url: "" }],
             "2026-04-14": [{ text: "เทศกาลสงกรานต์", type: "red", url: "" }],
             "2026-04-15": [{ text: "เทศกาลสงกรานต์", type: "red", url: "" }, { text: "สัมมนา EdTech", type: "green", url: "" }],
-            "2026-04-18": [{ text: "สอบ NT ระดับชาติ", type: "blue", url: "https://www.niets.or.th/" }, { text: "รายงานตัว TCAS69 รอบ 2", type: "purple", url: "https://www.mytcas.com/" }],
-            "2026-04-20": [{ text: "ประกาศผลย้ายครู รอบ 1", type: "orange", url: "" }, { text: "เดดไลน์ส่งผลงาน CEA Awards", type: "orange", url: "https://www.vec.go.th/" }, { text: "ประเมินศูนย์บ่มเพาะฯ", type: "orange", url: "https://www.vec.go.th/" }],
-            "2026-04-22": [{ text: "ยื่นพอร์ต TCAS มหิดล", type: "purple", url: "https://mahidol.ac.th/" }],
-            "2026-04-24": [{ text: "ประกาศมาตรการตรึงราคา", type: "green", url: "https://www.moe.go.th/" }],
-            "2026-04-25": [{ text: "อบรมออนไลน์ Canva/AI", type: "purple", url: "" }, { text: "ประชุมเตรียมหลักสูตร 68", type: "blue", url: "" }, { text: "เตรียมระบบทวิภาคี อาชีวะ", type: "orange", url: "" }],
+            "2026-04-18": [{ text: "ประกาศผลสอบ O-NET/NT ระดับชาติ", type: "blue", url: "https://www.niets.or.th/" }],
+            "2026-04-20": [{ text: "ประกาศผลย้ายข้าราชครู รอบ 1", type: "orange", url: "" }, { text: "ประเมินศูนย์บ่มเพาะฯ (สอศ.)", type: "orange", url: "https://www.vec.go.th/" }],
+            "2026-04-24": [{ text: "ประกาศมาตรการเรียนฟรี 15 ปี (ศธ.)", type: "green", url: "https://www.moe.go.th/" }],
+            "2026-04-25": [{ text: "ประชุมเตรียมความพร้อมหลักสูตร CBE 68", type: "blue", url: "" }],
             "2026-04-28": [{ text: "สกัดข้อมูลบทความ TCI", type: "purple", url: "https://tci-thailand.org/" }, { text: "กำหนดส่งรายงานผล", type: "green", url: "" }],
             "2026-04-29": [{ text: "อบรมสร้าง Chatbot", type: "green", url: "" }],
-            "2026-04-30": [{ text: "ปิดระบบรายงาน SDQ", type: "green", url: "" }, { text: "ปิดสรุปยอด e-GP", type: "green", url: "" }],
+            "2026-04-30": [{ text: "ปิดระบบรายงานผล SDQ ประจำปี", type: "green", url: "" }],
             "2026-05-01": [{ text: "วันแรงงานแห่งชาติ", type: "red", url: "" }],
-            "2026-05-05": [{ text: "วันคล้ายวันฉัตรมงคล", type: "red", url: "" }, { text: "ประชุมเตรียมก่อนเปิดเทอม", type: "green", url: "" }],
-            "2026-05-11": [{ text: "ปฐมนิเทศหลักสูตร 2569", type: "blue", url: "" }],
-            "2026-05-15": [{ text: "กำหนดส่ง ID Plan / วPA", type: "blue", url: "https://otepc.go.th/" }],
-            "2026-05-16": [{ text: "เปิดภาคเรียน 1/2569", type: "orange", url: "" }]
+            "2026-05-04": [{ text: "วันฉัตรมงคล", type: "red", url: "" }],
+            "2026-05-05": [{ text: "ประชุมเตรียมก่อนเปิดเทอม", type: "green", url: "" }],
+            "2026-05-11": [{ text: "ปฐมนิเทศครูและนักเรียน ปีการศึกษา 2569", type: "blue", url: "" }],
+            "2026-05-15": [{ text: "กำหนดการส่ง ID Plan และ วPA", type: "blue", url: "" }],
+            "2026-05-16": [{ text: "เปิดภาคเรียนที่ 1/2569", type: "orange", url: "" }],
+            "2026-05-31": [{ text: "วันงดสูบบุหรี่โลก (กิจกรรม)", type: "blue", url: "" }],
+            "2026-06-03": [{ text: "วันเฉลิมฯ พระราชินี", type: "red", url: "" }],
+            "2026-06-11": [{ text: "พิธีไหว้ครู / รำลึกพระคุณครู", type: "blue", url: "" }],
+            "2026-06-26": [{ text: "วันสุนทรภู่ และวันต่อต้านยาเสพติด", type: "blue", url: "" }],
+            "2026-06-30": [{ text: "ปิดงบประมาณไตรมาส 3", type: "green", url: "" }],
+            "2026-07-15": [{ text: "สอบกลางภาค 1/2569", type: "blue", url: "" }],
+            "2026-07-16": [{ text: "สอบกลางภาค 1/2569", type: "blue", url: "" }],
+            "2026-07-17": [{ text: "สอบกลางภาค 1/2569", type: "blue", url: "" }],
+            "2026-07-28": [{ text: "วันเฉลิมฯ ร.10", type: "red", url: "" }],
+            "2026-07-29": [{ text: "วันอาสาฬหบูชา", type: "red", url: "" }],
+            "2026-07-30": [{ text: "วันเข้าพรรษา", type: "red", url: "" }],
+            "2026-08-12": [{ text: "วันแม่แห่งชาติ", type: "red", url: "" }],
+            "2026-08-18": [{ text: "กิจกรรมสัปดาห์วันวิทยาศาสตร์", type: "blue", url: "" }],
+            "2026-09-15": [{ text: "ส่งรายงานผลประเมินตนเอง (SAR)", type: "green", url: "" }],
+            "2026-09-28": [{ text: "สอบปลายภาค 1/2569", type: "blue", url: "" }],
+            "2026-09-29": [{ text: "สอบปลายภาค 1/2569", type: "blue", url: "" }],
+            "2026-09-30": [{ text: "สอบปลายภาค / ปิดงบประจำปี", type: "green", url: "" }],
+            "2026-10-13": [{ text: "วันนวมินทรมหาราช", type: "red", url: "" }],
+            "2026-10-23": [{ text: "วันปิยมหาราช", type: "red", url: "" }],
+            "2026-10-25": [{ text: "อบรมเชิงปฏิบัติการ AI Education", type: "purple", url: "" }],
+            "2026-11-02": [{ text: "เปิดภาคเรียนที่ 2/2569", type: "orange", url: "" }],
+            "2026-11-24": [{ text: "เทศกาลวันลอยกระทง", type: "blue", url: "" }],
+            "2026-12-05": [{ text: "วันพ่อแห่งชาติ", type: "red", url: "" }],
+            "2026-12-10": [{ text: "วันรัฐธรรมนูญ", type: "red", url: "" }],
+            "2026-12-25": [{ text: "กิจกรรมวันคริสต์มาส", type: "blue", url: "" }],
+            "2026-12-31": [{ text: "วันสิ้นปี", type: "red", url: "" }],
+            "2027-01-01": [{ text: "วันขึ้นปีใหม่", type: "red", url: "" }],
+            "2027-01-08": [{ text: "วันเด็กแห่งชาติ", type: "blue", url: "" }],
+            "2027-01-16": [{ text: "วันครูแห่งชาติ", type: "blue", url: "" }],
+            "2027-02-14": [{ text: "วันวาเลนไทน์", type: "blue", url: "" }],
+            "2027-02-28": [{ text: "การทดสอบระดับชาติ O-NET", type: "blue", url: "" }],
+            "2027-03-01": [{ text: "สอบปลายภาค 2/2569", type: "blue", url: "" }],
+            "2027-03-15": [{ text: "ประกาศผลการเรียน", type: "green", url: "" }],
+            "2027-03-31": [{ text: "สิ้นสุดปีการศึกษา 2569", type: "orange", url: "" }]
         };
 
         const statsData = {
@@ -653,19 +654,45 @@
             agt: { "AGENT 01": 4216, "AGENT 02": 3308, "AGENT 03": 2712, "AGENT 04": 1500, "AGENT 05": 1400, "AGENT 06": 1100, "AGENT 07": 950, "AGENT 08": 1200, "AGENT 09": 800, "AGENT 10": 520 }
         };
 
-        const pillarsData = [
-            { icon: "fa-cloud", t: "Zero Installation", d: "ใช้งานผ่าน Browser ทันที", bg: "bg-blue-50" },
-            { icon: "fa-microchip", t: "Hardware Inclusivity", d: "สเปกเดิมก็ประมวลผลไว", bg: "bg-green-50" },
-            { icon: "fa-user-shield", t: "Privacy by Design", d: "มาตรฐาน PDPA 100%", bg: "bg-red-50" },
-            { icon: "fa-balance-scale", t: "Ethical AI Engine", d: "ระบบตรวจสอบจริยธรรม AI", bg: "bg-yellow-50" },
-            { icon: "fa-users", t: "Universal Roles", d: "รองรับทุกตำแหน่งในองค์กร", bg: "bg-purple-50" },
-            { icon: "fa-university", t: "Omni-Affiliation", d: "บูรณาการระเบียบทุกสังกัด", bg: "bg-indigo-50" },
-            { icon: "fa-brain", t: "1000+ Functions", d: "มหาคลังปัญญาสมบูรณ์แบบ", bg: "bg-teal-50" },
-            { icon: "fa-file-contract", t: "Regulation Master", d: "ระเบียบสารบรรณ 2569", bg: "bg-rose-50" },
-            { icon: "fa-rocket", t: "Policy Driven", d: "ขานรับนโยบายรัฐสู่ปฏิบัติ", bg: "bg-cyan-50" },
-            { icon: "fa-newspaper", t: "Official News Sync", d: "สรุปข่าวราชการ 100% 24 ชม.", bg: "bg-orange-50" },
-            { icon: "fa-globe-asia", t: "Global Standard", d: "สอดคล้องมาตรฐานสากล", bg: "bg-emerald-50" },
-            { icon: "fa-chart-line", t: "Career Growth Hub", d: "ศูนย์ส่งเสริมวิทยฐานะ", bg: "bg-pink-50" }
+        const catalogDatabase = [
+            // ภารกิจเร่งด่วน (Urgent)
+            { id: "DS-8201", title: "โครงร่างรายงานการประเมินตนเอง (SAR) 3 มาตรฐาน", agent: "AGENT 02", theme: "strategy", group: "urgent", role: "director", tags: ["SAR", "ประเมิน"] },
+            { id: "DS-2017", title: "โครงสร้างแผนปฏิบัติการและโครงการประจำปี 2569", agent: "AGENT 06", theme: "strategy", group: "urgent", role: "admin", tags: ["แผนงาน", "งบประมาณ"] },
+            { id: "DS-3401", title: "สังเคราะห์ประเด็นท้าทาย (Challenge) สำหรับทำ วPA", agent: "AGENT 08", theme: "academic", group: "urgent", role: "teacher", tags: ["วPA", "วิทยฐานะ"] },
+            { id: "DS-2111", title: "ออกแบบโครงสร้างแผนการสอน Active Learning / CBE", agent: "AGENT 03", theme: "academic", group: "urgent", role: "teacher", tags: ["การสอน", "หลักสูตร"] },
+            
+            // สายวิชาการ สื่อดิจิทัล เทคโนโลยี และสุขภาวะ (Academic)
+            { id: "DS-9602", title: "สกัดแกนความรู้จากสื่อการสอนภายนอก", agent: "AGENT 03", theme: "academic", group: "academic", role: "teacher", tags: ["สื่อการสอน"] },
+            { id: "DS-1031", title: "แนวทางการเขียนระบบเช็คชื่อด้วย AppSheet", agent: "AGENT 09", theme: "digital", group: "digital", role: "teacher", tags: ["AppSheet", "IT"] },
+            { id: "DS-4305", title: "โครงร่างแบบประเมินและวิเคราะห์พฤติกรรมเด็ก (SDQ)", agent: "AGENT 07", theme: "wellbeing", group: "wellbeing", role: "teacher", tags: ["จิตวิทยา", "แนะแนว"] },
+            { id: "DS-9102", title: "เครื่องมือ AI สกัดโจทย์จากภาพถ่าย (OCR)", agent: "AGENT 09", theme: "digital", group: "digital", role: "teacher", tags: ["AI", "ใบงาน"] },
+            { id: "DS-5504", title: "ออกแบบโครงสร้างสื่อเกมมิฟิเคชัน (Gamification)", agent: "AGENT 05", theme: "digital", group: "digital", role: "teacher", tags: ["สื่อดิจิทัล", "เกม"] },
+            { id: "DS-7403", title: "สกัดแนวคิดเพื่อทำวิจัยในชั้นเรียน (Action Research)", agent: "AGENT 08", theme: "academic", group: "academic", role: "teacher", tags: ["วิจัยชั้นเรียน"] },
+            { id: "DS-2046", title: "ออกแบบโครงสร้าง Google Sheets เพื่อตัดเกรด", agent: "AGENT 09", theme: "digital", group: "digital", role: "teacher", tags: ["Google Sheets", "วัดผล"] },
+
+            // สายบริหาร ธุรการ และยุทธศาสตร์ (Admin)
+            { id: "DS-1006", title: "รูปแบบสรุปรายงานการประชุมและจัดทำวาระ", agent: "AGENT 06", theme: "strategy", group: "admin", role: "admin", tags: ["สารบรรณ", "ธุรการ"] },
+            { id: "DS-1014", title: "ร่างโครงสร้างเอกสารยินยอมตาม พ.ร.บ. PDPA", agent: "AGENT 10", theme: "strategy", group: "admin", role: "admin", tags: ["กฎหมาย", "PDPA"] },
+            { id: "DS-8111", title: "โครงร่างแบบรายงานผลการปฏิบัติงานประจำปี", agent: "AGENT 02", theme: "strategy", group: "admin", role: "director", tags: ["รายงาน", "ประเมินผล"] },
+            { id: "DS-2002", title: "ร่างขอบเขตงาน (TOR) สำหรับโครงการเทคโนโลยี", agent: "AGENT 06", theme: "strategy", group: "admin", role: "head_admin", tags: ["พัสดุ", "e-GP"] },
+            { id: "DS-1023", title: "แผนผังการสร้าง Web App แจ้งซ่อมออนไลน์", agent: "AGENT 09", theme: "digital", group: "digital", role: "support_staff", tags: ["Apps Script", "ซ่อมบำรุง"] },
+            { id: "DS-2131", title: "โครงร่างแผนพัฒนาเด็กปฐมวัยแบบองค์รวม", agent: "AGENT 03", theme: "academic", group: "academic", role: "preschool", tags: ["ปฐมวัย", "พัฒนาการ"] },
+            { id: "DS-4402", title: "ออกแบบแบบประเมินพัฒนาการและวิเคราะห์ผู้เรียน", agent: "AGENT 04", theme: "wellbeing", group: "wellbeing", role: "teacher", tags: ["วัดผล", "วิเคราะห์ผู้เรียน"] }
+        ];
+
+        const pillars = [
+            {icon:"fa-cloud", t:"Zero Installation", d:"ใช้ผ่าน Browser ทันที", bg: "bg-blue-50", ic:"text-blue-500"},
+            {icon:"fa-microchip", t:"Hardware Inclusivity", d:"สเปกเดิมก็ใช้งานได้", bg: "bg-green-50", ic:"text-green-500"},
+            {icon:"fa-user-shield", t:"Privacy by Design", d:"มาตรฐาน PDPA 100%", bg: "bg-red-50", ic:"text-red-500"},
+            {icon:"fa-balance-scale", t:"Ethical AI Engine", d:"ระบบจริยธรรม AI", bg: "bg-yellow-50", ic:"text-yellow-500"},
+            {icon:"fa-users", t:"Universal Roles", d:"รองรับทุกตำแหน่ง", bg: "bg-purple-50", ic:"text-purple-500"},
+            {icon:"fa-university", t:"Omni-Affiliation", d:"ระเบียบทุกสังกัด", bg: "bg-indigo-50", ic:"text-indigo-500"},
+            {icon:"fa-brain", t:"1000+ Functions", d:"มหาคลังปัญญาทุกมิติ", bg: "bg-teal-50", ic:"text-teal-500"},
+            {icon:"fa-file-contract", t:"Regulation Master", d:"ระเบียบสารบรรณ 2569", bg: "bg-rose-50", ic:"text-rose-500"},
+            {icon:"fa-rocket", t:"Policy Driven", d:"ขานรับนโยบายรัฐ", bg: "bg-cyan-50", ic:"text-cyan-500"},
+            {icon:"fa-newspaper", t:"Official News Sync", d:"สรุปข่าวราชการ 100%", bg: "bg-orange-50", ic:"text-orange-500"},
+            {icon:"fa-globe-asia", t:"Global Standard", d:"สอดคล้องมาตรฐานโลก", bg: "bg-emerald-50", ic:"text-emerald-500"},
+            {icon:"fa-chart-line", t:"Career Growth Hub", d:"ส่งเสริมวิทยฐานะ", bg: "bg-pink-50", ic:"text-pink-500"}
         ];
 
         function switchTab(tab) {
@@ -840,7 +867,9 @@
             const groups = [
                 { id: "urgent", t: "ภารกิจเร่งด่วน (Featured)", color: "rose", icon: "fa-fire" },
                 { id: "academic", t: "สายการสอน การจัดการเรียนรู้ และสื่อดิจิทัล", color: "blue", icon: "fa-chalkboard-teacher" },
-                { id: "admin", t: "สายบริหาร งานธุรการ พัสดุ และยุทธศาสตร์", color: "emerald", icon: "fa-briefcase" }
+                { id: "admin", t: "สายบริหาร งานธุรการ พัสดุ และยุทธศาสตร์", color: "emerald", icon: "fa-briefcase" },
+                { id: "digital", t: "สายเทคโนโลยีและระบบสารสนเทศ", color: "teal", icon: "fa-laptop" },
+                { id: "wellbeing", t: "สายงานแนะแนวและสุขภาวะ", color: "purple", icon: "fa-heart" }
             ];
 
             let html = "";
@@ -887,19 +916,19 @@
                         <p class="text-blue-700 mt-4 font-bold text-base bg-white/50 inline-block px-6 py-2 rounded-full shadow-sm">ไม่พบคำสั่งสำเร็จรูป! แต่ระบบได้วิเคราะห์และแนะนำ AI ที่ตรงกับปัญหาของคุณที่สุดแล้ว</p>
                     </div>
                     
-                    <div class="bg-white p-8 rounded-3xl border border-blue-100 shadow-xl relative overflow-hidden cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 z-10 max-w-4xl mx-auto" onclick="showTaskModal('SMART-SYNC', '${search}', '${bestMatch.name}')">
-                        <div class="absolute top-0 left-0 w-2 h-full bg-${bestMatch.color}-500 transition-all"></div>
+                    <div class="bg-white p-8 rounded-3xl border border-blue-100 shadow-xl relative overflow-hidden cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 z-10 max-w-4xl mx-auto" onclick="showTaskModal('SMART-SYNC', '${search}', 'AGENT 01')">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-blue-500 transition-all"></div>
                         <div class="flex items-center mb-8 pl-4">
-                            <div class="w-20 h-20 bg-${bestMatch.color}-100 text-${bestMatch.color}-600 rounded-2xl flex items-center justify-center text-4xl shadow-inner mr-6"><i class="fas ${bestMatch.icon}"></i></div>
+                            <div class="w-20 h-20 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-4xl shadow-inner mr-6"><i class="fas fa-compass"></i></div>
                             <div>
-                                <span class="text-xs font-black text-${bestMatch.color}-600 bg-${bestMatch.color}-50 px-4 py-1.5 rounded-xl mb-3 inline-block border border-${bestMatch.color}-100 uppercase tracking-widest shadow-sm">${bestMatch.name}</span>
-                                <h4 class="font-black text-2xl text-slate-800 leading-tight">${bestMatch.title}</h4>
+                                <span class="text-xs font-black text-blue-600 bg-blue-50 px-4 py-1.5 rounded-xl mb-3 inline-block border border-blue-100 uppercase tracking-widest shadow-sm">AGENT 01</span>
+                                <h4 class="font-black text-2xl text-slate-800 leading-tight">วางแผนและประยุกต์ใช้งานทั่วไป</h4>
                             </div>
                         </div>
                         
                         <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 mb-8 mx-4 shadow-sm">
                             <h5 class="font-black text-slate-800 mb-3 flex items-center text-lg"><i class="fas fa-list-ol text-blue-500 mr-3"></i> ขั้นตอนการใช้งาน:</h5>
-                            <p class="text-base text-slate-600 leading-relaxed font-medium pl-2">${bestMatch.steps}</p>
+                            <p class="text-base text-slate-600 leading-relaxed font-medium pl-2">1. เข้าใช้ AGENT 01<br>2. พิมพ์อธิบายสิ่งที่คุณต้องการทำอย่างละเอียด<br>3. AI จะช่วยวิเคราะห์และแนะนำขั้นตอนการทำงานให้ตั้งแต่ต้นจนจบ</p>
                         </div>
 
                         <div class="mx-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-xl font-black text-center shadow-lg hover:shadow-xl hover:from-blue-500 hover:to-indigo-500 transition-all text-lg border border-blue-400">
@@ -923,7 +952,7 @@
                 { id: "01", name: "Command Center", icon: "fa-compass", color: "blue", desc: "ค้นหาภารกิจและนำทาง" },
                 { id: "02", name: "Smart Hub", icon: "fa-bullhorn", color: "indigo", desc: "วิเคราะห์ข่าวสารและตัวตน" },
                 { id: "03", name: "Lesson Designer", icon: "fa-pencil-ruler", color: "cyan", desc: "ออกแบบแผนการสอนเชิงรุก" },
-                { id: "04", name: "Assessment Pro", icon: "fa-check-double", color: "green", desc: "สร้างข้อสอบและวิเคราะห์ผล" },
+                { id: "04", name: "Assessment Pro", icon: "fa-check-double", color: "emerald", desc: "สร้างข้อสอบและวิเคราะห์ผล" },
                 { id: "05", name: "Creative Media", icon: "fa-palette", color: "pink", desc: "คิดคอนเทนต์และภาพ AI" },
                 { id: "06", name: "Admin / Registrar", icon: "fa-briefcase", color: "slate", desc: "งานพัสดุและหนังสือราชการ" },
                 { id: "07", name: "Student Support", icon: "fa-user-graduate", color: "purple", desc: "คัดกรองและดูแลเด็ก" },
@@ -931,32 +960,21 @@
                 { id: "09", name: "Tech Assistant", icon: "fa-laptop-code", color: "teal", desc: "เขียนโค้ดและไอที" },
                 { id: "10", name: "Quality Auditor", icon: "fa-clipboard-check", color: "red", desc: "ตรวจสอบความถูกต้อง/PDPA" }
             ];
-            if(agentsCont) agentsCont.innerHTML = agentsArr.map(a => `
-                <div class="gem-card border-none shadow-sm hover:shadow-xl" onclick="window.open('${AGENT_URLS['AGENT ' + a.id]}', '_blank')">
-                    <div class="w-16 h-16 bg-${a.color}-100 text-${a.color}-600 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-inner"><i class="fas ${a.icon}"></i></div>
-                    <span class="text-[9px] font-black text-gray-400 bg-gray-100 px-3 py-1 rounded-full mb-2 uppercase tracking-tighter">Agent ${a.id}</span>
-                    <h3 class="font-black text-[14px] text-gray-800 uppercase leading-tight">${a.name}</h3>
-                    <p class="text-[11px] text-gray-500 mt-3 px-2 leading-relaxed font-medium">${a.desc}</p>
-                </div>`).join('');
+            
+            if(agentsCont) {
+                agentsCont.innerHTML = agentsArr.map(a => `
+                    <div class="gem-card border-none shadow-sm hover:shadow-xl transition-all cursor-pointer font-bold" onclick="window.open('${AGENT_URLS['AGENT ' + a.id]}', '_blank')">
+                        <div class="w-16 h-16 bg-${a.color}-100 text-${a.color}-600 rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-inner"><i class="fas ${a.icon}"></i></div>
+                        <span class="text-[9px] font-black text-gray-400 bg-gray-100 px-3 py-1 rounded-full mb-2 uppercase tracking-tighter">Agent ${a.id}</span>
+                        <h3 class="font-black text-[14px] text-gray-800 uppercase leading-tight">${a.name}</h3>
+                        <p class="text-[11px] text-gray-500 mt-3 px-2 leading-relaxed">${a.desc}</p>
+                    </div>`).join('');
+            }
 
-            const pillarsCont = document.getElementById('pillars-container');
-            const pillarsData = [
-                { icon: "fa-cloud", t: "Zero Installation", d: "ใช้งานผ่าน Browser ทันที", bg: "bg-blue-50" },
-                { icon: "fa-microchip", t: "Hardware Inclusivity", d: "สเปกเดิมก็ประมวลผลไว", bg: "bg-green-50" },
-                { icon: "fa-user-shield", t: "Privacy by Design", d: "มาตรฐาน PDPA 100%", bg: "bg-red-50" },
-                { icon: "fa-brain", t: "1000+ Functions", d: "มหาคลังปัญญาสมบูรณ์แบบ", bg: "bg-teal-50" },
-                { icon: "fa-file-contract", t: "Regulation Master", d: "อ้างอิงระเบียบสารบรรณ 2569", bg: "bg-rose-50" },
-                { icon: "fa-rocket", t: "Policy Driven", d: "ขานรับนโยบายรัฐสู่ปฏิบัติ", bg: "bg-cyan-50" },
-                { icon: "fa-newspaper", t: "Official News Sync", d: "สรุปข่าวราชการ 100%", bg: "bg-orange-50" },
-                { icon: "fa-globe-asia", t: "Global Standard", d: "สอดคล้องมาตรฐานสากล", bg: "bg-emerald-50" },
-                { icon: "fa-chart-line", t: "Career Growth Hub", d: "ศูนย์ส่งเสริมวิทยฐานะ", bg: "bg-pink-50" }
-            ];
-            if(pillarsCont) pillarsCont.innerHTML = pillarsData.map(p => `
-                <div class="${p.bg} p-6 rounded-2xl border-b-4 flex flex-col items-center text-center transform hover:scale-[1.03] transition shadow-sm border-gray-100">
-                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm mb-4"><i class="fas ${p.icon} text-xl opacity-70"></i></div>
-                    <h4 class="font-black text-sm text-gray-800">${p.t}</h4>
-                    <p class="text-[11px] text-gray-500 mt-2 leading-relaxed">${p.d}</p>
-                </div>`).join('');
+            const pCont = document.getElementById('pillars-container');
+            if (pCont) {
+                pCont.innerHTML = pillars.map(p => `<div class="${p.bg} p-6 rounded-2xl border-b-2 flex flex-col items-center text-center transform hover:scale-[1.03] transition"><i class="fas ${p.icon} ${p.ic} text-3xl mb-4 opacity-80"></i><h4 class="font-black text-sm text-gray-800">${p.t}</h4><p class="text-[11px] text-gray-500 mt-2">${p.d}</p></div>`).join('');
+            }
 
             renderNews();
             renderStats();
@@ -964,85 +982,6 @@
             renderIdeaOfTheDay();
             filterCatalog();
         };
-
-        function showTaskModal(id, customTitle = null, customAgentName = null) {
-            let task;
-            if (id === 'SMART-SYNC') {
-                task = {
-                    id: "AI-SUGGESTION",
-                    title: `ความต้องการ: "${customTitle}"`,
-                    agent: customAgentName,
-                    tags: ["Smart Search"]
-                };
-            } else {
-                task = catalogDatabase.find(t => t.id === id);
-            }
-            
-            if (!task) return;
-            currentActiveTask = task;
-            
-            const tid = document.getElementById('task-modal-id');
-            const ttle = document.getElementById('task-modal-title');
-            const tprmpt = document.getElementById('task-modal-prompt');
-            
-            if(tid) tid.innerText = task.id;
-            if(ttle) ttle.innerText = task.title;
-            
-            if (id === 'SMART-SYNC') {
-                if(tprmpt) tprmpt.innerHTML = `ระบบวิเคราะห์คำค้นหาของคุณและเลือก <b>${task.agent}</b> เป็นผู้ช่วยที่เหมาะสมที่สุดในการทำงานนี้<br><br>กดปุ่มด้านล่างเพื่อเริ่มทำงานได้ทันที!`;
-            } else {
-                if(tprmpt) tprmpt.innerText = `ช่วยร่างโครงสร้างและประยุกต์ภารกิจเรื่อง "${task.title}" อ้างอิงระเบียบราชการ 2569 โดยห้ามคัดลอกเนื้อหาต้นฉบับเดิม แต่ให้สร้างสรรค์งานใหม่ที่เป็นต้นฉบับ 100% ป้องกันการละเมิดลิขสิทธิ์`;
-            }
-            
-            toggleModal('task-modal');
-        }
-
-        function launchAgent() {
-            toggleModal('task-modal');
-            showToast("เชื่อมต่อคลังข้อมูลสำเร็จ! กำลังนำทางไปหา AI Assistant...");
-            if (currentActiveTask && AGENT_URLS[currentActiveTask.agent]) {
-                window.open(AGENT_URLS[currentActiveTask.agent], '_blank');
-            }
-        }
-
-        function handleLogin(e) { 
-            e.preventDefault(); 
-            toggleModal('login-modal'); 
-            const btn = document.getElementById('header-login-btn'); 
-            const role = document.getElementById('user-role-input').value;
-            if (btn) {
-                btn.innerHTML = `<i class="fas fa-user-check mr-2"></i> ${role}`; 
-                btn.className = "bg-green-600 px-5 py-1.5 rounded-full text-xs font-bold transition shadow-lg text-white"; 
-            }
-        }
-        
-        function draftPrompts() {
-            const topic = document.getElementById('content-input-topic').value;
-            if(!topic) return;
-            const format = document.getElementById('content-format').value;
-            document.getElementById('output-text-prompt').innerText = `ช่วยเขียน ${format} เกี่ยวกับ ${topic} อ้างอิงข้อมูล 2569 ให้ดูเป็นทางการและน่าสนใจ`;
-            document.getElementById('output-text-prompt').classList.replace('italic', 'not-italic');
-            document.getElementById('output-visual-prompt').innerText = `Aesthetic professional photography for ${topic}, Thai school setting, high quality 8k`;
-            document.getElementById('output-visual-prompt').classList.replace('italic', 'not-italic');
-        }
-
-        function copyPrompt(type) {
-            const el = document.getElementById(`output-${type}-prompt`);
-            if(!el || el.innerText.includes('รอกดร่าง')) return;
-            const textArea = document.createElement("textarea");
-            textArea.value = el.innerText; document.body.appendChild(textArea); textArea.select(); document.execCommand('copy'); document.body.removeChild(textArea);
-            showToast("คัดลอก Prompt แล้ว!");
-        }
-
-        function generateDraftWithAI() {
-            const aiOutputArea = document.getElementById('ai-draft-output');
-            if(!aiOutputArea || !currentActiveTask) return;
-            aiOutputArea.classList.remove('hidden');
-            aiOutputArea.innerHTML = `<div class="text-center py-4"><span class="loader"></span><p class="mt-4 text-purple-700 font-bold">กำลังจำลองการร่างโครงสร้างด้วย AI แบบไม่ละเมิดลิขสิทธิ์...</p></div>`;
-            setTimeout(() => {
-                aiOutputArea.innerHTML = `<div class="ai-draft-content text-left"><strong><i class=\"fas fa-check-circle text-green-500 mr-2\"></i> โครงสร้างเบื้องต้นสำหรับ: ${currentActiveTask.title}</strong><br><br><ul><li><strong>ส่วนที่ 1: หลักการและเหตุผล</strong> (ระบุความสำคัญตามนโยบายปี 2569)</li><li><strong>ส่วนที่ 2: วัตถุประสงค์</strong> (เน้นผลลัพธ์ CBE และผู้เรียนเป็นสำคัญ)</li><li><strong>ส่วนที่ 3: ขั้นตอนการดำเนินงาน</strong> (ออกแบบกิจกรรม/ภาระงาน)</li><li><strong>ส่วนที่ 4: การวัดผลและ PDPA</strong> (ระบบตรวจสอบลิขสิทธิ์และความยินยอม)</li></ul><p class=\"text-xs text-slate-500 italic mt-3\">*นี่คือโครงสร้างจำลอง กรุณากด \"เปิด AI AGENT ทันที\" เพื่อให้ AI สร้างเนื้อหาฉบับสมบูรณ์</p></div>`;
-            }, 1500);
-        }
     </script>
 </body>
 </html>
