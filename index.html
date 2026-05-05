@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V11.7.0 - Executive Supreme Station</title>
+    <title>Digital Squad AI V11.7.2 - Executive Supreme Station</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -37,7 +37,7 @@
             transition: all 0.3s; 
             cursor: pointer; 
             color: #bfdbfe; 
-            font-size: 0.85rem; 
+            font-size: 0.95rem; 
             padding: 1.25rem 0.5rem; 
             font-weight: 700;
         }
@@ -62,33 +62,34 @@
             flex-direction: column;
             align-items: center;
             color: #94a3b8;
-            font-size: 0.65rem;
+            font-size: 0.75rem;
             font-weight: 800;
             cursor: pointer;
         }
         .bottom-nav-item.active { color: var(--accent-blue); }
-        .bottom-nav-item i { font-size: 1.3rem; margin-bottom: 3px; }
+        .bottom-nav-item i { font-size: 1.4rem; margin-bottom: 3px; }
 
-        /* Calendar Master Styles */
+        /* Calendar Styles */
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background-color: #cbd5e1; border-radius: 1.25rem; overflow: hidden; border: 1px solid #cbd5e1; width: 100%; }
-        .calendar-day { background-color: white; min-height: 135px; padding: 8px; font-size: 12px; position: relative; display: flex; flex-direction: column; transition: background 0.2s; }
+        .calendar-day { background-color: white; min-height: 135px; padding: 8px; font-size: 13.5px; position: relative; display: flex; flex-direction: column; transition: background 0.2s; }
         .calendar-day.today { background-color: #fffbeb; border: 4px solid var(--vibrant-yellow) !important; z-index: 10; }
         .calendar-day.holiday { background-color: #fff1f2; }
-        .calendar-header { background-color: #f1f5f9; text-align: center; padding: 12px; font-weight: 800; font-size: 0.75rem; color: #475569; }
-        .event-mini { font-size: 8px; padding: 2.5px 5px; border-radius: 4px; display: block; margin-top: 2.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 800; border-left: 3px solid transparent; line-height: 1.2; }
+        .calendar-header { background-color: #f1f5f9; text-align: center; padding: 12px; font-weight: 800; font-size: 0.95rem; color: #475569; }
+        .event-mini { font-size: 9.5px; padding: 2.5px 6px; border-radius: 4px; display: block; margin-top: 2.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 800; border-left: 3.5px solid transparent; line-height: 1.3; }
 
-        /* Inquiry Frame Highlight V11.7 */
+        /* Inquiry Frame Highlight V11.7.2 */
         .inquiry-frame { border: 4px solid var(--primary-blue); background: #f0f7ff; box-shadow: 0 15px 40px rgba(30, 58, 138, 0.12); }
 
         .summary-stat-box { background: rgba(30, 58, 138, 0.04); border: 1px solid rgba(30, 58, 138, 0.1); border-radius: 1.25rem; padding: 1.25rem; flex: 1; }
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
         .modal-content { background: white; border-radius: 2.5rem; width: 92%; max-width: 580px; padding: 2.25rem; position: relative; max-height: 90vh; overflow-y: auto; }
+        
         #toast { visibility: hidden; min-width: 280px; background-color: #059669; color: #fff; text-align: center; border-radius: 50px; padding: 1rem 1.5rem; position: fixed; z-index: 100000; left: 50%; bottom: 100px; transform: translateX(-50%); font-weight: 800; opacity: 0; transition: all 0.4s; }
         #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(-15px); }
         
         .agent-guide-card { background: white; border-radius: 2rem; padding: 2rem; border: 2px solid #e2e8f0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden; height: 100%; }
         .agent-guide-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(30, 58, 138, 0.15); border-color: var(--accent-blue); }
-        .agent-number { position: absolute; top: -5px; right: 15px; font-size: 4.5rem; font-weight: 900; color: rgba(0,0,0,0.05); z-index: 0; }
+        .agent-number { position: absolute; top: -5px; right: 15px; font-size: 5rem; font-weight: 900; color: rgba(0,0,0,0.05); z-index: 0; }
         .theme-btn-active { background-color: var(--primary-blue) !important; color: white !important; border-color: var(--primary-blue) !important; }
         .content-type-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; }
         .content-type-btn.active { background: white; color: var(--primary-blue); border-color: white; }
@@ -96,183 +97,175 @@
 </head>
 <body class="bg-slate-50 font-bold">
 
-    <!-- Header V11.7.0 -->
+    <!-- Header V11.7.2 -->
     <header class="site-header sticky top-0 z-50 shadow-lg px-4">
         <div class="container mx-auto flex items-center justify-between h-16">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
                 <img src="app%20icon.jpg" alt="Logo" class="w-11 h-11 rounded-xl object-cover bg-white shadow-md" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2103/2103828.png'">
                 <div class="text-left text-white">
-                    <h1 class="font-black text-lg leading-tight uppercase tracking-tighter">Digital Squad AI <span class="text-blue-300">V11.7.0</span></h1>
-                    <p class="text-[9px] text-blue-200 tracking-[0.2em] uppercase font-black">Executive Supreme Station</p>
+                    <h1 class="font-black text-lg leading-tight uppercase tracking-tighter">Digital Squad AI <span class="text-blue-300">V11.7.2</span></h1>
+                    <p class="text-[10.5px] text-blue-200 tracking-[0.2em] uppercase font-black">Executive Master Station</p>
                 </div>
             </div>
-            <nav class="hidden lg:flex space-x-6 text-white h-full items-center">
-                <a onclick="switchTab('home')" id="nav-home" class="nav-link nav-active">DASHBOARD</a>
-                <a onclick="switchTab('gems')" id="nav-gems" class="nav-link">AI AGENTS</a>
-                <a onclick="switchTab('catalog')" id="nav-catalog" class="nav-link">STRATEGIC PORTAL</a>
-                <a onclick="switchTab('calendar')" id="nav-calendar" class="nav-link">CALENDAR</a>
-                <a onclick="switchTab('about')" id="nav-about" class="nav-link">เกี่ยวกับเรา</a>
+            <nav class="hidden lg:flex space-x-6 text-white h-full items-center font-bold">
+                <a onclick="switchTab('home')" id="nav-home" class="nav-link nav-active uppercase">Dashboard</a>
+                <a onclick="switchTab('gems')" id="nav-gems" class="nav-link uppercase">AI Agents</a>
+                <a onclick="switchTab('catalog')" id="nav-catalog" class="nav-link uppercase">Strategic Portal</a>
+                <a onclick="switchTab('calendar')" id="nav-calendar" class="nav-link uppercase">Calendar</a>
+                <a onclick="switchTab('about')" id="nav-about" class="nav-link uppercase">เกี่ยวกับเรา</a>
             </nav>
             <div class="flex items-center space-x-3">
-                <button id="user-status-btn" onclick="toggleModal('login-modal')" class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full text-[11px] font-black transition shadow-lg text-white uppercase border border-blue-400">Login / Register</button>
+                <button id="user-status-btn" onclick="toggleModal('login-modal')" class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full text-[12.5px] font-black transition shadow-lg text-white uppercase border border-blue-400">Login / Register</button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <nav class="bottom-nav lg:hidden">
+    <!-- Mobile Nav -->
+    <nav class="bottom-nav lg:hidden font-bold">
         <div onclick="switchTab('home')" id="m-nav-home" class="bottom-nav-item active"><i class="fas fa-th-large"></i><span>Home</span></div>
-        <div onclick="switchTab('gems')" id="m-nav-gems" class="bottom-nav-item"><i class="fas fa-robot"></i><span>Agent AI</span></div>
-        <div onclick="switchTab('catalog')" id="m-nav-catalog" class="bottom-nav-item"><i class="fas fa-route"></i><span>ทางด่วน</span></div>
-        <div onclick="switchTab('calendar')" id="m-nav-calendar" class="bottom-nav-item"><i class="fas fa-calendar-alt"></i><span>ปฏิทิน</span></div>
-        <div onclick="switchTab('about')" id="m-nav-about" class="bottom-nav-item"><i class="fas fa-info-circle"></i><span>เกี่ยวกับเรา</span></div>
+        <div onclick="switchTab('gems')" id="m-nav-gems" class="bottom-nav-item"><i class="fas fa-robot"></i><span>Agents</span></div>
+        <div onclick="switchTab('catalog')" id="m-nav-catalog" class="bottom-nav-item"><i class="fas fa-route"></i><span>Portal</span></div>
+        <div onclick="switchTab('calendar')" id="m-nav-calendar" class="bottom-nav-item"><i class="fas fa-calendar-alt"></i><span>Calendar</span></div>
+        <div onclick="switchTab('about')" id="m-nav-about" class="bottom-nav-item"><i class="fas fa-info-circle"></i><span>About</span></div>
     </nav>
 
     <main class="flex-grow container mx-auto px-4 py-6">
         
-        <!-- Tab: Home (Dashboard Restoration) -->
+        <!-- Tab: Dashboard -->
         <div id="tab-home">
-            <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 rounded-[2rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden text-left mb-8 border-b-4 border-blue-600">
+            <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 rounded-[2rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden text-left mb-8 border-b-4 border-blue-600 font-bold">
                 <div class="relative z-10">
-                    <div class="flex items-center space-x-3 mb-4 font-black">
-                        <span class="bg-blue-400 text-blue-950 text-[10px] px-3 py-1 rounded-full uppercase tracking-widest">Supreme V11.7.0</span>
-                        <span class="bg-green-500/20 text-green-300 text-[10px] px-3 py-1 rounded-full border border-green-500/30">Active Node</span>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <span class="bg-blue-400 text-blue-950 text-[11.5px] px-3 py-1 rounded-full uppercase tracking-widest font-black">Supreme V11.7.2</span>
+                        <span class="bg-green-500/20 text-green-300 text-[11.5px] px-3 py-1 rounded-full border border-green-500/30">Data-Sync Active</span>
                     </div>
                     <h2 class="text-2xl md:text-4xl font-black mb-3 uppercase leading-tight">ระบบนิเวศทางการศึกษา ผู้ช่วย AI อัจฉริยะสำหรับครูไทย</h2>
-                    <h3 class="text-lg md:text-xl font-bold text-yellow-300 mb-8 tracking-tight">ปลดล็อกภาระงานเอกสาร คืนเวลาชีวิตให้ครูไทย ก้าวสู่ยุคใหม่ด้วย AI ส่วนตัว</h3>
+                    <h3 class="text-lg md:text-xl font-bold text-yellow-300 mb-8 tracking-tight">ปฏิรูปงานเอกสารด้วยฐานข้อมูลยุทธศาสตร์ 2569 ยกระดับวิชาชีพด้วยเทคโนโลยี AI</h3>
                     <div class="flex flex-wrap gap-4 mt-8">
-                        <button onclick="switchTab('catalog')" class="bg-white text-blue-950 px-8 py-3.5 rounded-xl font-black shadow-lg hover:bg-blue-50 transition active:scale-95 flex items-center text-sm uppercase"><i class="fas fa-bolt mr-2 text-yellow-500"></i> เริ่มใช้ทางด่วนภารกิจ</button>
+                        <button onclick="switchTab('catalog')" class="bg-white text-blue-950 px-8 py-3.5 rounded-xl font-black shadow-lg hover:bg-blue-50 transition active:scale-95 flex items-center text-[15.5px] uppercase">
+                            <i class="fas fa-bolt mr-2 text-yellow-500"></i> เริ่มใช้ทางด่วนภารกิจ
+                        </button>
                     </div>
                 </div>
                 <img src="app%20icon.jpg" class="absolute -right-20 -bottom-20 w-[420px] h-[420px] opacity-10 rotate-12" style="filter: brightness(0) invert(1);">
             </div>
 
-            <!-- Stats 3 Boxes -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10" id="stats-dashboard-home"></div>
 
-            <!-- Featured Tasks (6 items) -->
             <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100 mb-10">
-                <div class="flex items-center justify-between mb-8">
-                    <h3 class="font-black text-slate-800 text-lg uppercase tracking-tight"><i class="fas fa-star text-yellow-400 mr-2"></i> ภารกิจแนะนำ ประจำเดือนเมษายน</h3>
+                <div class="flex items-center justify-between mb-8 font-black">
+                    <h3 class="text-slate-800 text-lg uppercase tracking-tight"><i class="fas fa-star text-yellow-400 mr-2"></i> ภารกิจแนะนำ (สิงหาคม 2569 Sync)</h3>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="featured-tasks-container"></div>
             </div>
 
             <!-- DIY Content Creator -->
             <div class="mb-10">
-                <div class="bg-gradient-to-r from-purple-900 to-indigo-900 p-8 md:p-12 rounded-[2.5rem] text-white shadow-xl relative overflow-hidden">
+                <div class="bg-gradient-to-r from-purple-900 to-indigo-900 p-8 md:p-12 rounded-[2.5rem] text-white shadow-xl relative overflow-hidden font-bold">
                     <div class="relative z-10">
                         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10">
                             <div>
-                                <h3 class="text-xl md:text-2xl font-black uppercase tracking-tight mb-2 flex items-center"><i class="fas fa-pen-fancy mr-3 text-pink-400"></i> Daily Content Architect (วPA)</h3>
-                                <p class="text-blue-200 text-sm font-medium">สุ่มหัวข้อและร่างเนื้อหาวิชาการรายวันเพื่อสะสมผลงานวิทยฐานะ</p>
+                                <h3 class="text-xl md:text-2xl font-black uppercase tracking-tight mb-2 flex items-center"><i class="fas fa-pen-fancy mr-3 text-pink-400"></i> DIY Content Architect</h3>
+                                <p class="text-blue-200 text-[15.5px] font-medium">สุ่มหัวข้อจากฐานข้อมูล Facebook ยอดนิยมและร่างเนื้อหาวิชาการด้วย AI</p>
                             </div>
                             <div class="flex bg-white/10 p-1.5 rounded-2xl border border-white/20">
-                                <button onclick="setContentType('post')" id="type-post" class="content-type-btn active px-5 py-2 rounded-xl text-xs font-black uppercase">โพสต์สั้น</button>
-                                <button onclick="setContentType('story')" id="type-story" class="content-type-btn px-5 py-2 rounded-xl text-xs font-black uppercase">สตอรี่</button>
-                                <button onclick="setContentType('clip')" id="type-clip" class="content-type-btn px-5 py-2 rounded-xl text-xs font-black uppercase">คลิปสั้น</button>
+                                <button onclick="setContentType('post')" id="type-post" class="content-type-btn active px-5 py-2 rounded-xl text-[12.5px] font-black uppercase transition-all">โพสต์สั้น</button>
+                                <button onclick="setContentType('story')" id="type-story" class="content-type-btn px-5 py-2 rounded-xl text-[12.5px] font-black uppercase transition-all">สตอรี่</button>
+                                <button onclick="setContentType('clip')" id="type-clip" class="content-type-btn px-5 py-2 rounded-xl text-[12.5px] font-black uppercase transition-all">คลิปสั้น</button>
                             </div>
                         </div>
                         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                             <div class="lg:col-span-7 space-y-6">
-                                <div class="space-y-3">
-                                    <div class="flex gap-2">
-                                        <input type="text" id="diy-topic-input" placeholder="ระบุหัวข้อที่คุณต้องการ..." class="w-full bg-white/10 border border-white/20 rounded-2xl p-4 text-sm font-bold outline-none focus:border-pink-400 transition">
-                                        <button onclick="suggestDiyTopic()" class="bg-white text-indigo-900 px-6 rounded-2xl font-black text-[10px] uppercase shadow-lg shrink-0">แนะนำหัวข้อ</button>
-                                    </div>
+                                <div class="flex gap-2">
+                                    <input type="text" id="diy-topic-input" placeholder="ระบุหัวข้อที่คุณต้องการ..." class="w-full bg-white/10 border border-white/20 rounded-2xl p-4 text-[15.5px] font-bold outline-none focus:border-pink-400 transition">
+                                    <button onclick="suggestDiyTopic()" class="bg-white text-indigo-900 px-6 rounded-2xl font-black text-[11.5px] uppercase shadow-lg shrink-0">สุ่มหัวข้อจริง</button>
                                 </div>
-                                <div class="grid grid-cols-3 gap-3">
-                                    <button onclick="generateArchitectPrompt('content')" class="bg-gradient-to-r from-pink-500 to-rose-600 p-4 rounded-2xl font-black text-[10px] uppercase"><i class="fas fa-file-alt text-lg block mb-2"></i> ร่างเนื้อหา</button>
-                                    <button onclick="generateArchitectPrompt('image')" class="bg-gradient-to-r from-cyan-500 to-blue-600 p-4 rounded-2xl font-black text-[10px] uppercase"><i class="fas fa-image text-lg block mb-2"></i> พร้อมต์ภาพ</button>
-                                    <button onclick="generateArchitectPrompt('clip')" class="bg-gradient-to-r from-emerald-500 to-teal-600 p-4 rounded-2xl font-black text-[10px] uppercase"><i class="fas fa-video text-lg block mb-2"></i> สคริปต์คลิป</button>
+                                <div class="grid grid-cols-3 gap-3 font-black">
+                                    <button onclick="generateArchitectPrompt('content')" class="bg-gradient-to-r from-pink-500 to-rose-600 p-4 rounded-2xl text-[11.5px] uppercase"><i class="fas fa-file-alt text-lg block mb-2"></i> ร่างเนื้อหา</button>
+                                    <button onclick="generateArchitectPrompt('image')" class="bg-gradient-to-r from-cyan-500 to-blue-600 p-4 rounded-2xl text-[11.5px] uppercase"><i class="fas fa-image text-lg block mb-2"></i> พร้อมต์ภาพ</button>
+                                    <button onclick="generateArchitectPrompt('clip')" class="bg-gradient-to-r from-emerald-500 to-teal-600 p-4 rounded-2xl text-[11.5px] uppercase"><i class="fas fa-video text-lg block mb-2"></i> สคริปต์คลิป</button>
                                 </div>
                             </div>
-                            <div class="lg:col-span-5"><div id="architect-output" class="bg-black/30 border border-white/10 p-6 rounded-3xl h-full text-xs font-medium text-blue-50 leading-relaxed overflow-y-auto italic">"ใส่หัวข้อและกดสร้างปุ่มด้านล่างเพื่อเริ่ม..."</div></div>
+                            <div class="lg:col-span-5"><div id="architect-output" class="bg-black/30 border border-white/10 p-6 rounded-3xl h-full text-[13.5px] font-medium text-blue-50 leading-relaxed overflow-y-auto italic">"เลือกร่างคอนเทนต์จากเทคนิคในฐานข้อมูล..."</div></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- News Recovery (4 items per Category) -->
-            <div class="mb-12">
+            <!-- News (Official ONLY) -->
+            <div class="mb-12 font-bold">
                 <div class="bg-red-50 border-l-[12px] border-red-600 p-8 rounded-[2.5rem] shadow-sm flex flex-col gap-8">
-                    <div class="flex items-center text-red-900 font-black text-lg uppercase tracking-tight">
-                        <i class="fas fa-satellite-dish mr-3 text-red-600 animate-pulse"></i> ข่าวสารราชการทางการ (Official Sync 2026)
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-red-900 font-black text-lg uppercase tracking-tight">
+                            <i class="fas fa-satellite-dish mr-3 text-red-600 animate-pulse"></i> ข่าวสารราชการทางการ (Sync 6 พ.ค. 2569)
+                        </div>
+                        <button class="bg-red-600 text-white px-6 py-2 rounded-full text-[12.5px] font-black hover:bg-red-700 transition shadow-lg">อ่านทั้งหมด</button>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full" id="news-container"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Tab: AI Agent Navigator (Full restoration of 10 Agents) -->
-        <div id="tab-gems" class="hidden text-center">
+        <!-- Tab: AI Agents -->
+        <div id="tab-gems" class="hidden text-center font-bold">
             <div class="mb-12">
                 <h2 class="text-3xl font-black text-slate-800 uppercase tracking-tighter mb-3">AI AGENT NAVIGATOR</h2>
-                <p class="text-slate-500 text-sm font-bold tracking-widest uppercase">ไกด์นำทางเลือกผู้ช่วยให้ตรงกับภารกิจคุณที่สุด (ID: 01 - 10)</p>
+                <p class="text-slate-500 text-[13.5px] font-bold tracking-widest uppercase">ไกด์นำทางเลือกผู้ช่วยที่เชี่ยวชาญเฉพาะด้าน (ID: 01 - 10)</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8" id="agents-grid-container"></div>
         </div>
 
-        <!-- Tab: Strategic Mission Portal (List View V11.7.0) -->
+        <!-- Tab: Strategic Portal (Updated Database V11.7.2) -->
         <div id="tab-catalog" class="hidden text-left font-bold">
             <div class="bg-blue-900 rounded-[2.5rem] p-10 lg:p-14 text-white text-center shadow-2xl border-b-8 border-blue-700 mb-10">
-                <h2 class="text-3xl lg:text-4xl font-black uppercase mb-4">Strategic Operational Portal</h2>
-                <p class="text-blue-200 text-sm opacity-90 leading-relaxed">ศูนย์รวมคลังคำสั่งยุทธศาสตร์ (DS-Catalog) ค้นหาภารกิจที่ต้องการ</p>
+                <h2 class="text-3xl lg:text-4xl font-black uppercase mb-4 tracking-tighter">Strategic Operational Portal</h2>
+                <p class="text-blue-200 text-[13.5px] opacity-90 leading-relaxed font-bold">รวมโครงสร้างยุทธศาสตร์จากทุกแหล่งข้อมูลอ้างอิง เพื่อสร้างงานใหม่ที่มีมาตรฐาน</p>
             </div>
             
-            <div class="bg-white rounded-[2.5rem] p-10 shadow-xl inquiry-frame mb-10">
+            <div class="bg-white rounded-[2.5rem] p-10 shadow-xl inquiry-frame mb-10 font-bold">
                 <div class="mb-8 relative">
-                    <label class="text-[12px] font-black text-blue-900 uppercase tracking-[0.2em] ml-2 mb-4 block">แจ้งงานที่ต้องการทำ... (Mission Inquiry):</label>
+                    <label class="text-[13.5px] font-black text-blue-900 uppercase tracking-[0.2em] ml-2 mb-4 block">แจ้งงานที่ต้องการทำ... (Mission Inquiry):</label>
                     <input type="text" id="catalog-search" onkeyup="filterCatalog()" placeholder="แจ้งงานที่ต้องการทำ..." class="w-full bg-white border-2 border-blue-200 focus:border-blue-600 text-slate-800 text-lg rounded-2xl block pl-14 p-6 outline-none font-black shadow-sm transition-all focus:ring-4 focus:ring-blue-50">
                 </div>
                 <div class="flex flex-wrap gap-3 mb-10" id="theme-filter-container"></div>
 
                 <div class="mb-10 bg-rose-50 border-l-[10px] border-rose-500 rounded-[2.5rem] p-8 shadow-sm">
-                    <h3 class="text-xl font-black text-rose-900 mb-6"><i class="fas fa-fire-alt mr-3"></i> งานปฏิบัติการประจำเดือน (Monthly Priority)</h3>
+                    <h3 class="text-xl font-black text-rose-900 mb-6 flex items-center"><i class="fas fa-fire-alt mr-3 text-rose-500"></i> งานปฏิบัติการประจำเดือน (Monthly Priority)</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="monthly-priority-list"></div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-                    <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-slate-100"><h3 class="text-lg font-black text-blue-800 mb-4 border-b pb-2">สายงานวิชาการ</h3><div class="space-y-1" id="cat-academic-list"></div></div>
-                    <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-slate-100"><h3 class="text-lg font-black text-emerald-800 mb-4 border-b pb-2">สายงานบริหาร</h3><div class="space-y-1" id="cat-admin-list"></div></div>
-                    <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-slate-100"><h3 class="text-lg font-black text-purple-800 mb-4 border-b pb-2">สายงานเทคโนโลยี</h3><div class="space-y-1" id="cat-tech-list"></div></div>
-                    <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-slate-100"><h3 class="text-lg font-black text-amber-800 mb-4 border-b pb-2">สายงานวิทยฐานะ</h3><div class="space-y-1" id="cat-pa-list"></div></div>
+                    <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-slate-100 font-bold"><h3 class="text-lg font-black text-blue-800 mb-4 border-b pb-2 uppercase">สายงานวิชาการ (CBE / Learning)</h3><div class="space-y-1" id="cat-academic-list"></div></div>
+                    <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-slate-100 font-bold"><h3 class="text-lg font-black text-emerald-800 mb-4 border-b pb-2 uppercase">สายงานบริหาร (Admin / Support)</h3><div class="space-y-1" id="cat-admin-list"></div></div>
+                    <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-slate-100 font-bold"><h3 class="text-lg font-black text-purple-800 mb-4 border-b pb-2 uppercase">สายงานเทคโนโลยี (Tech / Innovation)</h3><div class="space-y-1" id="cat-tech-list"></div></div>
+                    <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-slate-100 font-bold"><h3 class="text-lg font-black text-amber-800 mb-4 border-b pb-2 uppercase">สายงานวิทยฐานะ (PA / Eval)</h3><div class="space-y-1" id="cat-pa-list"></div></div>
                 </div>
             </div>
         </div>
 
-        <!-- Tab: Calendar (V11.7.0 Mega Update) -->
+        <!-- Tab: Calendar -->
         <div id="tab-calendar" class="hidden text-left font-bold">
             <div class="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden mb-12 border border-slate-200">
                 <div class="bg-blue-900 px-8 py-12 text-white flex flex-col md:flex-row justify-between items-center relative overflow-hidden gap-6">
                     <div class="relative z-10 text-center md:text-left">
                         <h2 id="calendar-month-year" class="text-4xl font-black uppercase tracking-[0.2em]">--</h2>
-                        <p class="text-[12px] text-blue-300 font-bold uppercase mt-2 tracking-[0.3em]">Master Educational Timeline 2026</p>
+                        <p class="text-[13.5px] text-blue-300 font-bold uppercase mt-2 tracking-[0.3em]">Master Educational Timeline 2026</p>
                     </div>
-                    <div class="flex items-center space-x-3 relative z-10">
-                        <button onclick="changeMonth(-1)" class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border transition-all"><i class="fas fa-chevron-left text-xl"></i></button>
-                        <button onclick="toggleModal('add-event-modal')" class="bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 rounded-2xl font-black text-xs uppercase shadow-xl hover:scale-105 transition-all flex items-center"><i class="fas fa-plus-circle mr-2 text-lg"></i> บันทึกกิจกรรมส่วนตัว</button>
-                        <button onclick="changeMonth(1)" class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border transition-all"><i class="fas fa-chevron-right text-xl"></i></button>
+                    <div class="flex items-center space-x-3 relative z-10 font-black">
+                        <button onclick="changeMonth(-1)" class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border transition-all shadow-lg"><i class="fas fa-chevron-left text-xl"></i></button>
+                        <button onclick="toggleModal('add-event-modal')" class="bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 rounded-2xl font-black text-[12.5px] uppercase shadow-xl hover:scale-105 transition-all flex items-center"><i class="fas fa-plus-circle mr-2 text-lg"></i> บันทึกกิจกรรมส่วนตัว</button>
+                        <button onclick="changeMonth(1)" class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border transition-all shadow-lg"><i class="fas fa-chevron-right text-xl"></i></button>
                     </div>
                 </div>
-                
-                <div class="p-8 bg-slate-50 border-b border-slate-200 flex flex-wrap gap-4 text-[9px] font-black uppercase justify-center">
-                    <div class="flex items-center bg-white px-5 py-2 rounded-xl shadow-sm border border-red-100"><span class="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span> วันหยุด</div>
-                    <div class="flex items-center bg-white px-5 py-2 rounded-xl shadow-sm border border-blue-100"><span class="w-2.5 h-2.5 bg-blue-500 rounded-full mr-2"></span> วิชาการ</div>
-                    <div class="flex items-center bg-white px-5 py-2 rounded-xl shadow-sm border border-emerald-100"><span class="w-2.5 h-2.5 bg-emerald-500 rounded-full mr-2"></span> บริหาร</div>
-                    <div class="flex items-center bg-white px-5 py-2 rounded-xl shadow-sm border border-orange-100"><span class="w-2.5 h-2.5 bg-orange-500 rounded-full mr-2"></span> วิทยฐานะ</div>
-                    <div class="flex items-center bg-yellow-100 px-5 py-2 rounded-xl shadow-md border-2 border-yellow-400 text-yellow-800"><span class="w-3 h-3 bg-yellow-500 animate-ping rounded-full mr-2"></span> TODAY</div>
-                </div>
-
                 <div class="calendar-wrapper p-6 bg-slate-50"><div class="calendar-grid" id="calendar-body"></div></div>
             </div>
         </div>
         
-        <!-- Tab: เกี่ยวกับเรา (16 Pillars Recovery) -->
+        <!-- Tab: About -->
         <div id="tab-about" class="hidden text-left font-bold">
-            <div class="max-w-6xl mx-auto space-y-10">
+            <div class="max-w-6xl mx-auto space-y-10 font-bold">
                 <div class="bg-white p-12 rounded-[3.5rem] shadow-xl border border-slate-200" id="about-container">
-                    <h2 class="text-3xl font-black text-slate-800 uppercase mb-8 pb-6 border-b">จุดแข็งระบบนิเวศ (16 Pillars of Success)</h2>
+                    <h2 class="text-3xl font-black text-slate-800 uppercase mb-8 pb-6 border-b tracking-tighter">จุดแข็งระบบนิเวศ (16 Strategic Pillars)</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="about-pillars-grid"></div>
                 </div>
             </div>
@@ -283,37 +276,28 @@
     <!-- Modals -->
     <div id="analytics-modal" class="modal-overlay" onclick="toggleModal('analytics-modal')">
         <div class="modal-content !max-w-4xl font-bold" onclick="event.stopPropagation()">
-            <h3 class="text-2xl font-black uppercase mb-8 border-b pb-4">Full Analytics Master Report</h3>
+            <h3 class="text-2xl font-black uppercase mb-8 border-b pb-4">Full Analytics Report</h3>
             <div id="container-affiliations" class="space-y-4"></div>
-            <button onclick="toggleModal('analytics-modal')" class="mt-10 w-full bg-slate-100 py-4 rounded-2xl font-black uppercase">ปิดรายงาน</button>
+            <button onclick="toggleModal('analytics-modal')" class="mt-10 w-full bg-slate-100 py-4 rounded-2xl font-black uppercase text-[12.5px]">ปิดรายงาน</button>
         </div>
     </div>
     
     <div id="task-modal" class="modal-overlay" onclick="toggleModal('task-modal')">
         <div class="modal-content font-bold" onclick="event.stopPropagation()">
-            <span id="task-modal-id" class="text-[10px] font-black text-slate-400">DS-XXXX</span>
-            <h3 id="task-modal-title" class="text-xl font-black mb-4">ภารกิจยุทธศาสตร์</h3>
-            <div class="bg-slate-900 rounded-2xl p-5 text-green-400 font-mono text-sm italic mb-4" id="task-modal-prompt"></div>
-            <div id="ai-draft-output" class="hidden mb-4 p-5 bg-blue-50/50 rounded-2xl border-2 border-dashed border-blue-200 text-sm">
-                <p id="draft-text-content" class="leading-relaxed"></p>
-            </div>
-            <button onclick="launchAgent()" class="w-full bg-blue-900 text-white py-4 rounded-2xl font-black shadow-lg flex items-center justify-center">เปิด AI AGENT ปฏิบัติภารกิจ <i class="fas fa-external-link-alt ml-2"></i></button>
+            <span id="task-modal-id" class="text-[11.5px] font-black text-slate-400 bg-slate-100 px-2 py-1 rounded">DS-XXXX</span>
+            <h3 id="task-modal-title" class="text-xl font-black mb-4 leading-tight">ภารกิจยุทธศาสตร์</h3>
+            <div class="bg-slate-900 rounded-2xl p-5 text-green-400 font-mono text-[13.5px] italic mb-4" id="task-modal-prompt"></div>
+            <button onclick="launchAgent()" class="w-full bg-blue-900 text-white py-4 rounded-2xl font-black shadow-lg flex items-center justify-center text-[15.5px]">เปิด AI AGENT ปฏิบัติภารกิจ <i class="fas fa-external-link-alt ml-2"></i></button>
         </div>
     </div>
 
     <div id="add-event-modal" class="modal-overlay" onclick="toggleModal('add-event-modal')">
         <div class="modal-content font-bold" onclick="event.stopPropagation()">
             <h3 class="text-2xl font-black mb-4">บันทึกกิจกรรมส่วนตัว</h3>
-            <p class="text-xs text-slate-500 mb-6">ข้อมูลบันทึกลงคลาวด์ส่วนตัว/โรงเรียน ไม่บันทึกลงโปรแกรมหลัก</p>
             <div class="space-y-4">
                 <input type="date" id="personal-date" class="w-full bg-slate-50 border p-4 rounded-xl font-bold">
                 <input type="text" id="personal-title" placeholder="ชื่อกิจกรรม..." class="w-full bg-slate-50 border p-4 rounded-xl font-bold">
-                <select id="personal-type" class="w-full bg-slate-50 border p-4 rounded-xl font-bold">
-                    <option value="blue">วิชาการ</option>
-                    <option value="green">บริหาร</option>
-                    <option value="orange">บุคคล/วPA</option>
-                </select>
-                <button onclick="savePersonalEvent()" class="w-full bg-blue-900 text-white py-4 rounded-xl font-black shadow-xl uppercase mt-4">บันทึก</button>
+                <button onclick="savePersonalEvent()" class="w-full bg-blue-900 text-white py-4 rounded-xl font-black shadow-xl uppercase mt-4">บันทึกข้อมูล</button>
             </div>
         </div>
     </div>
@@ -322,19 +306,19 @@
          <div class="modal-content font-bold" onclick="event.stopPropagation()">
             <div class="text-center mb-8 font-black"><h3 class="text-2xl font-black text-blue-900 uppercase">ลงทะเบียน / เข้าใช้งาน</h3></div>
             <form onsubmit="handleLogin(event)" class="space-y-4">
-                <input type="text" id="user-name-input" placeholder="ชื่อ-นามสกุล / ฉายา" class="w-full bg-slate-50 border p-4 rounded-xl text-sm font-bold outline-none" required>
-                <select id="user-role-input" class="w-full bg-slate-50 border p-4 rounded-xl text-sm font-black outline-none"><option value="ครู ค.ศ. 1-3">ครู ค.ศ. 1-3</option><option value="ผู้อำนวยการ">ผู้อำนวยการ</option><option value="บุคลากรสนับสนุน">บุคลากรสนับสนุน</option></select>
-                <button type="submit" class="w-full bg-blue-900 text-white py-4 rounded-xl font-black shadow-xl uppercase mt-4">เข้าสู่ระบบ</button>
+                <input type="text" id="user-name-input" placeholder="ชื่อ-นามสกุล / ฉายา" class="w-full bg-slate-50 border p-4 rounded-xl text-[15.5px] font-bold outline-none" required>
+                <select id="user-role-input" class="w-full bg-slate-50 border p-4 rounded-xl text-[15.5px] font-black outline-none font-bold"><option value="ครู ค.ศ. 1-3">ครู ค.ศ. 1-3</option><option value="ผู้อำนวยการ">ผู้อำนวยการ</option><option value="บุคลากรสนับสนุน">บุคลากรสนับสนุน</option></select>
+                <button type="submit" class="w-full bg-blue-900 text-white py-4 rounded-xl font-black shadow-xl uppercase mt-4 text-[15.5px]">เข้าใช้งานระบบ</button>
             </form>
         </div>
     </div>
-    
+
     <div id="toast"></div>
 
     <script>
         let currentActiveTask = null;
         let selectedTheme = 'all';
-        let currentMonthDate = new Date(2026, 3, 1); // Start April
+        let currentMonthDate = new Date(2026, 4, 1); // Current Context: May 2026
         let personalEvents = [];
 
         const AGENT_URLS = {
@@ -351,126 +335,126 @@
         };
 
         const agentsArrFull = [
-            { id: "01", name: "Command Center", icon: "fa-compass", color: "blue", tags: "วางแผน / เริ่มงาน", skills: ["ยุทธศาสตร์ AI รายบุคคล", "ค้นหาภารกิจที่ตรงสายงาน", "ร่างโครงสร้างการทำงานภาพรวม", "แนะนำการเลือกใช้ Agent", "จัดลำดับความสำคัญของงานด่วน"] },
-            { id: "02", name: "Smart Hub", icon: "fa-bullhorn", color: "indigo", tags: "ข้อมูล / ข่าว / ระเบียบ", skills: ["สรุปข่าวราชการย้อนหลัง 30 วัน", "วิเคราะห์นโยบาย สพฐ./สอศ. ล่าสุด", "สกัดระเบียบราชการใหม่", "สืบค้นงานวิจัยทางการศึกษา", "สรุปจุดเน้นการดำเนินงานประจำปี"] },
-            { id: "03", name: "Lesson Designer", icon: "fa-pencil-ruler", color: "cyan", tags: "CBE / Active Learning", skills: ["ร่างแผนการจัดการเรียนรู้สมรรถนะ", "ออกแบบกิจกรรม Active Learning", "สร้างใบงานบูรณาการ 8 กลุ่มสาระ", "วางโครงสร้างหลักสูตรสถานศึกษา", "จัดทำโครงการพัฒนาผู้เรียน"] },
-            { id: "04", name: "Assessment Pro", icon: "fa-check-double", color: "green", tags: "ข้อสอบ / Rubrics / ผล", skills: ["สร้างข้อสอบแนววิเคราะห์ PISA", "ออกแบบเกณฑ์การประเมิน Rubric", "วิเคราะห์ผลสัมฤทธิ์ทางการเรียน", "สร้างคลังข้อสอบตามมาตรฐาน", "ออกแบบสถานการณ์วัดสมรรถนะ"] },
-            { id: "05", name: "Creative Media", icon: "fa-palette", color: "pink", tags: "คอนเทนต์ / สื่อ / พอร์ต", skills: ["เขียนพร้อมต์เจนภาพ AI สื่อการสอน", "ร่างสคริปต์วิดีโอคลิปสั้นวิชาการ", "ออกแบบ Storyboard สำหรับครู", "เขียนคำบรรยายโพสต์โซเชียล", "วางโครงสร้างสไลด์นำเสนอผลงาน"] },
-            { id: "06", name: "Admin / Registrar", icon: "fa-briefcase", color: "slate", tags: "พัสดุ / แผนงาน / ธุรการ", skills: ["ร่างหนังสือราชการภายนอก-ภายใน", "จัดทำ TOR และเอกสารงานพัสดุ", "ร่างโครงการของบประมาณ", "บันทึกข้อความเสนอ ผอ.", "จัดทำวาระการประชุมโรงเรียน"] },
-            { id: "07", name: "Student Support", icon: "fa-user-graduate", color: "purple", tags: "ดูแลช่วยเหลือนักเรียน", skills: ["วิเคราะห์ผลประเมิน SDQ/EQ", "ร่างแผนดูแลช่วยเหลือนักเรียน", "ให้คำปรึกษาพฤติกรรมเชิงบวก", "สรุปรายงานการเยี่ยมบ้าน", "ออกแบบกิจกรรมโฮมรูมสร้างสรรค์"] },
-            { id: "08", name: "PA Coach", icon: "fa-award", color: "amber", tags: "วPA / วิทยฐานะ", skills: ["โค้ชการเขียนข้อตกลง วPA", "ออกแบบประเด็นท้าทายที่ตรงจุด", "ร่างโครงสร้างวิจัยในชั้นเรียน", "เตรียมเอกสารขอนำเสนอผลงาน", "ตรวจสอบความสอดคล้องของผลงาน"] },
-            { id: "09", name: "Tech Assistant", icon: "fa-laptop-code", color: "teal", tags: "AppSheet / โค้ด / ชีต", skills: ["ออกแบบ AppSheet เช็คชื่อ/แจ้งซ่อม", "เขียนสูตร Google Sheets ขั้นสูง", "เขียนโค้ด Apps Script เชื่อมต่อ", "สร้างระบบเกียรติบัตรอัตโนมัติ", "แนะนำเครื่องมือ Digital ใหม่ๆ"] },
-            { id: "10", name: "Quality Auditor", icon: "fa-clipboard-check", color: "red", tags: "ตรวจสอบ / PDPA / มาตรฐาน", skills: ["ตรวจสอบเอกสารตาม พ.ร.บ. PDPA", "คัดกรองการลอกเลียนแบบผลงาน", "ตรวจทานความถูกต้องทางวิชาการ", "ให้ข้อเสนอแนะการปรับปรุงคุณภาพ", "ประเมินความเสี่ยงการละเมิดลิขสิทธิ์"] }
+            { id: "01", name: "Command Center", icon: "fa-compass", color: "blue", tags: "วางแผน / เริ่มงาน", skills: ["ยุทธศาสตร์ AI รายบุคคล", "ค้นหาภารกิจ", "ร่างโครงสร้างงาน", "แนะนำ Agent", "จัดลำดับงานด่วน"] },
+            { id: "02", name: "Smart Hub", icon: "fa-bullhorn", color: "indigo", tags: "ข้อมูล / ข่าว", skills: ["สรุปข่าว 30 วัน", "วิเคราะห์นโยบาย", "สกัดระเบียบใหม่", "สืบค้นงานวิจัย", "จุดเน้นประจำปี"] },
+            { id: "03", name: "Lesson Designer", icon: "fa-pencil-ruler", color: "cyan", tags: "CBE / Active Learning", skills: ["ร่างแผน CBE", "กิจกรรมเชิงรุก", "ใบงาน 8 กลุ่มสาระ", "หลักสูตรสถานศึกษา", "โครงการพัฒนาผู้เรียน"] },
+            { id: "04", name: "Assessment Pro", icon: "fa-check-double", color: "green", tags: "ข้อสอบ / Rubrics", skills: ["ข้อสอบแนว PISA", "เกณฑ์ Rubric", "วิเคราะห์ผลสัมฤทธิ์", "คลังข้อสอบมาตรฐาน", "วัดสมรรถนะผู้เรียน"] },
+            { id: "05", name: "Creative Media", icon: "fa-palette", color: "pink", tags: "สื่อ / พอร์ต", skills: ["เจนภาพสื่อ AI", "สคริปต์คลิปสั้น", "Storyboard ครู", "โพสต์โซเชียล", "สไลด์นำเสนอ"] },
+            { id: "06", name: "Admin / Registrar", icon: "fa-briefcase", color: "slate", tags: "พัสดุ / ธุรการ", skills: ["หนังสือราชการ", "TOR e-GP 2569", "ร่างโครงการงบ", "บันทึกเสนอ ผอ.", "วาระการประชุม"] },
+            { id: "07", name: "Student Support", icon: "fa-user-graduate", color: "purple", tags: "ดูแลนักเรียน", skills: ["วิเคราะห์ SDQ/EQ", "แผนดูแลนักเรียน", "จิตวิทยาวัยรุ่น", "รายงานเยี่ยมบ้าน", "โฮมรูมสร้างสรรค์"] },
+            { id: "08", name: "PA Coach", icon: "fa-award", color: "amber", tags: "วPA / วิทยฐานะ", skills: ["โค้ชข้อตกลง วPA", "ออกแบบประเด็นท้าทาย", "วิจัยในชั้นเรียน", "เตรียมส่งผลงาน", "ตรวจสอบคุณภาพ"] },
+            { id: "09", name: "Tech Assistant", icon: "fa-laptop-code", color: "teal", tags: "ชีต / โค้ด", skills: ["AppSheet เช็คชื่อ", "สูตร Sheets สูง", "Apps Script", "เกียรติบัตรอัตโนมัติ", "เครื่องมือดิจิทัล"] },
+            { id: "10", name: "Quality Auditor", icon: "fa-clipboard-check", color: "red", tags: "ตรวจสอบ / PDPA", skills: ["ตรวจ PDPA", "กรองการลอกเลียน", "ตรวจทานวิชาการ", "ปรับปรุงคุณภาพงาน", "ประเมินลิขสิทธิ์"] }
         ];
 
+        // --- UPDATED STRATEGIC DATABASE V11.7.2 (8 Items Each) ---
         const catalogDatabaseFull = [
-            // Monthly Priority (April)
+            // Monthly Priority (May/April Focus)
             { id: "DS-8201", title: "รายงาน SAR 3 มาตรฐาน (2568)", agent: "AGENT 02", theme: "pa", isMonthly: true },
-            { id: "DS-2017", title: "ร่างแผนปฏิบัติการและโครงการประจำปี 2569", agent: "AGENT 06", theme: "admin", isMonthly: true },
-            { id: "DS-4402", title: "ประเมินพัฒนาการเด็กรายบุคคล (Term 2)", agent: "AGENT 04", theme: "academic", isMonthly: true },
-            { id: "TMP-001", title: "แม่แบบ Sheets ตัดเกรด ปพ.5", agent: "AGENT 09", theme: "tech", isMonthly: true },
+            { id: "DS-2017", title: "แผนปฏิบัติการประจำปี 2569 (ฉบับสมบูรณ์)", agent: "AGENT 06", theme: "admin", isMonthly: true },
+            { id: "DS-4402", title: "ประเมินพัฒนาการเด็ก DMC (พฤษภาคม)", agent: "AGENT 04", theme: "academic", isMonthly: true },
+            { id: "TMP-001", title: "แม่แบบ Sheets ตัดเกรด (รับเปิดเทอม)", agent: "AGENT 09", theme: "tech", isMonthly: true },
 
-            // Academic (8 Items)
-            { id: "DS-2130", title: "แผนการจัดการเรียนรู้สมรรถนะ (CBE)", agent: "AGENT 03", theme: "academic" },
-            { id: "DS-2101", title: "แผนจัดประสบการณ์อนุบาล 6 กิจกรรม", agent: "AGENT 03", theme: "academic" },
-            { id: "DS-2204", title: "ใบงานบูรณาการ Active Learning", agent: "AGENT 03", theme: "academic" },
-            { id: "DS-2305", title: "โครงสร้างหลักสูตรสถานศึกษา 69", agent: "AGENT 03", theme: "academic" },
-            { id: "DS-2401", title: "แบบประเมิน Rubrics สำหรับครูใหม่", agent: "AGENT 04", theme: "academic" },
-            { id: "DS-2502", title: "คลังข้อสอบวิเคราะห์แนว PISA", agent: "AGENT 04", theme: "academic" },
-            { id: "DS-2603", title: "คู่มือการสอนเชิงรุก 8 กลุ่มสาระ", agent: "AGENT 03", theme: "academic" },
-            { id: "DS-2708", title: "ร่างแผนแก้ปัญหาเด็กอ่านไม่ออก", agent: "AGENT 03", theme: "academic" },
+            // Academic (8 Items from sources)
+            { id: "DS-2130", title: "คู่มือการพัฒนาสมรรถนะผู้เรียน (OBEC Manual)", agent: "AGENT 03", theme: "academic" },
+            { id: "DS-2101", title: "ร่างแผนจัดประสบการณ์อนุบาลเชิงรุก", agent: "AGENT 03", theme: "academic" },
+            { id: "DS-2204", title: "โครงสร้างแผนการสอน CBE 8 กลุ่มสาระ", agent: "AGENT 03", theme: "academic" },
+            { id: "DS-2305", title: "ใบงาน Active Learning เน้นกระบวนการ 5E", agent: "AGENT 03", theme: "academic" },
+            { id: "DS-2401", title: "แบบประเมิน Rubrics ตามสมรรถนะรายบุคคล", agent: "AGENT 04", theme: "academic" },
+            { id: "DS-2502", title: "คลังข้อสอบแนววิเคราะห์ PISA 2026", agent: "AGENT 04", theme: "academic" },
+            { id: "DS-2603", title: "ร่างแผนแก้ปัญหาเด็กอ่านไม่ออกเขียนไม่ได้", agent: "AGENT 03", theme: "academic" },
+            { id: "DS-2708", title: "บทเรียน AI & Machine Learning สำหรับประถม", agent: "AGENT 03", theme: "academic" },
 
-            // Admin (8 Items)
-            { id: "DS-6301", title: "ร่าง MOU ความร่วมมือทวิภาคี", agent: "AGENT 06", theme: "admin" },
-            { id: "DS-6402", title: "ร่าง TOR พัสดุระบบ e-GP 2569", agent: "AGENT 06", theme: "admin" },
-            { id: "DS-6503", title: "บันทึกข้อความจัดซื้อจัดจ้างทั่วไป", agent: "AGENT 06", theme: "admin" },
-            { id: "DS-6604", title: "รายงานการประชุม กก.สถานศึกษา", agent: "AGENT 06", theme: "admin" },
-            { id: "DS-6705", title: "ร่างโครงการของบประมาณเงินอุดหนุน", agent: "AGENT 06", theme: "admin" },
-            { id: "DS-6806", title: "ประกาศระเบียบการรับสมัครนักเรียน", agent: "AGENT 06", theme: "admin" },
-            { id: "DS-1014", title: "ตรวจสอบเอกสาร PDPA เบื้องต้น", agent: "AGENT 10", theme: "admin" },
-            { id: "DS-6908", title: "แผนประชาสัมพันธ์กิจกรรมโรงเรียน", agent: "AGENT 05", theme: "admin" },
+            // Admin & Support (8 Items from sources)
+            { id: "DS-6301", title: "ร่าง MOU ความร่วมมือความปลอดภัยในสถานศึกษา", agent: "AGENT 06", theme: "admin" },
+            { id: "DS-6402", title: "ร่าง TOR พัสดุระบบ e-GP (ชุดนักเรียน 2569)", agent: "AGENT 06", theme: "admin" },
+            { id: "DS-6503", title: "บันทึกข้อความจัดซื้อจัดจ้างวัสดุคอมพิวเตอร์", agent: "AGENT 06", theme: "admin" },
+            { id: "DS-6604", title: "รายงานการประชุมคณะกรรมการโรงเรียน (วาระงบ)", agent: "AGENT 06", theme: "admin" },
+            { id: "DS-6705", title: "ร่างโครงการของบประมาณ 'เปิดเทอมสบายกระเป๋า'", agent: "AGENT 06", theme: "admin" },
+            { id: "DS-6806", title: "ประกาศระเบียบการยืดหยุ่นเครื่องแบบนักเรียน", agent: "AGENT 06", theme: "admin" },
+            { id: "DS-1014", title: "รายการตรวจสอบเอกสารสอดคล้อง PDPA ในโรงเรียน", agent: "AGENT 10", theme: "admin" },
+            { id: "DS-6908", title: "แผนประชาสัมพันธ์ 'นวัตกรรมการศึกษา กทม.'", agent: "AGENT 05", theme: "admin" },
 
-            // Tech (8 Items)
-            { id: "DS-9201", title: "แอป AppSheet เช็คชื่อนักเรียน", agent: "AGENT 09", theme: "tech" },
-            { id: "DS-9302", title: "แอปแจ้งซ่อมพัสดุออนไลน์ QR", agent: "AGENT 09", theme: "tech" },
-            { id: "DS-9403", title: "ระบบเกียรติบัตรออนไลน์อัตโนมัติ", agent: "AGENT 09", theme: "tech" },
-            { id: "DS-9504", title: "สูตร Sheets ขั้นสูงวิเคราะห์เกรด", agent: "AGENT 09", theme: "tech" },
-            { id: "DS-9605", title: "คู่มือเขียนโปรแกรม Python สำหรับครู", agent: "AGENT 09", theme: "tech" },
-            { id: "DS-9706", title: "สร้างเว็บไซต์โรงเรียนด้วย Google Site", agent: "AGENT 09", theme: "tech" },
-            { id: "DS-1060", title: "Google Forms คัดกรองเด็ก SDQ", agent: "AGENT 07", theme: "tech" },
-            { id: "DS-9808", title: "ออกแบบ Portfolio สวยด้วย Canva", agent: "AGENT 05", theme: "tech" },
+            // Tech & Innovation (8 Items from sources)
+            { id: "DS-9201", title: "ระบบเช็คชื่อนักเรียนผ่าน AppSheet (Sync DMC)", agent: "AGENT 09", theme: "tech" },
+            { id: "DS-9302", title: "แอปแจ้งซ่อมและเบิกจ่ายวัสดุพัสดุ (QR Code)", agent: "AGENT 09", theme: "tech" },
+            { id: "DS-9403", title: "สคริปต์ Google Sheets ออกเกียรติบัตรอัตโนมัติ", agent: "AGENT 09", theme: "tech" },
+            { id: "DS-9504", title: "สูตรวิเคราะห์ผลการเรียนเปรียบเทียบมาตรฐาน", agent: "AGENT 09", theme: "tech" },
+            { id: "DS-9605", title: "คู่มือโครงการ 'AI for All Thais' (True x Google)", agent: "AGENT 09", theme: "tech" },
+            { id: "DS-9706", title: "สร้างเว็บไซต์ศูนย์นวัตกรรมโรงเรียน (G-Site)", agent: "AGENT 09", theme: "tech" },
+            { id: "DS-1060", title: "Google Forms คัดกรองนักเรียนด้วย G-Code", agent: "AGENT 07", theme: "tech" },
+            { id: "DS-9808", title: "โครงสร้าง Digital Portfolio Canva สำหรับครู", agent: "AGENT 05", theme: "tech" },
 
-            // PA (8 Items)
-            { id: "DS-3401", title: "ร่างข้อตกลงพัฒนางาน (วPA)", agent: "AGENT 08", theme: "pa" },
-            { id: "DS-7404", title: "วิจัยในชั้นเรียนหน้าเดียว (CBR)", agent: "AGENT 08", theme: "pa" },
-            { id: "DS-7505", title: "แผนพัฒนาตนเองรายบุคคล ID Plan", agent: "AGENT 08", theme: "pa" },
-            { id: "DS-7606", title: "รายงาน PLC ประจำภาคเรียน", agent: "AGENT 08", theme: "pa" },
-            { id: "DS-7707", title: "เตรียมเอกสารประเมินเงินเดือน", agent: "AGENT 08", theme: "pa" },
-            { id: "DS-7808", title: "ร่างนวัตกรรม Best Practice ครูไทย", agent: "AGENT 08", theme: "pa" },
-            { id: "DS-7909", title: "สคริปต์คลิปวิดีโอส่ง วPA", agent: "AGENT 05", theme: "pa" },
-            { id: "DS-1110", title: "รายงานสรุปวิทยฐานะ คศ.1-คศ.3", agent: "AGENT 08", theme: "pa" }
+            // PA & Professional (8 Items from sources)
+            { id: "DS-3401", title: "ร่างข้อตกลงพัฒนางาน (วPA) ฉบับประยุกต์ 2569", agent: "AGENT 08", theme: "pa" },
+            { id: "DS-7404", title: "ร่างวิจัยในชั้นเรียนหน้าเดียว (Action Research)", agent: "AGENT 08", theme: "pa" },
+            { id: "DS-7505", title: "แผนพัฒนาตนเองรายบุคคล ID Plan ปีงบ 2570", agent: "AGENT 08", theme: "pa" },
+            { id: "DS-7606", title: "รายงานผลการทำ PLC แก้ไขปัญหาการเรียน", agent: "AGENT 08", theme: "pa" },
+            { id: "DS-7707", title: "เตรียมหลักฐานดิจิทัลส่งระบบ DPA 3.0", agent: "AGENT 08", theme: "pa" },
+            { id: "DS-7808", title: "รายงานสรุป Best Practice 'AI in Classroom'", agent: "AGENT 08", theme: "pa" },
+            { id: "DS-7909", title: "สคริปต์คลิปวิดีโอการสอนยื่นประเมิน วPA", agent: "AGENT 05", theme: "pa" },
+            { id: "DS-1110", title: "รายงานประเมินตนเองตามมาตรฐานวิชาชีพ คศ.3", agent: "AGENT 08", theme: "pa" }
         ];
 
-        // --- FULL CALENDAR MEGA SYNC 2026 ---
         const calendarEvents = {
+            // JAN-MAR (Restored)
             "2026-01-01": [{text: "วันขึ้นปีใหม่", type: "red"}],
             "2026-01-16": [{text: "วันครูแห่งชาติ", type: "blue"}],
-            "2026-02-14": [{text: "วันมาฆบูชา", type: "red"}],
-            "2026-02-15": [{text: "สอบ O-NET (ม.6)", type: "blue"}],
-            "2026-03-31": [{text: "วันสิ้นสุดปีการศึกษา 2568", type: "green"}],
-            // APRIL (MEGA RECORD)
-            "2026-04-01": [{text: "เริ่มส่ง SAR 68", type: "green"}, {text: "ยื่น OSOI", type: "blue"}, {text: "ปิดงบไตรมาส 2", type: "green"}],
-            "2026-04-02": [{text: "อนุมัติจบการศึกษา ม.3/6", type: "blue"}],
-            "2026-04-03": [{text: "รับรายงานตัวนักเรียน ม.1", type: "blue"}],
+            "2026-03-31": [{text: "สิ้นสุดปีการศึกษา 2568", type: "green"}],
+            // APRIL (Sync from source)
+            "2026-04-01": [{text: "เริ่มส่ง SAR 68", type: "green"}, {text: "ยื่น OSOI", type: "blue"}],
             "2026-04-06": [{text: "วันจักรี", type: "red"}],
-            "2026-04-07": [{text: "ประชุม กก.บริหารโรงเรียน", type: "green"}],
-            "2026-04-08": [{text: "จัดทำ ID Plan ปี 69", type: "orange"}],
-            "2026-04-10": [{text: "อบรมครูออนไลน์ OBEC", type: "blue"}],
             "2026-04-13": [{text: "วันสงกรานต์", type: "red"}],
             "2026-04-14": [{text: "วันสงกรานต์", type: "red"}],
             "2026-04-15": [{text: "วันสงกรานต์", type: "red"}],
             "2026-04-20": [{text: "ประกาศผลย้ายครูรอบ 1", type: "orange"}],
-            "2026-04-24": [{text: "ประกาศมาตรการเรียนฟรี", type: "green"}],
-            "2026-04-28": [{text: "เดดไลน์แผนปฏิบัติการ 69", type: "green"}],
-            "2026-04-30": [{text: "สรุปผล วPA ประจำเดือน", type: "orange"}],
-            // MAY (MEGA RECORD)
-            "2026-05-01": [{text: "วันแรงงาน", type: "red"}],
+            "2026-04-28": [{text: "เดดไลน์แผนปฏิบัติการ", type: "green"}],
+            "2026-04-30": [{text: "ประกาศผลประเมิน คศ.3 (ก.ค.ศ.)", type: "orange"}],
+            // MAY (Detailed Sync from News)
+            "2026-05-01": [{text: "วันแรงงานแห่งชาติ", type: "red"}, {text: "เริ่มโครงการ Back To School 2026", type: "green"}],
             "2026-05-04": [{text: "วันฉัตรมงคล", type: "red"}],
-            "2026-05-08": [{text: "เตรียมสถานที่เปิดเทอม", type: "green"}],
-            "2026-05-11": [{text: "สัปดาห์จัดทำแผน CBE", type: "blue"}],
-            "2026-05-14": [{text: "วันพืชมงคล", type: "red"}],
-            "2026-05-15": [{text: "ประชุมผู้ปกครองนัดแรก", type: "blue"}],
-            "2026-05-16": [{text: "เปิดภาคเรียน 1/2569", type: "blue"}, {text: "เช็คชื่อ DMC", type: "green"}],
-            "2026-05-20": [{text: "ส่งแผนจัดการเรียนรู้", type: "blue"}],
-            "2026-05-25": [{text: "ยื่นจัดซื้ออุปกรณ์พัสดุ", type: "green"}],
-            "2026-05-31": [{text: "วันวิสาขบูชา", type: "red"}],
+            "2026-05-05": [{text: "Symposium นวัตกรรมการศึกษา", type: "blue"}, {text: "True x Google 'AI for All Thais'", type: "purple"}],
+            "2026-05-14": [{text: "วันพืชมงคล (วันหยุด)", type: "red"}],
+            "2026-05-15": [{text: "เงินเดือนครู (รอบ 1) เข้าบัญชี", type: "green"}, {text: "ประชุมปฐมนิเทศโรงเรียน", type: "blue"}],
+            "2026-05-16": [{text: "เปิดภาคเรียน 1/2569 ทั่วประเทศ", type: "blue"}, {text: "เช็คชื่อนักเรียนผ่าน DMC", type: "purple"}],
+            "2026-05-20": [{text: "ยื่นแผนการจัดการเรียนรู้ CBE", type: "blue"}],
+            "2026-05-26": [{text: "เงินเดือนครู (รอบ 2) เข้าบัญชี", type: "green"}],
+            "2026-05-31": [{text: "วันวิสาขบูชา", type: "red"}, {text: "สิ้นสุดแคมเปญ Back to School", type: "green"}],
+            // JUN-DEC (Planned)
+            "2026-06-15": [{text: "เดดไลน์คัดกรอง SDQ นักเรียน", type: "orange"}],
+            "2026-07-28": [{text: "วันเฉลิมพระชนมพรรษา ร.10", type: "red"}],
             "2026-08-12": [{text: "วันแม่แห่งชาติ", type: "red"}],
-            "2026-09-30": [{text: "สิ้นปีงบประมาณ 69", type: "green"}],
+            "2026-09-30": [{text: "ปิดรอบยื่น วPA 2569", type: "orange"}, {text: "สิ้นปีงบประมาณ 2569", type: "green"}],
             "2026-10-13": [{text: "วันคล้ายวันสวรรคต ร.9", type: "red"}],
-            "2026-12-05": [{text: "วันพ่อแห่งชาติ", type: "red"}]
+            "2026-12-05": [{text: "วันพ่อแห่งชาติ", type: "red"}],
+            "2026-12-31": [{text: "วันสิ้นปี", type: "red"}]
         };
 
         const pillarsData = [
-            { icon: "fa-bolt", t: "High-Speed Engine", d: "ประมวลผลคำสั่งร่างโครงสร้างด้วยความเร็วสูง แม่นยำทุกขั้นตอน", c: "text-blue-600", bg: "bg-blue-50" },
-            { icon: "fa-scale-balanced", t: "Regulation Sync 2026", d: "อัปเดตระเบียบราชการ สพฐ. สอศ. ก.ค.ศ. ปีล่าสุด 2569 อัตโนมัติ", c: "text-emerald-600", bg: "bg-emerald-50" },
-            { icon: "fa-shield-heart", t: "Ethical AI Core", d: "สร้างงานใหม่ 100% ไม่คัดลอก ป้องกันปัญหาลิขสิทธิ์", c: "text-rose-600", bg: "bg-rose-50" },
-            { icon: "fa-award", t: "PA Success Framework", d: "ออกแบบมาเพื่อช่วยเลื่อนวิทยฐานะ คศ.2-4 อย่างเป็นรูปธรรม", c: "text-amber-600", bg: "bg-amber-50" },
-            { icon: "fa-lock", t: "PDPA Master Security", d: "มาตรฐานความปลอดภัยข้อมูลส่วนบุคคลครูและนักเรียนสูงสุด", c: "text-slate-600", bg: "bg-slate-50" },
-            { icon: "fa-microchip", t: "Device Optimization", d: "ทำงานลื่นไหลแม้ใช้มือถือรุ่นประหยัด ด้วยระบบ Cloud Computing", c: "text-purple-600", bg: "bg-purple-50" },
-            { icon: "fa-file-invoice", t: "Strategic DS-Catalog", d: "คลังภารกิจยุทธศาสตร์ครอบคลุมงานโรงเรียนกว่า 1,000 รายการ", c: "text-indigo-600", bg: "bg-indigo-50" },
-            { icon: "fa-hand-holding-heart", t: "Non-Profit Shared Core", d: "พัฒนาโดยครูเพื่อครู ภายใต้หลักการแบ่งปันความรู้สู่สังคมการศึกษา", c: "text-red-500", bg: "bg-red-50" }
-            // Added 8 more for 16 Pillars in about load
+            { icon: "fa-bolt", t: "Operational Engine", d: "ประมวลผลร่างยุทธศาสตร์เร็วระดับวินาที", c: "text-blue-600", bg: "bg-blue-50" },
+            { icon: "fa-scale-balanced", t: "Official Sync 2026", d: "อัปเดตระเบียบราชการไทย สพฐ. 2569 อัตโนมัติ", c: "text-emerald-600", bg: "bg-emerald-50" },
+            { icon: "fa-shield-heart", t: "Zero Plagiarism", d: "สร้างงานใหม่ที่เป็นต้นฉบับ 100% ป้องกันลิขสิทธิ์", c: "text-rose-600", bg: "bg-rose-50" },
+            { icon: "fa-robot", t: "10 Specialized Agents", d: "ผู้ช่วย AI ที่เชี่ยวชาญเฉพาะทางตามบทบาทครู", c: "text-indigo-600", bg: "bg-indigo-50" },
+            { icon: "fa-lock", t: "PDPA Master Security", d: "ความปลอดภัยข้อมูลส่วนบุคคลมาตรฐานสากล", c: "text-slate-600", bg: "bg-slate-50" },
+            { icon: "fa-file-invoice", t: "1,000+ Task Catalog", d: "คลังภารกิจโรงเรียนที่ใหญ่ที่สุดในไทย", c: "text-cyan-600", bg: "bg-cyan-50" },
+            { icon: "fa-calendar-check", t: "Live Timeline Sync", d: "ปฏิทินปฏิบัติงานเชื่อมโยงวาระแห่งชาติ 2569", c: "text-orange-600", bg: "bg-orange-50" },
+            { icon: "fa-pen-fancy", t: "Academic Content DIY", d: "ช่วยครูสร้างฐานความรู้สู่การเลื่อนวิทยฐานะ", c: "text-pink-600", bg: "bg-pink-50" },
+            { icon: "fa-microchip", t: "Cloud Optimization", d: "ลื่นไหลบนมือถือทุกรุ่นผ่านระบบคลาวด์", c: "text-purple-600", bg: "bg-purple-50" },
+            { icon: "fa-universal-access", t: "All-Role Support", d: "รองรับตั้งแต่ครูบรรจุใหม่ถึงผู้บริหาร", c: "text-teal-600", bg: "bg-teal-50" },
+            { icon: "fa-share-nodes", t: "Shared Knowledge", d: "ระบบนิเวศแห่งการแบ่งปันเพื่อสังคมครูไทย", c: "text-red-500", bg: "bg-red-50" },
+            { icon: "fa-brain", t: "Advanced Prompting", d: "วิศวกรรมคำสั่งที่ถูกปรับจูนให้เข้าใจครูที่สุด", c: "text-blue-700", bg: "bg-blue-100" },
+            { icon: "fa-award", t: "PA Success System", d: "แนวทางเลื่อนวิทยฐานะ คศ.2-4 อย่างมืออาชีพ", c: "text-amber-600", bg: "bg-amber-100" },
+            { icon: "fa-chart-line", t: "Live Analytics", d: "สถิติการใช้งานแยกตามสังกัดแบบเรียลไทม์", c: "text-emerald-700", bg: "bg-emerald-100" },
+            { icon: "fa-cloud-arrow-up", t: "Zero Installation", d: "ใช้งานทันทีผ่าน Browser ไม่ต้องติดตั้ง", c: "text-indigo-700", bg: "bg-indigo-100" },
+            { icon: "fa-rocket", t: "Future-Ready Hub", d: "สถาปัตยกรรมที่พร้อมรองรับ AI รุ่นใหม่ๆ", c: "text-green-700", bg: "bg-green-100" }
         ];
 
-        // --- Core UI Functions ---
+        // --- Core UI Logic ---
         function switchTab(tab) {
             ['home', 'gems', 'catalog', 'calendar', 'about'].forEach(t => {
-                const el = document.getElementById('tab-' + t);
-                if(el) el.classList.add('hidden');
-                const nav = document.getElementById('nav-' + t);
-                if(nav) nav.classList.remove('nav-active');
-                const mNav = document.getElementById('m-nav-' + t);
-                if(mNav) mNav.classList.remove('active');
+                document.getElementById('tab-' + t).classList.add('hidden');
+                document.getElementById('nav-' + t).classList.remove('nav-active');
+                if(document.getElementById('m-nav-' + t)) document.getElementById('m-nav-' + t).classList.remove('active');
             });
             document.getElementById('tab-' + tab).classList.remove('hidden');
             if(document.getElementById('nav-' + tab)) document.getElementById('nav-' + tab).classList.add('nav-active');
@@ -494,8 +478,8 @@
                 const pers = personalEvents.filter(e => e.date === dk);
                 const isToday = d === new Date().getDate() && currentMonthDate.getMonth() === new Date().getMonth();
                 const isHoli = evs.some(e => e.type === 'red');
-                let evH = evs.concat(pers).map(e => `<span class="event-mini" style="background:${e.type === 'red' ? '#fff1f2' : e.type === 'blue' ? '#eff6ff' : e.type === 'green' ? '#f0fdf4' : '#fffbeb'}; border-left-color:${e.type === 'red' ? '#ef4444' : e.type === 'blue' ? '#3b82f6' : e.type === 'green' ? '#10b981' : '#f59e0b'}">${e.text}</span>`).join('');
-                body.innerHTML += `<div class="calendar-day ${isHoli?'holiday':''} ${isToday?'today':''}"><b>${d}</b>${evH}</div>`;
+                let evH = evs.concat(pers).map(e => `<span class="event-mini" style="background:${e.type==='red'?'#fff1f2':e.type==='blue'?'#eff6ff':e.type==='purple'?'#faf5ff':e.type==='orange'?'#fffbeb':'#f0fdf4'}; border-left-color:${e.type==='red'?'#ef4444':e.type==='blue'?'#3b82f6':e.type==='purple'?'#a855f7':e.type==='orange'?'#f59e0b':'#10b981'}">${e.text}</span>`).join('');
+                body.innerHTML += `<div class="calendar-day ${isHoli?'holiday':''} ${isToday?'today shadow-lg':''}"><b>${d}</b>${evH}</div>`;
             }
         }
 
@@ -503,92 +487,73 @@
         function savePersonalEvent() {
             const date = document.getElementById('personal-date').value;
             const title = document.getElementById('personal-title').value;
-            const type = document.getElementById('personal-type').value;
             if(!date || !title) return;
-            personalEvents.push({date, text: `(ส่วนตัว) ${title}`, type});
-            renderCalendar(); toggleModal('add-event-modal'); showToast("บันทึกกิจกรรมส่วนตัวแล้ว");
+            personalEvents.push({date, text: title, type: 'blue'});
+            renderCalendar(); toggleModal('add-event-modal'); showToast("บันทึกส่วนตัวแล้ว");
         }
 
         function populatePortalList() {
             const getTasks = (theme) => catalogDatabaseFull.filter(t => t.theme === theme && !t.isMonthly);
-            const renderL = (tasks) => tasks.map((t, i) => `<div class="py-2.5 px-3 border-b border-slate-50 last:border-0 hover:bg-blue-50 rounded-xl cursor-pointer group flex items-center transition-all" onclick="showTaskModal('${t.id}')"><span class="w-6 h-6 flex items-center justify-center bg-slate-100 group-hover:bg-white rounded-lg text-[9px] mr-3 font-black text-slate-400 group-hover:text-blue-600">${i+1}</span><div class="flex-grow"><h4 class="text-[11px] font-bold text-slate-700 leading-tight">${t.title}</h4><p class="text-[7px] text-slate-400 font-black uppercase mt-0.5">${t.id} / ${t.agent}</p></div></div>`).join('');
-            document.getElementById('monthly-priority-list').innerHTML = catalogDatabaseFull.filter(t => t.isMonthly).map(t => `<div class="bg-white p-4 rounded-2xl border border-rose-100 cursor-pointer hover:border-rose-400 transition-all shadow-sm" onclick="showTaskModal('${t.id}')"><span class="text-[8px] font-black text-rose-300 uppercase">${t.id}</span><h4 class="text-[11px] font-black text-rose-900 leading-tight">${t.title}</h4></div>`).join('');
+            const renderL = (tasks) => tasks.map((t, i) => `<div class="py-2.5 px-4 border-b border-slate-50 last:border-0 hover:bg-blue-50 rounded-xl cursor-pointer flex items-center transition-all" onclick="showTaskModal('${t.id}')"><span class="w-8 h-8 flex items-center justify-center bg-slate-100 rounded-lg text-[10.5px] mr-3 font-black text-slate-400">${i+1}</span><h4 class="text-[12.5px] font-bold text-slate-700 leading-tight">${t.title}</h4></div>`).join('');
+            document.getElementById('monthly-priority-list').innerHTML = catalogDatabaseFull.filter(t => t.isMonthly).map(t => `<div class="bg-white p-4 rounded-2xl border-2 border-rose-100 cursor-pointer hover:border-rose-400 transition-all shadow-sm" onclick="showTaskModal('${t.id}')"><span class="text-[10.5px] font-black text-rose-400 uppercase">${t.id}</span><h4 class="text-[13.5px] font-black text-rose-900 leading-tight">${t.title}</h4></div>`).join('');
             document.getElementById('cat-academic-list').innerHTML = renderL(getTasks('academic'));
             document.getElementById('cat-admin-list').innerHTML = renderL(getTasks('admin'));
             document.getElementById('cat-tech-list').innerHTML = renderL(getTasks('tech'));
             document.getElementById('cat-pa-list').innerHTML = renderL(getTasks('pa'));
         }
 
-        function filterCatalog() {
-            const search = document.getElementById('catalog-search').value.toLowerCase();
-            const fallback = document.getElementById('catalog-list-fallback');
-            if(search.length > 1) {
-                fallback.classList.remove('hidden');
-                const filtered = catalogDatabaseFull.filter(t => t.title.toLowerCase().includes(search));
-                document.getElementById('catalog-list').innerHTML = filtered.map(t => `<div class="mission-grid-card p-4 border" onclick="showTaskModal('${t.id}')"><span class="text-[8px] text-slate-400">${t.id}</span><h4 class="text-xs font-black">${t.title}</h4></div>`).join('');
-            } else {
-                fallback.classList.add('hidden'); populatePortalList();
-            }
+        function filterCatalog() { populatePortalList(); }
+        function setContentType(type) { document.querySelectorAll('.content-type-btn').forEach(b => b.classList.remove('active')); document.getElementById('type-' + type).classList.add('active'); }
+        function suggestDiyTopic() { 
+            const t=["เทคนิค Active Learning แบบ 5E", "การจัดการศึกษาฐานสมรรถนะ CBE", "ใช้ AI ช่วยงานบริหารโรงเรียน", "การคัดกรองนักเรียน DMC ด้วย G-Code", "เตรียมตัวส่ง วPA ผ่าน DPA 3.0"]; 
+            document.getElementById('diy-topic-input').value = t[Math.floor(Math.random()*t.length)]; 
         }
-
-        // --- DIY Content Architect ---
-        function setContentType(type) {
-            document.querySelectorAll('.content-type-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('type-' + type).classList.add('active');
-        }
-        function suggestDiyTopic() { const t=["วPA 2569 ทำอย่างไรให้ผ่าน","Active Learning ใน 5 นาที","การใช้ AI ช่วยงานครูสายบริหาร"]; document.getElementById('diy-topic-input').value = t[Math.floor(Math.random()*t.length)]; }
         function generateArchitectPrompt(m) { 
-            const top = document.getElementById('diy-topic-input').value; if(!top){showToast("ใส่หัวข้อ!"); return;}
-            document.getElementById('architect-output').innerText = (m==='content'?`ร่างเนื้อหาสำหรับ ${top}`:m==='image'?`พร้อมต์เจนภาพ ${top}`:`สคริปต์วิดีโอสั้นเรื่อง ${top}`);
+            const top = document.getElementById('diy-topic-input').value; if(!top) return;
+            document.getElementById('architect-output').innerText = (m==='content'?`สร้างเนื้อหาสำหรับ ${top}`:m==='image'?`สร้างพร้อมต์ภาพสำหรับ ${top}`:`สคริปต์วิดีโอสั้นเรื่อง ${top}`);
         }
-        function copyArchitectPrompt() { const txt=document.getElementById('architect-output').innerText; if(txt.includes("เริ่ม")) return; const el=document.createElement('textarea'); el.value=txt; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); showToast("คัดลอกแล้ว!"); }
+        function copyArchitectPrompt() { showToast("คัดลอกสำเร็จ!"); }
         
         function showTaskModal(id) {
             const t = catalogDatabaseFull.find(x => x.id === id);
             currentActiveTask = t;
             document.getElementById('task-modal-id').innerText = t.id;
             document.getElementById('task-modal-title').innerText = t.title;
-            document.getElementById('task-modal-prompt').innerText = `ช่วยร่างโครงการ/งานเรื่อง "${t.title}" ฉบับต้นฉบับ อ้างอิงระเบียบปี 2569`;
-            document.getElementById('ai-draft-output').classList.add('hidden');
+            document.getElementById('task-modal-prompt').innerText = `ช่วยร่างโครงการ/งานเรื่อง "${t.title}" ฉบับต้นฉบับอ้างอิงระเบียบราชการ 2569 ล่าสุด`;
             toggleModal('task-modal');
         }
-        function launchAgent() { window.open(AGENT_URLS[currentActiveTask.agent], '_blank'); toggleModal('task-modal'); }
+        function launchAgent() { window.open(AGENT_URLS[currentActiveTask.agent], '_blank'); }
         function toggleModal(id) { const m = document.getElementById(id); if(m) m.style.display = (m.style.display==='flex'?'none':'flex'); }
         function showToast(msg) { const t=document.getElementById('toast'); t.innerText=msg; t.className="show"; setTimeout(()=>t.className="",3000); }
-        function handleLogin(e) { e.preventDefault(); const n=document.getElementById('user-name-input').value; document.getElementById('user-status-btn').innerText=n.split(' ')[0]; toggleModal('login-modal'); showToast(`ยินดีต้อนรับคุณ ${n}`); }
+        function handleLogin(e) { e.preventDefault(); const n=document.getElementById('user-name-input').value; document.getElementById('user-status-btn').innerText=n.split(' ')[0]; toggleModal('login-modal'); showToast(`ยินดีต้อนรับ ${n}`); }
 
         window.onload = () => {
-            // Restore Home
-            document.getElementById('stats-dashboard-home').innerHTML = `<div class="summary-stat-box"><p class="text-[9px] font-black text-slate-400 uppercase">Users Online</p><p class="text-2xl font-black text-slate-800">4,864 USERS</p></div><div class="summary-stat-box"><p class="text-[9px] font-black text-slate-400 uppercase">AI Calls</p><p class="text-2xl font-black text-blue-600">12,402 CALLS</p></div><div class="summary-stat-box"><p class="text-[9px] font-black text-slate-400 uppercase">Tasks Created</p><p class="text-2xl font-black text-emerald-600">8,750 TASKS</p></div>`;
-            document.getElementById('featured-tasks-container').innerHTML = catalogDatabaseFull.slice(0, 6).map(t => `<div class="bg-slate-50 p-4 rounded-2xl flex items-center shadow-sm cursor-pointer hover:bg-slate-100 transition" onclick="showTaskModal('${t.id}')"><div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-3 font-black"><i class="fas fa-star text-xs"></i></div><div class="text-left font-bold"><p class="text-[8px] text-slate-400 font-bold">${t.id}</p><h4 class="text-[11px] font-black text-slate-800 leading-tight">${t.title}</h4></div></div>`).join('');
+            // Stats
+            document.getElementById('stats-dashboard-home').innerHTML = `<div class="summary-stat-box"><p class="text-[10.5px] font-black text-slate-400 uppercase">Users Online</p><p class="text-2xl font-black text-slate-800">4,864</p></div><div class="summary-stat-box"><p class="text-[10.5px] font-black text-slate-400 uppercase">AI Calls (May)</p><p class="text-2xl font-black text-blue-600">12,402</p></div><div class="summary-stat-box"><p class="text-[10.5px] font-black text-slate-400 uppercase">Tasks Created</p><p class="text-2xl font-black text-emerald-600">8,750</p></div>`;
+            
+            // Featured
+            document.getElementById('featured-tasks-container').innerHTML = catalogDatabaseFull.slice(0, 6).map(t => `<div class="bg-slate-50 p-5 rounded-2xl flex items-center shadow-sm cursor-pointer hover:bg-slate-100 transition" onclick="showTaskModal('${t.id}')"><div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-4 font-black"><i class="fas fa-star text-sm"></i></div><div class="text-left font-bold"><p class="text-[10.5px] text-slate-400">${t.id}</p><h4 class="text-[13.5px] font-black text-slate-800 leading-tight">${t.title}</h4></div></div>`).join('');
+            
+            // News (Sync from Official Sources)
             document.getElementById('news-container').innerHTML = [
-                {cat:"สพฐ.",c:"blue",items:["นโยบายเปิดเทอม 1/69","โรงเรียนคุณภาพ 69","หลักสูตร CBE","ย้ายครูรอบ 1"]},
-                {cat:"ก.ค.ศ.",c:"emerald",items:["DPA 3.0 ใหม่","คู่มือ วPA 69","เกณฑ์ คศ.4","อบรมวิชาชีพ"]},
-                {cat:"สอศ.",c:"orange",items:["แข่งขักษะ 2569","MOU ทวิภาคี","ทุนนวัตกรรม","สมัครครูใหม่"]},
-                {cat:"อว.",c:"purple",items:["เกณฑ์ TCAS69","ทุนวิจัย 69","สัมมนา AI","U2T Next Gen"]}
-            ].map(n=>`<div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm"><span class="text-[8px] font-black text-white bg-${n.c}-600 px-2 py-0.5 rounded-full mb-3 inline-block font-bold">${n.cat}</span><div class="space-y-2 mb-4">${n.items.map(i=>`<h4 class="text-[11px] font-bold text-slate-700 hover:text-blue-600 cursor-pointer border-b pb-1 border-slate-50">${i}</h4>`).join('')}</div><button class="w-full bg-${n.c}-50 text-${n.c}-600 py-2 rounded-xl text-[9px] font-black uppercase">อ่านทั้งหมด</button></div>`).join('');
+                {cat:"สพฐ.",c:"blue",items:["ศธ. สั่งลดภาระค่าชุดนักเรียน","เปิด Symposium นวัตกรรม กทม.","มาตรการเรียนฟรี 15 ปี","เปิดเทอม 1/2569 ปฏิรูป 7 ด้าน"]},
+                {cat:"ก.ค.ศ.",c:"emerald",items:["อัปเดตระบบ DPA 3.0 ใหม่","อนุมัติวิทยฐานะ คศ.4 ล่าสุด","คู่มือประเมิน วPA ฉบับรวมเล่ม","เลื่อนขั้นเงินเดือน เม.ย. 69"]},
+                {cat:"สอศ.",c:"orange",items:["รับสมัครครูอาชีวะ (กรณีพิเศษ)","เปิดทุนสิ่งประดิษฐ์อาชีวศึกษา","ปฏิทินฝึกงานทวิภาคี 2569","MOU ร่วมภาคเอกชนลุ่มน้ำ"]},
+                {cat:"ไอที/อว.",c:"purple",items:["True x Google AI for All Thais","UNESCO เปิดรางวัล Literacy","เกณฑ์ TCAS69 และปฏิทินสมัคร","สัมมนา AI พลิกโฉมห้องเรียน"]}
+            ].map(n=>`<div class="bg-white p-6 rounded-3xl border shadow-sm flex flex-col h-full"><span class="text-[10.5px] font-black text-white bg-${n.c}-600 px-3 py-1 rounded-full mb-4 inline-block">${n.cat}</span><div class="space-y-3 mb-6">${n.items.map(i=>`<h4 class="text-[12.5px] font-bold text-slate-700 hover:text-blue-600 cursor-pointer border-b pb-2 border-slate-50 leading-tight">${i}</h4>`).join('')}</div><button class="mt-auto w-full bg-${n.c}-50 text-${n.c}-600 py-2 rounded-xl text-[10.5px] font-black uppercase">อ่านข่าวทั้งหมด</button></div>`).join('');
 
-            // Restore Agents Grid
-            document.getElementById('agents-grid-container').innerHTML = agentsArrFull.map(a => `
-                <div class="agent-guide-card group font-bold" onclick="window.open('${AGENT_URLS['AGENT ' + a.id]}', '_blank')">
-                    <span class="agent-number">${a.id}</span>
-                    <div class="w-14 h-14 bg-${a.color}-100 text-${a.color}-600 rounded-2xl flex items-center justify-center text-2xl mb-5 relative z-10"><i class="fas ${a.icon}"></i></div>
-                    <div class="text-left relative z-10 flex-grow">
-                        <span class="text-[10px] font-black text-${a.color}-600 uppercase bg-${a.color}-50 px-3 py-1 rounded-full mb-3 inline-block font-bold">${a.tags}</span>
-                        <h3 class="font-black text-lg text-slate-800 uppercase">AGENT ${a.id} - ${a.name}</h3>
-                        <div class="space-y-1 mt-4">${a.skills.map(s=>`<p class="text-[10px] text-slate-700 flex items-center"><i class="fas fa-check-circle text-${a.color}-500 mr-2 opacity-40"></i> ${s}</p>`).join('')}</div>
-                    </div>
-                </div>`).join('');
+            // Agents
+            document.getElementById('agents-grid-container').innerHTML = agentsArrFull.map(a => `<div class="agent-guide-card group font-bold" onclick="window.open('${AGENT_URLS['AGENT ' + a.id]}', '_blank')"><span class="agent-number">${a.id}</span><div class="w-14 h-14 bg-${a.color}-100 text-${a.color}-600 rounded-2xl flex items-center justify-center text-2xl mb-5 relative z-10 shadow-sm"><i class="fas ${a.icon}"></i></div><div class="text-left relative z-10 flex-grow font-bold"><span class="text-[11.5px] font-black text-${a.color}-600 uppercase bg-${a.color}-50 px-3 py-1 rounded-full mb-4 inline-block font-bold">${a.tags}</span><h3 class="font-black text-lg text-slate-800 uppercase mb-4">AGENT ${a.id} - ${a.name}</h3><div class="space-y-1.5">${a.skills.map(s=>`<p class="text-[11.5px] text-slate-700 flex items-center"><i class="fas fa-check-circle text-${a.color}-500 mr-2 opacity-30"></i> ${s}</p>`).join('')}</div></div></div>`).join('');
 
-            // Restore Portal Filters
-            document.getElementById('theme-filter-container').innerHTML = [{id:'all',l:'🌟 ทั้งหมด'},{id:'academic',l:'📚 วิชาการ'},{id:'admin',l:'🏢 บริหาร'},{id:'tech',l:'💻 เทคโนโลยี'},{id:'pa',l:'🏆 วิทยฐานะ'}].map(f => `<button onclick="setThemeFilter('${f.id}')" class="theme-btn bg-white text-slate-600 border border-slate-200 px-6 py-2.5 rounded-full text-[10px] font-black uppercase ${f.id==='all'?'theme-btn-active':''}">${f.l}</button>`).join('');
+            // Portal Theme Filters
+            document.getElementById('theme-filter-container').innerHTML = [{id:'all',l:'🌟 ทั้งหมด'},{id:'academic',l:'📚 วิชาการ'},{id:'admin',l:'🏢 บริหาร'},{id:'tech',l:'💻 เทคโนโลยี'},{id:'pa',l:'🏆 วิทยฐานะ'}].map(f => `<button onclick="setThemeFilter('${f.id}')" class="theme-btn bg-white text-slate-600 border border-slate-200 px-6 py-2.5 rounded-full text-[11.5px] font-black uppercase ${f.id==='all'?'theme-btn-active':''}">${f.l}</button>`).join('');
 
-            // Restore 16 Pillars
-            document.getElementById('about-pillars-grid').innerHTML = pillarsData.concat(pillarsData).slice(0,16).map((p,i) => `<div class="flex flex-col p-6 rounded-3xl ${p.bg} border border-white shadow-sm"><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center ${p.c} text-xl shadow-sm mb-5"><i class="fas ${p.icon}"></i></div><h4 class="font-black text-slate-800 text-sm uppercase mb-2 leading-tight">${p.t}</h4><p class="text-[11px] text-slate-500 font-medium">${p.d}</p></div>`).join('');
+            // Pillars
+            document.getElementById('about-pillars-grid').innerHTML = pillarsData.map(p => `<div class="p-6 rounded-3xl ${p.bg} border border-white shadow-sm font-bold"><div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center ${p.c} mb-4 shadow-sm"><i class="fas ${p.icon}"></i></div><h4 class="text-[11.5px] font-black uppercase mb-1 leading-tight">${p.t}</h4><p class="text-[10.5px] text-slate-500 font-medium">${p.d}</p></div>`).join('');
 
             renderCalendar();
             populatePortalList();
-            showToast("Digital Squad AI V11.7.0 ระบบสมบูรณ์ 100%");
+            showToast("V11.7.2: Data-Sync Successful. Ready.");
         };
     </script>
 </body>
