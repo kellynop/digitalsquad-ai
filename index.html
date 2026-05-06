@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V11.8.16 - August Sync Edition</title>
+    <title>Digital Squad AI V11.8.28 - Base Status</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -72,7 +72,6 @@
         .bottom-nav-item.active { color: var(--accent-blue); }
         .bottom-nav-item i { font-size: 1.6rem; margin-bottom: 3px; }
 
-        /* Calendar Styles - Precision Layout V11.8.16 */
         .calendar-container {
             width: 100%;
             overflow-x: auto;
@@ -110,23 +109,37 @@
         }
         .event-mini { font-size: 11px; padding: 4px 8px; border-radius: 4px; display: block; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 800; border-left: 4px solid transparent; line-height: 1.4; }
 
-        .inquiry-frame { border: 5px solid var(--primary-blue); background: var(--warm-cream); box-shadow: 0 15px 40px rgba(30, 58, 138, 0.12); }
         .warm-card { background-color: var(--warm-cream); border: 1.5px solid var(--warm-brown-light); border-radius: 2.5rem; overflow: hidden; }
-        .summary-stat-box { background: rgba(124, 45, 18, 0.05); border: 1px solid rgba(124, 45, 18, 0.1); border-radius: 1.25rem; padding: 1.5rem; flex: 1; }
         
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-        .modal-content { background: white; border-radius: 2.5rem; width: 92%; max-width: 580px; padding: 2.25rem; position: relative; max-height: 90vh; overflow-y: auto; }
+        .modal-content { background: white; border-radius: 2.5rem; width: 92%; max-width: 650px; padding: 2.5rem; position: relative; max-height: 90vh; overflow-y: auto; }
         
         #toast { visibility: hidden; min-width: 280px; background-color: #059669; color: #fff; text-align: center; border-radius: 50px; padding: 1rem 1.5rem; position: fixed; z-index: 100000; left: 50%; bottom: 100px; transform: translateX(-50%); font-weight: 800; opacity: 0; transition: all 0.4s; }
         #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(-15px); }
         
-        .agent-guide-card { background: var(--warm-cream); border-radius: 2rem; padding: 2.25rem; border: 2px solid var(--warm-brown-light); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden; height: 100%; }
-        .agent-guide-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(124, 45, 18, 0.1); border-color: var(--accent-blue); }
-        .agent-number { position: absolute; top: -5px; right: 15px; font-size: 5.5rem; font-weight: 900; color: rgba(124, 45, 18, 0.05); z-index: 0; }
+        .agent-guide-card { 
+            border-radius: 2rem; 
+            padding: 2.25rem; 
+            border: 2px solid rgba(0,0,0,0.05); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            cursor: pointer; 
+            position: relative; 
+            overflow: hidden; 
+            height: 100%; 
+        }
+        .agent-guide-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.08); border-color: rgba(0,0,0,0.1); }
+        .agent-number { position: absolute; top: -5px; right: 15px; font-size: 5.5rem; font-weight: 900; color: rgba(0,0,0,0.04); z-index: 0; }
         
+        .role-filter-btn { background: white; border: 2px solid #e2e8f0; color: #475569; transition: all 0.3s; font-weight: 800; font-size: 13.5px; }
+        .role-filter-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); transform: scale(1.05); }
+        .role-filter-btn.active { background: var(--primary-blue); border-color: var(--primary-blue); color: white; }
+
         .theme-btn-active { background-color: var(--primary-blue) !important; color: white !important; border-color: var(--primary-blue) !important; }
-        .content-type-btn { background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.1); transition: all 0.3s; color: #7c2d12; }
+        .content-type-btn { background: rgba(255,255,255,0.6); border: 1px solid rgba(124, 45, 18, 0.1); transition: all 0.3s; color: #7c2d12; }
         .content-type-btn.active { background: #7c2d12; color: white; border-color: #7c2d12; }
+        
+        .stat-bar-container { background: #edf2f7; height: 12px; border-radius: 10px; width: 100%; overflow: hidden; margin-top: 6px; }
+        .stat-bar-fill { height: 100%; transition: width 1s ease-in-out; }
     </style>
 </head>
 <body class="bg-slate-50 font-bold">
@@ -137,163 +150,216 @@
             <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
                 <img src="app%20icon.jpg" alt="Logo" class="w-11 h-11 rounded-xl object-cover bg-white shadow-md" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2103/2103828.png'">
                 <div class="text-left text-white">
-                    <h1 class="font-black text-lg leading-tight uppercase tracking-tighter">Digital Squad AI <span class="text-blue-300">V11.8.16</span></h1>
+                    <h1 class="font-black text-lg leading-tight uppercase tracking-tighter">Digital Squad AI <span class="text-blue-300">V11.8.28</span></h1>
                     <p class="text-[11.5px] text-blue-200 tracking-[0.2em] uppercase font-black">Executive Master Station</p>
                 </div>
             </div>
             <nav class="hidden lg:flex space-x-6 text-white h-full items-center font-bold">
-                <a onclick="switchTab('home')" id="nav-home" class="nav-link nav-active uppercase">Dashboard</a>
-                <a onclick="switchTab('gems')" id="nav-gems" class="nav-link uppercase">AI Agents</a>
-                <a onclick="switchTab('catalog')" id="nav-catalog" class="nav-link uppercase">Strategic Portal</a>
-                <a onclick="switchTab('calendar')" id="nav-calendar" class="nav-link uppercase">Calendar</a>
-                <a onclick="switchTab('about')" id="nav-about" class="nav-link uppercase">เกี่ยวกับเรา</a>
+                <a onclick="switchTab('home')" id="nav-home" class="nav-link nav-active">หน้าแรก</a>
+                <a onclick="switchTab('gems')" id="nav-gems" class="nav-link">AI Agent</a>
+                <a onclick="switchTab('catalog')" id="nav-catalog" class="nav-link">ฐานยุทธศาสตร์</a>
+                <a onclick="switchTab('calendar')" id="nav-calendar" class="nav-link">ปฏิทินกิจกรรม</a>
+                <a onclick="switchTab('about')" id="nav-about" class="nav-link">เกี่ยวกับเรา</a>
             </nav>
             <div class="flex items-center space-x-3">
-                <button id="user-status-btn" onclick="toggleModal('login-modal')" class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full text-[13.5px] font-black transition shadow-lg text-white uppercase border border-blue-400">Login / Register</button>
+                <button id="user-status-btn" onclick="toggleModal('login-modal')" class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full text-[13.5px] font-black transition shadow-lg text-white uppercase border border-blue-400">LOGIN / REGISTER</button>
             </div>
         </div>
     </header>
 
     <!-- Mobile Nav -->
     <nav class="bottom-nav lg:hidden font-bold">
-        <div onclick="switchTab('home')" id="m-nav-home" class="bottom-nav-item active"><i class="fas fa-th-large"></i><span>Home</span></div>
-        <div onclick="switchTab('gems')" id="m-nav-gems" class="bottom-nav-item"><i class="fas fa-robot"></i><span>Agents</span></div>
-        <div onclick="switchTab('catalog')" id="m-nav-catalog" class="bottom-nav-item"><i class="fas fa-route"></i><span>Portal</span></div>
-        <div onclick="switchTab('calendar')" id="m-nav-calendar" class="bottom-nav-item"><i class="fas fa-calendar-alt"></i><span>Calendar</span></div>
-        <div onclick="switchTab('about')" id="m-nav-about" class="bottom-nav-item"><i class="fas fa-info-circle"></i><span>About</span></div>
+        <div onclick="switchTab('home')" id="m-nav-home" class="bottom-nav-item active"><i class="fas fa-home"></i><span>หน้าแรก</span></div>
+        <div onclick="switchTab('gems')" id="m-nav-gems" class="bottom-nav-item"><i class="fas fa-robot"></i><span>AI Agent</span></div>
+        <div onclick="switchTab('catalog')" id="m-nav-catalog" class="bottom-nav-item"><i class="fas fa-map-signs"></i><span>ยุทธศาสตร์</span></div>
+        <div onclick="switchTab('calendar')" id="m-nav-calendar" class="bottom-nav-item"><i class="fas fa-calendar-day"></i><span>ปฏิทิน</span></div>
+        <div onclick="switchTab('about')" id="m-nav-about" class="bottom-nav-item"><i class="fas fa-info-circle"></i><span>เกี่ยวกับเรา</span></div>
     </nav>
 
     <main class="flex-grow container mx-auto px-4 py-6 font-bold text-left">
         
         <!-- Tab: Dashboard -->
         <div id="tab-home">
-            <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 rounded-[2rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden text-left mb-8 border-b-4 border-blue-600 font-bold">
-                <div class="relative z-10">
+            <!-- Program Description -->
+            <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 rounded-[2.5rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden text-left mb-8 border-b-4 border-blue-600 font-bold">
+                <div class="relative z-10 max-w-4xl">
                     <div class="flex items-center space-x-3 mb-4 font-black">
-                        <span class="bg-blue-400 text-blue-950 text-[12.5px] px-3 py-1 rounded-full uppercase tracking-widest font-black">V11.8.16 August Sync</span>
-                        <span class="bg-green-500/20 text-green-300 text-[12.5px] px-3 py-1 rounded-full border border-green-500/30">Stable Node Active</span>
+                        <span class="bg-blue-400 text-blue-950 text-[12.5px] px-3 py-1 rounded-full uppercase tracking-widest font-black">V11.8.28 Supreme Master</span>
+                        <span class="bg-green-500/20 text-green-300 text-[12.5px] px-3 py-1 rounded-full border border-green-500/30 font-black">Ecosystem Core</span>
                     </div>
-                    <h2 class="text-2xl md:text-4xl font-black mb-3 uppercase leading-tight">ระบบนิเวศทางการศึกษา ผู้ช่วย AI อัจฉริยะสำหรับครูไทย</h2>
-                    <h3 class="text-lg md:text-xl font-bold text-yellow-300 mb-8 tracking-tight font-black">ฐานข้อมูลปฏิบัติงาน 2569: อัปเดตการประเมิน PA และวาระสัปดาห์วิทยาศาสตร์</h3>
-                    <div class="flex flex-wrap gap-4 mt-8">
-                        <button onclick="switchTab('catalog')" class="bg-white text-blue-950 px-8 py-4 rounded-xl font-black shadow-lg hover:bg-blue-50 transition active:scale-95 flex items-center text-[17.5px] uppercase font-black">
+                    <h2 class="text-2xl md:text-5xl font-black mb-5 uppercase leading-tight font-black">ระบบนิเวศทางการศึกษา ผู้ช่วย AI อัจฉริยะสำหรับครูไทย</h2>
+                    <div class="space-y-4 text-blue-100 text-[15.5px] md:text-[17.5px] leading-relaxed mb-8 opacity-95 font-medium">
+                        <p>แพลตฟอร์มที่ถูกออกแบบมาเพื่อ **ปลดล็อกภาระงานเอกสาร** และคืนเวลาชีวิตให้บุคลากรทางการศึกษาไทยอย่างแท้จริง ผ่านเทคโนโลยีวิศวกรรมคำสั่งที่แม่นยำตามระเบียบราชการ 2569</p>
+                        <ul class="list-none space-y-2">
+                            <li><i class="fas fa-check-circle text-blue-400 mr-2"></i> <b>ครอบคลุมทุกระดับ:</b> ตั้งแต่เจ้าหน้าที่ธุรการ ครูผู้ช่วย ครูชำนาญการ ไปจนถึงผู้บริหารสถานศึกษา ผู้อำนวยการ และคณบดี</li>
+                            <li><i class="fas fa-check-circle text-blue-400 mr-2"></i> <b>สนับสนุนทุกสายงาน:</b> รองรับงานวิชาการ, งานบริหารบุคคล, งานพัสดุ, เทคโนโลยี และงานวิทยฐานะ (วPA) ทุกสังกัด</li>
+                            <li><i class="fas fa-check-circle text-blue-400 mr-2"></i> <b>กฎเหล็ก Zero Plagiarism:</b> ระบบจะช่วยร่างโครงสร้างและเนื้อหาใหม่ที่เป็นต้นฉบับ 100% เพื่อความมั่นคงทางวิชาการ</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-4 mt-8 font-black">
+                        <button onclick="switchTab('catalog')" class="bg-white text-blue-950 px-8 py-4 rounded-xl font-black shadow-lg hover:bg-blue-50 transition active:scale-95 flex items-center text-[16.5px] uppercase font-black">
                             <i class="fas fa-bolt mr-2 text-yellow-500"></i> เริ่มใช้ทางด่วนภารกิจ
+                        </button>
+                        <button onclick="showToast('ระบบแม่แบบโครงการกำลังจะเปิดให้บริการเร็วๆ นี้')" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-black shadow-lg hover:bg-blue-500 transition active:scale-95 border border-blue-400 flex items-center text-[16.5px] uppercase font-black">
+                            <i class="fas fa-file-signature mr-2"></i> แม่แบบโครงการ
                         </button>
                     </div>
                 </div>
                 <img src="app%20icon.jpg" class="absolute -right-20 -bottom-20 w-[420px] h-[420px] opacity-10 rotate-12" style="filter: brightness(0) invert(1);">
             </div>
 
-            <!-- Stats -->
-            <div class="warm-card p-8 shadow-xl mb-10 border-2">
-                <div class="flex items-center justify-between mb-10">
-                    <h3 class="text-[14.5px] font-black text-slate-400 uppercase tracking-[0.2em]">Dashboard Statistics</h3>
-                    <button onclick="toggleModal('analytics-modal')" class="bg-blue-900 text-white px-6 py-2.5 rounded-full text-[12.5px] font-black uppercase transition flex items-center shadow-lg hover:bg-blue-700">
-                        <i class="fas fa-chart-line mr-2"></i> ดูรายการสถิติทั้งหมด
+            <!-- Stats Header -->
+            <div class="warm-card p-10 shadow-xl mb-10 border-2 font-black">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="text-left font-black">
+                        <h3 class="text-[16px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2 font-black">EDUCATION ANALYTICS STATUS</h3>
+                        <p class="text-slate-400 font-bold text-[14px] font-black">ติดตามความเคลื่อนไหวการใช้งานระบบแยกตามสายงานและสังกัดแบบเรียลไทม์</p>
+                    </div>
+                    <button onclick="openAnalyticsDashboard()" class="bg-blue-900 text-white px-8 py-4 rounded-2xl text-[15px] font-black uppercase transition flex items-center shadow-lg hover:bg-blue-700 font-black">
+                        <i class="fas fa-chart-bar mr-3"></i> ดูรายการสถิติทั้งหมด
                     </button>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="stats-dashboard-home"></div>
             </div>
 
-            <!-- DIY Content Creator -->
+            <!-- Daily Content Architect (วPA) -->
             <div class="mb-10">
-                <div class="bg-gradient-to-br from-[#FFF7ED] via-[#FFEDD5] to-[#FDE68A] p-8 md:p-12 rounded-[2.5rem] text-[#7c2d12] shadow-xl relative overflow-hidden font-bold border-2 border-orange-200">
+                <div class="bg-gradient-to-br from-[#FFF7ED] via-[#FFEDD5] to-[#FDE68A] p-8 md:p-12 rounded-[2.5rem] text-[#7c2d12] shadow-xl relative overflow-hidden font-bold border-2 border-orange-200 font-black">
                     <div class="relative z-10">
                         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10">
                             <div>
-                                <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight mb-2 flex items-center"><i class="fas fa-pen-fancy mr-3 text-orange-600"></i> Daily Content Architect (วPA)</h3>
-                                <p class="text-orange-900 text-[17.5px] font-medium opacity-80 leading-relaxed">ร่างคอนเทนต์รับสิงหาคม: เทคนิคการจัดการเรียนรู้วิทยาศาสตร์และการประเมิน PA</p>
+                                <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight mb-2 flex items-center font-black"><i class="fas fa-pen-fancy mr-3 text-orange-600 font-black"></i> Daily Content Architect (วPA)</h3>
+                                <p class="text-orange-900 text-[17.5px] font-medium opacity-80 leading-relaxed font-black">ร่างเนื้อหาวิชาการรายวันจากเทรนด์ล่าสุด เพื่อสะสมผลงานและประเมินวิทยฐานะ</p>
+                            </div>
+                            <div class="flex bg-white/40 p-2 rounded-2xl border border-orange-200/50">
+                                <button onclick="setContentType('post')" id="type-post" class="content-type-btn active px-6 py-2.5 rounded-xl text-[13.5px] font-black uppercase font-black">โพสต์สั้น</button>
+                                <button onclick="setContentType('story')" id="type-story" class="content-type-btn px-6 py-2.5 rounded-xl text-[13.5px] font-black uppercase font-black">สตอรี่</button>
+                                <button onclick="setContentType('clip')" id="type-clip" class="content-type-btn px-6 py-2.5 rounded-xl text-[13.5px] font-black uppercase font-black">คลิปสั้น</button>
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                            <div class="lg:col-span-7 space-y-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 font-black">
+                            <div class="lg:col-span-7 space-y-8 font-black">
                                 <div class="flex gap-3">
-                                    <input type="text" id="diy-topic-input" placeholder="ระบุหัวข้อที่คุณต้องการ..." class="w-full bg-white/70 border-2 border-orange-200 rounded-2xl p-4 text-[17.5px] font-bold outline-none focus:border-orange-500 transition">
-                                    <button onclick="suggestDiyTopic()" class="bg-[#7c2d12] text-white px-8 rounded-2xl font-black text-[13.5px] uppercase shadow-lg hover:bg-black transition shrink-0">สุ่มหัวข้อจริง</button>
+                                    <input type="text" id="diy-topic-input" placeholder="ระบุหัวข้อที่คุณต้องการสร้างคอนเทนต์..." class="w-full bg-white/70 border-2 border-orange-200 rounded-2xl p-4 text-[17.5px] font-bold outline-none focus:border-orange-500 transition shadow-inner font-black">
+                                    <button onclick="suggestDiyTopic()" class="bg-[#7c2d12] text-white px-8 rounded-2xl font-black text-[13.5px] uppercase shadow-lg hover:bg-black transition shrink-0 font-black">แนะนำหัวข้อ</button>
                                 </div>
-                                <div class="grid grid-cols-3 gap-4 font-black">
-                                    <button onclick="generateArchitectPrompt('content')" class="bg-orange-500 text-white p-5 rounded-2xl text-[13.5px] uppercase shadow-md hover:bg-orange-600 transition">ร่างเนื้อหา</button>
-                                    <button onclick="generateArchitectPrompt('image')" class="bg-amber-600 text-white p-5 rounded-2xl text-[13.5px] uppercase shadow-md hover:bg-amber-700 transition">พร้อมต์ภาพ</button>
-                                    <button onclick="generateArchitectPrompt('clip')" class="bg-yellow-600 text-white p-5 rounded-2xl text-[13.5px] uppercase shadow-md hover:bg-yellow-700 transition">สคริปต์คลิป</button>
+                                <div class="grid grid-cols-3 gap-4">
+                                    <button onclick="generateArchitectPrompt('content')" class="bg-orange-500 text-white p-5 rounded-2xl text-[13.5px] uppercase shadow-md hover:bg-orange-600 transition font-black">ร่างเนื้อหา</button>
+                                    <button onclick="generateArchitectPrompt('image')" class="bg-amber-600 text-white p-5 rounded-2xl text-[13.5px] uppercase shadow-md hover:bg-amber-700 transition font-black">พร้อมต์ภาพ</button>
+                                    <button onclick="generateArchitectPrompt('clip')" class="bg-yellow-600 text-white p-5 rounded-2xl text-[13.5px] uppercase shadow-md hover:bg-yellow-700 transition font-black">สคริปต์คลิป</button>
                                 </div>
                             </div>
-                            <div class="lg:col-span-5"><div id="architect-output" class="bg-white/40 border border-orange-200 p-8 rounded-[2rem] h-full text-[13.5px] font-medium text-orange-900 leading-relaxed italic shadow-inner">"กรุณาใส่หัวข้อ..."</div></div>
+                            <div class="lg:col-span-5"><div id="architect-output" class="bg-white/40 border border-orange-200 p-8 rounded-[2rem] h-full text-[14.5px] font-medium text-orange-900 leading-relaxed overflow-y-auto italic shadow-inner font-black">"กรุณาใส่หัวข้อที่คุณต้องการ..."</div></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- News -->
+            <!-- News (White Frame) -->
             <div class="mb-12 font-bold text-left">
-                <div class="bg-red-50 border-l-[12px] border-red-600 p-10 rounded-[3rem] shadow-sm flex flex-col gap-10">
-                    <div class="flex items-center text-red-900 font-black text-xl uppercase tracking-tight">
-                        <i class="fas fa-satellite-dish mr-4 text-red-600 animate-pulse"></i> ข่าวสารราชการและการศึกษาไทย (Official Sync 2026)
+                <div class="bg-white border-2 border-slate-100 p-10 rounded-[3rem] shadow-xl flex flex-col gap-10">
+                    <div class="flex items-center text-slate-800 font-black text-xl uppercase tracking-tight font-black">
+                        <i class="fas fa-satellite-dish mr-4 text-red-600 animate-pulse font-black"></i> ข่าวสารราชการและการศึกษาไทย (Official Sync 2026)
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 w-full" id="news-container"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 w-full font-black" id="news-container"></div>
                 </div>
             </div>
         </div>
 
         <!-- Tab: AI Agents -->
         <div id="tab-gems" class="hidden text-center font-bold">
-            <div class="mb-12">
-                <h2 class="text-4xl font-black text-slate-800 uppercase tracking-tighter mb-4">AI AGENT NAVIGATOR</h2>
-                <p class="text-slate-500 text-[15.5px] font-bold tracking-widest uppercase">ไกด์นำทางเลือกผู้ช่วยที่เชี่ยวชาญเฉพาะด้าน (ID: 01 - 10)</p>
+            <div class="mb-12 font-black">
+                <h2 class="text-4xl font-black text-slate-800 uppercase tracking-tighter mb-4 font-black">AI AGENT NAVIGATOR</h2>
+                <p class="text-slate-500 text-[15.5px] font-bold tracking-widest uppercase font-black">ไกด์นำทางเลือกผู้ช่วยพาสเทลตามบทบาทหน้าที่ (ID: 01 - 10)</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10" id="agents-grid-container"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 font-black" id="agents-grid-container"></div>
         </div>
 
         <!-- Tab: Strategic Portal -->
         <div id="tab-catalog" class="hidden text-left font-bold">
-            <div class="bg-blue-900 rounded-[3rem] p-10 lg:p-14 text-white text-center shadow-2xl border-b-8 border-blue-700 mb-10 relative overflow-hidden">
+            <div class="bg-blue-900 rounded-[3rem] p-10 lg:p-14 text-white text-center shadow-2xl border-b-8 border-blue-700 mb-10 relative overflow-hidden font-black">
                 <div class="relative z-10">
-                    <h2 class="text-3xl lg:text-4xl font-black uppercase mb-4 tracking-tighter">Strategic Operational Portal</h2>
-                    <p class="text-blue-200 text-[14.5px] opacity-90 leading-relaxed font-bold font-black">รวมโครงสร้างยุทธศาสตร์จากระเบียบราชการ 2569 เพื่อสร้างงานใหม่ที่มีมาตรฐาน</p>
+                    <h2 class="text-3xl lg:text-5xl font-black uppercase mb-4 tracking-tighter font-black">Centralized Operations</h2>
+                    <p class="text-blue-200 text-[16.5px] opacity-90 leading-relaxed font-bold font-black">ดัชนีชี้ช่องทางฐานปฏิบัติการ เพื่อเข้าถึง 1,000++ โครงการ มากกว่า 10,000 ชิ้นงาน</p>
                 </div>
             </div>
-            <div class="bg-white rounded-[3rem] p-12 shadow-xl inquiry-frame mb-12 font-bold">
-                <div class="mb-10 relative">
-                    <label class="text-[16.5px] font-black text-blue-900 uppercase tracking-[0.2em] ml-2 mb-5 block">แจ้งงานที่ต้องการทำ... (Mission Inquiry):</label>
-                    <input type="text" id="catalog-search" onkeyup="filterCatalog()" placeholder="แจ้งงานที่ต้องการทำ..." class="w-full bg-white border-2 border-blue-200 focus:border-blue-600 text-slate-800 text-xl rounded-[1.5rem] block pl-14 p-7 outline-none font-black shadow-sm transition-all focus:ring-8 focus:ring-blue-50">
+            
+            <div class="bg-white rounded-[3rem] p-12 shadow-xl inquiry-frame mb-12 font-bold font-black">
+                <div class="mb-8 relative font-black">
+                    <label class="text-[17.5px] font-black text-blue-900 uppercase tracking-tight ml-2 mb-5 block font-black">เส้นทางด่วนเข้าถึงส่วนปฏิบัติการ (Mission Inquiry):</label>
+                    <input type="text" id="catalog-search" onkeyup="filterCatalog()" placeholder="แจ้งงานที่ต้องการทำ..." class="w-full bg-white border-2 border-blue-200 focus:border-blue-600 text-slate-800 text-xl rounded-[1.5rem] block pl-14 p-7 outline-none font-black shadow-sm transition-all focus:ring-8 focus:ring-blue-50 font-black font-black">
+                    <i class="fas fa-search absolute left-6 top-[72px] text-blue-300 text-xl font-black font-black"></i>
                 </div>
-                <div class="flex flex-wrap gap-4 mb-12" id="theme-filter-container"></div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                    <div class="warm-card p-10 font-bold"><h3 class="text-xl font-black text-blue-800 mb-6 border-b-2 border-orange-100 pb-3 uppercase">สายงานวิชาการ</h3><div class="space-y-2" id="cat-academic-list"></div></div>
-                    <div class="warm-card p-10 font-bold"><h3 class="text-xl font-black text-emerald-800 mb-6 border-b-2 border-orange-100 pb-3 uppercase">สายงานบริหาร</h3><div class="space-y-2" id="cat-admin-list"></div></div>
-                    <div class="warm-card p-10 font-bold"><h3 class="text-xl font-black text-purple-800 mb-6 border-b-2 border-orange-100 pb-3 uppercase">สายงานเทคโนโลยี</h3><div class="space-y-2" id="cat-tech-list"></div></div>
-                    <div class="warm-card p-10 font-bold"><h3 class="text-xl font-black text-amber-800 mb-6 border-b-2 border-orange-100 pb-3 uppercase">สายงานวิทยฐานะ</h3><div class="space-y-2" id="cat-pa-list"></div></div>
+
+                <div class="flex flex-wrap gap-3 mb-12 font-black" id="role-shortcut-container"></div>
+
+                <div class="mb-14 font-black">
+                    <div class="bg-rose-50 border-l-[12px] border-rose-500 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden font-black">
+                        <h3 class="text-2xl font-black text-rose-900 mb-8 flex items-center uppercase relative z-10 font-black"><i class="fas fa-fire-alt mr-4 text-orange-500 font-black font-black"></i> งานประจำเดือน (Monthly Operations)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10 font-black" id="monthly-priority-list"></div>
+                        <i class="fas fa-calendar-check absolute -right-10 -bottom-10 text-[200px] opacity-5 rotate-12 font-black"></i>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 font-black">
+                    <div class="p-10 rounded-[3rem] shadow-xl font-bold font-black" style="background-color: #EBF8FF; border: 2px solid #BEE3F8;">
+                        <h3 class="text-2xl font-black text-blue-800 mb-8 border-b-2 border-blue-200 pb-3 uppercase font-black">สายงานวิชาการ</h3>
+                        <div class="space-y-2.5 font-black" id="cat-academic-list"></div>
+                    </div>
+                    <div class="p-10 rounded-[3rem] shadow-xl font-bold font-black" style="background-color: #F0FFF4; border: 2px solid #C6F6D5;">
+                        <h3 class="text-2xl font-black text-emerald-800 mb-8 border-b-2 border-emerald-200 pb-3 uppercase font-black font-black">สายงานบริหาร</h3>
+                        <div class="space-y-2.5 font-black" id="cat-admin-list"></div>
+                    </div>
+                    <div class="p-10 rounded-[3rem] shadow-xl font-bold font-black" style="background-color: #FAF5FF; border: 2px solid #E9D8FD;">
+                        <h3 class="text-2xl font-black text-purple-800 mb-8 border-b-2 border-purple-200 pb-3 uppercase font-black font-black font-black">สายงานเทคโนโลยี</h3>
+                        <div class="space-y-2.5 font-black" id="cat-tech-list"></div>
+                    </div>
+                    <div class="p-10 rounded-[3rem] shadow-xl font-bold font-black" style="background-color: #FFFAF0; border: 2px solid #FEEBC8;">
+                        <h3 class="text-2xl font-black text-amber-800 mb-8 border-b-2 border-amber-200 pb-3 uppercase font-black font-black font-black font-black">สายงานวิทยฐานะ</h3>
+                        <div class="space-y-2.5 font-black" id="cat-pa-list"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Tab: Calendar -->
-        <div id="tab-calendar" class="hidden text-left font-bold">
-            <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden mb-12 border border-slate-200">
-                <div class="bg-blue-900 px-10 py-12 text-white flex flex-col md:flex-row justify-between items-center relative overflow-hidden gap-10">
-                    <div class="relative z-10 text-center md:text-left">
-                        <h2 id="calendar-month-year" class="text-5xl font-black uppercase tracking-[0.2em]">--</h2>
-                        <p class="text-[14.5px] text-blue-300 font-bold uppercase mt-2 tracking-[0.3em]">Master Educational Timeline 2026</p>
+        <div id="tab-calendar" class="hidden text-left font-bold font-black">
+            <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden mb-12 border border-slate-200 font-black">
+                <div class="bg-blue-900 px-10 py-16 text-white flex flex-col md:flex-row justify-between items-center relative overflow-hidden gap-10 font-black">
+                    <div class="relative z-10 text-center md:text-left font-black">
+                        <h2 id="calendar-month-year" class="text-5xl font-black uppercase tracking-[0.2em] font-black">--</h2>
+                        <p class="text-[14.5px] text-blue-300 font-bold uppercase mt-4 tracking-[0.4em] font-black">Master Educational Timeline 2026</p>
                     </div>
                     <div class="flex items-center space-x-3 relative z-10 font-black">
-                        <button onclick="changeMonth(-1)" class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border transition-all shadow-lg"><i class="fas fa-chevron-left text-xl"></i></button>
-                        <button onclick="toggleModal('add-event-modal')" class="bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 rounded-2xl font-black text-[12.5px] uppercase shadow-xl hover:scale-105 transition-all flex items-center font-black"><i class="fas fa-plus-circle mr-2 text-lg"></i> บันทึกกิจกรรมส่วนตัว</button>
-                        <button onclick="changeMonth(1)" class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border transition-all shadow-lg"><i class="fas fa-chevron-right text-xl"></i></button>
+                        <button onclick="changeMonth(-1)" class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border transition-all shadow-lg font-black font-black"><i class="fas fa-chevron-left text-xl font-black"></i></button>
+                        <button onclick="toggleModal('add-event-modal')" class="bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 rounded-2xl font-black text-[12.5px] uppercase shadow-xl hover:scale-105 transition-all flex items-center font-black font-black font-black font-black font-black font-black font-black font-black font-black font-black font-black"><i class="fas fa-plus-circle mr-2 text-lg font-black font-black font-black font-black font-black font-black font-black font-black"></i> บันทึกกิจกรรมส่วนตัว</button>
+                        <button onclick="changeMonth(1)" class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border transition-all shadow-lg font-black font-black font-black"><i class="fas fa-chevron-right text-xl font-black font-black"></i></button>
                     </div>
                 </div>
-                <div class="calendar-container">
-                    <div class="calendar-wrapper bg-slate-50">
-                        <div class="calendar-grid" id="calendar-body"></div>
+                <div class="calendar-container font-black">
+                    <div class="calendar-wrapper bg-slate-50 font-black">
+                        <div class="calendar-grid font-black" id="calendar-body"></div>
+                    </div>
+                </div>
+                <!-- Legend for Calendar -->
+                <div class="p-8 bg-slate-50 border-t border-slate-200 font-black">
+                    <h4 class="text-[13.5px] font-black text-slate-500 uppercase tracking-widest mb-4 font-black">สีสัญลักษณ์จำแนกกิจกรรม (Legend)</h4>
+                    <div class="flex flex-wrap gap-5 font-black">
+                        <div class="flex items-center font-black"><span class="w-4 h-4 rounded bg-red-500 mr-2 font-black"></span> <span class="text-[13px] text-slate-700 font-black">วันหยุดราชการ / วันหยุดสำคัญ</span></div>
+                        <div class="flex items-center font-black"><span class="w-4 h-4 rounded bg-blue-500 mr-2 font-black"></span> <span class="text-[13px] text-slate-700 font-black">งานวิชาการ / งานโรงเรียน</span></div>
+                        <div class="flex items-center font-black"><span class="w-4 h-4 rounded bg-emerald-500 mr-2 font-black"></span> <span class="text-[13px] text-slate-700 font-black">งานบริหาร / นโยบาย / งบประมาณ</span></div>
+                        <div class="flex items-center font-black"><span class="w-4 h-4 rounded bg-purple-500 mr-2 font-black"></span> <span class="text-[13px] text-slate-700 font-black">งานเทคโนโลยี / งานวิจัย / อบรม</span></div>
+                        <div class="flex items-center font-black"><span class="w-4 h-4 rounded bg-orange-500 mr-2 font-black"></span> <span class="text-[13px] text-slate-700 font-black">งานวิทยฐานะ (วPA) / งานบุคคล / TCAS</span></div>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- Tab: About -->
-        <div id="tab-about" class="hidden text-left font-bold">
-            <div class="max-w-7xl mx-auto space-y-10 font-bold">
-                <div class="bg-white p-12 rounded-[3.5rem] shadow-xl border border-slate-200" id="about-container">
-                    <h2 class="text-3xl font-black text-slate-800 uppercase mb-8 pb-6 border-b tracking-tighter">จุดแข็งระบบนิเวศ (16 Strategic Pillars)</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="about-pillars-grid"></div>
+        <div id="tab-about" class="hidden text-left font-bold font-black">
+            <div class="max-w-7xl mx-auto space-y-10 font-bold font-black font-black">
+                <div class="bg-white p-12 rounded-[3.5rem] shadow-xl border border-slate-200 font-black font-black" id="about-container">
+                    <h2 class="text-3xl font-black text-slate-800 uppercase mb-8 pb-6 border-b tracking-tighter font-black font-black font-black font-black font-black">จุดแข็งระบบนิเวศ (16 Strategic Pillars)</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 font-black font-black" id="about-pillars-grid"></div>
                 </div>
             </div>
         </div>
@@ -303,46 +369,77 @@
     <div id="toast"></div>
 
     <!-- Modals -->
-    <div id="task-modal" class="modal-overlay" onclick="toggleModal('task-modal')">
-        <div class="modal-content font-bold" onclick="event.stopPropagation()">
-            <span id="task-modal-id" class="text-[11.5px] font-black text-slate-400 bg-slate-100 px-3 py-1.5 rounded-lg mb-4 inline-block font-black">DS-XXXX</span>
-            <h3 id="task-modal-title" class="text-xl font-black mb-4 leading-tight text-blue-900 font-black">ภารกิจยุทธศาสตร์</h3>
-            <div class="bg-slate-900 rounded-2xl p-5 text-green-400 font-mono text-[14.5px] italic mb-4" id="task-modal-prompt"></div>
-            <button onclick="launchAgent()" class="w-full bg-blue-900 text-white py-4 rounded-2xl font-black shadow-lg flex items-center justify-center text-[16.5px]">เปิด AI AGENT ปฏิบัติภารกิจ</button>
-        </div>
-    </div>
-
-    <div id="add-event-modal" class="modal-overlay" onclick="toggleModal('add-event-modal')">
-        <div class="modal-content font-bold" onclick="event.stopPropagation()">
-            <h3 class="text-2xl font-black mb-4 uppercase text-emerald-600">บันทึกกิจกรรมส่วนตัว</h3>
-            <div class="space-y-4">
-                <input type="date" id="personal-date" class="w-full bg-slate-50 border p-4 rounded-xl font-bold">
-                <input type="text" id="personal-title" placeholder="ชื่อกิจกรรม..." class="w-full bg-slate-50 border p-4 rounded-xl font-bold">
-                <button onclick="savePersonalEvent()" class="w-full bg-emerald-600 text-white py-4 rounded-xl font-black shadow-xl uppercase mt-4">บันทึก</button>
-            </div>
-        </div>
-    </div>
-
     <div id="analytics-modal" class="modal-overlay" onclick="toggleModal('analytics-modal')">
-        <div class="modal-content !max-w-4xl font-bold" onclick="event.stopPropagation()">
-            <h3 class="text-2xl font-black uppercase mb-8 border-b pb-4 text-blue-900">Full Analytics Master Report</h3>
-            <div id="container-affiliations" class="space-y-4"></div>
-            <button onclick="toggleModal('analytics-modal')" class="mt-10 w-full bg-slate-100 py-4 rounded-2xl font-black uppercase text-[12.5px]">ปิดรายงาน</button>
+        <div class="modal-content !max-w-4xl font-bold font-black" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-between mb-8 border-b pb-4 font-black">
+                <h3 class="text-3xl font-black uppercase text-blue-900 font-black font-black font-black font-black">Education Analytics Dashboard</h3>
+                <button onclick="toggleModal('analytics-modal')" class="text-slate-400 hover:text-red-500 transition font-black font-black"><i class="fas fa-times text-2xl font-black"></i></button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 font-black font-black">
+                <div class="space-y-6 font-black">
+                    <h4 class="text-lg font-black text-slate-700 uppercase border-l-4 border-blue-500 pl-3 font-black font-black font-black">สถิติแยกตามตำแหน่ง</h4>
+                    <div id="stat-roles" class="space-y-4 font-black"></div>
+                </div>
+                <div class="space-y-6 font-black font-black">
+                    <h4 class="text-lg font-black text-slate-700 uppercase border-l-4 border-emerald-500 pl-3 font-black font-black font-black font-black font-black">สถิติแยกตามระดับชั้น</h4>
+                    <div id="stat-levels" class="space-y-4 font-black font-black"></div>
+                </div>
+                <div class="space-y-6 font-black font-black font-black font-black">
+                    <h4 class="text-lg font-black text-slate-700 uppercase border-l-4 border-orange-500 pl-3 font-black font-black font-black font-black font-black font-black font-black font-black">สถิติแยกตามสังกัด</h4>
+                    <div id="stat-affiliations" class="space-y-4 font-black font-black font-black"></div>
+                </div>
+            </div>
+            <button onclick="toggleModal('analytics-modal')" class="mt-12 w-full bg-slate-100 py-5 rounded-2xl font-black uppercase text-slate-600 hover:bg-slate-200 transition font-black font-black font-black font-black font-black">ปิดหน้าต่างสถิติ</button>
         </div>
     </div>
 
+    <!-- Login Modal -->
     <div id="login-modal" class="modal-overlay" onclick="toggleModal('login-modal')">
-         <div class="modal-content font-bold" onclick="event.stopPropagation()">
-            <form onsubmit="handleLogin(event)" class="space-y-4 text-center font-bold">
-                <h3 class="text-2xl font-black uppercase text-blue-900 mb-6">เข้าใช้งานระบบ</h3>
-                <input type="text" id="user-name-input" placeholder="ชื่อ-นามสกุล" class="w-full bg-slate-50 border-2 p-5 rounded-2xl font-bold text-lg" required>
-                <button type="submit" class="w-full bg-blue-900 text-white py-5 rounded-xl font-black uppercase mt-4">ยืนยัน</button>
+         <div class="modal-content font-bold font-black" onclick="event.stopPropagation()">
+            <form onsubmit="handleLogin(event)" class="space-y-5 text-left font-bold font-black">
+                <h3 class="text-2xl font-black uppercase text-blue-900 mb-6 text-center font-black">ลงทะเบียนเข้าใช้งาน</h3>
+                <div>
+                    <label class="text-[13px] text-slate-500 block mb-2 uppercase font-black font-black">ชื่อ-นามสกุล:</label>
+                    <input type="text" id="user-name-input" placeholder="ระบุชื่อจริงหรือนามสมมติ" class="w-full bg-slate-50 border-2 p-4 rounded-xl font-bold text-[16px] outline-none focus:border-blue-600 font-black font-black" required>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-black">
+                    <div>
+                        <label class="text-[13px] text-slate-500 block mb-2 uppercase font-black font-black font-black">ตำแหน่ง:</label>
+                        <select id="user-role-input" class="w-full bg-slate-50 border-2 p-4 rounded-xl font-bold text-[15px] outline-none font-black" required>
+                            <option value="ครู/อาจารย์">ครู/อาจารย์</option>
+                            <option value="เจ้าหน้าที่">เจ้าหน้าที่</option>
+                            <option value="ฝ่ายบริหาร">ฝ่ายบริหาร</option>
+                            <option value="ผู้อำนวยการ">ผู้อำนวยการ</option>
+                            <option value="คณะบดี">คณบดี</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[13px] text-slate-500 block mb-2 uppercase font-black font-black font-black">สังกัด:</label>
+                        <select id="user-aff-input" class="w-full bg-slate-50 border-2 p-4 rounded-xl font-bold text-[15px] outline-none font-black font-black" required>
+                            <option value="สพฐ.">สพฐ.</option>
+                            <option value="อว.">อว. (MHESI)</option>
+                            <option value="สอศ.">สอศ. (OVEC)</option>
+                            <option value="อื่นๆ">อื่นๆ</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-[13px] text-slate-500 block mb-2 uppercase font-black font-black font-black font-black font-black">สายงาน/ระดับ:</label>
+                    <select id="user-level-input" class="w-full bg-slate-50 border-2 p-4 rounded-xl font-bold text-[15px] outline-none font-black font-black font-black font-black font-black font-black font-black" required>
+                        <option value="ฝ่ายประถม">ฝ่ายประถม</option>
+                        <option value="ฝ่ายมัธยมต้น">ฝ่ายมัธยมต้น</option>
+                        <option value="ฝ่ายมัธยมปลาย">ฝ่ายมัธยมปลาย</option>
+                        <option value="ฝ่ายอาชีวะ">ฝ่ายอาชีวะ</option>
+                        <option value="ฝ่ายมหาวิทยาลัย">ฝ่ายมหาวิทยาลัย</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-blue-900 text-white py-5 rounded-xl font-black uppercase mt-4 shadow-xl active:scale-95 transition font-black font-black font-black font-black font-black font-black font-black font-black font-black font-black">ยืนยันการเข้าใช้งาน</button>
             </form>
         </div>
     </div>
 
     <script>
-        // --- MASTER CONFIGURATION ---
+        // --- MASTER DATA SECTION ---
         const AGENT_URLS = {
             "AGENT 01": "https://gemini.google.com/gem/1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe",
             "AGENT 02": "https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2",
@@ -357,88 +454,96 @@
         };
 
         const agentsArrFull = [
-            { id: "01", name: "Command Center", icon: "fa-compass", color: "blue", tags: "วางแผน / เริ่มงาน", skills: ["ยุทธศาสตร์ AI รายบุคคล", "ค้นหาภารกิจที่ตรงงาน", "ร่างโครงสร้างงานเบื้องต้น", "แนะนำ Agent", "จัดลำดับงานด่วนรายวัน"] },
-            { id: "02", name: "Smart Hub", icon: "fa-bullhorn", color: "amber", tags: "ข้อมูล / ข่าว", skills: ["สรุปข่าวราชการ 30 วัน", "วิเคราะห์นโยบาย สพฐ.", "สกัดข้อมูลระเบียบใหม่", "สืบค้นงานวิจัยทางการศึกษา", "สรุปจุดเน้นประจำปี 69"] },
-            { id: "03", name: "Lesson Designer", icon: "fa-pencil-ruler", color: "cyan", tags: "CBE / Active Learning", skills: ["ร่างแผนการสอนสมรรถนะ", "ออกแบบกิจกรรมเชิงรุก", "สร้างใบงาน 8 กลุ่มสาระ", "หลักสูตรสถานศึกษา 69", "โครงการพัฒนาผู้เรียน"] },
-            { id: "04", name: "Assessment Pro", icon: "fa-check-double", color: "emerald", tags: "ข้อสอบ / Rubrics", skills: ["สร้างข้อสอบแนว PISA", "ออกแบบเกณฑ์ Rubric", "วิเคราะห์สถิติผลสัมฤทธิ์", "คลังข้อสอบมาตรฐาน", "จำลองสถานการณ์วัดสมรรถนะ"] },
-            { id: "05", name: "Creative Media", icon: "fa-palette", color: "pink", tags: "สื่อ / พอร์ต", skills: ["เขียนพร้อมต์เจนภาพสื่อ", "ร่างสคริปต์วิดีโอคลิปสั้น", "ออกแบบ Storyboard ครู", "เขียนคำบรรยายโซเชียล", "โครงสร้างสไลด์นำเสนอ"] },
-            { id: "06", name: "Admin / Registrar", icon: "fa-briefcase", color: "slate", tags: "พัสดุ / ธุรการ", skills: ["ร่างหนังสือราชการภายนอก", "TOR e-GP ระบบพัสดุ 69", "ร่างโครงการของบอุดหนุน", "บันทึกข้อความเสนอ ผอ.", "จัดทำวาระการประชุม"] },
-            { id: "07", name: "Student Support", icon: "fa-user-graduate", color: "purple", tags: "ดูแลนักเรียน", skills: ["วิเคราะห์ SDQ / DMC", "ร่างแผนดูแลช่วยเหลือนักเรียน", "ให้คำปรึกษาพฤติกรรมบวก", "สรุปรายงานการเยี่ยมบ้าน", "ออกแบบกิจกรรมโฮมรูม"] },
-            { id: "08", name: "PA Coach", icon: "fa-award", color: "orange", tags: "วPA / วิทยฐานะ", skills: ["โค้ชร่างข้อตกลง วPA", "ออกแบบประเด็นท้าทาย", "ร่างโครงสร้างวิจัยชั้นเรียน", "เตรียมหลักฐานดิจิทัล DPA", "ตรวจสอบคุณภาพผลงาน"] },
-            { id: "09", name: "Tech Assistant", icon: "fa-laptop-code", color: "teal", tags: "ชีต / โค้ด", skills: ["AppSheet เช็คชื่อ / ซ่อม", "สูตร Google Sheets สูง", "Apps Script เชื่อมต่อระบบ", "เกียรติบัตรออนไลน์อัตโนมัติ", "เครื่องมือดิจิทัลสำหรับครู"] },
-            { id: "10", name: "Quality Auditor", icon: "fa-clipboard-check", color: "red", tags: "ตรวจสอบ / PDPA", skills: ["ตรวจสอบระเบียบ PDPA", "คัดกรองการลอกเลียนแบบ", "ตรวจทานความถูกต้องวิชาการ", "ปรับปรุงคุณภาพงานบริหาร", "ประเมินลิขสิทธิ์ผลงาน"] }
+            { id: "01", name: "Command Center", icon: "fa-compass", tags: "วางแผน / เริ่มงาน", skills: ["ยุทธศาสตร์ AI รายบุคคล", "ค้นหาภารกิจที่ตรงงาน", "ร่างโครงสร้างงานเบื้องต้น", "แนะนำ Agent", "จัดลำดับงานด่วนรายวัน"] },
+            { id: "02", name: "Smart Hub", icon: "fa-bullhorn", tags: "ข้อมูล / ข่าว", skills: ["สรุปข่าวราชการ 30 วัน", "วิเคราะห์นโยบาย สพฐ.", "สกัดข้อมูลระเบียบใหม่", "สืบค้นงานวิจัยทางการศึกษา", "สรุปจุดเน้นประจำปี 69"] },
+            { id: "03", name: "Lesson Designer", icon: "fa-pencil-ruler", tags: "CBE / Active Learning", skills: ["ร่างแผนการสอนสมรรถนะ", "ออกแบบกิจกรรมเชิงรุก", "สร้างใบงาน 8 กลุ่มสาระ", "หลักสูตรสถานศึกษา 69", "โครงการพัฒนาผู้เรียน"] },
+            { id: "04", name: "Assessment Pro", icon: "fa-check-double", tags: "ข้อสอบ / Rubrics", skills: ["สร้างข้อสอบแนว PISA", "ออกแบบเกณฑ์ Rubric", "วิเคราะห์สถิติผลสัมฤทธิ์", "คลังข้อสอบมาตรฐาน", "จำลองสถานการณ์วัดสมรรถนะ"] },
+            { id: "05", name: "Creative Media", icon: "fa-palette", tags: "สื่อ / พอร์ต", skills: ["เขียนพร้อมต์เจนภาพสื่อ", "ร่างสคริปต์วิดีโอคลิปสั้น", "ออกแบบ Storyboard ครู", "เขียนคำบรรยายโซเชียล", "สรุปงานในสไลด์"] },
+            { id: "06", name: "Admin / Registrar", icon: "fa-briefcase", tags: "พัสดุ / ธุรการ", skills: ["ร่างหนังสือราชการภายนอก", "TOR e-GP ระบบพัสดุ 69", "ร่างโครงการของบอุดหนุน", "บันทึกข้อความเสนอ ผอ.", "จัดทำวาระการประชุม"] },
+            { id: "07", name: "Student Support", icon: "fa-user-graduate", tags: "ดูแลนักเรียน", skills: ["วิเคราะห์ SDQ / DMC", "ร่างแผนดูแลช่วยเหลือนักเรียน", "ให้คำปรึกษาพฤติกรรมบวก", "สรุปรายงานการเยี่ยมบ้าน", "ออกแบบกิจกรรมโฮมรูม"] },
+            { id: "08", name: "PA Coach", icon: "fa-award", tags: "วPA / วิทยฐานะ", skills: ["โค้ชร่างข้อตกลง วPA", "ออกแบบประเด็นท้าทาย", "ร่างโครงสร้างวิจัยชั้นเรียน", "เตรียมหลักฐานดิจิทัล DPA", "ตรวจสอบคุณภาพผลงาน"] },
+            { id: "09", name: "Tech Assistant", icon: "fa-laptop-code", tags: "ชีต / โค้ด", skills: ["AppSheet เช็คชื่อ / ซ่อม", "สูตร Google Sheets สูง", "Apps Script เชื่อมต่อระบบ", "เกียรติบัตรออนไลน์อัตโนมัติ", "เครื่องมือดิจิทัลสำหรับครู"] },
+            { id: "10", name: "Quality Auditor", icon: "fa-clipboard-check", tags: "ตรวจสอบ / PDPA", skills: ["ตรวจสอบระเบียบ PDPA", "คัดกรองการลอกเลียนแบบ", "ตรวจทานความถูกต้องวิชาการ", "ปรับปรุงคุณภาพงานบริหาร", "ประเมินลิขสิทธิ์ผลงาน"] }
         ];
 
-        const catalogDatabaseFull = [
-            { id: "DS-8201", title: "รายงาน SAR 3 มาตรฐาน (ปี 2568)", agent: "AGENT 02", theme: "pa", isMonthly: true },
-            { id: "DS-2017", title: "ร่างแผนปฏิบัติการและโครงการประจำปี 2569", agent: "AGENT 06", theme: "admin", isMonthly: true },
-            { id: "DS-4402", title: "ประเมินพัฒนาการเด็ก DMC (เมษายน)", agent: "AGENT 04", theme: "academic", isMonthly: true },
-            { id: "TMP-001", title: "แม่แบบ Sheets ตัดเกรด ปพ.5", agent: "AGENT 09", theme: "tech", isMonthly: true },
-            // Academic (8)
-            { id: "DS-2130", title: "คู่มือส่งเสริมความรอบรู้สุขภาพ (D-Level)", theme: "academic" },
-            { id: "DS-2101", title: "คู่มือสมรรถนะดิจิทัลครูไทย 2569", theme: "academic" },
-            { id: "DS-2204", title: "แนวทางใช้สื่อ OBEC Content Center", theme: "academic" },
-            { id: "DS-2305", title: "โครงสร้างแผนการสอน CBE 5E", theme: "academic" },
-            { id: "DS-2401", title: "แบบประเมิน Rubrics ตามสมรรถนะ", theme: "academic" },
-            { id: "DS-2502", title: "คลังข้อสอบแนววิเคราะห์ PISA", theme: "academic" },
-            { id: "DS-2603", title: "ร่างแผนแก้ปัญหาอ่านไม่ออก", theme: "academic" },
-            { id: "DS-2708", title: "หลักสูตรบูรณาการ AI ปี 69", theme: "academic" },
-            // Admin (8)
-            { id: "DS-6301", title: "ระเบียบเบิกจ่ายชุดนักเรียน 69", theme: "admin" },
-            { id: "DS-6402", title: "ร่าง TOR พัสดุระบบ e-GP 69", theme: "admin" },
-            { id: "DS-6503", title: "คู่มือสัญญาจ้างลูกจ้าง/อัตราจ้าง", theme: "admin" },
-            { id: "DS-6604", title: "ประเมินความเสี่ยงทุจริต 69", theme: "admin" },
-            { id: "DS-6705", title: "ร่างโครงการของบเงินอุดหนุน", theme: "admin" },
-            { id: "DS-6806", title: "ประกาศระเบียบเครื่องแบบ 2569", theme: "admin" },
-            { id: "DS-1014", title: "ตรวจสอบเอกสารสอดคล้อง PDPA", theme: "admin" },
-            { id: "DS-6908", title: "รายงานประชุมคณะกรรมการ รร.", theme: "admin" },
-            // Tech (8)
-            { id: "DS-9201", title: "ระบบ G-Code เด็กไม่มีเลขบัตร", theme: "tech" },
-            { id: "DS-9302", title: "แอปแจ้งซ่อม AppSheet QR", theme: "tech" },
-            { id: "DS-9403", title: "สคริปต์ออกเกียรติบัตรอัตโนมัติ", theme: "tech" },
-            { id: "DS-9504", title: "Claude AI ช่วยร่างงานวิจัย", theme: "tech" },
-            { id: "DS-9605", title: "คู่มือ Rayong All Platform", theme: "tech" },
-            { id: "DS-9706", title: "สร้างเว็บไซต์ รร. ด้วย G-Site", theme: "tech" },
-            { id: "DS-1060", title: "Forms คัดกรองเด็ก SDQ ดิจิทัล", theme: "tech" },
-            { id: "DS-9808", title: "Portfolio Canva สำหรับครู", theme: "tech" },
-            // PA (8)
-            { id: "DS-3401", title: "เกณฑ์ ว9/2564 ปรับปรุง 2569", theme: "pa" },
-            { id: "DS-7404", title: "ประเด็นท้าทายครู คศ.3 (Idea)", theme: "pa" },
-            { id: "DS-7505", title: "แผน ID Plan ปีงบ 2570", theme: "pa" },
-            { id: "DS-7606", title: "สรุปผลพัฒนา PLC แบบดิจิทัล", theme: "pa" },
-            { id: "DS-7707", title: "เตรียมหลักฐานส่งระบบ DPA 3.0", theme: "pa" },
-            { id: "DS-7808", title: "ร่างนวัตกรรม AI in Classroom", theme: "pa" },
-            { id: "DS-7909", title: "สคริปต์คลิปการสอน วPA", theme: "pa" },
-            { id: "DS-1110", title: "รายงานประเมินตนเอง คศ.4", theme: "pa" }
-        ];
-
-        // --- FULL YEAR CALENDAR DATABASE 2026 (RE-SYNCED) ---
+        // --- CALENDAR DATABASE 2026 (RECOVERY) ---
+        // Types: red(holiday), blue(academic), emerald(admin), purple(tech/research), orange(pa/personnel)
         const calendarEvents = {
-            // JAN-JULY (Summary)
+            "2026-01-01": [{text: "วันหยุดขึ้นปีใหม่", type: "red"}],
+            "2026-01-02": [{text: "ประชุมปรับแผนการสอน 2/68", type: "blue"}],
+            "2026-01-05": [{text: "งานวันนักประดิษฐ์ (วช.)", type: "purple"}, {text: "พิมพ์บัตร TPAT1", type: "orange"}],
+            "2026-01-06": [{text: "งานวันนักประดิษฐ์ (Day 2)", type: "purple"}],
+            "2026-01-13": [{text: "ประกาศผลสอบ TGAT/TPAT R1", type: "orange"}],
             "2026-01-16": [{text: "งานวันครู ครั้งที่ 70", type: "red"}],
-            "2026-03-14": [{text: "สนามสอบ A-Level 2569", type: "blue"}],
-            "2026-04-01": [{text: "เริ่มส่งSAR/ยื่นOSOI", type: "green"}],
-            "2026-05-16": [{text: "เปิดภาคเรียนที่ 1/2569", type: "blue"}],
-            "2026-06-22": [{text: "มหกรรมงานวิจัยแห่งชาติ", type: "purple"}],
-            "2026-07-01": [{text: "เริ่มยื่นย้ายครู รอบ 2", type: "orange"}],
+            "2026-01-17": [{text: "สนามสอบ TGAT รอบ 2 (Computer)", type: "orange"}],
+            "2026-01-30": [{text: "รับสมัครสอบ A-Level 69 (ทปอ.)", type: "orange"}],
             
-            // AUGUST 2026 (NEW MEGA SYNC V11.8.16)
-            "2026-08-01": [{text: "เริ่มประเมินผลปฏิบัติงานครู (PA) ช่วง 2", type: "orange"}],
-            "2026-08-03": [{text: "ประชุมเตรียมรับประเมินภายใน รร.", type: "green"}],
-            "2026-08-05": [{text: "อบรมออนไลน์ 'CBE In Science'", type: "purple"}],
-            "2026-08-10": [{text: "ประชุม กก.บริหารสถานศึกษา", type: "green"}],
-            "2026-08-12": [{text: "วันแม่แห่งชาติ (หยุดราชการ)", type: "red"}],
-            "2026-08-14": [{text: "กิจกรรม 'วันแม่' ในโรงเรียน", type: "blue"}],
-            "2026-08-17": [{text: "สัปดาห์วันวิทยาศาสตร์ (Day 1)", type: "blue"}],
-            "2026-08-18": [{text: "วันวิทยาศาสตร์แห่งชาติ (Expo)", type: "blue"}],
-            "2026-08-19": [{text: "สัปดาห์วันวิทยาศาสตร์ (Day 3)", type: "blue"}],
-            "2026-08-24": [{text: "งานมหกรรมจัดการศึกษาท้องถิ่น", type: "purple"}],
-            "2026-08-25": [{text: "เข้าสู่ช่วงเข้มข้นประเมิน PA ประจำปี", type: "orange"}],
-            "2026-08-28": [{text: "ยืนยันยอดนักเรียน DMC รายตัว", type: "green"}],
-            "2026-08-31": [{text: "ตรวจเช็คข้อมูลวันลา/วันทำงานครู", type: "green"}],
+            "2026-02-06": [{text: "ยืนยันสิทธิ์ TCAS R1", type: "orange"}],
+            "2026-02-14": [{text: "วันมาฆบูชา (วันหยุด)", type: "red"}, {text: "สนามสอบ TPAT1 (กสพท)", type: "orange"}],
+            "2026-02-15": [{text: "สอบ O-NET (ม.6)", type: "blue"}],
+            "2026-02-24": [{text: "ประชุมผู้บริหาร สพฐ. แผนกำลัง", type: "emerald"}],
             
-            "2026-09-30": [{text: "สิ้นปีงบประมาณ 69 / เกษียณ", type: "green"}],
-            "2026-12-31": [{text: "วันสิ้นปี", type: "red"}]
+            "2026-03-01": [{text: "เริ่มสอบปลายภาคเรียน 2/2568", type: "blue"}],
+            "2026-03-08": [{text: "รับสมัครสอบใบวิชาชีพครู", type: "orange"}],
+            "2026-03-14": [{text: "สนามสอบ A-Level 2569", type: "orange"}],
+            "2026-03-15": [{text: "อนุมัติจบการศึกษา (R1)", type: "emerald"}],
+            "2026-03-25": [{text: "รับสมัคร ม.1 และ ม.4 (รอบปกติ)", type: "orange"}],
+            "2026-03-31": [{text: "วันสิ้นสุดปีการศึกษา 2568", type: "emerald"}],
+            
+            "2026-04-01": [{text: "เริ่มยื่นนวัตกรรม OSOI", type: "blue"}, {text: "ปิดยอด e-GP งบ 69", type: "emerald"}, {text: "เริ่มส่ง SAR 68", type: "emerald"}],
+            "2026-04-03": [{text: "แจกวุฒิบัตร ม.3/6", type: "blue"}, {text: "อัปเดตระบบ DPA 3.0", type: "orange"}],
+            "2026-04-05": [{text: "ยื่นทุนวิจัย บพค.", type: "purple"}],
+            "2026-04-06": [{text: "วันจักรี (วันหยุด)", type: "red"}],
+            "2026-04-13": [{text: "วันสงกรานต์ (หยุดราชการ)", type: "red"}],
+            "2026-04-14": [{text: "วันสงกรานต์ (หยุดราชการ)", type: "red"}],
+            "2026-04-15": [{text: "วันสงกรานต์ (หยุดราชการ)", type: "red"}],
+            "2026-04-18": [{text: "สอบ NT ระดับชาติ", type: "blue"}],
+            "2026-04-20": [{text: "ประกาศผลย้ายครู R1", type: "orange"}],
+            
+            "2026-05-01": [{text: "วันแรงงาน / คำสั่งย้ายมีผล", type: "red"}],
+            "2026-05-04": [{text: "วันฉัตรมงคล (หยุด)", type: "red"}],
+            "2026-05-05": [{text: "Symposium นวัตกรรม", type: "blue"}, {text: "อบรม CBE ภูมิภาค", type: "purple"}],
+            "2026-05-16": [{text: "เปิดภาคเรียน 1/2569 ทั่วประเทศ", type: "blue"}, {text: "ลงทะเบียน DMC รอบ 1", type: "purple"}],
+            "2026-05-20": [{text: "ยืนยันสิทธิ์ TCAS Admission", type: "orange"}],
+            "2026-05-31": [{text: "วันวิสาขบูชา (หยุด)", type: "red"}],
+            
+            "2026-06-03": [{text: "วันเฉลิมพระชนมพรรษา ร.10", type: "red"}],
+            "2026-06-04": [{text: "พิธีไหว้ครู ประจำปี 2569", type: "blue"}],
+            "2026-06-13": [{text: "สอบครูผู้ช่วย รอบทั่วไป", type: "orange"}],
+            "2026-06-22": [{text: "มหกรรมงานวิจัยแห่งชาติ 2569", type: "purple"}],
+            "2026-06-26": [{text: "วันสุนทรภู่ / ต่อต้านยาเสพติด", type: "blue"}],
+            
+            "2026-07-01": [{text: "เริ่มยื่นย้ายครู รอบ 2", type: "orange"}, {text: "วันสถาปนาคณะลูกเสือไทย", type: "blue"}],
+            "2026-07-15": [{text: "วันสุดท้ายยื่นย้ายครู รอบ 2", type: "orange"}],
+            "2026-07-20": [{text: "เริ่มประเมินอ่านเขียน R1", type: "blue"}],
+            "2026-07-28": [{text: "วันเฉลิมพระชนมพรรษา ร.10", type: "red"}],
+            "2026-07-29": [{text: "วันอาสาฬหบูชา (หยุด)", type: "red"}],
+            "2026-07-30": [{text: "วันเข้าพรรษา (หยุด)", type: "red"}],
+            
+            "2026-08-01": [{text: "เริ่มประเมินผล PA ช่วง 2", type: "orange"}],
+            "2026-08-12": [{text: "วันแม่แห่งชาติ (หยุด)", type: "red"}],
+            "2026-08-18": [{text: "วันวิทยาศาสตร์แห่งชาติ", type: "blue"}],
+            "2026-08-25": [{text: "ช่วงเข้มข้นจัดทำ วPA ประจำปี", type: "orange"}],
+            
+            "2026-09-21": [{text: "เริ่มสอบปลายภาค 1/2569", type: "blue"}],
+            "2026-09-28": [{text: "วันพระราชทานธงชาติไทย", type: "blue"}],
+            "2026-09-30": [{text: "วันสิ้นปีงบประมาณ / เกษียณ", type: "red"}],
+            
+            "2026-10-01": [{text: "เริ่มปิดภาคเรียนที่ 1", type: "blue"}, {text: "เริ่มปีงบประมาณ 2570", type: "emerald"}],
+            "2026-10-13": [{text: "วันคล้ายวันสวรรคต ร.9", type: "red"}],
+            "2026-10-15": [{text: "รายงานตัวครูย้าย รอบ 2", type: "orange"}],
+            "2026-10-23": [{text: "วันปิยมหาราช (หยุด)", type: "red"}],
+            
+            "2026-11-01": [{text: "เปิดภาคเรียน 2/2569 ทั่วไทย", type: "blue"}, {text: "เริ่มทำข้อตกลง PA ปี 70", type: "orange"}],
+            "2026-11-02": [{text: "เริ่มรับสมัคร TGAT/TPAT 70", type: "orange"}],
+            "2026-11-24": [{text: "วันลอยกระทง (กิจกรรมสถานศึกษา)", type: "blue"}],
+            "2026-11-30": [{text: "วันสุดท้ายสมัครสอบ TCAS70", type: "orange"}],
+            
+            "2026-12-05": [{text: "วันพ่อแห่งชาติ (วันหยุด)", type: "red"}],
+            "2026-12-10": [{text: "วันรัฐธรรมนูญ (หยุด)", type: "red"}],
+            "2026-12-12": [{text: "สนามสอบ TGAT ระดับชาติ (Day 1)", type: "orange"}],
+            "2026-12-13": [{text: "สนามสอบ TPAT 2-5 (Day 2)", type: "orange"}],
+            "2026-12-31": [{text: "วันสิ้นปี (วันหยุดราชการ)", type: "red"}]
         };
 
         const pillarsData = [
@@ -460,12 +565,15 @@
             { icon: "fa-sync", t: "Automatic Sync Hub", d: "เชื่อมโยงข่าวจาก 4 หน่วยงานหลัก สพฐ. ก.ค.ศ. สอศ. อว. ตลอด 24 ชม.", c: "text-orange-600" }
         ];
 
-        let currentActiveTask = null;
-        let selectedTheme = 'all';
-        let currentMonthDate = new Date(2026, 7, 1); // Set to AUGUST 2026
+        let usageStats = {
+            roles: { "ครู/อาจารย์": 3450, "เจ้าหน้าที่": 820, "ฝ่ายบริหาร": 450, "ผู้อำนวยการ": 120, "คณะบดี": 24 },
+            levels: { "ฝ่ายประถม": 1200, "ฝ่ายมัธยมต้น": 950, "ฝ่ายมัธยมปลาย": 1100, "ฝ่ายอาชีวะ": 820, "ฝ่ายมหาวิทยาลัย": 794 },
+            affiliations: { "สพฐ.": 2800, "อว.": 850, "สอศ.": 920, "อื่นๆ": 294 }
+        };
+
+        let currentMonthDate = new Date(2026, 4, 1);
         let personalEvents = [];
 
-        // --- Core UI Functions ---
         function switchTab(tab) {
             ['home', 'gems', 'catalog', 'calendar', 'about'].forEach(t => {
                 const el = document.getElementById('tab-' + t); if (el) el.classList.add('hidden');
@@ -483,86 +591,106 @@
         function toggleModal(id) { const m = document.getElementById(id); if (m) m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); }
         function showToast(msg) { const t = document.getElementById('toast'); if (t) { t.innerText = msg; t.className = "show"; setTimeout(() => t.className = "", 3000); } }
 
+        function handleLogin(e) {
+            e.preventDefault();
+            const name = document.getElementById('user-name-input').value;
+            const role = document.getElementById('user-role-input').value;
+            const aff = document.getElementById('user-aff-input').value;
+            const level = document.getElementById('user-level-input').value;
+            usageStats.roles[role]++;
+            usageStats.affiliations[aff]++;
+            usageStats.levels[level]++;
+            document.getElementById('user-status-btn').innerText = name.split(' ')[0];
+            toggleModal('login-modal');
+            showToast(`สวัสดีคุณ ${name} (${role})`);
+        }
+
+        function openAnalyticsDashboard() { renderAnalytics(); toggleModal('analytics-modal'); }
+
+        function renderAnalytics() {
+            const gen = (data, color) => {
+                const max = Math.max(...Object.values(data));
+                return Object.entries(data).map(([k, v]) => {
+                    const pct = (v / max) * 100;
+                    return `<div><div class="flex justify-between text-[13px] font-black text-slate-600 mb-1"><span>${k}</span><span class="text-blue-900 font-black">${v.toLocaleString()} รอบ</span></div><div class="stat-bar-container font-black"><div class="stat-bar-fill" style="width:${pct}%; background-color:${color}"></div></div></div>`;
+                }).join('');
+            };
+            document.getElementById('stat-roles').innerHTML = gen(usageStats.roles, '#3b82f6');
+            document.getElementById('stat-levels').innerHTML = gen(usageStats.levels, '#10b981');
+            document.getElementById('stat-affiliations').innerHTML = gen(usageStats.affiliations, '#f59e0b');
+        }
+
         function renderCalendar() {
             const body = document.getElementById('calendar-body'); if (!body) return;
             const label = document.getElementById('calendar-month-year');
             const monthNames = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
             if (label) label.innerText = `${monthNames[currentMonthDate.getMonth()]} ${currentMonthDate.getFullYear()+543}`;
-            body.innerHTML = ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."].map(d => `<div class="calendar-header font-black">${d}</div>`).join('');
+            body.innerHTML = ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."].map(d => `<div class="calendar-header font-black font-black">${d}</div>`).join('');
             const firstDay = new Date(currentMonthDate.getFullYear(), currentMonthDate.getMonth(), 1).getDay();
             const daysInMonth = new Date(currentMonthDate.getFullYear(), currentMonthDate.getMonth()+1, 0).getDate();
             for(let i=0; i<firstDay; i++) body.innerHTML += `<div class="calendar-day bg-slate-50/30"></div>`;
             for(let d=1; d<=daysInMonth; d++) {
                 const dk = `${currentMonthDate.getFullYear()}-${(currentMonthDate.getMonth()+1).toString().padStart(2,'0')}-${d.toString().padStart(2,'0')}`;
                 const evs = calendarEvents[dk] || [];
-                const isToday = d === new Date().getDate() && currentMonthDate.getMonth() === new Date().getMonth();
                 const isHoli = evs.some(e => e.type === 'red');
-                let evH = evs.map(e => `<span class="event-mini" style="background:${e.type==='red'?'#fff1f2':e.type==='blue'?'#eff6ff':e.type==='purple'?'#faf5ff':e.type==='orange'?'#fffbeb':'#f0fdf4'}; border-left-color:${e.type==='red'?'#ef4444':e.type==='blue'?'#3b82f6':e.type==='purple'?'#a855f7':e.type==='orange'?'#f59e0b':'#10b981'}">${e.text}</span>`).join('');
-                body.innerHTML += `<div class="calendar-day ${isHoli?'holiday':''} ${isToday?'today shadow-lg':''}"><b>${d}</b>${evH}</div>`;
+                const isToday = d === new Date().getDate() && currentMonthDate.getMonth() === new Date().getMonth() && currentMonthDate.getFullYear() === new Date().getFullYear();
+                
+                let evH = evs.map(e => {
+                    const dotCol = e.type === 'red' ? '#ef4444' : e.type === 'blue' ? '#3b82f6' : e.type === 'emerald' ? '#10b981' : e.type === 'purple' ? '#a855f7' : '#f59e0b';
+                    const bgCol = e.type === 'red' ? '#fff1f2' : e.type === 'blue' ? '#eff6ff' : e.type === 'emerald' ? '#ecfdf5' : e.type === 'purple' ? '#faf5ff' : '#fffbeb';
+                    return `<span class="event-mini font-black" style="background:${bgCol}; border-left-color:${dotCol}; color:#1e293b;">${e.text}</span>`;
+                }).join('');
+                
+                body.innerHTML += `<div class="calendar-day ${isHoli?'holiday bg-red-50/50':''} ${isToday?'today shadow-lg':''} font-black"><b>${d}</b>${evH}</div>`;
             }
         }
 
         function changeMonth(delta) { currentMonthDate.setMonth(currentMonthDate.getMonth()+delta); renderCalendar(); }
-        function savePersonalEvent() {
-            const date = document.getElementById('personal-date').value;
-            const title = document.getElementById('personal-title').value;
-            if(!date || !title) return;
-            showToast("บันทึกข้อมูลเรียบร้อย (ระบบจำลอง)");
-            toggleModal('add-event-modal');
-        }
 
         function populatePortalList() {
-            const getTasks = (theme) => catalogDatabaseFull.filter(t => t.theme === theme);
-            const renderL = (tasks) => tasks.map((t, i) => `<div class="py-2.5 px-4 border-b border-orange-100 last:border-0 hover:bg-orange-50 rounded-xl cursor-pointer group flex items-center transition-all font-bold" onclick="showTaskModal('${t.id}')"><span class="w-8 h-8 flex items-center justify-center bg-white rounded-lg text-[11.5px] mr-3 font-black text-blue-900 shadow-sm">${i+1}</span><h4 class="text-[13.5px] font-bold text-blue-900 leading-tight">${t.title}</h4></div>`).join('');
-            const monthList = document.getElementById('monthly-priority-list');
-            if (monthList) monthList.innerHTML = catalogDatabaseFull.filter(t => t.id === "DS-8201" || t.id === "DS-2017" || t.id === "DS-4402" || t.id === "TMP-001").map(t => `<div class="bg-white p-4 rounded-2xl border-2 border-rose-200 cursor-pointer hover:border-rose-400 transition-all shadow-sm" onclick="showTaskModal('${t.id}')"><span class="text-[11.5px] font-black text-rose-400 uppercase font-black">${t.id}</span><h4 class="text-[14.5px] font-black text-rose-900 leading-tight">${t.title}</h4></div>`).join('');
-            const acad = document.getElementById('cat-academic-list'); if (acad) acad.innerHTML = renderL(getTasks('academic'));
-            const adm = document.getElementById('cat-admin-list'); if (adm) adm.innerHTML = renderL(getTasks('admin'));
-            const tech = document.getElementById('cat-tech-list'); if (tech) tech.innerHTML = renderL(getTasks('tech'));
-            const pa = document.getElementById('cat-pa-list'); if (pa) pa.innerHTML = renderL(getTasks('pa'));
+            const academic = ["หลักสูตรสถานศึกษา 2569", "แผน CBE 5E", "คลังข้อสอบ PISA", "ระบบ Rubrics", "โครงการยกระดับ NT", "คู่มือสุขภาพ", "แผนบูรณาการ AI", "สรุปวิชาการ"];
+            const admin = ["ร่างแผนปฏิบัติการ 2569", "TOR e-GP 69", "คู่มือสัญญาจ้าง", "รายงานประชุมบอร์ด", "โครงการงบประมาณ", "แผนบริหารบุคคล", "ประกาศเครื่องแบบ", "คู่มือธุรการ"];
+            const tech = ["Sheets ตัดเกรด ปพ.5", "AppSheet เช็คชื่อ", "เกียรติบัตรอัตโนมัติ", "G-Site โรงเรียน", "Portfolio Canva", "แจ้งซ่อม QR", "DMC 10 พ.ย.", "AI Classroom"];
+            const pa = ["รายงาน SAR 3 มาตรฐาน", "ข้อตกลง PA ปี 70", "ร่างวิจัยชั้นเรียน", "DPA 3.0 Sync", "คลิปการสอน PA", "ประเด็นท้าทาย", "ID Plan", "นวัตกรรม PA"];
+
+            const render = (arr) => arr.map((t, i) => `<div class="py-2.5 px-4 border-b border-black/5 last:border-0 hover:bg-white/40 rounded-xl cursor-pointer group flex items-center transition-all font-bold font-black" onclick="showTaskModal('${t}')"><span class="w-7 h-7 flex items-center justify-center bg-white rounded-lg text-[11px] mr-3 font-black text-slate-800 shadow-sm">${i+1}</span><h4 class="text-[13px] font-bold text-slate-800 leading-tight font-black">${t}</h4></div>`).join('');
+            
+            document.getElementById('cat-academic-list').innerHTML = render(academic);
+            document.getElementById('cat-admin-list').innerHTML = render(admin);
+            document.getElementById('cat-tech-list').innerHTML = render(tech);
+            document.getElementById('cat-pa-list').innerHTML = render(pa);
+            
+            const monthly = ["ปิดยอด e-GP", "ตรวจสอบ DMC", "ประชุมสายชั้น", "บันทึกผลสัมฤทธิ์", "กิจกรรมวันสำคัญ", "สรุปยอดลา", "รายงานแผนปฏิบัติการ", "สะสมคลิป วPA"];
+            document.getElementById('monthly-priority-list').innerHTML = monthly.map(t => `<div class="bg-white p-5 rounded-2xl border-2 border-rose-200 cursor-pointer hover:border-rose-400 transition-all shadow-sm font-black font-black" onclick="showTaskModal('${t}')"><div class="flex items-center space-x-3"><i class="fas fa-check-circle text-rose-500 font-black"></i><h4 class="text-[14px] font-black text-rose-900 leading-tight font-black">${t}</h4></div></div>`).join('');
         }
 
-        function setContentType(type) { document.querySelectorAll('.content-type-btn').forEach(b => b.classList.remove('active')); document.getElementById('type-' + type).classList.add('active'); }
-        function suggestDiyTopic() { const t=["วPA รับประเมินรอบ 2","กิจกรรมสัปดาห์วิทย์","AI ช่วยตรวจ SDQ"]; document.getElementById('diy-topic-input').value = t[Math.floor(Math.random()*t.length)]; }
-        function generateArchitectPrompt(m) { const top = document.getElementById('diy-topic-input').value; if(top) document.getElementById('architect-output').innerText = `ร่าง ${m} สำหรับ ${top} อ้างอิงสิงหาคม 2569`; }
+        function setContentType(type) { document.querySelectorAll('.content-type-btn').forEach(b => b.classList.remove('active')); document.getElementById('type-'+type).classList.add('active'); }
+        function suggestDiyTopic() { const t=["วPA 2570","เทคนิคสอนประถม","AI ในโรงเรียน"]; document.getElementById('diy-topic-input').value = t[Math.floor(Math.random()*t.length)]; }
+        function generateArchitectPrompt(m) { const top = document.getElementById('diy-topic-input').value; if(top) document.getElementById('architect-output').innerText = `ร่าง ${m} สำหรับหัวข้อ: ${top} ตามระเบียบ 2569`; }
         function filterCatalog() { populatePortalList(); }
-        
-        function showTaskModal(id) { 
-            const t = catalogDatabaseFull.find(x => x.id === id); currentActiveTask = t; 
-            document.getElementById('task-modal-title').innerText = t.title;
-            document.getElementById('task-modal-prompt').innerText = `ช่วยร่างงาน "${t.title}" 2569 (Official Sync Status)`;
-            toggleModal('task-modal'); 
-        }
-
-        function launchAgent() { window.open(AGENT_URLS[currentActiveTask?.agent || "AGENT 01"], '_blank'); }
-        function handleLogin(e) { e.preventDefault(); const n=document.getElementById('user-name-input').value; document.getElementById('user-status-btn').innerText=n.split(' ')[0]; toggleModal('login-modal'); showToast(`สวัสดีคุณ ${n}`); }
+        function showTaskModal(title) { document.getElementById('task-modal-title').innerText = title; document.getElementById('task-modal-prompt').innerText = `ช่วยร่างงาน "${title}" 2569 (Sync Status OK)`; toggleModal('task-modal'); }
+        function launchAgent() { window.open(AGENT_URLS["AGENT 01"], '_blank'); }
 
         window.onload = () => {
-            const stats = document.getElementById('stats-dashboard-home');
-            if (stats) stats.innerHTML = `<div class="summary-stat-box warm-card font-bold"><p class="text-[12.5px] font-black text-slate-400 uppercase tracking-widest">Users Online</p><p class="text-2xl font-black text-blue-900 mt-1">4,864</p></div><div class="summary-stat-box warm-card font-bold"><p class="text-[12.5px] font-black text-slate-400 uppercase tracking-widest">AI Calls (Aug)</p><p class="text-2xl font-black text-blue-600 mt-1">12,402</p></div><div class="summary-stat-box warm-card font-bold"><p class="text-[12.5px] font-black text-slate-400 uppercase tracking-widest">Tasks Created</p><p class="text-2xl font-black text-emerald-600 mt-1">8,750</p></div>`;
-            
-            const featured = document.getElementById('featured-tasks-container');
-            if (featured) featured.innerHTML = catalogDatabaseFull.slice(0, 6).map(t => `<div class="warm-card p-5 rounded-2xl flex items-center shadow-sm cursor-pointer hover:bg-orange-100 transition border border-orange-100 font-bold" onclick="showTaskModal('${t.id}')"><div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-3 font-black font-black font-black font-black font-black"><i class="fas fa-star text-xs"></i></div><div class="text-left font-bold"><p class="text-[11.5px] text-orange-400">${t.id}</p><h4 class="text-[14.5px] font-black text-blue-900 leading-tight">${t.title}</h4></div></div>`).join('');
-            
             const news = document.getElementById('news-container');
             if (news) news.innerHTML = [
-                {cat:"สพฐ. (Announce)",c:"blue",items:["มาตรการป้องกันภัยวันหยุดสิงหาคม","ประกาศการประเมินอ่านเขียน รอบที่ 1","เร่งรัดการเบิกจ่ายงบอุดหนุนรายหัว","นโยบายเตรียมพร้อมสัปดาห์วิทย์"]},
-                {cat:"ก.ค.ศ. (วPA)",c:"emerald",items:["คู่มือการประเมิน PA ช่วงที่ 2/69","เปิดระบบ DPA 3.0 รับไฟล์วิจัย","เลื่อนเงินเดือน รอบ 1 ต.ค. 69","เกณฑ์ย้ายครู ว18 ล่าสุดปี 69"]},
-                {cat:"สอศ. (Education)",c:"orange",items:["แข่งขันทักษะวิชาชีพสิงหาคม 2569","MOU ทวิภาคีกลุ่มอุตสาหกรรมใหม่","เปิดรับข้อเสนอโครงการวิจัยสิ่งประดิษฐ์","รับสมัครทุนเรียนต่อสายอาชีพ"]},
-                {cat:"อว./ไอที",c:"purple",items:["Google Gemini AI for Teachers Update","TCAS70 ปฏิทินรับสมัครเริ่มวางแผน","UNESCO Digital Literacy Standards","สัมมนา AI พลิกโฉมสถานศึกษา"]}
-            ].map(n=>`<div class="warm-card p-6 shadow-sm flex flex-col h-full border border-orange-100 font-bold"><span class="text-[12.5px] font-black text-white bg-blue-900 px-3 py-1 rounded-full mb-4 inline-block uppercase font-black font-black font-black font-black font-black font-black font-black">${n.cat}</span><div class="space-y-3 mb-6 font-bold font-black font-black font-black font-black font-black">${n.items.map(i=>`<h4 class="text-[14.5px] font-bold text-slate-700 border-b pb-2 border-orange-50 leading-tight cursor-pointer hover:text-blue-600">${i}</h4>`).join('')}</div><button class="mt-auto w-full bg-blue-50 text-blue-900 py-2.5 rounded-xl text-[12.5px] font-black uppercase border border-blue-100 font-black">อ่านทั้งหมด</button></div>`).join('');
-            
-            const agents = document.getElementById('agents-grid-container');
-            const agentColors = ["blue", "amber", "cyan", "emerald", "pink", "slate", "purple", "orange", "teal", "red"];
-            if (agents) agents.innerHTML = agentsArrFull.map((a, i) => `<div class="agent-guide-card group font-bold shadow-sm" onclick="window.open('${AGENT_URLS['AGENT ' + a.id]}', '_blank')"><span class="agent-number font-black">${a.id}</span><div class="w-14 h-14 bg-${agentColors[i]}-100 text-${agentColors[i]}-600 rounded-2xl flex items-center justify-center text-2xl mb-5 relative z-10 shadow-sm border border-${agentColors[i]}-200 font-black font-black font-black font-black"><i class="fas ${a.icon}"></i></div><div class="text-left relative z-10 flex-grow font-bold"><span class="text-[13.5px] font-black text-${agentColors[i]}-800 uppercase bg-${agentColors[i]}-50 px-3 py-1 rounded-full mb-3 inline-block font-bold">${a.tags}</span><h3 class="font-black text-lg text-slate-800 uppercase">AGENT ${a.id} - ${a.name}</h3><div class="space-y-1 mt-4 font-black">${a.skills.map(s=>`<p class="text-[13.5px] text-slate-700 flex items-center"><i class="fas fa-check-circle text-${agentColors[i]}-500 mr-2 opacity-60"></i> ${s}</p>`).join('')}</div></div></div>`).join('');
-            
-            const pillars = document.getElementById('about-pillars-grid');
-            const pillarColors = ["text-blue-600", "text-emerald-600", "text-rose-600", "text-amber-600", "text-slate-600", "text-indigo-600", "text-cyan-600", "text-green-700", "text-teal-600", "text-pink-600", "text-emerald-700", "text-indigo-700", "text-purple-600", "text-blue-700", "text-red-500", "text-orange-600"];
-            if (pillars) pillars.innerHTML = pillarsData.map((p, i) => `<div class="warm-card p-6 rounded-3xl border border-orange-100 shadow-sm font-bold"><div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center ${pillarColors[i]} mb-4 shadow-sm font-black font-black font-black font-black font-black font-black font-black font-black font-black font-black font-black font-black font-black"><i class="fas ${p.icon}"></i></div><h4 class="text-[13.5px] font-black uppercase mb-2 leading-tight text-blue-900">${p.t}</h4><p class="text-[13.5px] text-slate-600 font-medium opacity-80 leading-relaxed font-black font-black font-black font-black font-black font-black font-black font-black font-black font-black">${p.d}</p></div>`).join('');
-            
-            const themeFilters = document.getElementById('theme-filter-container');
-            if (themeFilters) themeFilters.innerHTML = [{id:'all',l:'🌟 ทั้งหมด'},{id:'academic',l:'📚 วิชาการ'},{id:'admin',l:'🏢 บริหาร'},{id:'tech',l:'💻 เทคโนโลยี'},{id:'pa',l:'🏆 วิทยฐานะ'}].map(f => `<button onclick="setThemeFilter('${f.id}')" class="theme-btn bg-white text-blue-900 border border-blue-200 px-6 py-2.5 rounded-full text-[13.5px] font-black uppercase ${f.id==='all'?'theme-btn-active':''} shadow-sm font-black font-black font-black font-black font-black">${f.l}</button>`).join('');
+                {cat:"สพฐ. (Announce)",url:"https://iso.obec.moe/",items:["นโยบายการจัดกิจกรรมภาคเรียนที่ 2/69","เร่งรัดการลง DMC รอบ 10 พ.ย.","ประกาศมาตรการเรียนฟรี 15 ปี","แนวทางความปลอดภัยในสถานศึกษา"]},
+                {cat:"ก.ค.ศ. (วPA)",url:"https://www.otepc.go.th/",items:["คู่มือเขียนข้อตกลง PA ปีงบ 70","ระเบียบการย้ายครู รอบที่ 2 ปี 69","เกณฑ์วิทยฐานะระบบ DPA 3.0","อัปเดตการเลื่อนเงินเดือน ต.ค. 69"]},
+                {cat:"สอศ. (Vocational)",url:"https://news.ovec.go.th/",items:["แข่งขันทักษะวิชาชีพ 2569 ทั่วประเทศ","MOU ทวิภาคีอาชีวะกับโรงงาน","รายงานผลศูนย์บ่มเพาะวิสาหกิจ","รับสมัครทุน ป.ตรี สายอาชีพ"]},
+                {cat:"อว./ไอที (Edu)",url:"https://www.moe.go.th/",items:["Google Gemini Education Update","TCAS70 สนามสอบ TGAT ยืนยัน","UNESCO Digital Literacy Update","สัมมนา AI พลิกโฉมห้องเรียน"]}
+            ].map(n=>`<div class="p-6 shadow-md flex flex-col h-full border border-orange-50 rounded-3xl font-bold font-black" style="background-color: #FFF7ED;"><span class="text-[12.5px] font-black text-white bg-blue-900 px-3 py-1 rounded-full mb-4 inline-block uppercase font-black">${n.cat}</span><div class="space-y-3 mb-6 font-bold font-black">${n.items.map(i=>`<h4 class="text-[14.5px] font-bold text-slate-700 border-b pb-2 border-orange-100 leading-tight cursor-pointer hover:text-blue-600 font-black" onclick="window.open('${n.url}','_blank')">${i}</h4>`).join('')}</div><button class="mt-auto w-full bg-blue-50 text-blue-900 py-2.5 rounded-xl text-[12.5px] font-black uppercase border border-blue-100 font-black" onclick="window.open('${n.url}','_blank')">อ่านทั้งหมด</button></div>`).join('');
 
+            const agents = document.getElementById('agents-grid-container');
+            const ptl = ["#EBF8FF", "#FFF0F0", "#F0FFF4", "#FFF9F0", "#F5F0FF", "#F0FFFF", "#FFF0FB", "#F9FFF0", "#F0F2FF", "#FFF5F0"];
+            const ptlIco = ["blue", "amber", "cyan", "emerald", "pink", "slate", "purple", "orange", "teal", "red"];
+            if (agents) agents.innerHTML = agentsArrFull.map((a, i) => `<div class="agent-guide-card group font-bold shadow-sm font-black" style="background-color: ${ptl[i]}" onclick="window.open('${AGENT_URLS['AGENT ' + a.id]}', '_blank')"><span class="agent-number font-black">${a.id}</span><div class="w-14 h-14 bg-${ptlIco[i]}-100 text-${ptlIco[i]}-600 rounded-2xl flex items-center justify-center text-2xl mb-5 relative z-10 shadow-sm border border-${ptlIco[i]}-200 font-black font-black font-black"><i class="fas ${a.icon}"></i></div><div class="text-left relative z-10 flex-grow font-bold font-black font-black"><span class="text-[13.5px] font-black text-${ptlIco[i]}-800 uppercase bg-white/50 px-3 py-1 rounded-full mb-3 inline-block font-bold font-black font-black font-black">${a.tags}</span><h3 class="font-black text-lg text-slate-800 uppercase font-black font-black font-black">AGENT ${a.id}</h3><div class="space-y-1 mt-4 font-black font-black">${a.skills.map(s=>`<p class="text-[13.5px] text-slate-700 flex items-center font-black font-black font-black"><i class="fas fa-check-circle text-${ptlIco[i]}-500 mr-2 opacity-60 font-black"></i> ${s}</p>`).join('')}</div></div></div>`).join('');
+            
+            const roles = ["เจ้าหน้าที่", "ครู/อาจารย์", "ฝ่ายบริหาร", "ประถมศึกษา", "มัธยมต้น", "มัธยมปลาย", "อาชีวะ", "มหาวิทยาลัย", "ผู้อำนวยการ", "คณบดี"];
+            document.getElementById('role-shortcut-container').innerHTML = roles.map(r => `<button class="role-filter-btn px-6 py-2.5 rounded-full shadow-sm font-black font-black">${r}</button>`).join('');
+
+            const pillars = document.getElementById('about-pillars-grid');
+            if (pillars) pillars.innerHTML = pillarsData.map((p, i) => `<div class="warm-card p-6 rounded-3xl border border-orange-100 shadow-sm font-bold font-black font-black"><div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center ${p.c} mb-4 shadow-sm font-black font-black font-black font-black"><i class="fas ${p.icon} font-black font-black"></i></div><h4 class="text-[13.5px] font-black uppercase mb-2 leading-tight text-blue-900 font-black font-black font-black">${p.t}</h4><p class="text-[13.5px] text-slate-600 font-medium opacity-80 leading-relaxed font-black font-black font-black font-black">${p.d}</p></div>`).join('');
+            
             renderCalendar();
             populatePortalList();
         };
