@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V11.9.70 - Supreme Restoration</title>
+    <title>Digital Squad AI V11.8.68 - Frozen Final Version</title>
     
     <!-- External Resources -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -36,7 +36,6 @@
         .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(100px, 1fr)); gap: 1px; background-color: #e2e8f0; }
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         .modal-content { background: white; border-radius: 2rem; width: 90%; max-width: 480px; padding: 2.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
-        .modal-content-lg { max-width: 900px !important; }
         #toast { visibility: hidden; min-width: 280px; background-color: #10b981; color: #fff; text-align: center; border-radius: 50px; padding: 1rem 1.5rem; position: fixed; z-index: 100000; left: 50%; bottom: 100px; transform: translateX(-50%) translateY(20px); font-weight: 700; opacity: 0; transition: all 0.4s; }
         #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
         .agent-number-bg { position: absolute; top: -10px; right: 10px; font-size: 6rem; font-weight: 900; color: rgba(0,0,0,0.03); z-index: 0; pointer-events: none; }
@@ -49,12 +48,12 @@
     <header class="bg-primary sticky top-0 z-50 shadow-lg px-4">
         <div class="container mx-auto flex items-center justify-between h-16 md:h-20">
             <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchTab('home')">
-                <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform text-primary text-xl md:text-2xl font-black">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform text-primary text-xl md:text-2xl">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
                 <div class="text-left text-white">
-                    <h1 class="font-black text-base md:text-lg leading-tight uppercase">Digital Squad AI <span class="text-blue-300">V11.9.70</span></h1>
-                    <p class="text-[10px] md:text-xs text-blue-200 tracking-widest uppercase font-bold">Supreme Sync Edition</p>
+                    <h1 class="font-black text-base md:text-lg leading-tight uppercase">Digital Squad AI <span class="text-blue-300">V11.8.68</span></h1>
+                    <p class="text-[10px] md:text-xs text-blue-200 tracking-widest uppercase font-bold">Base Recovery Complete</p>
                 </div>
             </div>
             <nav class="hidden lg:flex space-x-8 text-white h-full items-center">
@@ -81,60 +80,19 @@
         
         <!-- ================= TAB: HOME ================= -->
         <div id="tab-home" class="tab-content">
-            <!-- Hero Section V11.9.70 -->
-            <div class="bg-gradient-to-br from-blue-900 via-primary to-blue-700 rounded-[2.5rem] p-8 md:p-16 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600">
-                <div class="relative z-10 max-w-5xl">
-                    <h1 class="text-2xl md:text-5xl font-black mb-4 uppercase tracking-tight leading-tight">
-                        DIGITAL SQUAD AI FOR TEACHERS THAILAND <span class="text-blue-300">V11.9.70</span>
-                    </h1>
-                    <p class="text-accent text-lg md:text-2xl font-black mb-6 leading-tight">
-                        ระบบนิเวศทางการศึกษา ผู้ช่วย AI อัจฉริยะสำหรับครูไทย ที่ช่วยลดภาระงานเอกสาร งานสื่อการสอน และงานระบบทุกรูปแบบ คืนเวลาชีวิตให้กับครูทุกคน
-                    </p>
-                    <div class="space-y-4 mb-10 max-w-4xl">
-                        <p class="text-blue-50 text-base md:text-xl font-medium leading-relaxed opacity-90 border-l-4 border-blue-400 pl-6">
-                            เปลี่ยนงานเอกสารที่ซับซ้อนให้เสร็จในเวลาไม่กี่นาที ทั้งเอกสารราชการ แผนการสอน รายงานผล ไปจนถึงงานบริหาร ให้ AI จัดการแทนคุณอย่างเป็นระบบ ถูกต้อง และพร้อมใช้งานทันที
-                        </p>
+            <div class="bg-gradient-to-br from-blue-950 via-primary to-blue-800 rounded-3xl p-8 md:p-14 text-white shadow-2xl relative overflow-hidden mb-10 border-b-4 border-blue-500">
+                <div class="relative z-10 max-w-4xl">
+                    <div class="flex flex-wrap items-center gap-3 mb-6">
+                        <span class="bg-blue-500 text-white text-xs px-4 py-1.5 rounded-full uppercase tracking-widest font-bold">V11.8.68 BASE STATUS</span>
+                        <span class="bg-emerald-500/20 text-emerald-300 text-xs px-4 py-1.5 rounded-full border border-emerald-500/30 font-bold"><i class="fas fa-check-circle mr-1"></i> Official Sync</span>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 mb-12">
-                        <div class="flex items-center gap-3"><div class="w-7 h-7 bg-emerald-500 rounded-full flex items-center justify-center shadow-md"><i class="fas fa-check text-white text-sm"></i></div><span class="text-base md:text-lg font-black tracking-wide">ลดเวลางานเอกสารได้หลายชั่วโมงต่อวัน</span></div>
-                        <div class="flex items-center gap-3"><div class="w-7 h-7 bg-emerald-500 rounded-full flex items-center justify-center shadow-md"><i class="fas fa-check text-white text-sm"></i></div><span class="text-base md:text-lg font-black tracking-wide">อัปเดตกฎ ระเบียบ และนโยบายล่าสุด</span></div>
-                        <div class="flex items-center gap-3"><div class="w-7 h-7 bg-emerald-500 rounded-full flex items-center justify-center shadow-md"><i class="fas fa-check text-white text-sm"></i></div><span class="text-base md:text-lg font-black tracking-wide">ใช้งานง่าย ไม่ต้องมีพื้นฐานด้าน AI</span></div>
-                        <div class="flex items-center gap-3"><div class="w-7 h-7 bg-emerald-500 rounded-full flex items-center justify-center shadow-md"><i class="fas fa-check text-white text-sm"></i></div><span class="text-base md:text-lg font-black tracking-wide">ปลอดภัย มาตรฐานสูง และถูกลิขสิทธิ์ 100%</span></div>
-                    </div>
-                    <div class="flex flex-wrap gap-4">
-                        <button onclick="switchTab('catalog')" class="bg-white text-primary px-8 py-4 rounded-2xl font-black shadow-xl hover:bg-slate-100 transition-all flex items-center uppercase tracking-wider group active:scale-95"><i class="fas fa-magic mr-3 text-yellow-500 group-hover:rotate-12 transition-transform"></i> ทดลองใช้ AI ร่างภารกิจ</button>
-                        <button onclick="switchTab('gems')" class="bg-blue-600/40 backdrop-blur-md border-2 border-blue-400 text-white px-8 py-4 rounded-2xl font-black shadow-xl hover:bg-blue-600/60 transition-all flex items-center uppercase tracking-wider active:scale-95"><i class="fas fa-robot mr-3 text-blue-200"></i> เลือก AI AGENT</button>
-                    </div>
+                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-6 uppercase leading-tight text-white">ระบบนิเวศทางการศึกษา<br><span class="text-blue-300">ผู้ช่วย AI สำหรับครูไทย</span></h2>
+                    <p class="text-blue-100 text-base md:text-xl font-medium leading-relaxed mb-10 border-l-4 border-blue-400 pl-5">ศูนย์กลางข้อมูลข่าวสารและนวัตกรรมเพื่อการพัฒนาวิชาชีพครูไทย ปกป้องลิขสิทธิ์และผลงานสร้างสรรค์ด้วยระบบความปลอดภัยขั้นสูง</p>
+                    <button onclick="switchTab('catalog')" class="bg-white text-primary px-8 py-4 rounded-xl font-bold shadow-xl hover:bg-slate-100 transition flex items-center uppercase">
+                        <i class="fas fa-bolt mr-2 text-yellow-500"></i> เริ่มใช้ทางด่วนภารกิจ
+                    </button>
                 </div>
-                <i class="fas fa-layer-group absolute right-10 bottom-10 text-[280px] opacity-[0.07] rotate-12 pointer-events-none"></i>
-            </div>
-
-            <!-- New Statistics Section (V11.9.70) -->
-            <div class="mb-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="md:col-span-2 bg-white rounded-3xl border border-slate-200 p-6 flex flex-col md:flex-row items-center justify-around gap-6 shadow-sm border-b-4 border-b-blue-100">
-                    <div class="flex items-center gap-5">
-                        <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl shadow-sm"><i class="fas fa-users"></i></div>
-                        <div>
-                            <p class="text-xs font-black text-slate-400 uppercase tracking-widest">จำนวนคนใช้งานทั้งหมด</p>
-                            <h3 class="text-3xl font-black text-slate-800">12,458 <span class="text-sm font-bold text-slate-500">คน</span></h3>
-                        </div>
-                    </div>
-                    <div class="w-px h-12 bg-slate-100 hidden md:block"></div>
-                    <div class="flex items-center gap-5">
-                        <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl shadow-sm"><i class="fas fa-bolt"></i></div>
-                        <div>
-                            <p class="text-xs font-black text-slate-400 uppercase tracking-widest">เรียกใช้งาน AI ไปแล้ว</p>
-                            <h3 class="text-3xl font-black text-slate-800">89,204 <span class="text-sm font-bold text-slate-500">ครั้ง</span></h3>
-                        </div>
-                    </div>
-                </div>
-                <button onclick="toggleModal('stats-modal'); initStatsCharts();" class="bg-slate-800 text-white rounded-3xl p-6 flex items-center justify-center gap-4 shadow-lg hover:bg-slate-900 transition-all active:scale-95 group">
-                    <div class="text-left">
-                        <h4 class="font-black text-xl leading-tight">ดูสถิติทั้งหมด</h4>
-                        <p class="text-xs text-slate-400 font-bold uppercase tracking-tighter">Real-time AI Ecosystem Data</p>
-                    </div>
-                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:bg-accent group-hover:text-primary transition-all"><i class="fas fa-chart-line"></i></div>
-                </button>
+                <i class="fas fa-network-wired absolute -right-10 -bottom-10 text-[300px] opacity-10 rotate-12"></i>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-6">
@@ -142,14 +100,14 @@
                     <h3 class="text-xl font-black text-slate-800 flex items-center mb-6"><span class="w-10 h-10 rounded-full bg-red-100 text-red-500 flex items-center justify-center mr-3"><i class="fas fa-satellite-dish"></i></span> ข่าวสารราชการไทย (Official)</h3>
                     <div class="space-y-4">
                         <div class="p-5 rounded-2xl bg-orange-50 border border-orange-100 shadow-sm transition hover:shadow-md"><span class="text-[10px] font-bold text-white bg-primary px-2.5 py-1 rounded-full mb-3 inline-block uppercase">สพฐ. (ANNOUNCE)</span><h4 class="text-base font-bold">สถานีแก้หนี้ครู ลงพื้นที่เชิงรุกพฤษภาคม 69 ทั่วประเทศ</h4><button class="w-full bg-white mt-4 py-2 rounded-xl text-xs font-bold border border-slate-200 hover:bg-blue-50 transition">อ่านเพิ่มเติม</button></div>
-                        <div class="p-5 rounded-2xl bg-blue-50 border border-blue-100 transition hover:shadow-md"><span class="text-[10px] font-bold text-white bg-blue-600 px-2.5 py-1 rounded-full mb-3 inline-block uppercase">ก.ค.ศ. (วPA)</span><h4 class="text-base font-bold">คู่มือเขียนข้อตกลง PA ปีงบประมาณ 2570 มาตรฐานใหม่</h4><button class="w-full bg-white mt-4 py-2 rounded-xl text-xs font-bold border border-slate-200 hover:bg-blue-50 transition">ดาวน์โหลดคู่มือ</button></div>
+                        <div class="p-5 rounded-2xl bg-blue-50 border border-blue-100 shadow-sm transition hover:shadow-md"><span class="text-[10px] font-bold text-white bg-blue-600 px-2.5 py-1 rounded-full mb-3 inline-block uppercase">ก.ค.ศ. (วPA)</span><h4 class="text-base font-bold">คู่มือเขียนข้อตกลง PA ปีงบประมาณ 2570 มาตรฐานใหม่</h4><button class="w-full bg-white mt-4 py-2 rounded-xl text-xs font-bold border border-slate-200 hover:bg-blue-50 transition">ดาวน์โหลดคู่มือ</button></div>
                     </div>
                 </div>
                 <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
                     <h3 class="text-xl font-black text-slate-800 flex items-center mb-6"><span class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3"><i class="fas fa-graduation-cap"></i></span> หลักสูตรพัฒนาวิชาชีพ</h3>
                     <div class="space-y-4">
-                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 flex gap-4 items-center transition hover:shadow-md"><div class="w-20 h-20 bg-primary rounded-xl flex items-center justify-center text-white shrink-0 shadow-inner"><i class="fas fa-brain text-2xl"></i></div><div><span class="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded text-[10px] font-bold tracking-wide mb-2 inline-block uppercase">วPA Verified</span><h4 class="text-sm font-bold text-slate-800">AI Literacy for Teachers 2026</h4><p class="text-xs text-slate-500">15 - 20 พ.ค. 69 | สพฐ. x Google</p></div></div>
-                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 flex gap-4 items-center transition hover:shadow-md"><div class="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center text-white shrink-0 shadow-inner"><i class="fas fa-chalkboard-teacher text-2xl"></i></div><div><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded text-[10px] font-bold tracking-wide mb-2 inline-block uppercase tracking-widest">Active Learning</span><h4 class="text-sm font-bold text-slate-800">นวัตกรรมการจัดการเรียนรู้เชิงรุก</h4><p class="text-xs text-slate-500 font-bold">ออนไลน์ผ่านระบบ OBEC E-Learning</p></div></div>
+                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 flex gap-4 items-center shadow-sm transition hover:shadow-md"><div class="w-20 h-20 bg-primary rounded-xl flex items-center justify-center text-white shrink-0"><i class="fas fa-brain text-2xl"></i></div><div><span class="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded text-[10px] font-bold tracking-wide mb-2 inline-block">วPA Verified</span><h4 class="text-sm font-bold">AI Literacy for Teachers 2026</h4><p class="text-xs text-slate-500">15 - 20 พ.ค. 69 | สพฐ. x Google</p></div></div>
+                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 flex gap-4 items-center shadow-sm transition hover:shadow-md"><div class="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center text-white shrink-0"><i class="fas fa-chalkboard-teacher text-2xl"></i></div><div><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded text-[10px] font-bold tracking-wide mb-2 inline-block uppercase">Active Learning</span><h4 class="text-sm font-bold">นวัตกรรมการจัดการเรียนรู้เชิงรุก</h4><p class="text-xs text-slate-500">ออนไลน์ผ่านระบบ OBEC E-Learning</p></div></div>
                     </div>
                 </div>
             </div>
@@ -161,62 +119,71 @@
             <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2rem] p-6 md:p-8 text-white shadow-xl mb-10 text-left border-4 border-blue-400/20 relative overflow-hidden">
                 <div class="flex items-center gap-4 mb-5 pb-5 border-b border-white/10 relative z-10"><div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-2xl font-black text-blue-800">>_</div><h3 class="text-xl md:text-2xl font-black uppercase tracking-wide">พิมพ์คำว่า "GO" แล้วกด ENTER เพื่อเริ่มต้นทำงาน</h3></div>
                 <div class="space-y-4 relative z-10 text-left">
-                    <div class="flex items-start bg-black/20 p-4 rounded-2xl border border-white/5 shadow-inner"><i class="fas fa-compass text-blue-300 text-xl mr-4"></i><p class="text-sm leading-relaxed text-blue-50 font-bold">ต้องการสร้างงาน เข้า <span class="bg-white text-blue-900 text-[10px] font-black px-2 py-1 rounded shadow-sm uppercase">AGENT 01</span> เพื่อให้ระบบแนะนำผู้ช่วยที่เหมาะสมกับเนื้องานนั้นทันที</p></div>
-                    <div class="flex items-start bg-black/20 p-4 rounded-2xl border border-white/5 shadow-inner"><i class="fas fa-clipboard-check text-rose-300 text-xl mr-4"></i><p class="text-sm leading-relaxed text-blue-50 font-bold">หลังทำงานเสร็จ เข้า <span class="bg-white text-rose-800 text-[10px] font-black px-2 py-1 rounded shadow-sm uppercase">AGENT 10</span> เพื่อตรวจสอบความถูกต้อง ป้องกันลิขสิทธิ์ และขัดเกลาผลงาน</p></div>
+                    <div class="flex items-start bg-black/20 p-4 rounded-2xl border border-white/5 shadow-inner"><i class="fas fa-compass text-blue-300 text-xl mr-4"></i><p class="text-sm leading-relaxed text-blue-50">ต้องการสร้างงาน เข้า <span class="bg-white text-blue-900 text-[10px] font-black px-2 py-1 rounded shadow-sm uppercase">AGENT 01</span> เพื่อให้ระบบแนะนำผู้ช่วยที่เหมาะสมกับเนื้องานนั้นทันที</p></div>
+                    <div class="flex items-start bg-black/20 p-4 rounded-2xl border border-white/5 shadow-inner"><i class="fas fa-clipboard-check text-rose-300 text-xl mr-4"></i><p class="text-sm leading-relaxed text-blue-50">หลังทำงานเสร็จ เข้า <span class="bg-white text-rose-800 text-[10px] font-black px-2 py-1 rounded shadow-sm uppercase">AGENT 10</span> เพื่อตรวจสอบความถูกต้อง ป้องกันลิขสิทธิ์ และขัดเกลาผลงาน</p></div>
                 </div>
                 <i class="fas fa-microchip absolute -right-10 -bottom-10 text-[200px] text-white opacity-5 rotate-12"></i>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 text-left">
-                <!-- Agent 01-10 with Correct Gems Links -->
+                <!-- Agent 01 -->
                 <div onclick="window.open('https://gemini.google.com/gem/1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe?usp=sharing', '_blank')" class="bg-blue-50 border border-blue-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group h-full flex flex-col hover:-translate-y-1">
                     <span class="agent-number-bg">01</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 text-blue-600 shadow-sm"><i class="fas fa-compass"></i></div>
-                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase leading-tight">Command Center</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 01</p>
+                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase">Command Center</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 01</p>
                     <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-blue-200/50"><li>ค้นหาฐานภารกิจ 1,000+</li><li>นำทางยุทธศาสตร์ 8 ด้าน</li><li>วางแผนโครงการรายปี</li><li>แนะนำ Agent</li><li>สรุปรายงานโครงการ</li></div>
                 </div>
+                <!-- Agent 02 -->
                 <div onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="bg-indigo-50 border border-indigo-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group h-full flex flex-col hover:-translate-y-1">
                     <span class="agent-number-bg">02</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 text-indigo-600 shadow-sm"><i class="fas fa-bullhorn"></i></div>
-                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase leading-tight">Smart Hub</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 02</p>
+                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase">Smart Hub</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 02</p>
                     <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-indigo-200/50"><li>สรุปข่าวราชการรายวัน</li><li>วิเคราะห์บริบทสถานศึกษา</li><li>สืบค้นงานวิจัยทางการศึกษา</li><li>สรุปไฟล์ PDF อัตโนมัติ</li><li>ค้นหาเทรนด์การศึกษา</li></div>
                 </div>
+                <!-- Agent 03 -->
                 <div onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="bg-teal-50 border border-teal-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group h-full flex flex-col hover:-translate-y-1">
                     <span class="agent-number-bg">03</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 text-teal-600 shadow-sm"><i class="fas fa-pencil-ruler"></i></div>
-                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase leading-tight">Lesson Designer</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 03</p>
-                    <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-teal-200/50"><li>แผน Active Learning</li><li>กำหนดจุดประสงค์ KPA</li><li>สร้างกิจกรรมกระตุ้นผู้เรียน</li><li>สมรรถนะใหม่ 2569</li><li>ออกแบบสื่อประกอบการสอน</li></div>
+                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase">Lesson Designer</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 03</p>
+                    <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-teal-200/50"><li>แผน Active Learning</li><li>กำหนดจุดประสงค์ KPA</li><li>สร้างกิจกรรมกระตุ้น</li><li>สมรรถนะใหม่ 2569</li><li>สื่อประกอบการสอน</li></div>
                 </div>
+                <!-- Agent 04 -->
                 <div onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group h-full flex flex-col hover:-translate-y-1">
                     <span class="agent-number-bg">04</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 text-emerald-600 shadow-sm"><i class="fas fa-check-double"></i></div>
-                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase leading-tight">Assessment Pro</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 04</p>
-                    <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-emerald-200/50"><li>สร้างข้อสอบตามตัวชี้วัด</li><li>หาค่าความยากง่าย P/R</li><li>สร้างเกณฑ์ประเมิน Rubric</li><li>วิเคราะห์ผลสัมฤทธิ์</li><li>ออกแบบการสอนซ่อมเสริม</li></div>
+                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase">Assessment Pro</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 04</p>
+                    <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-emerald-200/50"><li>สร้างข้อสอบตามตัวชี้วัด</li><li>หาค่าความยากง่าย P/R</li><li>สร้างเกณฑ์ประเมิน Rubric</li><li>วิเคราะห์ผลสัมฤทธิ์</li><li>ออกแบบการซ่อมเสริม</li></div>
                 </div>
+                <!-- Agent 05 -->
                 <div onclick="window.open('https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp?usp=sharing', '_blank')" class="bg-pink-50 border border-pink-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group h-full flex flex-col hover:-translate-y-1">
                     <span class="agent-number-bg">05</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 text-pink-600 shadow-sm"><i class="fas fa-palette"></i></div>
-                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase leading-tight">Creative Media</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 05</p>
+                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase">Creative Media</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 05</p>
                     <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-pink-200/50"><li>เขียนสคริปต์วิดีโอสอน</li><li>Prompt สร้างภาพ AI</li><li>โครงสร้าง Infographic</li><li>แต่งเพลง/กลอนประกอบ</li><li>แปลงบทเรียนเป็นเกม</li></div>
                 </div>
+                <!-- Agent 06 -->
                 <div onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="bg-slate-100 border border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group h-full flex flex-col hover:-translate-y-1">
                     <span class="agent-number-bg">06</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 text-slate-600 shadow-sm"><i class="fas fa-briefcase"></i></div>
-                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase leading-tight">Admin Registrar</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 06</p>
-                    <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-slate-300"><li>ร่างหนังสือราชการ</li><li>ตรวจสอบระเบียบ e-GP</li><li>จัดทำรายงานการประชุม</li><li>สรุปงบประมาณ</li><li>เอกสารประเมินบุคคล</li></div>
+                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase">Admin Registrar</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 06</p>
+                    <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-slate-300"><li>ร่างหนังสือราชการ</li><li>ตรวจสอบระเบียบ e-GP</li><li>จัดทำรายงานการประชุม</li><li>โครงสร้างงบประมาณ</li><li>เอกสารประเมินบุคคล</li></div>
                 </div>
+                <!-- Agent 07 -->
                 <div onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="bg-fuchsia-50 border border-fuchsia-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group h-full flex flex-col hover:-translate-y-1">
                     <span class="agent-number-bg">07</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 text-fuchsia-600 shadow-sm"><i class="fas fa-user-graduate"></i></div>
-                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase leading-tight">Student Support</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 07</p>
-                    <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-fuchsia-200/50"><li>ระบบดูแลช่วยเหลือ</li><li>บันทึกเยี่ยมบ้าน/SDQ</li><li>ออกแบบกิจกรรมโฮมรูม</li><li>วิเคราะห์สุขภาพจิต</li><li>แนะแนวศึกษาต่อ/อาชีพ</li></div>
+                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase">Student Support</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 07</p>
+                    <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-fuchsia-200/50"><li>ระบบดูแลช่วยเหลือ</li><li>บันทึกเยี่ยมบ้าน/SDQ</li><li>กิจกรรมโฮมรูม</li><li>วิเคราะห์สุขภาพจิต</li><li>แนะแนวเส้นทางอาชีพ</li></div>
                 </div>
+                <!-- Agent 08 -->
                 <div onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="bg-amber-50 border border-amber-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group h-full flex flex-col hover:-translate-y-1">
                     <span class="agent-number-bg">08</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 text-amber-600 shadow-sm"><i class="fas fa-medal"></i></div>
-                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase leading-tight">PA Coach</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 08</p>
+                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase">PA Coach</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 08</p>
                     <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-amber-200/50"><li>ตรวจตัวชี้วัด วPA</li><li>วิจัยในชั้นเรียน AR</li><li>หลักฐานงานดิจิทัล</li><li>ตรวจสอบระบบ DPA</li><li>เตรียมรับการประเมิน</li></div>
                 </div>
+                <!-- Agent 09 -->
                 <div onclick="window.open('https://gemini.google.com/gem/1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM?usp=sharing', '_blank')" class="bg-cyan-50 border border-cyan-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group h-full flex flex-col hover:-translate-y-1">
                     <span class="agent-number-bg">09</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 text-cyan-600 shadow-sm"><i class="fas fa-laptop-code"></i></div>
-                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase leading-tight">Tech Assistant</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 09</p>
+                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase">Tech Assistant</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 09</p>
                     <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-cyan-200/50"><li>เขียนโค้ด HTML/CSS</li><li>จัดการ Workspace</li><li>สูตร Excel ขั้นสูง</li><li>แก้ปัญหาอุปกรณ์ IT</li><li>วางระบบฐานข้อมูล</li></div>
                 </div>
+                <!-- Agent 10 -->
                 <div onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="bg-rose-50 border border-rose-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group h-full flex flex-col hover:-translate-y-1">
                     <span class="agent-number-bg">10</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 text-rose-600 shadow-sm"><i class="fas fa-clipboard-check"></i></div>
-                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase leading-tight">Quality Auditor</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 10</p>
-                    <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-rose-200/50"><li>ตรวจคัดลอกวิชาการ</li><li>เช็คความสอดคล้อง PDPA</li><li>Proofread คำผิด</li><li>ตรวจสอบจริยธรรม</li><li>สแกนหาจุดผิดพลาด</li></div>
+                    <h3 class="font-black text-[13px] mb-1 text-slate-800 uppercase">Quality Auditor</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT 10</p>
+                    <div class="text-[11px] space-y-1.5 mt-auto pt-3 border-t border-rose-200/50"><li>ตรวจคัดลอกวิชาการ</li><li>เช็คความสอดคล้อง PDPA</li><li>Proofread คำผิด</li><li>จริยธรรมวิจัย</li><li>สแกนหาจุดผิดในงาน</li></div>
                 </div>
             </div>
         </div>
@@ -224,8 +191,8 @@
         <!-- ================= [FROZEN] TAB: CATALOG (Strategic Base) [DO NOT MODIFY] ================= -->
         <div id="tab-catalog" class="tab-content hidden text-left">
             <div class="bg-primary rounded-[2rem] p-8 md:p-16 text-white text-center shadow-xl mb-8 relative overflow-hidden">
-                <div class="relative z-10 text-center">
-                    <h2 class="text-3xl md:text-5xl font-black uppercase mb-4 tracking-tight leading-tight">CENTRALIZED OPERATIONS</h2>
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-5xl font-black uppercase mb-4 tracking-tight text-white leading-tight">CENTRALIZED OPERATIONS</h2>
                     <p class="text-blue-200 text-base md:text-xl font-medium mb-8 leading-relaxed">เข้าถึงคลังเครื่องมือยุทธศาสตร์กว่า 1,000+ โครงการ และกว่า 10,000+ เนื้องาน ของระบบนิเวศทางการศึกษาอย่างรวดเร็ว</p>
                     
                     <div class="max-w-3xl mx-auto relative mb-8" id="search-container">
@@ -252,15 +219,16 @@
 
             <!-- 5 Steps Research + Ethics -->
             <div class="mb-10 bg-white rounded-[2.5rem] border border-slate-200 p-6 md:p-10 shadow-sm relative overflow-hidden">
-                <div class="flex items-center gap-4 mb-6"><div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl shadow-sm flex-shrink-0"><i class="fas fa-project-diagram"></i></div><div><h3 class="text-xl md:text-3xl font-black text-slate-800 uppercase tracking-tight">5 สเตปการทำงานวิจัยร่วมกับ AI อย่างมืออาชีพ</h3><p class="text-slate-500 font-bold text-sm leading-relaxed">กระบวนการมาตรฐานสากล (คลิกยิงตรงเข้าสู่ Agent ทันที)</p></div></div>
+                <div class="flex items-center gap-4 mb-6"><div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl shadow-sm flex-shrink-0"><i class="fas fa-project-diagram"></i></div><div><h3 class="text-xl md:text-3xl font-black text-slate-800 uppercase tracking-tight">5 สเตปการทำงานวิจัยร่วมกับ AI อย่างมืออาชีพ</h3><p class="text-slate-500 font-bold text-sm">กระบวนการมาตรฐานสากล (คลิกยิงตรงเข้าสู่ Agent ทันที)</p></div></div>
                 <div class="mb-8 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 p-6 rounded-2xl flex flex-col md:flex-row gap-6 items-start border-l-8 border-l-amber-500 relative overflow-hidden shadow-sm">
                     <div class="w-14 h-14 bg-amber-500 text-white rounded-full flex items-center justify-center text-2xl flex-shrink-0 shadow-lg relative z-10"><i class="fas fa-balance-scale"></i></div>
-                    <div class="relative z-10 text-left">
-                        <h4 class="font-black text-amber-900 text-lg mb-2 uppercase tracking-wide text-left">ประกาศสำคัญด้านจรรยาบรรณและธรรมาภิบาลทางวิชาชีพครู</h4>
-                        <p class="text-[14.5px] md:text-[15.5px] text-amber-800 font-bold leading-relaxed text-left">ในการปฏิบัติงานทุกขั้นตอน <strong>ระบบ AI เป็นเพียงเครื่องมืออำนวยความสะดวก</strong> เพื่อเพิ่มประสิทธิภาพเท่านั้น ข้าราชการครู <strong>ต้องเป็นผู้ร่วมคิด วางแผน ประเมินผล และตรวจสอบความถูกต้องของข้อมูลอ้างอิงด้วยตนเองทุกครั้ง</strong> เพื่อความถูกต้องตามหลักวิชาชีพและกฎหมายอย่างเคร่งครัด</p>
+                    <div class="relative z-10">
+                        <h4 class="font-black text-amber-900 text-lg mb-2 uppercase tracking-wide">ประกาศสำคัญด้านจรรยาบรรณและธรรมาภิบาลทางวิชาชีพครู</h4>
+                        <p class="text-[14.5px] md:text-[15.5px] text-amber-800 font-bold leading-relaxed">ในการปฏิบัติงานทุกขั้นตอน <strong>ระบบ AI เป็นเพียงเครื่องมืออำนวยความสะดวก</strong> เพื่อเพิ่มประสิทธิภาพเท่านั้น ข้าราชการครู <strong>ต้องเป็นผู้ร่วมคิด วางแผน ประเมินผล และตรวจสอบความถูกต้องของข้อมูลอ้างอิงด้วยตนเองทุกครั้ง</strong> เพื่อความถูกต้องตามหลักวิชาชีพและกฎหมายอย่างเคร่งครัด</p>
                     </div>
+                    <i class="fas fa-stamp absolute -right-4 -bottom-4 text-[120px] text-amber-500 opacity-5 pointer-events-none"></i>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-10 text-center">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-10">
                     <div onclick="window.open('https://gemini.google.com/gem/1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe?usp=sharing', '_blank')" class="bg-slate-50 hover:bg-indigo-50 p-5 rounded-2xl border border-slate-200 cursor-pointer transition-all flex flex-col items-center text-center shadow-sm"><i class="fas fa-crosshairs text-indigo-500 mb-2 text-2xl"></i><h4 class="font-black text-xs">1. กำหนดโจทย์ปัญหา</h4><p class="text-[9px] text-slate-500 font-black uppercase mt-1">AGENT 01</p></div>
                     <div onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="bg-slate-50 hover:bg-blue-50 p-5 rounded-2xl border border-slate-200 cursor-pointer transition-all flex flex-col items-center text-center shadow-sm"><i class="fas fa-database text-blue-500 mb-2 text-2xl"></i><h4 class="font-black text-xs">2. ป้อนข้อมูลอ้างอิง</h4><p class="text-[9px] text-slate-500 font-black uppercase mt-1">AGENT 02</p></div>
                     <div onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="bg-slate-50 hover:bg-purple-50 p-5 rounded-2xl border border-slate-200 cursor-pointer transition-all flex flex-col items-center text-center shadow-sm"><i class="fas fa-brain text-purple-500 mb-2 text-2xl"></i><h4 class="font-black text-xs">3. สั่งประมวลผล</h4><p class="text-[9px] text-slate-500 font-black uppercase mt-1">AGENT 08</p></div>
@@ -270,17 +238,21 @@
 
                 <hr class="mb-10 border-slate-100">
 
-                <h3 class="text-xl md:text-2xl font-black text-rose-900 flex items-center mb-6 relative z-10 uppercase tracking-tight text-left"><i class="fas fa-bell mr-3 animate-pulse"></i> ภารกิจเร่งด่วนประจำเดือน (พฤษภาคม 2569)</h3>
+                <!-- ภารกิจเร่งด่วนประจำเดือนครู -->
+                <h3 class="text-xl md:text-2xl font-black text-rose-900 flex items-center mb-6 relative z-10 uppercase tracking-tight"><i class="fas fa-bell mr-3 animate-pulse"></i> ภารกิจเร่งด่วนสำหรับครูประจำเดือน (พฤษภาคม 2569)</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 relative z-10">
-                    <div onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="bg-rose-50 p-5 rounded-xl border border-rose-100 cursor-pointer hover:bg-rose-100 transition flex items-start gap-3 shadow-sm border-l-4 border-l-rose-500 text-left"><i class="fas fa-exclamation-circle text-rose-500 mt-1"></i><div><h4 class="font-bold text-[14px]">นำเข้าข้อมูลระบบ DMC ภาคเรียนที่ 1</h4><p class="text-[11px] text-rose-700 font-bold uppercase mt-1 tracking-widest leading-tight">ไปที่ Agent 07 - เร่งด่วน</p></div></div>
-                    <div onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="bg-rose-50 p-5 rounded-xl border border-rose-100 cursor-pointer hover:bg-rose-100 transition flex items-start gap-3 shadow-sm border-l-4 border-l-rose-500 text-left"><i class="fas fa-exclamation-circle text-rose-500 mt-1"></i><div><h4 class="font-bold text-[14px]">จัดทำข้อตกลงพัฒนางาน (วPA)</h4><p class="text-[11px] text-rose-700 font-bold uppercase mt-1 tracking-widest leading-tight">ไปที่ Agent 08 - ประเมิน</p></div></div>
-                    <div onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="bg-rose-50 p-5 rounded-xl border border-rose-100 cursor-pointer hover:bg-rose-100 transition flex items-start gap-3 shadow-sm border-l-4 border-l-rose-500 text-left"><i class="fas fa-exclamation-circle text-rose-500 mt-1"></i><div><h4 class="font-bold text-[14px]">แผนการสอน Active Learning</h4><p class="text-[11px] text-rose-700 font-bold uppercase mt-1 tracking-widest leading-tight">ไปที่ Agent 03 - เตรียมสอน</p></div></div>
+                    <div onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="bg-rose-50 p-5 rounded-xl border border-rose-100 cursor-pointer hover:bg-rose-100 transition flex items-start gap-3 shadow-sm border-l-4 border-l-rose-500"><i class="fas fa-exclamation-circle text-rose-500 mt-1"></i><div><h4 class="font-bold text-[14px]">นำเข้าข้อมูลระบบ DMC ภาคเรียนที่ 1</h4><p class="text-[11px] text-rose-700 font-bold uppercase mt-1 tracking-widest">AGENT 07 - เร่งด่วน</p></div></div>
+                    <div onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="bg-rose-50 p-5 rounded-xl border border-rose-100 cursor-pointer hover:bg-rose-100 transition flex items-start gap-3 shadow-sm border-l-4 border-l-rose-500"><i class="fas fa-exclamation-circle text-rose-500 mt-1"></i><div><h4 class="font-bold text-[14px]">จัดทำข้อตกลงพัฒนางาน (วPA)</h4><p class="text-[11px] text-rose-700 font-bold uppercase mt-1 tracking-widest">AGENT 08 - ประเมิน</p></div></div>
+                    <div onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="bg-rose-50 p-5 rounded-xl border border-rose-100 cursor-pointer hover:bg-rose-100 transition flex items-start gap-3 shadow-sm border-l-4 border-l-rose-500"><i class="fas fa-exclamation-circle text-rose-500 mt-1"></i><div><h4 class="font-bold text-[14px]">แผนการสอนเชิงรุก Active Learning</h4><p class="text-[11px] text-rose-700 font-bold uppercase mt-1 tracking-widest">AGENT 03 - เตรียมสอน</p></div></div>
+                    <div onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="bg-blue-50/80 p-5 rounded-xl border border-blue-100 cursor-pointer hover:bg-blue-100 transition flex items-start gap-3 shadow-sm border-l-4 border-l-blue-500"><i class="fas fa-star text-blue-500 mt-1"></i><div><h4 class="font-bold text-[14px]">สรุปรายงาน SAR ประจำปี</h4><p class="text-[11px] text-blue-700 font-bold uppercase mt-1 tracking-widest">AGENT 10 - งานประกันฯ</p></div></div>
+                    <div onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="bg-blue-50/80 p-5 rounded-xl border border-blue-100 cursor-pointer hover:bg-blue-100 transition flex items-start gap-3 shadow-sm border-l-4 border-l-blue-500"><i class="fas fa-star text-blue-500 mt-1"></i><div><h4 class="font-bold text-[14px]">สร้างคลังข้อสอบปลายภาคเรียน</h4><p class="text-[11px] text-blue-700 font-bold uppercase mt-1 tracking-widest">AGENT 04 - วัดและผล</p></div></div>
+                    <div onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="bg-blue-50/80 p-5 rounded-xl border border-blue-100 cursor-pointer hover:bg-blue-100 transition flex items-start gap-3 shadow-sm border-l-4 border-l-blue-500"><i class="fas fa-star text-blue-500 mt-1"></i><div><h4 class="font-bold text-[14px]">วิจัยในชั้นเรียน (Action Research)</h4><p class="text-[11px] text-blue-700 font-bold uppercase mt-1 tracking-widest">AGENT 08 - นวัตกรรมครู</p></div></div>
                 </div>
 
                 <hr class="mb-10 border-slate-100">
 
-                <!-- 🌟 ULTIMATE FAST LANE (14 Groups) 🌟 -->
-                <div class="flex items-center gap-3 mb-8 px-2 text-left">
+                <!-- 🌟 ULTIMATE FAST LANE (14 Colored Categories) 🌟 -->
+                <div class="flex items-center gap-3 mb-8 px-2">
                     <div class="w-12 h-12 bg-yellow-400 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md"><i class="fas fa-bolt animate-bounce"></i></div>
                     <div>
                         <h3 class="text-xl md:text-3xl font-black text-slate-800 uppercase tracking-tight">ULTIMATE FAST LANE (01-10 SYNC)</h3>
@@ -288,31 +260,165 @@
                     </div>
                 </div>
 
-                <h5 class="font-black text-indigo-700 text-base mb-6 border-l-4 border-l-indigo-500 pl-3 uppercase tracking-widest text-left">สายงานวิชาการและการสอน (แยกตามระดับชั้น)</h5>
+                <!-- Academic Section -->
+                <h5 class="font-black text-indigo-700 text-base mb-6 border-l-4 border-l-indigo-500 pl-3 uppercase tracking-widest">สายงานวิชาการและการสอน (แยกตามระดับชั้น)</h5>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                    <div class="bg-blue-50 border border-blue-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-blue-800 text-sm mb-4 flex items-center"><i class="fas fa-child mr-2"></i> ประถมต้น (1-3)</h4><div class="space-y-2"><button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-blue-100 text-[10.5px] font-bold rounded-xl border border-blue-100 truncate shadow-sm transition">แผนบูรณาการเล่น</button><button onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-blue-100 text-[10.5px] font-bold rounded-xl border border-blue-100 truncate shadow-sm transition">แบบทดสอบอ่านออกเขียนได้</button><button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-blue-100 text-[10.5px] font-bold rounded-xl border border-blue-100 truncate shadow-sm transition">แบบคัดกรองพฤติกรรม</button><button onclick="window.open('https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-blue-100 text-[10.5px] font-bold rounded-xl border border-blue-100 truncate shadow-sm transition">สื่อประกอบการสอนเด็กเล็ก</button><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-blue-100 text-[10.5px] font-bold rounded-xl border border-blue-100 truncate shadow-sm transition">บันทึกแจ้งครูประจำชั้น</button></div></div>
-                    <div class="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-emerald-800 text-sm mb-4 flex items-center"><i class="fas fa-users mr-2"></i> ประถมปลาย (4-6)</h4><div class="space-y-2"><button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-emerald-100 text-[10.5px] font-bold rounded-xl border border-emerald-100 truncate shadow-sm transition">แผนโครงงานสร้างสรรค์</button><button onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-emerald-100 text-[10.5px] font-bold rounded-xl border border-emerald-100 truncate shadow-sm transition">ข้อสอบเตรียมเข้า ม.1</button><button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-emerald-100 text-[10.5px] font-bold rounded-xl border border-emerald-100 truncate shadow-sm transition">วิจัยแก้การอ่าน/เขียน</button><button onclick="window.open('https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-emerald-100 text-[10.5px] font-bold rounded-xl border border-emerald-100 truncate shadow-sm transition">สื่อ Infographic บทเรียน</button><button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-emerald-100 text-[10.5px] font-bold rounded-xl border border-emerald-100 truncate shadow-sm transition">สรุปการออกเยี่ยมบ้าน</button></div></div>
-                    <div class="bg-purple-50 border border-purple-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-purple-800 text-sm mb-4 flex items-center"><i class="fas fa-user-friends mr-2"></i> มัธยมต้น (1-3)</h4><div class="space-y-2"><button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-purple-100 text-[10.5px] font-bold rounded-xl border border-purple-100 truncate shadow-sm transition">แผน Active Learning</button><button onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-purple-100 text-[10.5px] font-bold rounded-xl border border-purple-100 truncate shadow-sm transition">สร้างข้อสอบคิดวิเคราะห์</button><button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-purple-100 text-[10.5px] font-bold rounded-xl border border-purple-100 truncate shadow-sm transition">กิจกรรมโฮมรูมแนะแนว</button><button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-purple-100 text-[10.5px] font-bold rounded-xl border border-purple-100 truncate shadow-sm transition">ตรวจรายงานโครงงาน</button><button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-purple-100 text-[10.5px] font-bold rounded-xl border border-purple-100 truncate shadow-sm transition">เขียน ID Plan ครูรายบุคคล</button></div></div>
-                    <div class="bg-rose-50 border border-rose-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-rose-800 text-sm mb-4 flex items-center"><i class="fas fa-graduation-cap mr-2 text-rose-600"></i> มัธยมปลาย (4-6)</h4><div class="space-y-2"><button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-rose-100 text-[10.5px] font-bold rounded-xl border border-rose-100 truncate shadow-sm transition">แผนเตรียมสอบมหาลัย</button><button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-rose-100 text-[10.5px] font-bold rounded-xl border border-rose-100 truncate shadow-sm transition">แนะแนว Portfolio</button><button onclick="window.open('https://gemini.google.com/gem/1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-rose-100 text-[10.5px] font-bold rounded-xl border border-rose-100 truncate shadow-sm transition">ศึกษาต่อสายวิชาชีพ</button><button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-rose-100 text-[10.5px] font-bold rounded-xl border border-rose-100 truncate shadow-sm transition">ตรวจรายงานวิชา IS</button><button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-rose-100 text-[10.5px] font-bold rounded-xl border border-rose-100 truncate shadow-sm transition">สรุปข่าวเทคโนโลยีระดับโลก</button></div></div>
-                    <div class="bg-amber-50 border border-amber-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-amber-800 text-sm mb-4 flex items-center"><i class="fas fa-tools mr-2 text-amber-600"></i> อาชีวศึกษา (ปวช./ปวส.)</h4><div class="space-y-2"><button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-amber-100 text-[10.5px] font-bold rounded-xl border border-amber-100 truncate shadow-sm transition">แผนฝึกอาชีพทวิภาคี</button><button onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-amber-100 text-[10.5px] font-bold rounded-xl border border-amber-100 truncate shadow-sm transition">ประเมินสมรรถนะรายวิชา</button><button onclick="window.open('https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-amber-100 text-[10.5px] font-bold rounded-xl border border-amber-100 truncate shadow-sm transition">ออกแบบสิ่งประดิษฐ์</button><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-amber-100 text-[10.5px] font-bold rounded-xl border border-amber-100 truncate shadow-sm transition">เอกสารนิเทศฝึกงาน</button><button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-amber-100 text-[10.5px] font-bold rounded-xl border border-amber-100 truncate shadow-sm transition">วิจัยสถาบันวิชาชีพ</button></div></div>
-                    <div class="bg-indigo-50 border border-indigo-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-indigo-800 text-sm mb-4 flex items-center"><i class="fas fa-university mr-2 text-indigo-600"></i> อุดมศึกษา (มหาลัย)</h4><div class="space-y-2"><button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-indigo-100 text-[10.5px] font-bold rounded-xl border border-indigo-100 truncate shadow-sm transition">Proposal ขอทุนวิจัย (อว.)</button><button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-indigo-100 text-[10.5px] font-bold rounded-xl border border-indigo-100 truncate shadow-sm transition">โครงสร้างรายวิชา TQF</button><button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-indigo-100 text-[10.5px] font-bold rounded-xl border border-indigo-100 truncate shadow-sm transition">จริยธรรมวิจัยมนุษย์</button><button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-indigo-100 text-[10.5px] font-bold rounded-xl border border-indigo-100 truncate shadow-sm transition">วิเคราะห์สถิติวิจัยขั้นสูง</button><button onclick="window.open('https://gemini.google.com/gem/1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-indigo-100 text-[10.5px] font-bold rounded-xl border border-indigo-100 truncate shadow-sm transition">ร่างบันทึกข้อความมหาลัย</button></div></div>
+                    <!-- ประถมต้น -->
+                    <div class="bg-blue-50 border border-blue-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-blue-800 text-sm mb-4 flex items-center"><i class="fas fa-child mr-2"></i> ประถมต้น (1-3)</h4>
+                        <div class="space-y-2">
+                            <button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-blue-100 text-[10.5px] font-bold rounded-xl border border-blue-100 truncate shadow-sm transition">แผนการสอนบูรณาการเล่น</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-blue-100 text-[10.5px] font-bold rounded-xl border border-blue-100 truncate shadow-sm transition">สร้างข้อสอบอ่านออกเขียนได้</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-blue-100 text-[10.5px] font-bold rounded-xl border border-blue-100 truncate shadow-sm transition">แบบคัดกรองพฤติกรรม SDQ</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-blue-100 text-[10.5px] font-bold rounded-xl border border-blue-100 truncate shadow-sm transition">สื่อประกอบการสอนเด็กเล็ก</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-blue-100 text-[10.5px] font-bold rounded-xl border border-blue-100 truncate shadow-sm transition">บันทึกแจ้งครูประจำชั้นรายบุคคล</button>
+                        </div>
+                    </div>
+                    <!-- ประถมปลาย -->
+                    <div class="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-emerald-800 text-sm mb-4 flex items-center"><i class="fas fa-users mr-2"></i> ประถมปลาย (4-6)</h4>
+                        <div class="space-y-2">
+                            <button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-emerald-100 text-[10.5px] font-bold rounded-xl border border-emerald-100 truncate shadow-sm transition">แผนการสอนโครงงานสร้างสรรค์</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-emerald-100 text-[10.5px] font-bold rounded-xl border border-emerald-100 truncate shadow-sm transition">ข้อสอบเตรียมตัวเข้า ม.1</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-emerald-100 text-[10.5px] font-bold rounded-xl border border-emerald-100 truncate shadow-sm transition">วิจัยแก้ปัญหาอ่านไม่ออกเขียนไม่ได้</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-emerald-100 text-[10.5px] font-bold rounded-xl border border-emerald-100 truncate shadow-sm transition">สื่อ Infographic สรุปบทเรียน</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-emerald-100 text-[10.5px] font-bold rounded-xl border border-emerald-100 truncate shadow-sm transition">สรุปผลการออกเยี่ยมบ้านนักเรียน</button>
+                        </div>
+                    </div>
+                    <!-- มัธยมต้น -->
+                    <div class="bg-purple-50 border border-purple-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-purple-800 text-sm mb-4 flex items-center"><i class="fas fa-user-friends mr-2"></i> มัธยมต้น (1-3)</h4>
+                        <div class="space-y-2">
+                            <button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-purple-100 text-[10.5px] font-bold rounded-xl border border-purple-100 truncate shadow-sm transition">แผน Active Learning ฐานสมรรถนะ</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-purple-100 text-[10.5px] font-bold rounded-xl border border-purple-100 truncate shadow-sm transition">สร้างข้อสอบเน้นการคิดวิเคราะห์</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-purple-100 text-[10.5px] font-bold rounded-xl border border-purple-100 truncate shadow-sm transition">กิจกรรมโฮมรูมแนะแนววัยรุ่น</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-purple-100 text-[10.5px] font-bold rounded-xl border border-purple-100 truncate shadow-sm transition">ตรวจรายงานโครงงาน (Project Report)</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-purple-100 text-[10.5px] font-bold rounded-xl border border-purple-100 truncate shadow-sm transition">เขียน ID Plan แผนพัฒนาตนเอง</button>
+                        </div>
+                    </div>
+                    <!-- มัธยมปลาย -->
+                    <div class="bg-rose-50 border border-rose-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-rose-800 text-sm mb-4 flex items-center"><i class="fas fa-graduation-cap mr-2"></i> มัธยมปลาย (4-6)</h4>
+                        <div class="space-y-2">
+                            <button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-rose-100 text-[10.5px] font-bold rounded-xl border border-rose-100 truncate shadow-sm transition">แผนการเรียนรู้เตรียมสอบมหาวิทยาลัย</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-rose-100 text-[10.5px] font-bold rounded-xl border border-rose-100 truncate shadow-sm transition">แนะแนว Portfolio และการสะสมงาน</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-rose-100 text-[10.5px] font-bold rounded-xl border border-rose-100 truncate shadow-sm transition">วางแผนการศึกษาต่อสายวิชาชีพ</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-rose-100 text-[10.5px] font-bold rounded-xl border border-rose-100 truncate shadow-sm transition">ตรวจรายงาน IS (Independent Study)</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-rose-100 text-[10.5px] font-bold rounded-xl border border-rose-100 truncate shadow-sm transition">วิเคราะห์เทรนด์เทคโนโลยีระดับโลก</button>
+                        </div>
+                    </div>
+                    <!-- อาชีวะ -->
+                    <div class="bg-amber-50 border border-amber-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-amber-800 text-sm mb-4 flex items-center"><i class="fas fa-tools mr-2"></i> อาชีวศึกษา (ปวช./ปวส.)</h4>
+                        <div class="space-y-2">
+                            <button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-amber-100 text-[10.5px] font-bold rounded-xl border border-amber-100 truncate shadow-sm transition">แผนฝึกอาชีพอาชีวะ (ทวิภาคี)</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-amber-100 text-[10.5px] font-bold rounded-xl border border-amber-100 truncate shadow-sm transition">สร้างแบบประเมินสมรรถนะรายวิชา</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-amber-100 text-[10.5px] font-bold rounded-xl border border-amber-100 truncate shadow-sm transition">ออกแบบนวัตกรรมสิ่งประดิษฐ์รุ่นใหม่</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-amber-100 text-[10.5px] font-bold rounded-xl border border-amber-100 truncate shadow-sm transition">สัญญาและเอกสารฝึกงานภายนอก</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-amber-100 text-[10.5px] font-bold rounded-xl border border-amber-100 truncate shadow-sm transition">วิจัยสถาบันเพื่อพัฒนาการเรียนสอน</button>
+                        </div>
+                    </div>
+                    <!-- มหาวิทยาลัย -->
+                    <div class="bg-indigo-50 border border-indigo-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-indigo-800 text-sm mb-4 flex items-center"><i class="fas fa-university mr-2"></i> อุดมศึกษา (มหาวิทยาลัย)</h4>
+                        <div class="space-y-2">
+                            <button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-indigo-100 text-[10.5px] font-bold rounded-xl border border-indigo-100 truncate shadow-sm transition">ร่างเค้าโครง Proposal ขอทุน อว.</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-indigo-100 text-[10.5px] font-bold rounded-xl border border-indigo-100 truncate shadow-sm transition">โครงสร้างรายวิชาและ มคอ. (TQF)</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-indigo-100 text-[10.5px] font-bold rounded-xl border border-indigo-100 truncate shadow-sm transition">ตรวจสอบจริยธรรมการวิจัยในมนุษย์</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-indigo-100 text-[10.5px] font-bold rounded-xl border border-indigo-100 truncate shadow-sm transition">วิเคราะห์สถิติข้อมูลวิจัยขั้นสูง</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM?usp=sharing', '_blank')" class="w-full text-left px-3 py-2.5 bg-white hover:bg-indigo-100 text-[10.5px] font-bold rounded-xl border border-indigo-100 truncate shadow-sm transition">ร่างบันทึกข้อความราชการระดับมหาลัย</button>
+                        </div>
+                    </div>
                 </div>
 
-                <h5 class="font-black text-rose-700 text-base mb-6 border-l-4 border-l-rose-500 pl-3 uppercase tracking-widest text-left">งานราชการและบริหารจัดการ (แยกตามหน่วยงานหลัก)</h5>
+                <!-- Agency Section -->
+                <h5 class="font-black text-rose-700 text-base mb-6 border-l-4 border-l-rose-500 pl-3 uppercase tracking-widest">งานราชการและบริหารจัดการ (แยกตามหน่วยงานต้นสังกัด)</h5>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-blue-50 border border-blue-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-blue-800 text-xs mb-3 border-b border-blue-200 pb-1">สพฐ. (OBEC)</h4><div class="space-y-1.5"><button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-blue-100 text-[10px] font-bold rounded-lg border border-blue-50 truncate transition shadow-sm">ข้อมูลรายบุคคล DMC</button><button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-blue-100 text-[10px] font-bold rounded-lg border border-blue-50 truncate transition shadow-sm">งานแผน/ประกันคุณภาพ</button><button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-blue-100 text-[10px] font-bold rounded-lg border border-blue-50 truncate transition shadow-sm">สรุปรายงาน SAR สพฐ.</button><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-blue-100 text-[10px] font-bold rounded-lg border border-blue-50 truncate transition shadow-sm">โครงการโรงเรียนคุณภาพ</button><button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-blue-100 text-[10px] font-bold rounded-lg border border-blue-50 truncate transition shadow-sm">การแก้ไขหนี้สินครู</button></div></div>
-                    <div class="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-emerald-800 text-xs mb-3 border-b border-emerald-200 pb-1">กทม. (BMA)</h4><div class="space-y-1.5"><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-emerald-100 text-[10px] font-bold rounded-lg border border-emerald-50 truncate transition shadow-sm">แผนปฏิบัติการ BMA</button><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-emerald-100 text-[10px] font-bold rounded-lg border border-emerald-50 truncate transition shadow-sm">ระบบภาษี BMA-TAX</button><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-emerald-100 text-[10px] font-bold rounded-lg border border-emerald-50 truncate transition shadow-sm">อาหารกลางวัน BMA</button><button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-emerald-100 text-[10px] font-bold rounded-lg border border-emerald-50 truncate transition shadow-sm">สารสนเทศเขตพื้นที่</button><button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-emerald-100 text-[10px] font-bold rounded-lg border border-emerald-50 truncate transition shadow-sm">ความปลอดภัย BMA</button></div></div>
-                    <div class="bg-amber-50 border border-amber-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-amber-800 text-xs mb-3 border-b border-amber-200 pb-1">สกศ. (ONEC)</h4><div class="space-y-1.5"><button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-amber-100 text-[10px] font-bold rounded-lg border border-amber-50 truncate transition shadow-sm">สภาวะการศึกษาประจำปี</button><button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-amber-100 text-[10px] font-bold rounded-lg border border-amber-50 truncate transition shadow-sm">วิเคราะห์มาตรฐานชาติ</button><button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-amber-100 text-[10px] font-bold rounded-lg border border-amber-50 truncate transition shadow-sm">แผนการศึกษาแห่งชาติ</button><button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-amber-100 text-[10px] font-bold rounded-lg border border-amber-50 truncate transition shadow-sm">คลังข้อมูลสภาการศึกษา</button><button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-amber-100 text-[10px] font-bold rounded-lg border border-amber-50 truncate transition shadow-sm">วิจัยยุทธศาสตร์</button></div></div>
-                    <div class="bg-purple-50 border border-purple-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-purple-800 text-xs mb-3 border-b border-purple-200 pb-1">ก.ค.ศ. (OTEPC)</h4><div class="space-y-1.5"><button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-purple-100 text-[10px] font-bold rounded-lg border border-purple-50 truncate transition shadow-sm">ข้อตกลงพัฒนางาน วPA</button><button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-purple-100 text-[10px] font-bold rounded-lg border border-purple-50 truncate transition shadow-sm">ยื่นคำขอวิทยฐานะ DPA</button><button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-purple-100 text-[10px] font-bold rounded-lg border border-purple-50 truncate transition shadow-sm">ประเมินผลปฏิบัติงานครู</button><button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-purple-100 text-[10px] font-bold rounded-lg border border-purple-50 truncate transition shadow-sm">ร่าง ID Plan การพัฒนา</button><button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-purple-100 text-[10px] font-bold rounded-lg border border-purple-50 truncate transition shadow-sm">วินัยและจรรยาบรรณ</button></div></div>
-                    <div class="bg-rose-50 border border-rose-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-rose-800 text-xs mb-3 border-b border-rose-200 pb-1 uppercase tracking-wider">อว. (MHESI)</h4><div class="space-y-1.5"><button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-rose-100 text-[10px] font-bold rounded-lg border border-rose-50 truncate transition shadow-sm">ทุนวิจัยมหาลัย</button><button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-rose-100 text-[10px] font-bold rounded-lg border border-rose-50 truncate transition shadow-sm">สปิลบัส มคอ. TQF</button><button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-rose-100 text-[10px] font-bold rounded-lg border border-rose-50 truncate transition shadow-sm">บทความวิจัย Journal</button><button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-rose-100 text-[10px] font-bold rounded-lg border border-rose-50 truncate transition shadow-sm">จริยธรรมในมนุษย์</button><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-rose-100 text-[10px] font-bold rounded-lg border border-rose-50 truncate transition shadow-sm">งานบริการวิชาการ</button></div></div>
-                    <div class="bg-cyan-50 border border-cyan-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-cyan-800 text-xs mb-3 border-b border-cyan-200 pb-1 uppercase tracking-wider">สอวช. (NXPO)</h4><div class="space-y-1.5"><button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-cyan-100 text-[10px] font-bold rounded-lg border border-cyan-50 truncate transition shadow-sm">นโยบายอุดมศึกษา-วิทย์</button><button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-cyan-100 text-[10px] font-bold rounded-lg border border-cyan-50 truncate transition shadow-sm">พัฒนากำลังคนทักษะสูง</button><button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-cyan-100 text-[10px] font-bold rounded-lg border border-cyan-50 truncate transition shadow-sm">ยุทธศาสตร์นวัตกรรม</button><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-cyan-100 text-[10px] font-bold rounded-lg border border-cyan-50 truncate transition shadow-sm">เศรษฐกิจนวัตกรรม</button><button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-cyan-100 text-[10px] font-bold rounded-lg border border-cyan-50 truncate transition shadow-sm">BCG Model</button></div></div>
-                    <div class="bg-orange-50 border border-orange-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-orange-800 text-xs mb-3 border-b border-orange-200 pb-1 uppercase tracking-wider text-left">สอศ. (OVEC)</h4><div class="space-y-1.5"><button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-orange-100 text-[10px] font-bold rounded-lg border border-orange-50 truncate transition shadow-sm">วิชาชีพระยะสั้น</button><button onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-orange-100 text-[10px] font-bold rounded-lg border border-orange-50 truncate transition shadow-sm">ประเมินผล V-NET</button><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-orange-100 text-[10px] font-bold rounded-lg border border-orange-50 truncate transition shadow-sm">ศูนย์บ่มเพาะอาชีวะ</button><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-orange-100 text-[10px] font-bold rounded-lg border border-orange-50 truncate transition shadow-sm">ทวิภาคีสถานประกอบการ</button><button onclick="window.open('https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-orange-100 text-[10px] font-bold rounded-lg border border-orange-50 truncate transition shadow-sm">สิ่งประดิษฐ์อาชีวะ</button></div></div>
-                    <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 shadow-sm transition hover:shadow-md text-left"><h4 class="font-black text-slate-800 text-xs mb-3 border-b border-slate-200 pb-1 uppercase tracking-wider text-left text-left">ศธ. (MOE)</h4><div class="space-y-1.5"><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-slate-100 text-[10px] font-bold rounded-lg border border-slate-100 truncate transition shadow-sm">หนังสือราชการภายนอก</button><button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-slate-100 text-[10px] font-bold rounded-lg border border-slate-100 truncate transition shadow-sm">รายงานผลตรวจราชการ</button><button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-slate-100 text-[10px] font-bold rounded-lg border border-slate-100 truncate transition shadow-sm">ประเด็นนโยบายด่วน</button><button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-slate-100 text-[10px] font-bold rounded-lg border border-slate-100 truncate transition shadow-sm">วาระการประชุมผู้บริหาร</button><button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-slate-100 text-[10px] font-bold rounded-lg border border-slate-100 truncate transition shadow-sm">ความถูกต้องสารบรรณ</button></div></div>
+                    <div class="bg-blue-50 border border-blue-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-blue-800 text-xs mb-3 border-b border-blue-200 pb-1 uppercase tracking-wider">สพฐ. (OBEC)</h4>
+                        <div class="space-y-1.5">
+                            <button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-blue-100 text-[10px] font-bold rounded-lg border border-blue-50 truncate transition shadow-sm">ข้อมูลรายบุคคล DMC</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-blue-100 text-[10px] font-bold rounded-lg border border-blue-50 truncate transition shadow-sm">งานแผน/ประกันคุณภาพ</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-blue-100 text-[10px] font-bold rounded-lg border border-blue-50 truncate transition shadow-sm">สรุปรายงาน SAR สพฐ.</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-blue-100 text-[10px] font-bold rounded-lg border border-blue-50 truncate transition shadow-sm">โครงการโรงเรียนคุณภาพ</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-blue-100 text-[10px] font-bold rounded-lg border border-blue-50 truncate transition shadow-sm">การแก้ไขหนี้สินครู สพฐ.</button>
+                        </div>
+                    </div>
+                    <div class="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-emerald-800 text-xs mb-3 border-b border-emerald-200 pb-1 uppercase tracking-wider">กทม. (BMA)</h4>
+                        <div class="space-y-1.5">
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-emerald-100 text-[10px] font-bold rounded-lg border border-emerald-50 truncate transition shadow-sm">แผนปฏิบัติการสังกัด กทม.</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-emerald-100 text-[10px] font-bold rounded-lg border border-emerald-50 truncate transition shadow-sm">ระบบภาษี BMA-TAX</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-emerald-100 text-[10px] font-bold rounded-lg border border-emerald-50 truncate transition shadow-sm">โครงการอาหารกลางวัน BMA</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-emerald-100 text-[10px] font-bold rounded-lg border border-emerald-50 truncate transition shadow-sm">สารสนเทศการศึกษาเขตพื้นที่</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-emerald-100 text-[10px] font-bold rounded-lg border border-emerald-50 truncate transition shadow-sm">ระเบียบความปลอดภัย BMA</button>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 border border-amber-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-amber-800 text-xs mb-3 border-b border-amber-200 pb-1 uppercase tracking-wider">สกศ. (ONEC)</h4>
+                        <div class="space-y-1.5">
+                            <button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-amber-100 text-[10px] font-bold rounded-lg border border-amber-50 truncate transition shadow-sm">สภาวะการศึกษาไทยประจำปี</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-amber-100 text-[10px] font-bold rounded-lg border border-amber-50 truncate transition shadow-sm">วิเคราะห์มาตรฐานศึกษาชาติ</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-amber-100 text-[10px] font-bold rounded-lg border border-amber-50 truncate transition shadow-sm">ร่างแผนการศึกษาแห่งชาติ</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-amber-100 text-[10px] font-bold rounded-lg border border-amber-50 truncate transition shadow-sm">คลังข้อมูลสภาการศึกษา</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-amber-100 text-[10px] font-bold rounded-lg border border-amber-50 truncate transition shadow-sm">วิจัยยุทธศาสตร์การศึกษา</button>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 border border-purple-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-purple-800 text-xs mb-3 border-b border-purple-200 pb-1 uppercase tracking-wider">ก.ค.ศ. (OTEPC)</h4>
+                        <div class="space-y-1.5">
+                            <button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-purple-100 text-[10px] font-bold rounded-lg border border-purple-50 truncate transition shadow-sm">ข้อตกลงพัฒนางาน วPA</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-purple-100 text-[10px] font-bold rounded-lg border border-purple-50 truncate transition shadow-sm">ยื่นคำขอวิทยฐานะ DPA</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-purple-100 text-[10px] font-bold rounded-lg border border-purple-50 truncate transition shadow-sm">ประเมินผลการปฏิบัติงานครู</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-purple-100 text-[10px] font-bold rounded-lg border border-purple-50 truncate transition shadow-sm">ร่าง ID Plan และการพัฒนา</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-purple-100 text-[10px] font-bold rounded-lg border border-purple-50 truncate transition shadow-sm">มาตรฐานวินัยและจรรยาบรรณ</button>
+                        </div>
+                    </div>
+                    <div class="bg-rose-50 border border-rose-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-rose-800 text-xs mb-3 border-b border-rose-200 pb-1 uppercase tracking-wider">อว. (MHESI)</h4>
+                        <div class="space-y-1.5">
+                            <button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-rose-100 text-[10px] font-bold rounded-lg border border-rose-50 truncate transition shadow-sm">ทุนสนับสนุนวิจัยมหาลัย</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-rose-100 text-[10px] font-bold rounded-lg border border-rose-50 truncate transition shadow-sm">ร่างคอร์สสปิลบัส TQF</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-rose-100 text-[10px] font-bold rounded-lg border border-rose-50 truncate transition shadow-sm">ร่างบทความวิจัย Journal</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-rose-100 text-[10px] font-bold rounded-lg border border-rose-50 truncate transition shadow-sm">จริยธรรมวิจัยมนุษย์/สัตว์</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-rose-100 text-[10px] font-bold rounded-lg border border-rose-50 truncate transition shadow-sm">งานบริการวิชาการแก่ชุมชน</button>
+                        </div>
+                    </div>
+                    <div class="bg-cyan-50 border border-cyan-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-cyan-800 text-xs mb-3 border-b border-cyan-200 pb-1 uppercase tracking-wider">สอวช. (NXPO)</h4>
+                        <div class="space-y-1.5">
+                            <button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-cyan-100 text-[10px] font-bold rounded-lg border border-cyan-50 truncate transition shadow-sm">นโยบายอุดมศึกษา-วิทย์</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-cyan-100 text-[10px] font-bold rounded-lg border border-cyan-50 truncate transition shadow-sm">การพัฒนากำลังคนทักษะสูง</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-cyan-100 text-[10px] font-bold rounded-lg border border-cyan-50 truncate transition shadow-sm">ยุทธศาสตร์นวัตกรรมชาติ</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-cyan-100 text-[10px] font-bold rounded-lg border border-cyan-50 truncate transition shadow-sm">เขตเศรษฐกิจพิเศษนวัตกรรม</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-cyan-100 text-[10px] font-bold rounded-lg border border-cyan-50 truncate transition shadow-sm">โครงการ BCG Model ชุมชน</button>
+                        </div>
+                    </div>
+                    <div class="bg-orange-50 border border-orange-100 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-orange-800 text-xs mb-3 border-b border-orange-200 pb-1 uppercase tracking-wider">สอศ. (OVEC)</h4>
+                        <div class="space-y-1.5">
+                            <button onclick="window.open('https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-orange-100 text-[10px] font-bold rounded-lg border border-orange-50 truncate transition shadow-sm">หลักสูตรระยะสั้นวิชาชีพ</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-orange-100 text-[10px] font-bold rounded-lg border border-orange-50 truncate transition shadow-sm">การประเมินผล V-NET</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-orange-100 text-[10px] font-bold rounded-lg border border-orange-50 truncate transition shadow-sm">โครงการศูนย์บ่มเพาะอาชีวะ</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-orange-100 text-[10px] font-bold rounded-lg border border-orange-50 truncate transition shadow-sm">งานทวิภาคีร่วมประกอบการ</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-orange-100 text-[10px] font-bold rounded-lg border border-orange-50 truncate transition shadow-sm">นวัตกรรมสิ่งประดิษฐ์อาชีวะ</button>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 shadow-sm transition hover:shadow-md">
+                        <h4 class="font-black text-slate-800 text-xs mb-3 border-b border-slate-200 pb-1 uppercase tracking-wider text-left">ศธ. (MOE)</h4>
+                        <div class="space-y-1.5">
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-slate-100 text-[10px] font-bold rounded-lg border border-slate-100 truncate transition shadow-sm">หนังสือราชการภายนอก/ใน</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-slate-100 text-[10px] font-bold rounded-lg border border-slate-100 truncate transition shadow-sm">รายงานผลตรวจราชการ ศธ.</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-slate-100 text-[10px] font-bold rounded-lg border border-slate-100 truncate transition shadow-sm">สรุปประเด็นนโยบายระยะด่วน</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-slate-100 text-[10px] font-bold rounded-lg border border-slate-100 truncate transition shadow-sm">วาระการประชุมผู้บริหาร ศธ.</button>
+                            <button onclick="window.open('https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc?usp=sharing', '_blank')" class="w-full text-left px-3 py-1.5 bg-white hover:bg-slate-100 text-[10px] font-bold rounded-lg border border-slate-100 truncate transition shadow-sm">ความถูกต้องระเบียบสารบรรณ</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- ================= [FROZEN] TAB: CALENDAR [DO NOT MODIFY] ================= -->
+        <!-- ================= TAB: CALENDAR [Logic Fixed] ================= -->
         <div id="tab-calendar" class="tab-content hidden text-left">
             <div class="bg-white rounded-[2.5rem] shadow-xl overflow-hidden mb-12 border border-slate-200">
                 <div class="bg-primary px-10 py-14 text-white flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
@@ -322,7 +428,7 @@
                     </div>
                     <div class="relative z-10 flex items-center space-x-4">
                         <button onclick="changeMonth(-1)" class="w-12 h-12 bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center text-xl"><i class="fas fa-chevron-left"></i></button>
-                        <button onclick="resetToToday()" class="px-6 h-12 bg-white text-primary font-bold rounded-full hover:bg-blue-50 transition shadow-lg text-sm font-black uppercase">วันนี้</button>
+                        <button onclick="resetToToday()" class="px-6 h-12 bg-white text-primary font-bold rounded-full hover:bg-blue-50 transition shadow-lg text-sm">วันนี้</button>
                         <button onclick="changeMonth(1)" class="w-12 h-12 bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center text-xl"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <i class="far fa-calendar-alt absolute -left-10 -bottom-10 text-[200px] opacity-10 rotate-12"></i>
@@ -330,92 +436,57 @@
                 <div class="bg-slate-50 p-6 overflow-x-auto">
                     <div id="calendar-body" class="calendar-grid min-w-[900px] rounded-xl overflow-hidden border border-slate-300 shadow-inner"></div>
                 </div>
+                <div class="px-10 py-6 bg-white border-t border-slate-100 flex flex-wrap gap-6 items-center text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                    <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-red-500 mr-2 shadow-sm"></span> วันหยุดราชการ</span>
+                    <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-blue-500 mr-2 shadow-sm"></span> กำหนดการส่งงาน</span>
+                    <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-emerald-500 mr-2 shadow-sm"></span> การอบรม/สัมมนา</span>
+                </div>
             </div>
         </div>
 
         <!-- ================= [FROZEN] TAB: ABOUT (20 Pillars) [DO NOT MODIFY] ================= -->
         <div id="tab-about" class="tab-content hidden text-left">
             <div class="max-w-7xl mx-auto bg-white p-10 md:p-14 rounded-[3rem] shadow-xl border border-slate-100 relative overflow-hidden">
-                <h2 class="text-3xl md:text-4xl font-black text-slate-800 mb-6 uppercase tracking-tighter text-left">จุดแข็งระบบนิเวศ (20 STRATEGIC PILLARS)</h2>
-                <p class="text-slate-500 font-medium mb-12 border-b border-slate-100 pb-6 text-lg tracking-wide leading-relaxed text-left">มาตรฐานความปลอดภัยและนวัตกรรมขั้นสูงสุดเพื่อครูไทย (Core V11.9.70 Restoration)</p>
+                <h2 class="text-3xl md:text-4xl font-black text-slate-800 mb-6 uppercase tracking-tighter">จุดแข็งระบบนิเวศ (20 STRATEGILLARS)</h2>
+                <p class="text-slate-500 font-medium mb-12 border-b border-slate-100 pb-6 text-lg tracking-wide leading-relaxed">มาตรฐานความปลอดภัยและนวัตกรรมขั้นสูงสุดเพื่อครูไทย (Core V11.8.68 Restoration)</p>
                 <div id="about-pillars-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6">
-                    <div class="p-5 rounded-2xl border border-rose-100 bg-rose-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-ban text-rose-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-rose-400 tracking-widest mb-1">PILLAR 01</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Zero Plagiarism</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">สร้างงานใหม่ 100% ปลอดภัยจากการคัดลอกวิชาการ</p></div>
-                    <div class="p-5 rounded-2xl border border-blue-100 bg-blue-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-sync text-blue-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-blue-400 tracking-widest mb-1">PILLAR 02</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Official Sync</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">อ้างอิงระเบียบราชการ สพฐ. และ ก.ค.ศ. ล่าสุดเสมอ</p></div>
-                    <div class="p-5 rounded-2xl border border-emerald-100 bg-emerald-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-user-shield text-emerald-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-emerald-400 tracking-widest mb-1">PILLAR 03</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Prompt Shield</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ปกป้องข้อมูล ข้อมูลท่านจะไม่ถูกนำไปใช้เทรน AI ต่อ</p></div>
-                    <div class="p-5 rounded-2xl border border-amber-100 bg-amber-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-medal text-amber-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-amber-400 tracking-widest mb-1">PILLAR 04</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">วPA Expert</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">เชี่ยวชาญการเขียนข้อตกลง วPA ทุกสายงานทางการศึกษา</p></div>
-                    <div class="p-5 rounded-2xl border border-purple-100 bg-purple-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-pen-fancy text-purple-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-purple-400 tracking-widest mb-1">PILLAR 05</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Humanizer Thai</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ภาษาเป็นธรรมชาติ เป็นทางการ และเหมาะสมกับบริบทไทย</p></div>
-                    <div class="p-5 rounded-2xl border border-indigo-100 bg-indigo-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-shield-virus text-indigo-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-indigo-400 tracking-widest mb-1">PILLAR 06</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">SPS Model</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ความปลอดภัยโครงสร้างสูง ป้องกันการแฮ็กและแทรกแซง</p></div>
-                    <div class="p-5 rounded-2xl border border-pink-100 bg-pink-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-file-invoice-dollar text-pink-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-pink-400 tracking-widest mb-1">PILLAR 07</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">e-GP Ready</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">รองรับระเบียบพัสดุและการจัดซื้อจัดจ้างฉบับล่าสุด 2569</p></div>
-                    <div class="p-5 rounded-2xl border border-sky-100 bg-sky-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-cloud text-sky-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-sky-400 tracking-widest mb-1">PILLAR 08</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Zero Install</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">เข้าใช้งานผ่านเว็บบราวเซอร์ได้ทันที ไม่ต้องติดตั้งโปรแกรม</p></div>
-                    <div class="p-5 rounded-2xl border border-teal-100 bg-teal-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-copy text-teal-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-teal-400 tracking-widest mb-1">PILLAR 09</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Template Hub</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">คลังแบบฟอร์มราชการและแผนการสอนกว่า 1,000 รูปแบบ</p></div>
-                    <div class="p-5 rounded-2xl border border-orange-100 bg-orange-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-flask text-orange-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-orange-400 tracking-widest mb-1">PILLAR 10</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Alchemy Logic</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ตรรกะประมวลผลซับซ้อนแม่นยำสูง ออกแบบเพื่องานวิชาการ</p></div>
-                    <div class="p-5 rounded-2xl border border-fuchsia-100 bg-fuchsia-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-eye text-fuchsia-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-fuchsia-400 tracking-widest mb-1">PILLAR 11</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Multimodal AI</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">วิเคราะห์ข้ามมิติทั้งข้อความ รูปภาพ และไฟล์ PDF ขนาดใหญ่</p></div>
-                    <div class="p-5 rounded-2xl border border-cyan-100 bg-cyan-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-balance-scale text-cyan-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-cyan-400 tracking-widest mb-1">PILLAR 12</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">ITA AA Level</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">โครงสร้างข้อมูลสอดคล้องกับเกณฑ์การประเมินความโปร่งใส</p></div>
-                    <div class="p-5 rounded-2xl border border-lime-100 bg-lime-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-database text-lime-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-lime-400 tracking-widest mb-1">PILLAR 13</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">DOPA Validated</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">รองรับมาตรฐานรูปแบบเอกสารตามมาตรฐานทะเบียนราษฎร</p></div>
-                    <div class="p-5 rounded-2xl border border-violet-100 bg-violet-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-map-marked-alt text-violet-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-violet-400 tracking-widest mb-1">PILLAR 14</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">GIS Integrated</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">วิเคราะห์บริบทเชิงพื้นที่ทางการศึกษาอย่างแม่นยำ</p></div>
-                    <div class="p-5 rounded-2xl border border-red-100 bg-red-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-id-card text-red-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-red-400 tracking-widest mb-1">PILLAR 15</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Identity Sync</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">AI ปรับจูนสำนวนตามวิทยฐานะและตำแหน่งของท่านอัตโนมัติ</p></div>
-                    <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-graduation-cap text-slate-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">PILLAR 16</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">K-to-Uni Scale</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ครอบคลุมฐานข้อมูลตั้งแต่ระดับปฐมวัยถึงมหาวิทยาลัย</p></div>
-                    <div class="p-5 rounded-2xl border border-stone-200 bg-stone-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-briefcase text-stone-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-stone-400 tracking-widest mb-1">PILLAR 17</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Career Aware</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">วิเคราะห์และแนะแนวเส้นทางความก้าวหน้าในวิชาชีพแม่นยำ</p></div>
-                    <div class="p-5 rounded-2xl border border-yellow-100 bg-yellow-50 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-clipboard-check text-yellow-600 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-yellow-400 tracking-widest mb-1">PILLAR 18</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Ethical Audit</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ตรวจสอบจริยธรรมและความถูกต้องเนื้อหาก่อนส่งออกเสมอ</p></div>
-                    <div class="p-5 rounded-2xl border border-rose-200 bg-rose-100/40 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-clock text-rose-500 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-rose-400 tracking-widest mb-1">PILLAR 19</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Realtime Sync</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ฐานข้อมูลอัปเดตแบบ Real-time ทันทุกสถานการณ์สำคัญ</p></div>
-                    <div class="p-5 rounded-2xl border border-indigo-200 bg-indigo-100 shadow-sm flex flex-col h-full text-left group"><i class="fas fa-users text-indigo-700 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-indigo-500 tracking-widest mb-1">PILLAR 20</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">YC Model 2026</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">โครงสร้างรองรับกระบวนทัศน์ทางการศึกษาใหม่ปี 2569</p></div>
+                    <!-- Descriptions provided for stability -->
+                    <div class="p-5 rounded-2xl border border-rose-100 bg-rose-50 shadow-sm flex flex-col h-full"><i class="fas fa-ban text-rose-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-rose-400">PILLAR 01</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Zero Plagiarism</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">สร้างงานใหม่ 100% ปลอดภัยจากการคัดลอกวิชาการ</p></div>
+                    <div class="p-5 rounded-2xl border border-blue-100 bg-blue-50 shadow-sm flex flex-col h-full"><i class="fas fa-sync text-blue-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-blue-400">PILLAR 02</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Official Sync</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">อ้างอิงระเบียบราชการ สพฐ. และ ก.ค.ศ. ล่าสุดเสมอ</p></div>
+                    <div class="p-5 rounded-2xl border border-emerald-100 bg-emerald-50 shadow-sm flex flex-col h-full"><i class="fas fa-user-shield text-emerald-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-emerald-400">PILLAR 03</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Prompt Shield</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ปกป้องข้อมูล ข้อมูลท่านจะไม่ถูกนำไปใช้เทรน AI</p></div>
+                    <div class="p-5 rounded-2xl border border-amber-100 bg-amber-50 shadow-sm flex flex-col h-full"><i class="fas fa-medal text-amber-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-amber-400">PILLAR 04</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">วPA Expert</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">เชี่ยวชาญการเขียนข้อตกลง วPA ทุกสายงานทางการศึกษา</p></div>
+                    <div class="p-5 rounded-2xl border border-purple-100 bg-purple-50 shadow-sm flex flex-col h-full"><i class="fas fa-pen-fancy text-purple-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-purple-400">PILLAR 05</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Humanizer Thai</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ภาษาเป็นธรรมชาติ เป็นทางการ และเหมาะสมกับไทย</p></div>
+                    <div class="p-5 rounded-2xl border border-indigo-100 bg-indigo-50 shadow-sm flex flex-col h-full"><i class="fas fa-shield-virus text-indigo-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-indigo-400">PILLAR 06</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">SPS Model</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ความปลอดภัยโครงสร้างสูง ป้องกันการแฮ็กข้อมูล</p></div>
+                    <div class="p-5 rounded-2xl border border-pink-100 bg-pink-50 shadow-sm flex flex-col h-full"><i class="fas fa-file-invoice-dollar text-pink-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-pink-400">PILLAR 07</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">e-GP Ready</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">รองรับระเบียบพัสดุและการจัดซื้อจัดจ้างฉบับล่าสุด</p></div>
+                    <div class="p-5 rounded-2xl border border-sky-100 bg-sky-50 shadow-sm flex flex-col h-full"><i class="fas fa-cloud text-sky-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-sky-400">PILLAR 08</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Zero Install</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">เข้าใช้งานผ่านเว็บบราวเซอร์ได้ทันทีโดยไม่ลงโปรแกรม</p></div>
+                    <div class="p-5 rounded-2xl border border-teal-100 bg-teal-50 shadow-sm flex flex-col h-full"><i class="fas fa-copy text-teal-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-teal-400">PILLAR 09</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Template Hub</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">คลังแบบฟอร์มราชการและแผนการสอนกว่า 1,000 รูปแบบ</p></div>
+                    <div class="p-5 rounded-2xl border border-orange-100 bg-orange-50 shadow-sm flex flex-col h-full"><i class="fas fa-flask text-orange-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-orange-400">PILLAR 10</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Alchemy Logic</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ตรรกะประมวลผลซับซ้อนแม่นยำสูง ออกแบบเพื่องานวิชาการ</p></div>
+                    <div class="p-5 rounded-2xl border border-fuchsia-100 bg-fuchsia-50 shadow-sm flex flex-col h-full"><i class="fas fa-eye text-fuchsia-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-fuchsia-400">PILLAR 11</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Multimodal AI</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">วิเคราะห์ข้ามมิติทั้งข้อความ รูปภาพ และไฟล์ PDF</p></div>
+                    <div class="p-5 rounded-2xl border border-cyan-100 bg-cyan-50 shadow-sm flex flex-col h-full"><i class="fas fa-balance-scale text-cyan-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-cyan-400">PILLAR 12</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">ITA AA Level</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">โครงสร้างข้อมูลสอดคล้องเกณฑ์ประเมินความโปร่งใสระดับ AA</p></div>
+                    <div class="p-5 rounded-2xl border border-lime-100 bg-lime-50 shadow-sm flex flex-col h-full"><i class="fas fa-database text-lime-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-lime-400">PILLAR 13</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">DOPA Validated</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">รองรับมาตรฐานรูปแบบเอกสารทะเบียนราษฎรฉบับราชการ</p></div>
+                    <div class="p-5 rounded-2xl border border-violet-100 bg-violet-50 shadow-sm flex flex-col h-full"><i class="fas fa-map-marked-alt text-violet-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-violet-400">PILLAR 14</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">GIS Integrated</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">วิเคราะห์บริบทเชิงพื้นที่ทางการศึกษาได้อย่างแม่นยำ</p></div>
+                    <div class="p-5 rounded-2xl border border-red-100 bg-red-50 shadow-sm flex flex-col h-full"><i class="fas fa-id-card text-red-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-red-400">PILLAR 15</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Identity Sync</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">AI ปรับจูนสำนวนตามวิทยฐานะและตำแหน่งของท่านอัตโนมัติ</p></div>
+                    <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50 shadow-sm flex flex-col h-full"><i class="fas fa-graduation-cap text-slate-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-slate-400">PILLAR 16</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">K-to-Uni Scale</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ฐานข้อมูลครอบคลุมตั้งแต่ปฐมวัยถึงระดับมหาวิทยาลัย</p></div>
+                    <div class="p-5 rounded-2xl border border-stone-200 bg-stone-50 shadow-sm flex flex-col h-full"><i class="fas fa-briefcase text-stone-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-stone-400">PILLAR 17</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Career Aware</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">วิเคราะห์และแนะแนวเส้นทางความก้าวหน้าในวิชาชีพแม่นยำ</p></div>
+                    <div class="p-5 rounded-2xl border border-yellow-100 bg-yellow-50 shadow-sm flex flex-col h-full"><i class="fas fa-clipboard-check text-yellow-600 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-yellow-400">PILLAR 18</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Ethical Audit</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ตรวจสอบจริยธรรมและความถูกต้องเนื้อหาก่อนส่งออกเสมอ</p></div>
+                    <div class="p-5 rounded-2xl border border-rose-200 bg-rose-100/40 shadow-sm flex flex-col h-full"><i class="fas fa-clock text-rose-500 mb-3 text-xl"></i><h4 class="text-[10px] font-black uppercase text-rose-400">PILLAR 19</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">Realtime Sync</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">ฐานข้อมูลอัปเดตแบบ Real-time ทันต่อสถานการณ์ปัจจุบัน</p></div>
+                    <div class="p-5 rounded-2xl border border-indigo-200 bg-indigo-100 shadow-sm flex flex-col h-full group"><i class="fas fa-users text-indigo-700 mb-3 text-xl group-hover:scale-110 transition-transform"></i><h4 class="text-[10px] font-black uppercase text-indigo-500">PILLAR 20</h4><p class="text-[13px] font-bold text-slate-800 leading-tight mb-1">YC Model 2026</p><p class="text-[10px] text-slate-500 font-medium mt-auto leading-tight">โครงสร้างรองรับกระบวนทัศน์การจัดการศึกษาใหม่ปี 2569</p></div>
                 </div>
             </div>
         </div>
     </main>
 
     <footer class="bg-white border-t py-10 text-center mt-auto">
-        <p class="text-slate-800 font-black uppercase tracking-widest text-[11px] mb-3">DIGITAL SQUAD AI MASTER ECOSYSTEM | V11.9.70 (BASE RESTORED)</p>
+        <p class="text-slate-800 font-black uppercase tracking-widest text-[11px] mb-3">DIGITAL SQUAD AI MASTER ECOSYSTEM | V11.8.68 (BASE RESTORED)</p>
         <p class="text-primary font-bold text-base mb-2 leading-relaxed text-center">พัฒนาโดย: กันตภณ ณพสิษฐ์ (ครูเอ). 2569</p>
         <p class="text-slate-400 text-[10px] font-bold tracking-widest uppercase">© 2026 OFFICIAL EDUCATIONAL HUB. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <!-- Stats Modal (V11.9.70) -->
-    <div id="stats-modal" class="modal-overlay" onclick="toggleModal('stats-modal')">
-        <div class="modal-content modal-content-lg max-h-[90vh] overflow-y-auto no-scrollbar" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center mb-8 sticky top-0 bg-white pb-4 z-10">
-                <h3 class="text-2xl font-black uppercase text-primary tracking-tight">AI Ecosystem Statistics</h3>
-                <button onclick="toggleModal('stats-modal')" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-rose-500 hover:text-white transition-all"><i class="fas fa-times"></i></button>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Chart 1: Users by Position -->
-                <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                    <h4 class="text-sm font-black text-slate-600 mb-6 uppercase tracking-wider">ผู้ใช้งานแยกตามตำแหน่ง</h4>
-                    <div class="h-64"><canvas id="chart-positions"></canvas></div>
-                </div>
-                <!-- Chart 2: Usage by Agency -->
-                <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                    <h4 class="text-sm font-black text-slate-600 mb-6 uppercase tracking-wider">ผู้ใช้งานแยกตามสายงาน (8 หน่วยงาน)</h4>
-                    <div class="h-64"><canvas id="chart-agencies"></canvas></div>
-                </div>
-                <!-- Chart 3: Usage Time Distribution -->
-                <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                    <h4 class="text-sm font-black text-slate-600 mb-6 uppercase tracking-wider">ช่วงเวลาที่มีการเข้าใช้งานมากที่สุด</h4>
-                    <div class="h-64"><canvas id="chart-times"></canvas></div>
-                </div>
-                <!-- Chart 4: Agent Popularity -->
-                <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                    <h4 class="text-sm font-black text-slate-600 mb-6 uppercase tracking-wider">อันดับความนิยมของ AI Agent (Top 5)</h4>
-                    <div class="h-64"><canvas id="chart-agents"></canvas></div>
-                </div>
-            </div>
-
-            <div class="mt-8 bg-blue-900 text-white p-6 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="text-left">
-                    <h5 class="font-black text-lg">Real-time Registration Data Sync Active</h5>
-                    <p class="text-blue-200 text-xs font-bold uppercase tracking-widest">ข้อมูลอัปเดตอัตโนมัติจากการเข้าสู่ระบบครั้งล่าสุด</p>
-                </div>
-                <div class="text-3xl font-black text-accent tracking-tighter">SUCCESS SYNC</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Login Modal -->
+    <!-- Modals -->
     <div id="login-modal" class="modal-overlay" onclick="toggleModal('login-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
             <h3 class="text-2xl font-black uppercase text-primary text-center mb-6">ลงทะเบียนเข้าใช้งาน</h3>
-            <form onsubmit="handleLogin(event)" class="space-y-4 text-left">
+            <form onsubmit="handleLogin(event)" class="space-y-4">
                 <input type="text" id="user-name-input" required placeholder="ชื่อ - นามสกุล หรือ นามสมมติ" class="w-full bg-slate-50 border p-4 rounded-xl outline-none focus:border-blue-500 font-bold tracking-wide">
                 <button type="submit" class="w-full bg-primary text-white py-4 rounded-xl font-bold uppercase shadow-lg active:scale-95 transition">ยืนยันการเข้าใช้งาน</button>
             </form>
@@ -425,8 +496,7 @@
 
     <script>
         let currentYear = 2026;
-        let currentMonth = 4; // พฤษภาคม
-        let chartsInitialized = false;
+        let currentMonth = 4; // พฤษภาคม (0-indexed)
 
         function switchTab(tab) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
@@ -439,11 +509,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function toggleModal(id) { 
-            const m = document.getElementById(id); 
-            if(m) m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); 
-        }
-
+        // Calendar System Fix
         function renderCalendar() {
             const body = document.getElementById('calendar-body');
             const title = document.getElementById('calendar-title');
@@ -462,7 +528,7 @@
                 if(currentMonth === 4) {
                     if(d === 1 || d === 4 || d === 6) ev = `<div class="mt-1 px-1.5 py-0.5 bg-red-100 text-red-700 rounded text-[9px] font-bold truncate border border-red-200 shadow-sm">วันหยุดราชการ</div>`;
                     if(d === 15) ev = `<div class="mt-1 px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-[9px] font-bold truncate border border-emerald-200 shadow-sm">อบรม AI (สพฐ)</div>`;
-                    if(d === 31) ev = `<div class="mt-1 px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded text-[9px] font-bold truncate border border-blue-200 uppercase tracking-tighter">ปิดระบบข้อมูล</div>`;
+                    if(d === 31) ev = `<div class="mt-1 px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded text-[9px] font-bold truncate border border-blue-200 uppercase">ปิดระบบข้อมูล</div>`;
                 }
                 html += `<div class="${isToday ? 'bg-blue-50 ring-2 ring-blue-500 z-10 shadow-inner' : 'bg-white hover:bg-slate-50'} border-r border-b border-slate-200 p-2 min-h-[120px] flex flex-col transition-all duration-200"><div class="text-right mb-1"><span class="font-bold ${isToday ? 'text-blue-700' : 'text-slate-700'}">${d}</span></div>${ev}</div>`;
             }
@@ -478,6 +544,7 @@
 
         function resetToToday() { currentYear = 2026; currentMonth = 4; renderCalendar(); }
 
+        // --- Predictive Search System ---
         const taskDatabase = [
             "ระบบจัดเก็บข้อมูลนักเรียนรายบุคคล (DMC)", "ระบบวิทยฐานะดิจิทัล (DPA)", "งานวิจัยในชั้นเรียน (AR)", "แผนการสอน Active Learning",
             "การผลิตสื่อและนวัตกรรมการสอน", "สื่อประชาสัมพันธ์สถานศึกษา", "รายงาน SAR ประจำปี", "โครงการอาหารกลางวัน", "งานวัดและประเมินผล",
@@ -495,6 +562,7 @@
                 const query = this.value.toLowerCase().trim();
                 searchDropdown.innerHTML = '';
                 if(!query) { searchDropdown.classList.add('hidden'); return; }
+
                 const results = taskDatabase.filter(i => i.toLowerCase().includes(query)).slice(0, 30);
                 if(results.length > 0) {
                     results.forEach(result => {
@@ -506,6 +574,9 @@
                         d.onclick = () => { searchInput.value = result; searchDropdown.classList.add('hidden'); };
                         searchDropdown.appendChild(d);
                     });
+                    searchDropdown.classList.remove('hidden');
+                } else {
+                    searchDropdown.innerHTML = `<div class="p-5 text-center text-slate-400 text-xs font-bold uppercase tracking-widest"><i class="fas fa-info-circle mr-1"></i> ไม่พบข้อมูลที่เกี่ยวข้อง</div>`;
                     searchDropdown.classList.remove('hidden');
                 }
             });
@@ -521,67 +592,7 @@
             }
         }
 
-        function initStatsCharts() {
-            if(chartsInitialized) return;
-            chartsInitialized = true;
-            
-            // Chart 1: Positions
-            new Chart(document.getElementById('chart-positions'), {
-                type: 'pie',
-                data: {
-                    labels: ['ครูสายผู้สอน', 'สายผู้บริหาร', 'เจ้าหน้าที่/ธุรการ', 'บุคลากรอื่นๆ'],
-                    datasets: [{
-                        data: [65, 12, 18, 5],
-                        backgroundColor: ['#1e3a8a', '#3b82f6', '#10b981', '#facc15']
-                    }]
-                },
-                options: { maintainAspectRatio: false }
-            });
-
-            // Chart 2: Agencies
-            new Chart(document.getElementById('chart-agencies'), {
-                type: 'bar',
-                data: {
-                    labels: ['สพฐ.', 'กทม.', 'ก.ค.ศ.', 'สอศ.', 'อว.', 'ศธ.', 'สกศ.', 'สอวช.'],
-                    datasets: [{
-                        label: 'จำนวนผู้ใช้งาน',
-                        data: [4200, 2150, 1580, 1200, 890, 1400, 650, 410],
-                        backgroundColor: '#3b82f6'
-                    }]
-                },
-                options: { maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
-            });
-
-            // Chart 3: Times
-            new Chart(document.getElementById('chart-times'), {
-                type: 'line',
-                data: {
-                    labels: ['06:00', '09:00', '12:00', '15:00', '18:00', '21:00', '00:00'],
-                    datasets: [{
-                        label: 'ปริมาณทราฟฟิก',
-                        data: [120, 850, 450, 920, 680, 1100, 320],
-                        borderColor: '#1e3a8a',
-                        fill: true,
-                        backgroundColor: 'rgba(30, 58, 138, 0.1)'
-                    }]
-                },
-                options: { maintainAspectRatio: false }
-            });
-
-            // Chart 4: Agent Ranking
-            new Chart(document.getElementById('chart-agents'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['A03 (Lesson)', 'A08 (วPA)', 'A06 (Admin)', 'A10 (Quality)', 'A01 (Command)'],
-                    datasets: [{
-                        data: [30, 25, 20, 15, 10],
-                        backgroundColor: ['#1e3a8a', '#secondary', '#10b981', '#f43f5e', '#f59e0b']
-                    }]
-                },
-                options: { maintainAspectRatio: false }
-            });
-        }
-
+        function toggleModal(id) { const m = document.getElementById(id); if(m) m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); }
         function handleLogin(e) { e.preventDefault(); const name = document.getElementById('user-name-input').value; toggleModal('login-modal'); showToast(`ยินดีต้อนรับ, ${name}`); }
         function showToast(msg) { const t = document.getElementById('toast'); document.getElementById('toast-msg').innerText = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 3500); }
         
