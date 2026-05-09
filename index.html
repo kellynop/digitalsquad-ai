@@ -1,577 +1,298 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V11.8.62 - Base Recovery</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap');
-        :root {
-            --primary-blue: #1e3a8a;
-            --accent-blue: #3b82f6;
-            --success-green: #10b981;
-            --vibrant-yellow: #facc15;
-        }
-        body { 
-            font-family: 'Sarabun', sans-serif; 
-            background-color: #f8fafc; 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            overflow-x: hidden; 
-            padding-bottom: 70px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        .allow-select { user-select: text !important; -webkit-user-select: text !important; }
-        @media (min-width: 1024px) { body { padding-bottom: 0; } }
-        
-        .site-header { background-color: var(--primary-blue); color: white; }
-        .nav-link { border-bottom: 3px solid transparent; transition: all 0.3s; cursor: pointer; color: #bfdbfe; font-size: 1.05rem; padding: 1.25rem 0.5rem; font-weight: 700; }
-        .nav-link:hover, .nav-active { border-bottom: 3px solid #60a5fa; color: white; }
-        
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 0.75rem 0; box-shadow: 0 -4px 15px rgba(0,0,0,0.08); z-index: 1000; border-top: 1px solid #e2e8f0; }
-        .bottom-nav-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; font-size: 0.9rem; font-weight: 800; cursor: pointer; }
-        .bottom-nav-item.active { color: var(--accent-blue); }
-        .bottom-nav-item i { font-size: 1.6rem; margin-bottom: 3px; }
-
-        #search-results-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border: 2px solid #3b82f6;
-            border-top: none;
-            border-radius: 0 0 1.5rem 1.5rem;
-            z-index: 1000;
-            max-height: 400px;
-            overflow-y: auto;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-        .search-item { padding: 1rem 1.5rem; cursor: pointer; border-bottom: 1px solid #f1f5f9; transition: all 0.2s; font-weight: 700; color: #475569; display: flex; align-items: center; }
-        .search-item:hover { background-color: #eff6ff; color: #1e3a8a; padding-left: 2rem; }
-        .search-highlight { color: #2563eb; background-color: #dbeafe; padding: 0 2px; border-radius: 4px; }
-
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(135px, 1fr)); gap: 1px; background-color: #cbd5e1; min-width: 945px; }
-        .calendar-day { background-color: white; min-height: 160px; padding: 10px; font-size: 14.5px; position: relative; display: flex; flex-direction: column; }
-        .calendar-day.today { background-color: #fffbeb; border: 4px solid var(--vibrant-yellow) !important; z-index: 10; }
-        
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-        .modal-content { background: white; border-radius: 2.5rem; width: 92%; max-width: 650px; padding: 2.5rem; position: relative; max-height: 90vh; overflow-y: auto; }
-        
-        #toast { visibility: hidden; min-width: 280px; background-color: #059669; color: #fff; text-align: center; border-radius: 50px; padding: 1rem 1.5rem; position: fixed; z-index: 100000; left: 50%; bottom: 100px; transform: translateX(-50%); font-weight: 800; opacity: 0; transition: all 0.4s; }
-        #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(-15px); }
-        
-        .agent-number-bg { position: absolute; top: -10px; right: 10px; font-size: 6rem; font-weight: 900; color: rgba(0,0,0,0.05); z-index: 0; pointer-events: none; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Squad AI - System Status Report</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Sarabun', sans-serif; }
+.chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 320px; max-height: 400px; }
+@media (min-width: 768px) { .chart-container { height: 380px; } }
+.process-node { display: flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border-radius: 9999px; background-color: #3b82f6; color: white; font-weight: 800; font-size: 1.25rem; z-index: 10; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+.process-line { position: absolute; top: 1.5rem; left: 1.5rem; right: -1.5rem; height: 0.25rem; background-color: #bfdbfe; z-index: 0; }
+</style>
 </head>
-<body class="bg-slate-50 font-bold">
+<body class="bg-slate-100 text-slate-800 antialiased">
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
 
-    <!-- Header -->
-    <header class="site-header sticky top-0 z-50 shadow-lg px-4 font-black">
-        <div class="container mx-auto flex items-center justify-between h-16">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
-                <div class="w-11 h-11 bg-white rounded-xl flex items-center justify-center shadow-md">
-                    <i class="fas fa-graduation-cap text-blue-900 text-2xl"></i>
-                </div>
-                <div class="text-left text-white">
-                    <h1 class="font-black text-lg leading-tight uppercase tracking-tighter text-white">Digital Squad AI <span class="text-blue-300">V11.8.62</span></h1>
-                    <p class="text-[11.5px] text-blue-200 tracking-[0.2em] uppercase">Base Recovery Hub</p>
-                </div>
-            </div>
-            <nav class="hidden lg:flex space-x-6 text-white h-full items-center font-bold">
-                <a onclick="switchTab('home')" id="nav-home" class="nav-link nav-active">หน้าแรก</a>
-                <a onclick="switchTab('gems')" id="nav-gems" class="nav-link">AI Agent</a>
-                <a onclick="switchTab('catalog')" id="nav-catalog" class="nav-link">ฐานยุทธศาสตร์</a>
-                <a onclick="switchTab('calendar')" id="nav-calendar" class="nav-link">ปฏิทินกิจกรรม</a>
-                <a onclick="switchTab('about')" id="nav-about" class="nav-link">เกี่ยวกับเรา</a>
-            </nav>
-            <div class="flex items-center space-x-3 font-black">
-                <button onclick="toggleModal('login-modal')" class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full text-[13.5px] font-black transition shadow-lg text-white uppercase border border-blue-400">LOGIN / REGISTER</button>
-            </div>
-        </div>
-    </header>
+<header class="bg-gradient-to-r from-blue-900 to-blue-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl mb-10">
+<div class="inline-block bg-blue-400 text-blue-950 px-4 py-1.5 rounded-full font-bold text-sm tracking-wider mb-4 uppercase">
+V11.8.44 Base Status
+</div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 drop-shadow-md">
+รายงานสรุปสถานะสมรรถนะ<br><span class="text-yellow-400">Digital Squad AI</span>
+</h1>
+<p class="text-lg md:text-xl text-blue-100 max-w-3xl font-medium leading-relaxed">
+บทสรุปขีดความสามารถล่าสุดของ AGENT 01-10 (เวอร์ชัน 8 - Core Sync 2569) ที่ได้รับการอัปเกรดโครงสร้าง การเชื่อมโยงบริบท และฐานข้อมูลนโยบายระดับชาติ เพื่อคืนเวลาให้ครูไทยอย่างสมบูรณ์แบบ
+</p>
+</header>
 
-    <!-- Mobile Nav -->
-    <nav class="bottom-nav lg:hidden font-bold">
-        <div onclick="switchTab('home')" id="m-nav-home" class="bottom-nav-item active"><i class="fas fa-home"></i><span>หน้าแรก</span></div>
-        <div onclick="switchTab('gems')" id="m-nav-gems" class="bottom-nav-item"><i class="fas fa-robot"></i><span>AI Agent</span></div>
-        <div onclick="switchTab('catalog')" id="m-nav-catalog" class="bottom-nav-item"><i class="fas fa-route"></i><span>ยุทธศาสตร์</span></div>
-        <div onclick="switchTab('calendar')" id="m-nav-calendar" class="bottom-nav-item"><i class="fas fa-calendar-day"></i><span>ปฏิทิน</span></div>
-        <div onclick="switchTab('about')" id="m-nav-about" class="bottom-nav-item"><i class="fas fa-info-circle"></i><span>เกี่ยวกับเรา</span></div>
-    </nav>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
 
-    <main class="flex-grow container mx-auto px-4 py-6 font-bold text-left allow-select">
-        
-        <!-- Tab: Dashboard (HTML ฝังตายตัว ไม่รวนแน่นอน) -->
-        <div id="tab-home">
-            <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 rounded-[2.5rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden mb-8 border-b-4 border-blue-600 font-black">
-                <div class="relative z-10 max-w-5xl">
-                    <div class="flex flex-wrap items-center gap-3 mb-6">
-                        <span class="bg-blue-400 text-blue-950 text-[12px] px-4 py-1.5 rounded-full uppercase tracking-widest font-black shadow-sm">V11.8.62 BASE RECOVERY</span>
-                        <span class="bg-emerald-500/20 text-emerald-300 text-[12px] px-4 py-1.5 rounded-full border border-emerald-500/30 font-black flex items-center">Official Sync</span>
-                    </div>
-                    
-                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-8 uppercase leading-tight text-white">ระบบนิเวศทางการศึกษา<br><span class="text-blue-300">ผู้ช่วย AI อัจฉริยะสำหรับครูไทย</span></h2>
-                    
-                    <p class="text-blue-100 text-lg md:text-xl font-medium leading-relaxed mb-10 opacity-95 border-l-4 border-blue-400 pl-4">
-                        ศูนย์กลางข้อมูลข่าวสารและนวัตกรรมเพื่อการพัฒนาวิชาชีพครูไทย ปกป้องลิขสิทธิ์และผลงานสร้างสรรค์ด้วยระบบความปลอดภัยขั้นสูง
-                    </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-                        <div class="bg-white/10 p-6 rounded-[1.5rem] border border-white/20 shadow-inner">
-                            <h4 class="text-blue-200 font-black uppercase text-[15px] mb-4 flex items-center"><i class="fas fa-user-check mr-3"></i> ใครใช้ได้บ้าง & ช่วยอย่างไร?</h4>
-                            <div class="space-y-4 text-[14.5px] text-blue-100 font-bold">
-                                <div class="flex items-start">
-                                    <i class="fas fa-seedling text-emerald-400 mt-1 mr-3 shrink-0"></i>
-                                    <span class="leading-relaxed"><b class="text-white">คุณครูบรรจุใหม่:</b> นำทางงานธุรการชั้นเรียน แนะนำการร่างแผนสมรรถนะ และการดูแลช่วยเหลือนักเรียนให้ถูกต้องตามระเบียบ</span>
-                                </div>
-                                <div class="flex items-start">
-                                    <i class="fas fa-award text-amber-400 mt-1 mr-3 shrink-0"></i>
-                                    <span class="leading-relaxed"><b class="text-white">คุณครูมืออาชีพ:</b> เร่งสปีดการทำวิจัยชั้นเรียน วPA คศ.2-4 และเตรียมเล่มรายงานรางวัลระดับชาติในเวลาอันรวดเร็ว</span>
-                                </div>
-                                <div class="flex items-start">
-                                    <i class="fas fa-university text-blue-300 mt-1 mr-3 shrink-0"></i>
-                                    <span class="leading-relaxed"><b class="text-white">ฝ่ายบริหารและเจ้าหน้าที่:</b> สรุปนโยบาย ศธ. ร่างโครงการแผนปฏิบัติการ และตรวจสอบพัสดุ e-GP 2569 ให้เป็นมืออาชีพ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white/10 p-6 rounded-[1.5rem] border border-white/20 shadow-inner">
-                            <h4 class="text-rose-300 font-black uppercase text-[15px] mb-4 flex items-center"><i class="fas fa-shield-alt mr-3"></i> หลักเกณฑ์และกฎเกณฑ์สำคัญ</h4>
-                            <div class="space-y-4 text-[14.5px] text-blue-100 font-bold">
-                                <div class="flex items-start">
-                                    <i class="fas fa-ban text-rose-400 mt-1 mr-3 shrink-0"></i>
-                                    <span class="leading-relaxed"><b class="text-white">Zero Plagiarism:</b> ห้ามคัดลอกเนื้อหาเดิม 100% ระบบถูกสั่งให้สร้างงานใหม่จากโครงสร้างเดิมเพื่อป้องกันลิขสิทธิ์</span>
-                                </div>
-                                <div class="flex items-start">
-                                    <i class="fas fa-database text-emerald-400 mt-1 mr-3 shrink-0"></i>
-                                    <span class="leading-relaxed"><b class="text-white">Official Data Only:</b> อ้างอิงประกาศจาก 8 หน่วยงานรัฐหลักเท่านั้น ไม่ดึงข้อมูลจากเพจส่วนบุคคลมาแสดง</span>
-                                </div>
-                                <div class="flex items-start">
-                                    <i class="fas fa-lock text-blue-300 mt-1 mr-3 shrink-0"></i>
-                                    <span class="leading-relaxed"><b class="text-white">Security First:</b> มีระบบป้องกันการดึงโค้ดและรักษาความปลอดภัยของชุดคำสั่งลิขสิทธิ์โครงการ Digital Squad</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-wrap gap-4 mt-12">
-                        <button onclick="switchTab('catalog')" class="bg-white text-blue-900 px-8 py-4 rounded-xl font-black shadow-lg hover:bg-slate-100 transition active:scale-95 flex items-center text-[15px] uppercase">
-                            <i class="fas fa-bolt mr-2 text-yellow-500 text-lg"></i> เริ่มใช้ทางด่วนภารกิจ
-                        </button>
-                    </div>
-                </div>
-            </div>
+<section class="bg-white rounded-3xl shadow-lg p-8 border-t-4 border-blue-500 hover:shadow-xl transition-shadow duration-300">
+<div class="flex items-center mb-4">
+<span class="text-3xl mr-3">✅</span>
+<h2 class="text-2xl font-bold text-slate-800">ขีดความสามารถปัจจุบัน</h2>
+</div>
+<p class="text-slate-600 mb-6 leading-relaxed">
+ระบบได้บูรณาการฐานข้อมูลที่จำเป็นทั้งหมดสำหรับปีการศึกษา 2569-2570 เข้าไว้ด้วยกัน แผนภาพนี้แสดงระดับความสมบูรณ์ของแกนหลักทั้ง 4 มิติ ซึ่งสะท้อนให้เห็นว่าระบบมีความพร้อมใช้งานสูงสุดในทุกด้าน
+</p>
+<div class="chart-container">
+<canvas id="readinessChart"></canvas>
+</div>
+</section>
 
-            <!-- News Section HTML ฝังตัว เพื่อให้ Tailwind อ่านค่าสีได้ -->
-            <div class="mb-12">
-                <div class="bg-white border-2 border-slate-100 p-8 md:p-10 rounded-[2.5rem] shadow-lg flex flex-col gap-8">
-                    <div class="flex items-center text-slate-800 font-black text-xl tracking-tight uppercase">
-                        <i class="fas fa-satellite-dish mr-4 text-red-500 animate-pulse text-2xl"></i> ข่าวสารราชการและการศึกษาไทย (OFFICIAL SYNC 2026)
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full">
-                        <!-- News Card 1 -->
-                        <div class="p-6 rounded-[1.5rem] bg-[#FFF7ED] border border-orange-100/60 shadow-sm hover:shadow-md transition-all">
-                            <span class="text-[11px] font-black text-white bg-blue-900 px-3 py-1 rounded-full mb-4 inline-block">สพฐ. (ANNOUNCE)</span>
-                            <div class="space-y-3 mb-5">
-                                <h4 class="text-[13.5px] font-bold text-slate-700 leading-snug cursor-pointer hover:text-blue-600 truncate border-b border-orange-100 pb-2">สถานีแก้หนี้ครู ลงพื้นที่เชิงรุกพฤษภาคม 69</h4>
-                                <h4 class="text-[13.5px] font-bold text-slate-700 leading-snug cursor-pointer hover:text-blue-600 truncate border-b border-orange-100 pb-2">ประกาศเกณฑ์กองทุน WCT แก้หนี้ครู ดอกเบี้ย 4%</h4>
-                            </div>
-                            <button class="w-full bg-white text-blue-900 py-2.5 rounded-xl text-[11px] font-black border border-blue-100 hover:bg-blue-50 transition">อ่านทั้งหมด</button>
-                        </div>
-                        <!-- News Card 2 -->
-                        <div class="p-6 rounded-[1.5rem] bg-[#FFF7ED] border border-orange-100/60 shadow-sm hover:shadow-md transition-all">
-                            <span class="text-[11px] font-black text-white bg-blue-900 px-3 py-1 rounded-full mb-4 inline-block">สกร. (NFE)</span>
-                            <div class="space-y-3 mb-5">
-                                <h4 class="text-[13.5px] font-bold text-slate-700 leading-snug cursor-pointer hover:text-blue-600 truncate border-b border-orange-100 pb-2">สกร. x กองทัพบก: ทหารประจำการจบไว 1 ปี</h4>
-                                <h4 class="text-[13.5px] font-bold text-slate-700 leading-snug cursor-pointer hover:text-blue-600 truncate border-b border-orange-100 pb-2">โละหลักสูตร 51 ตั้งเป้าใช้หลักสูตรใหม่ปี 70</h4>
-                            </div>
-                            <button class="w-full bg-white text-blue-900 py-2.5 rounded-xl text-[11px] font-black border border-blue-100 hover:bg-blue-50 transition">อ่านทั้งหมด</button>
-                        </div>
-                        <!-- News Card 3 -->
-                        <div class="p-6 rounded-[1.5rem] bg-[#FFF7ED] border border-orange-100/60 shadow-sm hover:shadow-md transition-all">
-                            <span class="text-[11px] font-black text-white bg-blue-900 px-3 py-1 rounded-full mb-4 inline-block">ก.ค.ศ. (วPA)</span>
-                            <div class="space-y-3 mb-5">
-                                <h4 class="text-[13.5px] font-bold text-slate-700 leading-snug cursor-pointer hover:text-blue-600 truncate border-b border-orange-100 pb-2">คู่มือเขียนข้อตกลง PA ปีงบ 70</h4>
-                                <h4 class="text-[13.5px] font-bold text-slate-700 leading-snug cursor-pointer hover:text-blue-600 truncate border-b border-orange-100 pb-2">ย้ายครู รอบที่ 2 มีผล 15 ต.ค. 69</h4>
-                            </div>
-                            <button class="w-full bg-white text-blue-900 py-2.5 rounded-xl text-[11px] font-black border border-blue-100 hover:bg-blue-50 transition">อ่านทั้งหมด</button>
-                        </div>
-                        <!-- News Card 4 -->
-                        <div class="p-6 rounded-[1.5rem] bg-[#FFF7ED] border border-orange-100/60 shadow-sm hover:shadow-md transition-all">
-                            <span class="text-[11px] font-black text-white bg-blue-900 px-3 py-1 rounded-full mb-4 inline-block">อว./IT (EDU)</span>
-                            <div class="space-y-3 mb-5">
-                                <h4 class="text-[13.5px] font-bold text-slate-700 leading-snug cursor-pointer hover:text-blue-600 truncate border-b border-orange-100 pb-2">ศธ. x Google ดึง AI ลดงานครู 10 ชม.</h4>
-                                <h4 class="text-[13.5px] font-bold text-slate-700 leading-snug cursor-pointer hover:text-blue-600 truncate border-b border-orange-100 pb-2">ปฏิทิน TCAS70: เริ่มลงทะเบียน 15 ก.ค. 69</h4>
-                            </div>
-                            <button class="w-full bg-white text-blue-900 py-2.5 rounded-xl text-[11px] font-black border border-blue-100 hover:bg-blue-50 transition">อ่านทั้งหมด</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section class="bg-white rounded-3xl shadow-lg p-8 border-t-4 border-emerald-500 hover:shadow-xl transition-shadow duration-300">
+<div class="flex items-center mb-4">
+<span class="text-3xl mr-3">🌐</span>
+<h2 class="text-2xl font-bold text-slate-800">การครอบคลุมสังกัดการศึกษา</h2>
+</div>
+<p class="text-slate-600 mb-6 leading-relaxed">
+Agent 02 (Identity Sync) สามารถวิเคราะห์และสร้าง Context Code ที่ครอบคลุมการจัดการศึกษาทุกระดับ ตั้งแต่ระดับปฐมวัยไปจนถึงอุดมศึกษา แผนภูมิแสดงสัดส่วนฐานข้อมูลนโยบายที่ระบบรองรับ
+</p>
+<div class="chart-container">
+<canvas id="coverageChart"></canvas>
+</div>
+</section>
 
-            <!-- Training Section HTML ฝังตัว -->
-            <div class="mb-12">
-                <div class="bg-white border-2 border-slate-100 p-8 md:p-10 rounded-[2.5rem] shadow-lg">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-                        <div class="flex items-center text-blue-900 font-black text-xl uppercase tracking-tight">
-                            <i class="fas fa-graduation-cap mr-4 text-blue-600 text-2xl"></i> หลักสูตรฝึกอบรมและพัฒนาวิชาชีพครู (TRAINING & CPD SYNC)
-                        </div>
-                        <span class="bg-blue-600 text-white px-5 py-2 rounded-full text-[11px] font-black uppercase tracking-widest shadow-sm self-start">วPA EVIDENCE SUPPORT</span>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <!-- Course 1 -->
-                        <div class="p-6 bg-white border border-slate-200 rounded-[1.5rem] flex flex-col h-full hover:shadow-lg transition-all">
-                            <div class="flex justify-between mb-4">
-                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-[10px] font-black tracking-wide">วPA Verified</span>
-                                <i class="fas fa-bookmark text-blue-200"></i>
-                            </div>
-                            <h4 class="text-[14px] font-black text-slate-800 leading-snug mb-3 flex-grow">AI Literacy for Teachers</h4>
-                            <p class="text-[12px] text-slate-500 font-bold mb-1"><i class="fas fa-university mr-2"></i> สพฐ. x Google</p>
-                            <p class="text-[12px] text-blue-600 font-black mb-4"><i class="fas fa-calendar-alt mr-2"></i> 15-20 พ.ค. 69</p>
-                            <button class="w-full bg-blue-50 text-blue-900 py-2.5 rounded-xl text-[12px] font-black mt-auto hover:bg-blue-600 hover:text-white transition">สมัครอบรม</button>
-                        </div>
-                        <!-- Course 2 -->
-                        <div class="p-6 bg-white border border-slate-200 rounded-[1.5rem] flex flex-col h-full hover:shadow-lg transition-all">
-                            <div class="flex justify-between mb-4">
-                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-[10px] font-black tracking-wide">วPA Verified</span>
-                                <i class="fas fa-bookmark text-blue-200"></i>
-                            </div>
-                            <h4 class="text-[14px] font-black text-slate-800 leading-snug mb-3 flex-grow">Active Learning & CBE 5E</h4>
-                            <p class="text-[12px] text-slate-500 font-bold mb-1"><i class="fas fa-university mr-2"></i> คุรุสภา</p>
-                            <p class="text-[12px] text-blue-600 font-black mb-4"><i class="fas fa-calendar-alt mr-2"></i> 2 มิ.ย. 69</p>
-                            <button class="w-full bg-blue-50 text-blue-900 py-2.5 rounded-xl text-[12px] font-black mt-auto hover:bg-blue-600 hover:text-white transition">สมัครอบรม</button>
-                        </div>
-                        <!-- Course 3 -->
-                        <div class="p-6 bg-white border border-slate-200 rounded-[1.5rem] flex flex-col h-full hover:shadow-lg transition-all">
-                            <div class="flex justify-between mb-4">
-                                <span class="bg-slate-100 text-slate-500 px-2 py-1 rounded text-[10px] font-black tracking-wide">CPD Source</span>
-                                <i class="fas fa-bookmark text-blue-200"></i>
-                            </div>
-                            <h4 class="text-[14px] font-black text-slate-800 leading-snug mb-3 flex-grow">Digital Wellness in School</h4>
-                            <p class="text-[12px] text-slate-500 font-bold mb-1"><i class="fas fa-university mr-2"></i> Thai MOOC</p>
-                            <p class="text-[12px] text-blue-600 font-black mb-4"><i class="fas fa-calendar-alt mr-2"></i> ตลอดปี</p>
-                            <button class="w-full bg-blue-50 text-blue-900 py-2.5 rounded-xl text-[12px] font-black mt-auto hover:bg-blue-600 hover:text-white transition">สมัครอบรม</button>
-                        </div>
-                        <!-- Course 4 -->
-                        <div class="p-6 bg-white border border-slate-200 rounded-[1.5rem] flex flex-col h-full hover:shadow-lg transition-all">
-                            <div class="flex justify-between mb-4">
-                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-[10px] font-black tracking-wide">วPA Verified</span>
-                                <i class="fas fa-bookmark text-blue-200"></i>
-                            </div>
-                            <h4 class="text-[14px] font-black text-slate-800 leading-snug mb-3 flex-grow">นวัตกรรมแก้ปัญหาผู้เรียน</h4>
-                            <p class="text-[12px] text-slate-500 font-bold mb-1"><i class="fas fa-university mr-2"></i> สถาบันพัฒนาครู</p>
-                            <p class="text-[12px] text-blue-600 font-black mb-4"><i class="fas fa-calendar-alt mr-2"></i> 20-25 มิ.ย. 69</p>
-                            <button class="w-full bg-blue-50 text-blue-900 py-2.5 rounded-xl text-[12px] font-black mt-auto hover:bg-blue-600 hover:text-white transition">สมัครอบรม</button>
-                        </div>
-                    </div>
-                    <div class="mt-8 text-center">
-                        <button class="bg-slate-100 text-slate-600 px-6 py-3 rounded-xl text-[13px] font-black hover:bg-slate-200 transition">
-                            อ่านข่าวฝึกอบรมทั้งหมด <i class="fas fa-external-link-alt ml-1 opacity-60"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+</div>
 
-        <!-- Tab: AI Agents (HTML ฝังตัว) -->
-        <div id="tab-gems" class="hidden text-center">
-            <div class="mb-12">
-                <h2 class="text-3xl md:text-4xl font-black text-slate-800 uppercase tracking-tighter mb-3">AI AGENT NAVIGATOR</h2>
-                <p class="text-slate-500 text-[14px] font-bold tracking-widest uppercase">ไกด์นำทางเลือกผู้ช่วยพาสเทลตามบทบาทหน้าที่ (V8 SYNC)</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 text-left">
-                <!-- Agent 01 -->
-                <div class="bg-[#EBF8FF] rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all relative cursor-pointer" onclick="window.open('https://gemini.google.com/app', '_blank')">
-                    <span class="absolute -top-3 right-2 font-black text-8xl opacity-[0.04] pointer-events-none text-[#1e3a8a]">01</span>
-                    <div class="w-14 h-14 bg-white/80 rounded-2xl flex items-center justify-center text-2xl mb-6 text-[#1e3a8a] shadow-sm"><i class="fas fa-compass"></i></div>
-                    <span class="text-[11px] font-black uppercase bg-white/70 px-3 py-1.5 rounded-full mb-4 inline-block tracking-widest text-[#1e3a8a]">ยุทธศาสตร์ / สารบัญข้อมูล</span>
-                    <h3 class="font-black text-[17px] mb-4 text-[#1e3a8a]">01 - COMMAND CENTER V8</h3>
-                    <div class="space-y-2.5">
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#1e3a8a]"></i> มหาคลังภารกิจ 1,000+ รายการ</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#1e3a8a]"></i> ระบบ Search Engine & Router</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#1e3a8a]"></i> นำทางยุทธศาสตร์ 8 ด้าน</p>
-                    </div>
-                </div>
+<section class="bg-white rounded-3xl shadow-lg p-8 mb-10 border-t-4 border-amber-500">
+<div class="flex items-center mb-6">
+<span class="text-3xl mr-3">🔄</span>
+<h2 class="text-2xl font-bold text-slate-800">สถาปัตยกรรมการเชื่อมโยงบริบท (Contextual Integration)</h2>
+</div>
+<p class="text-slate-600 mb-10 max-w-4xl leading-relaxed">
+หัวใจสำคัญของ Digital Squad AI V11.8.44 คือการไหลเวียนของข้อมูลที่ไร้รอยต่อ โดยเริ่มจากการสร้างตัวตนผ่าน Agent 02 และส่งต่อรหัสบริบทไปยัง Agent เฉพาะทาง ทำให้ AI ทำงานได้อย่างแม่นยำโดยผู้ใช้ไม่ต้องป้อนข้อมูลซ้ำ
+</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center relative">
+<div class="relative z-10 flex flex-col items-center">
+<div class="process-node">1</div>
+<div class="bg-blue-50 w-full mt-4 p-4 rounded-xl border border-blue-100 shadow-sm">
+<span class="text-2xl block mb-2">👤</span>
+<h3 class="font-bold text-blue-900 mb-1">User Input</h3>
+<p class="text-sm text-slate-500">ระบุสังกัดและตำแหน่ง</p>
+</div>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="hidden md:block process-line" style="right: 50%; left: -50%;"></div>
+<div class="process-node bg-emerald-500">2</div>
+<div class="bg-emerald-50 w-full mt-4 p-4 rounded-xl border border-emerald-100 shadow-sm">
+<span class="text-2xl block mb-2">🧠</span>
+<h3 class="font-bold text-emerald-900 mb-1">Agent 02</h3>
+<p class="text-sm text-slate-500">สร้าง Context Code Block</p>
+</div>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="hidden md:block process-line" style="right: 50%; left: -50%;"></div>
+<div class="process-node bg-amber-500">3</div>
+<div class="bg-amber-50 w-full mt-4 p-4 rounded-xl border border-amber-100 shadow-sm">
+<span class="text-2xl block mb-2">🚀</span>
+<h3 class="font-bold text-amber-900 mb-1">Agent 03-10</h3>
+<p class="text-sm text-slate-500">รับบริบทและปฏิบัติงาน</p>
+</div>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="hidden md:block process-line" style="right: 50%; left: -50%;"></div>
+<div class="process-node bg-rose-500">4</div>
+<div class="bg-rose-50 w-full mt-4 p-4 rounded-xl border border-rose-100 shadow-sm">
+<span class="text-2xl block mb-2">💎</span>
+<h3 class="font-bold text-rose-900 mb-1">Output</h3>
+<p class="text-sm text-slate-500">ผลงานระดับเหรียญเพชร</p>
+</div>
+</div>
+</div>
+</section>
 
-                <!-- Agent 02 -->
-                <div class="bg-[#FFF0F0] rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all relative cursor-pointer" onclick="window.open('https://gemini.google.com/app', '_blank')">
-                    <span class="absolute -top-3 right-2 font-black text-8xl opacity-[0.04] pointer-events-none text-[#92400e]">02</span>
-                    <div class="w-14 h-14 bg-white/80 rounded-2xl flex items-center justify-center text-2xl mb-6 text-[#92400e] shadow-sm"><i class="fas fa-bullhorn"></i></div>
-                    <span class="text-[11px] font-black uppercase bg-white/70 px-3 py-1.5 rounded-full mb-4 inline-block tracking-widest text-[#92400e]">ข้อมูล / ข่าว</span>
-                    <h3 class="font-black text-[17px] mb-4 text-[#92400e]">02 - SMART HUB</h3>
-                    <div class="space-y-2.5">
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#92400e]"></i> สรุปข่าวราชการ 30 วัน</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#92400e]"></i> สืบค้นงานวิจัยทางการศึกษา</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#92400e]"></i> สกัดระเบียบใหม่ ศธ.</p>
-                    </div>
-                </div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
 
-                <!-- Agent 03 -->
-                <div class="bg-[#F0FFF4] rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all relative cursor-pointer" onclick="window.open('https://gemini.google.com/app', '_blank')">
-                    <span class="absolute -top-3 right-2 font-black text-8xl opacity-[0.04] pointer-events-none text-[#059669]">03</span>
-                    <div class="w-14 h-14 bg-white/80 rounded-2xl flex items-center justify-center text-2xl mb-6 text-[#059669] shadow-sm"><i class="fas fa-pencil-ruler"></i></div>
-                    <span class="text-[11px] font-black uppercase bg-white/70 px-3 py-1.5 rounded-full mb-4 inline-block tracking-widest text-[#059669]">CBE / ACTIVE LEARNING</span>
-                    <h3 class="font-black text-[17px] mb-4 text-[#059669]">03 - LESSON DESIGNER</h3>
-                    <div class="space-y-2.5">
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#059669]"></i> ร่างแผนการสอนสมรรถนะ</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#059669]"></i> ออกแบบกิจกรรมเชิงรุก</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#059669]"></i> สร้างใบงาน 8 กลุ่มสาระ</p>
-                    </div>
-                </div>
+<section class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl shadow-lg p-8 text-white">
+<div class="flex items-center mb-6">
+<span class="text-3xl mr-3">🛡️</span>
+<h2 class="text-2xl font-bold text-white">ความปลอดภัยและการสร้างสรรค์</h2>
+</div>
+<p class="text-slate-300 mb-6 leading-relaxed">
+ระบบได้ติดตั้งมาตรการป้องกันขั้นสูงสุดเพื่อปกป้องลิขสิทธิ์และคงความเป็นมืออาชีพของบุคลากรทางการศึกษา
+</p>
+<div class="space-y-4">
+<div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700 flex items-start">
+<div class="text-rose-400 text-xl mr-4 mt-1">🛑</div>
+<div>
+<h4 class="font-bold text-blue-200">Zero Plagiarism</h4>
+<p class="text-sm text-slate-400 mt-1">AI ถูกล็อกคำสั่งให้ดึงเฉพาะ โครงสร้าง รูปแบบ และตัวชี้วัด มาสร้างสรรค์งานใหม่ (Regenerate) แทนการคัดลอกเนื้อหาเดิม</p>
+</div>
+</div>
+<div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700 flex items-start">
+<div class="text-emerald-400 text-xl mr-4 mt-1">🔐</div>
+<div>
+<h4 class="font-bold text-blue-200">Prompt Protection</h4>
+<p class="text-sm text-slate-400 mt-1">ล็อกระบบเบื้องหลังทุก Agent เพื่อป้องกันการถูกดึงชุดคำสั่งลิขสิทธิ์ของโครงการไปใช้งานโดยไม่ได้รับอนุญาต</p>
+</div>
+</div>
+<div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700 flex items-start">
+<div class="text-amber-400 text-xl mr-4 mt-1">🗣️</div>
+<div>
+<h4 class="font-bold text-blue-200">Humanizer Logic</h4>
+<p class="text-sm text-slate-400 mt-1">ปรับจูนสำนวนภาษาให้มีความเป็นมนุษย์ สละสลวยตามหลักภาษาวิชาการไทย ลดความเป็นหุ่นยนต์ของ AI</p>
+</div>
+</div>
+</div>
+</section>
 
-                <!-- Agent 04 -->
-                <div class="bg-[#FFF9F0] rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all relative cursor-pointer" onclick="window.open('https://gemini.google.com/app', '_blank')">
-                    <span class="absolute -top-3 right-2 font-black text-8xl opacity-[0.04] pointer-events-none text-[#b45309]">04</span>
-                    <div class="w-14 h-14 bg-white/80 rounded-2xl flex items-center justify-center text-2xl mb-6 text-[#b45309] shadow-sm"><i class="fas fa-check-double"></i></div>
-                    <span class="text-[11px] font-black uppercase bg-white/70 px-3 py-1.5 rounded-full mb-4 inline-block tracking-widest text-[#b45309]">ข้อสอบ / RUBRICS</span>
-                    <h3 class="font-black text-[17px] mb-4 text-[#b45309]">04 - ASSESSMENT PRO</h3>
-                    <div class="space-y-2.5">
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#b45309]"></i> สร้างข้อสอบแนว PISA</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#b45309]"></i> วิเคราะห์สถิติผลสัมฤทธิ์</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#b45309]"></i> ออกแบบเกณฑ์ Rubric</p>
-                    </div>
-                </div>
+<section class="bg-white rounded-3xl shadow-lg p-8 border-t-4 border-rose-500 hover:shadow-xl transition-shadow duration-300">
+<div class="flex items-center mb-4">
+<span class="text-3xl mr-3">🚀</span>
+<h2 class="text-2xl font-bold text-slate-800">ทิศทางการพัฒนา (V9 Next Step)</h2>
+</div>
+<p class="text-slate-600 mb-6 leading-relaxed">
+แผนการยกระดับความสามารถของระบบในอนาคต เพื่อเพิ่มศักยภาพการจัดการเรียนรู้และการประเมินผล กราฟแสดงระดับความสำคัญ (Priority Score) ของแต่ละแผนงาน
+</p>
+<div class="chart-container">
+<canvas id="futureChart"></canvas>
+</div>
+</section>
 
-                <!-- Agent 05 -->
-                <div class="bg-[#F5F0FF] rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all relative cursor-pointer" onclick="window.open('https://gemini.google.com/app', '_blank')">
-                    <span class="absolute -top-3 right-2 font-black text-8xl opacity-[0.04] pointer-events-none text-[#7c3aed]">05</span>
-                    <div class="w-14 h-14 bg-white/80 rounded-2xl flex items-center justify-center text-2xl mb-6 text-[#7c3aed] shadow-sm"><i class="fas fa-palette"></i></div>
-                    <span class="text-[11px] font-black uppercase bg-white/70 px-3 py-1.5 rounded-full mb-4 inline-block tracking-widest text-[#7c3aed]">สื่อ / พอร์ต</span>
-                    <h3 class="font-black text-[17px] mb-4 text-[#7c3aed]">05 - CREATIVE MEDIA</h3>
-                    <div class="space-y-2.5">
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#7c3aed]"></i> เขียนพร้อมต์เจนภาพสื่อ</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#7c3aed]"></i> ร่างสคริปต์วิดีโอคลิปสั้น</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#7c3aed]"></i> Digital Alchemy Prompt</p>
-                    </div>
-                </div>
+</div>
 
-                <!-- Agent 06 -->
-                <div class="bg-[#F0FFFF] rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all relative cursor-pointer" onclick="window.open('https://gemini.google.com/app', '_blank')">
-                    <span class="absolute -top-3 right-2 font-black text-8xl opacity-[0.04] pointer-events-none text-[#0891b2]">06</span>
-                    <div class="w-14 h-14 bg-white/80 rounded-2xl flex items-center justify-center text-2xl mb-6 text-[#0891b2] shadow-sm"><i class="fas fa-briefcase"></i></div>
-                    <span class="text-[11px] font-black uppercase bg-white/70 px-3 py-1.5 rounded-full mb-4 inline-block tracking-widest text-[#0891b2]">พัสดุ / ธุรการ</span>
-                    <h3 class="font-black text-[17px] mb-4 text-[#0891b2]">06 - ADMIN SPECIALIST</h3>
-                    <div class="space-y-2.5">
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#0891b2]"></i> ร่างหนังสือราชการภายนอก</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#0891b2]"></i> TOR e-GP ระบบพัสดุ 69</p>
-                        <p class="text-[13px] text-slate-700 font-bold"><i class="fas fa-check-circle mr-2 opacity-40 text-[#0891b2]"></i> แผนปฏิบัติการ Action Plan</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<footer class="text-center py-8">
+<div class="inline-block bg-green-100 text-green-800 px-6 py-3 rounded-2xl font-bold text-lg border border-green-200 shadow-sm mb-4">
+🎯 สรุป: ระบบเสถียรและพร้อมใช้งาน 100% สำหรับปีการศึกษา 2569
+</div>
+<p class="text-slate-500 font-medium mt-2">วิเคราะห์และสรุปโดยระบบ Digital Squad AI (Base Status Sync)</p>
+</footer>
 
-        <!-- Tab: Strategic Portal -->
-        <div id="tab-catalog" class="hidden text-left">
-            <div class="bg-blue-900 rounded-[2.5rem] p-10 text-white text-center shadow-md mb-8 border-b-8 border-blue-700">
-                <h2 class="text-3xl lg:text-4xl font-black uppercase mb-3 tracking-tighter">CENTRALIZED OPERATIONS</h2>
-                <p class="text-blue-200 text-[15px] font-bold">ดัชนีชี้ช่องทางฐานปฏิบัติการ เพื่อเข้าถึง 1,000++ โครงการ มากกว่า 10,000 ชิ้นงาน</p>
-            </div>
-            
-            <div class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-lg mb-12 border border-slate-100">
-                <div class="mb-10 relative">
-                    <label class="text-[14px] font-black text-blue-900 mb-3 block">ค้นหาภารกิจด่วน (SMART SEARCH AUTOCOMPLETE):</label>
-                    <div class="relative w-full">
-                        <input type="text" id="catalog-search" onkeyup="handleSearchInput(event)" placeholder="ระบุงานที่ต้องการ (เช่น แผนสมรรถนะ, วPA, e-GP)..." class="w-full bg-slate-50 border-2 border-blue-200 focus:border-blue-500 text-slate-700 text-lg rounded-2xl block pl-14 p-5 outline-none font-bold transition-all">
-                        <i class="fas fa-search absolute left-5 top-6 text-blue-400 text-lg"></i>
-                        <div id="search-results-dropdown"></div>
-                    </div>
-                </div>
+</div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
-                    <!-- Academic -->
-                    <div class="p-8 rounded-[2rem] bg-[#EBF8FF] border border-[#BEE3F8]">
-                        <h3 class="text-xl font-black text-blue-800 mb-5 border-b-2 border-blue-200 pb-3 uppercase">สายงานวิชาการ</h3>
-                        <div class="space-y-3 font-bold" id="cat-academic-list">
-                            <div class="py-2 px-3 hover:bg-white/50 rounded-lg cursor-pointer flex items-center text-slate-700" onclick="showTaskModal('ร่างหลักสูตรสถานศึกษา 2569')"> ร่างหลักสูตรสถานศึกษา 2569</div>
-                            <div class="py-2 px-3 hover:bg-white/50 rounded-lg cursor-pointer flex items-center text-slate-700" onclick="showTaskModal('แผน CBE 5E ครบ 8 สาระ')"> แผน CBE 5E ครบ 8 สาระ</div>
-                            <div class="py-2 px-3 hover:bg-white/50 rounded-lg cursor-pointer flex items-center text-slate-700" onclick="showTaskModal('คลังข้อสอบแนววิเคราะห์ PISA')"> คลังข้อสอบแนววิเคราะห์ PISA</div>
-                        </div>
-                    </div>
-                    <!-- Admin -->
-                    <div class="p-8 rounded-[2rem] bg-[#F0FFF4] border border-[#C6F6D5]">
-                        <h3 class="text-xl font-black text-emerald-800 mb-5 border-b-2 border-emerald-200 pb-3 uppercase">สายงานบริหาร</h3>
-                        <div class="space-y-3 font-bold" id="cat-admin-list">
-                            <div class="py-2 px-3 hover:bg-white/50 rounded-lg cursor-pointer flex items-center text-slate-700" onclick="showTaskModal('ร่างแผนปฏิบัติการประจำปี 2569')"> ร่างแผนปฏิบัติการประจำปี 2569</div>
-                            <div class="py-2 px-3 hover:bg-white/50 rounded-lg cursor-pointer flex items-center text-slate-700" onclick="showTaskModal('ร่าง TOR พัสดุระบบ e-GP 69')"> ร่าง TOR พัสดุระบบ e-GP 69</div>
-                            <div class="py-2 px-3 hover:bg-white/50 rounded-lg cursor-pointer flex items-center text-slate-700" onclick="showTaskModal('คู่มือปฏิบัติงานธุรการยุคดิจิทัล')"> คู่มือปฏิบัติงานธุรการยุคดิจิทัล</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<script>
+const wL = (str) => {
+if(str.length <= 16) return str;
+const w = str.split(' ');
+let r = [], c = '';
+w.forEach(x => {
+if((c + x).length > 16) {
+if(c) r.push(c.trim());
+c = x + ' ';
+} else {
+c += x + ' ';
+}
+});
+if(c) r.push(c.trim());
+return r;
+};
 
-        <!-- Tab: About (16 Pillars แบบ HTML ฝังตัว) -->
-        <div id="tab-about" class="hidden text-left">
-            <div class="max-w-7xl mx-auto">
-                <div class="bg-white p-10 md:p-14 rounded-[3rem] shadow-xl border border-slate-100">
-                    <h2 class="text-3xl font-black text-slate-800 mb-10 border-b-2 border-slate-100 pb-4 uppercase tracking-tighter">จุดแข็งระบบนิเวศ (16 STRATEGIC PILLARS)</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <!-- Pillar 1 -->
-                        <div class="bg-white p-8 rounded-[2rem] border border-blue-50 shadow-sm hover:shadow-md transition-all">
-                            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-5 text-xl"><i class="fas fa-check"></i></div>
-                            <h4 class="text-[14px] font-black uppercase mb-2 text-blue-900">STRATEGIC PILLAR 1</h4>
-                            <p class="text-[13px] text-slate-500 font-bold">ฐานข้อมูลรัฐ V11.8.62 ลำดับที่ 1</p>
-                        </div>
-                        <!-- Pillar 2 -->
-                        <div class="bg-white p-8 rounded-[2rem] border border-blue-50 shadow-sm hover:shadow-md transition-all">
-                            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-5 text-xl"><i class="fas fa-check"></i></div>
-                            <h4 class="text-[14px] font-black uppercase mb-2 text-blue-900">STRATEGIC PILLAR 2</h4>
-                            <p class="text-[13px] text-slate-500 font-bold">ฐานข้อมูลรัฐ V11.8.62 ลำดับที่ 2</p>
-                        </div>
-                        <!-- Pillar 3 -->
-                        <div class="bg-white p-8 rounded-[2rem] border border-blue-50 shadow-sm hover:shadow-md transition-all">
-                            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-5 text-xl"><i class="fas fa-check"></i></div>
-                            <h4 class="text-[14px] font-black uppercase mb-2 text-blue-900">STRATEGIC PILLAR 3</h4>
-                            <p class="text-[13px] text-slate-500 font-bold">ฐานข้อมูลรัฐ V11.8.62 ลำดับที่ 3</p>
-                        </div>
-                        <!-- Pillar 4 -->
-                        <div class="bg-white p-8 rounded-[2rem] border border-blue-50 shadow-sm hover:shadow-md transition-all">
-                            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-5 text-xl"><i class="fas fa-check"></i></div>
-                            <h4 class="text-[14px] font-black uppercase mb-2 text-blue-900">STRATEGIC PILLAR 4</h4>
-                            <p class="text-[13px] text-slate-500 font-bold">ฐานข้อมูลรัฐ V11.8.62 ลำดับที่ 4</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+const tC = {
+callbacks: {
+title: (tI) => {
+const i = tI[0];
+let l = i.chart.data.labels[i.dataIndex];
+return Array.isArray(l) ? l.join(' ') : l;
+}
+}
+};
 
-        <!-- Tab: Calendar -->
-        <div id="tab-calendar" class="hidden text-left">
-            <div class="bg-white rounded-[2.5rem] shadow-xl overflow-hidden mb-12 border border-slate-100">
-                <div class="bg-blue-900 px-10 py-14 text-white flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div class="text-center md:text-left">
-                        <h2 id="calendar-month-year" class="text-4xl font-black tracking-widest uppercase">พฤษภาคม 2569</h2>
-                        <p class="text-[13px] text-blue-300 font-black uppercase mt-3 tracking-[0.2em]">Master Educational Timeline 2026</p>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <button onclick="changeMonth(-1)" class="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border border-white/20 transition-all"><i class="fas fa-chevron-left text-xl"></i></button>
-                        <button onclick="changeMonth(1)" class="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border border-white/20 transition-all"><i class="fas fa-chevron-right text-xl"></i></button>
-                    </div>
-                </div>
-                <div class="calendar-container">
-                    <div class="calendar-wrapper bg-slate-50">
-                        <div id="calendar-body" class="calendar-grid">
-                            <!-- JS จะเติมเฉพาะช่องวันที่ลงในนี้ -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+const ctxRadar = document.getElementById('readinessChart').getContext('2d');
+new Chart(ctxRadar, {
+type: 'radar',
+data: {
+labels: [
+wL('การเชื่อมโยงบริบท (Context Sync)'), 
+wL('ฐานข้อมูลนโยบายและการศึกษา'), 
+wL('ความปลอดภัยและลิขสิทธิ์'), 
+wL('ความเป็นมนุษย์ (Humanizer)')
+],
+datasets: [{
+label: 'ความพร้อมระบบ (%)',
+data: [100, 100, 100, 95],
+backgroundColor: 'rgba(59, 130, 246, 0.2)',
+borderColor: '#3b82f6',
+pointBackgroundColor: '#1e3a8a',
+pointBorderColor: '#fff',
+pointHoverBackgroundColor: '#fff',
+pointHoverBorderColor: '#1e3a8a',
+borderWidth: 2
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+plugins: {
+legend: { display: false },
+tooltip: tC
+},
+scales: {
+r: {
+angleLines: { color: 'rgba(0,0,0,0.1)' },
+grid: { color: 'rgba(0,0,0,0.1)' },
+pointLabels: { font: { family: 'Sarabun', size: 13, weight: 'bold' }, color: '#475569' },
+ticks: { min: 0, max: 100, stepSize: 20, display: false }
+}
+}
+}
+});
 
-    <footer class="bg-slate-100 py-10 border-t border-slate-200 mt-auto">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-slate-500 text-[13px] font-black uppercase tracking-widest">Digital Squad AI Master Ecosystem</p>
-            <p class="text-blue-900 text-[15px] font-black mt-2">ออกแบบวางระบบและพัฒนาโดย <span class="text-blue-600">กันตภณ ณพสิษฐ์</span></p>
-            <div class="mt-6 flex flex-col items-center justify-center space-y-3">
-                <div class="flex flex-wrap items-center justify-center gap-3 text-slate-400 text-[11px] font-black uppercase tracking-widest">
-                    <span>© 2026 OFFICIAL EDUCATIONAL HUB</span>
-                    <span class="hidden md:inline text-slate-300">|</span>
-                    <span>ALL RIGHTS RESERVED</span>
-                    <span class="hidden md:inline text-slate-300">|</span>
-                    <span>BASE RECOVERY V11.8.62</span>
-                </div>
-            </div>
-        </div>
-    </footer>
+const ctxDoughnut = document.getElementById('coverageChart').getContext('2d');
+new Chart(ctxDoughnut, {
+type: 'doughnut',
+data: {
+labels: [
+wL('สพฐ. (การศึกษาขั้นพื้นฐาน)'), 
+wL('สอศ. (อาชีวศึกษา)'), 
+wL('อว. (อุดมศึกษา)'), 
+wL('สช. (เอกชนและอื่นๆ)')
+],
+datasets: [{
+data: [55, 20, 15, 10],
+backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'],
+borderWidth: 0,
+hoverOffset: 4
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+cutout: '65%',
+plugins: {
+legend: { position: 'right', labels: { font: { family: 'Sarabun', size: 13, weight: 'bold' }, color: '#475569', padding: 20 } },
+tooltip: tC
+}
+}
+});
 
-    <div id="toast"></div>
-
-    <div id="task-modal" class="modal-overlay" onclick="toggleModal('task-modal')">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <h3 id="task-modal-title" class="text-xl font-black mb-3 leading-tight text-blue-900">ภารกิจยุทธศาสตร์</h3>
-            <div class="bg-slate-800 rounded-xl p-5 text-green-400 font-mono text-[14px] mb-6 font-bold" id="task-modal-prompt"></div>
-            <button onclick="launchAgent()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-black shadow-md hover:bg-blue-700 transition uppercase tracking-wide">เปิด AI AGENT ปฏิบัติภารกิจ <i class="fas fa-external-link-alt ml-2"></i></button>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('contextmenu', (e) => { e.preventDefault(); showToast("⚠️ ระบบความปลอดภัย: ไม่อนุญาตให้คลิกขวา"); return false; });
-        
-        const ALL_MISSIONS = [
-            "ร่างหลักสูตรสถานศึกษา 2569", "แผน CBE 5E ครบ 8 สาระ", "คลังข้อสอบแนววิเคราะห์ PISA", "ระบบประเมิน Rubrics อิงสมรรถนะ", 
-            "โครงการยกระดับ NT/O-NET ปี 70", "คู่มือส่งเสริมความรอบรู้สุขภาพ", "แผนการสอนบูรณาการ AI รายวิชา", "รายงานสรุปโครงการพัฒนาวิชาการ",
-            "ร่างแผนปฏิบัติการประจำปี 2569", "ร่าง TOR พัสดุระบบ e-GP 69", "คู่มือสัญญาจ้างลูกจ้าง/อัตราจ้าง", "รายงานประชุมคณะกรรมการสถานศึกษา"
-        ];
-
-        let currentMonthDate = new Date(2026, 4, 1);
-
-        function switchTab(tab) {
-            const tabs = ['home', 'gems', 'catalog', 'calendar', 'about'];
-            tabs.forEach(t => {
-                document.getElementById('tab-' + t)?.classList.add('hidden');
-                document.getElementById('nav-' + t)?.classList.remove('nav-active');
-                document.getElementById('m-nav-' + t)?.classList.remove('active');
-            });
-            document.getElementById('tab-' + tab)?.classList.remove('hidden');
-            document.getElementById('nav-' + tab)?.classList.add('nav-active');
-            document.getElementById('m-nav-' + tab)?.classList.add('active');
-            
-            if(tab === 'calendar') renderCalendar();
-            window.scrollTo(0,0);
-        }
-
-        function toggleModal(id) { const m = document.getElementById(id); if (m) m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); }
-        function showToast(msg) { const t = document.getElementById('toast'); if (t) { t.innerText = msg; t.className = "show"; setTimeout(() => t.className = "", 3000); } }
-
-        function handleSearchInput(e) {
-            const query = e.target.value.trim().toLowerCase();
-            const dropdown = document.getElementById('search-results-dropdown');
-            if (!dropdown) return;
-            if (query.length < 1) { dropdown.style.display = 'none'; return; }
-            const matches = ALL_MISSIONS.filter(m => m.toLowerCase().includes(query));
-            if (matches.length > 0) {
-                dropdown.innerHTML = matches.map(m => `<div class="search-item font-bold" onclick="selectSearchMission('${m}')"><i class="fas fa-file-alt mr-3 text-blue-500"></i>${m.replace(new RegExp(`(${query})`, 'gi'), '<span class="search-highlight">$1</span>')}</div>`).join('');
-                dropdown.style.display = 'block';
-            } else { dropdown.style.display = 'none'; }
-        }
-
-        function selectSearchMission(m) { 
-            const inp = document.getElementById('catalog-search');
-            if (inp) inp.value = m;
-            document.getElementById('search-results-dropdown').style.display = 'none';
-            showTaskModal(m);
-        }
-
-        function showTaskModal(title) { 
-            const t = document.getElementById('task-modal-title');
-            const p = document.getElementById('task-modal-prompt');
-            if (t) t.innerText = title; 
-            if (p) p.innerText = `[System]: กำลังวิเคราะห์ฐานข้อมูล "${title}"...`; 
-            toggleModal('task-modal'); 
-        }
-
-        function launchAgent() { window.open("https://gemini.google.com/app", '_blank'); }
-
-        function renderCalendar() {
-            const body = document.getElementById('calendar-body'); if (!body) return;
-            const monthNames = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
-            document.getElementById('calendar-month-year').innerText = `${monthNames[currentMonthDate.getMonth()]} ${currentMonthDate.getFullYear()+543}`;
-            
-            let html = ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."].map(d => `<div class="bg-slate-100 p-4 text-center text-slate-600 font-black text-[13px] border-b border-slate-200">${d}</div>`).join('');
-            
-            const daysInMonth = new Date(currentMonthDate.getFullYear(), currentMonthDate.getMonth()+1, 0).getDate();
-            const firstDay = new Date(currentMonthDate.getFullYear(), currentMonthDate.getMonth(), 1).getDay();
-            for(let i=0; i<firstDay; i++) html += `<div class="bg-slate-50/50 border-r border-b border-slate-100"></div>`;
-            
-            for(let d=1; d<=daysInMonth; d++) {
-                html += `<div class="bg-white border-r border-b border-slate-100 p-3 flex flex-col h-[110px] hover:bg-blue-50 transition-colors"><b class="text-slate-800 text-[14px] mb-1">${d}</b></div>`;
-            }
-            body.innerHTML = html;
-        }
-
-        function changeMonth(delta) { currentMonthDate.setMonth(currentMonthDate.getMonth()+delta); renderCalendar(); }
-
-        window.onload = () => { switchTab('home'); };
-    </script>
+const ctxBar = document.getElementById('futureChart').getContext('2d');
+new Chart(ctxBar, {
+type: 'bar',
+data: {
+labels: [
+wL('Multimodal Deep Integration (ระบบ OCR)'), 
+wL('Real-time Feedback Loop (วิเคราะห์คะแนน)'), 
+wL('Gamification for Student Support')
+],
+datasets: [{
+label: 'Priority Score',
+data: [95, 85, 75],
+backgroundColor: ['#e11d48', '#f59e0b', '#10b981'],
+borderRadius: 8,
+barThickness: 'flex',
+maxBarThickness: 45
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+indexAxis: 'y',
+plugins: {
+legend: { display: false },
+tooltip: tC
+},
+scales: {
+x: { grid: { display: true, color: 'rgba(0,0,0,0.05)' }, max: 100, ticks: { font: { family: 'Sarabun' } } },
+y: { grid: { display: false }, ticks: { font: { family: 'Sarabun', size: 13, weight: 'bold' }, color: '#475569' } }
+}
+}
+});
+</script>
 </body>
 </html>
