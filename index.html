@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V11.8.64 - 20 Pillars Sync</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Digital Squad AI V11.8.65 - The Grand Restoration</title>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <script src="[https://cdn.jsdelivr.net/npm/chart.js](https://cdn.jsdelivr.net/npm/chart.js)"></script>
+    <link href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap');
+        @import url('[https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap)');
         :root {
             --primary-blue: #1e3a8a;
             --accent-blue: #3b82f6;
             --success-green: #10b981;
             --vibrant-yellow: #facc15;
+            --warm-cream: #fffaf0;
+            --warm-orange-light: #fff7ed;
+            --warm-orange: #ffedd5;
+            --warm-brown-light: #fed7aa;
         }
         body { 
             font-family: 'Sarabun', sans-serif; 
@@ -61,12 +65,17 @@
 
         .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(135px, 1fr)); gap: 1px; background-color: #cbd5e1; min-width: 945px; }
         .calendar-day { background-color: white; min-height: 160px; padding: 10px; font-size: 14.5px; position: relative; display: flex; flex-direction: column; }
+        .calendar-day.today { background-color: #fffbeb; border: 4px solid var(--vibrant-yellow) !important; z-index: 10; }
         
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
         .modal-content { background: white; border-radius: 2.5rem; width: 92%; max-width: 650px; padding: 2.5rem; position: relative; max-height: 90vh; overflow-y: auto; }
         
         #toast { visibility: hidden; min-width: 280px; background-color: #059669; color: #fff; text-align: center; border-radius: 50px; padding: 1rem 1.5rem; position: fixed; z-index: 100000; left: 50%; bottom: 100px; transform: translateX(-50%); font-weight: 800; opacity: 0; transition: all 0.4s; }
         #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(-15px); }
+
+        .agent-guide-card { border-radius: 2.5rem; padding: 2.25rem; border: 2px solid rgba(0,0,0,0.05); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; height: 100%; background: white; }
+        .agent-guide-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+        .agent-number-bg { position: absolute; top: -10px; right: 10px; font-size: 6rem; font-weight: 900; color: rgba(0,0,0,0.05); z-index: 0; pointer-events: none; }
     </style>
 </head>
 <body class="bg-slate-50 font-bold">
@@ -75,26 +84,25 @@
     <header class="site-header sticky top-0 z-50 shadow-lg px-4 font-black">
         <div class="container mx-auto flex items-center justify-between h-16">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
-                <img src="app%20icon.jpg" alt="Logo" class="w-11 h-11 rounded-xl object-cover bg-white shadow-md font-black" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2103/2103828.png'">
+                <img src="app%20icon.jpg" alt="Logo" class="w-11 h-11 rounded-xl object-cover bg-white shadow-md font-black" onerror="this.src='[https://cdn-icons-png.flaticon.com/512/2103/2103828.png](https://cdn-icons-png.flaticon.com/512/2103/2103828.png)'">
                 <div class="text-left text-white">
-                    <h1 class="font-black text-lg leading-tight uppercase tracking-tighter text-white">Digital Squad AI <span class="text-blue-300">V11.8.64</span></h1>
-                    <p class="text-[11.5px] text-blue-200 tracking-[0.2em] uppercase">Strategic 20 Pillars Restoration</p>
+                    <h1 class="font-black text-lg leading-tight uppercase tracking-tighter text-white">Digital Squad AI <span class="text-blue-300">V11.8.65</span></h1>
+                    <p class="text-[11.5px] text-blue-200 tracking-[0.2em] uppercase font-bold">Restoration & 20 Pillars Sync</p>
                 </div>
             </div>
             <nav class="hidden lg:flex space-x-6 text-white h-full items-center font-bold">
                 <a onclick="switchTab('home')" id="nav-home" class="nav-link nav-active">หน้าแรก</a>
                 <a onclick="switchTab('gems')" id="nav-gems" class="nav-link">AI Agent</a>
-                <a onclick="switchTab('catalog')" id="nav-catalog" class="nav-link font-black">ฐานยุทธศาสตร์</a>
+                <a onclick="switchTab('catalog')" id="nav-catalog" class="nav-link">ฐานยุทธศาสตร์</a>
                 <a onclick="switchTab('calendar')" id="nav-calendar" class="nav-link">ปฏิทินกิจกรรม</a>
-                <a onclick="switchTab('about')" id="nav-about" class="nav-link font-black">เกี่ยวกับเรา</a>
+                <a onclick="switchTab('about')" id="nav-about" class="nav-link">เกี่ยวกับเรา</a>
             </nav>
-            <div class="flex items-center space-x-3 font-black">
-                <button onclick="toggleModal('login-modal')" class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full text-[13.5px] font-black transition shadow-lg text-white uppercase border border-blue-400 font-black">LOGIN / REGISTER</button>
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleModal('login-modal')" class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full text-[13.5px] font-black transition shadow-lg text-white uppercase border border-blue-400">LOGIN / REGISTER</button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Nav -->
     <nav class="bottom-nav lg:hidden font-bold">
         <div onclick="switchTab('home')" id="m-nav-home" class="bottom-nav-item active font-black"><i class="fas fa-home"></i><span>หน้าแรก</span></div>
         <div onclick="switchTab('gems')" id="m-nav-gems" class="bottom-nav-item font-black"><i class="fas fa-robot"></i><span>AI Agent</span></div>
@@ -105,242 +113,201 @@
 
     <main class="flex-grow container mx-auto px-4 py-6 font-bold text-left allow-select">
         
-        <!-- Tab: Home -->
-        <div id="tab-home">
+        <!-- Tab: Dashboard -->
+        <div id="tab-home" class="tab-content">
             <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 rounded-[2.5rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden mb-8 border-b-4 border-blue-600 font-black">
-                <div class="relative z-10 max-w-5xl font-black">
+                <div class="relative z-10 max-w-5xl">
                     <div class="flex flex-wrap items-center gap-3 mb-6">
-                        <span class="bg-blue-400 text-blue-950 text-[12px] px-4 py-1.5 rounded-full uppercase tracking-widest font-black shadow-sm">V11.8.64 SECURITY SYNC</span>
-                        <span class="bg-emerald-500/20 text-emerald-300 text-[12px] px-4 py-1.5 rounded-full border border-emerald-500/30 font-black flex items-center">Official Sync</span>
+                        <span class="bg-blue-400 text-blue-950 text-[12px] px-4 py-1.5 rounded-full uppercase tracking-widest font-black shadow-sm">V11.8.65 Restoration</span>
+                        <span class="bg-emerald-500/20 text-emerald-300 text-[12px] px-4 py-1.5 rounded-full border border-emerald-500/30 font-black">Official Sync</span>
                     </div>
-                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-8 uppercase leading-tight text-white text-left">ระบบนิเวศทางการศึกษา<br><span class="text-blue-300">ผู้ช่วย AI อัจฉริยะสำหรับครูไทย</span></h2>
-                    <p class="text-blue-100 text-lg md:text-xl font-medium leading-relaxed mb-10 opacity-95 border-l-4 border-blue-400 pl-4 font-black font-black">
-                        ศูนย์กลางข้อมูลข่าวสารและนวัตกรรมเพื่อการพัฒนาวิชาชีพครูไทย ปกป้องลิขสิทธิ์และผลงานสร้างสรรค์ด้วยระบบความปลอดภัยขั้นสูง
-                    </p>
-                    <div class="mt-10 font-black">
-                        <button onclick="switchTab('catalog')" class="bg-white text-blue-900 px-8 py-4 rounded-xl font-black shadow-lg hover:bg-slate-100 transition active:scale-95 flex items-center text-[15px] uppercase">
-                            <i class="fas fa-bolt mr-2 text-yellow-500 text-lg"></i> เริ่มใช้ทางด่วนภารกิจ
-                        </button>
-                    </div>
+                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-8 uppercase leading-tight text-white">ระบบนิเวศทางการศึกษา<br><span class="text-blue-300">ผู้ช่วย AI อัจฉริยะสำหรับครูไทย</span></h2>
+                    <p class="text-blue-100 text-lg md:text-xl font-medium leading-relaxed mb-10 border-l-4 border-blue-400 pl-4">ศูนย์กลางข้อมูลข่าวสารและนวัตกรรมเพื่อการพัฒนาวิชาชีพครูไทย ปกป้องลิขสิทธิ์ด้วยระบบความปลอดภัยขั้นสูง</p>
+                    <div class="mt-10"><button onclick="switchTab('catalog')" class="bg-white text-blue-900 px-8 py-4 rounded-xl font-black shadow-lg hover:bg-slate-100 transition active:scale-95 flex items-center text-[15px] uppercase"><i class="fas fa-bolt mr-2 text-yellow-500 text-lg"></i> เริ่มใช้ทางด่วนภารกิจ</button></div>
                 </div>
                 <img src="app%20icon.jpg" class="absolute -right-20 -bottom-20 w-[420px] h-[420px] opacity-10 rotate-12" style="filter: brightness(0) invert(1);">
             </div>
 
-            <!-- Target & Rules (Fixed Static) -->
+            <!-- Rules & Targets -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-white p-8 rounded-[2rem] border-2 border-slate-100 shadow-sm font-black">
-                    <h4 class="text-blue-900 font-black uppercase text-[16px] mb-6 flex items-center font-black"><i class="fas fa-user-check mr-3"></i> ใครใช้ได้บ้าง & ช่วยอย่างไร?</h4>
-                    <div class="space-y-4 text-[14.5px] text-slate-600 font-bold">
-                        <div class="flex items-start">
-                            <i class="fas fa-seedling text-emerald-500 mt-1 mr-3 shrink-0"></i>
-                            <span class="leading-relaxed"><b class="text-slate-800">คุณครูบรรจุใหม่:</b> นำทางงานธุรการชั้นเรียน แนะนำการร่างแผนสมรรถนะ และการดูแลช่วยเหลือนักเรียนให้ถูกต้องตามระเบียบ</span>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-award text-amber-500 mt-1 mr-3 shrink-0"></i>
-                            <span class="leading-relaxed"><b class="text-slate-800">คุณครูมืออาชีพ:</b> เร่งสปีดการทำวิจัยชั้นเรียน วPA คศ.2-4 และเตรียมเล่มรายงานรางวัลระดับชาติในเวลาอันรวดเร็ว</span>
-                        </div>
+                <div class="bg-white p-8 rounded-[2rem] border-2 border-slate-100 shadow-sm">
+                    <h4 class="text-blue-900 font-black uppercase text-[16px] mb-6 flex items-center"><i class="fas fa-user-check mr-3 font-black"></i> ใครใช้ได้บ้าง & ช่วยอย่างไร?</h4>
+                    <div class="space-y-4 text-[14.5px] text-slate-600">
+                        <div class="flex items-start"><i class="fas fa-seedling text-emerald-500 mt-1 mr-3 shrink-0"></i> <span><b class="text-slate-800">คุณครูบรรจุใหม่:</b> นำทางงานธุรการชั้นเรียน แนะนำการร่างแผนสมรรถนะ</span></div>
+                        <div class="flex items-start"><i class="fas fa-award text-amber-500 mt-1 mr-3 shrink-0"></i> <span><b class="text-slate-800">คุณครูมืออาชีพ:</b> เร่งสปีดการทำวิจัยชั้นเรียน วPA คศ.2-4</span></div>
                     </div>
                 </div>
-                <div class="bg-white p-8 rounded-[2rem] border-2 border-slate-100 shadow-sm font-black">
+                <div class="bg-white p-8 rounded-[2rem] border-2 border-slate-100 shadow-sm">
                     <h4 class="text-rose-600 font-black uppercase text-[16px] mb-6 flex items-center"><i class="fas fa-shield-alt mr-3"></i> หลักเกณฑ์และกฎเกณฑ์สำคัญ</h4>
-                    <div class="space-y-4 text-[14.5px] text-slate-600 font-bold">
-                        <div class="flex items-start">
-                            <i class="fas fa-ban text-rose-500 mt-1 mr-3 shrink-0"></i>
-                            <span class="leading-relaxed"><b class="text-slate-800">Zero Plagiarism:</b> ห้ามคัดลอกเนื้อหาเดิม 100% ระบบถูกสั่งให้สร้างงานใหม่จากโครงสร้างเดิมเพื่อป้องกันลิขสิทธิ์</span>
-                        </div>
-                        <div class="flex items-start font-black">
-                            <i class="fas fa-database text-blue-500 mt-1 mr-3 shrink-0"></i>
-                            <span class="leading-relaxed"><b class="text-slate-800">Official Data Only:</b> อ้างอิงประกาศจาก 8 หน่วยงานรัฐหลักเท่านั้น ไม่ดึงข้อมูลจากเพจส่วนบุคคลมาแสดง</span>
-                        </div>
+                    <div class="space-y-4 text-[14.5px] text-slate-600">
+                        <div class="flex items-start"><i class="fas fa-ban text-rose-500 mt-1 mr-3 shrink-0"></i> <span><b class="text-slate-800 font-black">Zero Plagiarism:</b> ห้ามคัดลอกเนื้อหาเดิม 100% ระบบจะสร้างงานใหม่เท่านั้น</span></div>
+                        <div class="flex items-start"><i class="fas fa-database text-blue-500 mt-1 mr-3 shrink-0"></i> <span><b class="text-slate-800 font-black">Official Data:</b> อ้างอิงประกาศจาก 8 หน่วยงานรัฐหลัก</span></div>
                     </div>
+                </div>
+            </div>
+
+            <!-- News Grid -->
+            <div class="mb-12">
+                <div class="bg-white border-2 border-slate-100 p-8 rounded-[2.5rem] shadow-sm flex flex-col gap-8">
+                    <div class="flex items-center text-slate-800 font-black text-xl uppercase"><i class="fas fa-satellite-dish mr-4 text-red-500 animate-pulse"></i> ข่าวสารราชการล่าสุด (Official Sync)</div>
+                    <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"></div>
                 </div>
             </div>
         </div>
 
         <!-- Tab: AI Agents -->
-        <div id="tab-gems" class="hidden text-center font-black">
-            <div class="mb-12">
-                <h2 class="text-3xl md:text-4xl font-black text-slate-800 uppercase tracking-tighter mb-3">AI AGENT NAVIGATOR</h2>
-                <p class="text-slate-500 text-[14px] font-bold tracking-widest uppercase">ไกด์นำทางเลือกผู้ช่วยพาสเทลตามบทบาทหน้าที่ (V8 SYNC)</p>
-            </div>
-            <div id="agents-grid-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 text-left font-black"></div>
+        <div id="tab-gems" class="tab-content hidden text-center">
+            <div class="mb-12"><h2 class="text-4xl font-black text-slate-800 uppercase tracking-tighter mb-4">AI AGENT NAVIGATOR</h2><p class="text-slate-500 font-bold uppercase">ไกด์นำทางเลือกผู้ช่วยพาสเทล (V8 Sync)</p></div>
+            <div id="agents-grid-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 text-left"></div>
         </div>
 
         <!-- Tab: Catalog -->
-        <div id="tab-catalog" class="hidden text-left font-black">
-            <div class="bg-blue-900 rounded-[2.5rem] p-10 text-white text-center shadow-md mb-8 border-b-8 border-blue-700 font-black">
-                <h2 class="text-3xl lg:text-4xl font-black uppercase mb-3 tracking-tighter">CENTRALIZED OPERATIONS</h2>
-                <p class="text-blue-200 text-[15px] font-bold">ดัชนีชี้ช่องทางฐานปฏิบัติการ เพื่อเข้าถึง 1,000++ โครงการ</p>
-            </div>
-            <div class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-lg mb-12 border border-slate-100 font-black">
+        <div id="tab-catalog" class="tab-content hidden text-left">
+            <div class="bg-blue-900 rounded-[2.5rem] p-10 text-white text-center shadow-md mb-8 border-b-8 border-blue-700 font-black"><h2 class="text-3xl font-black uppercase mb-3">CENTRALIZED OPERATIONS</h2><p class="text-blue-200">เข้าถึง 1,000++ โครงการ มากกว่า 10,000 ชิ้นงาน</p></div>
+            <div class="bg-white rounded-[2.5rem] p-10 shadow-lg mb-12 border border-slate-100">
                 <div class="mb-10 relative">
-                    <label class="text-[14px] font-black text-blue-900 mb-3 block">ค้นหาภารกิจด่วน (SMART SEARCH):</label>
-                    <div class="relative w-full">
-                        <input type="text" id="catalog-search" onkeyup="handleSearchInput(event)" placeholder="ระบุงานที่ต้องการ (เช่น พิกัดบ้านเด็ก, วPA, e-GP)..." class="w-full bg-slate-50 border-2 border-blue-200 focus:border-blue-500 text-slate-700 text-lg rounded-2xl block pl-14 p-5 outline-none font-bold transition-all">
-                        <i class="fas fa-search absolute left-5 top-6 text-blue-400 text-lg"></i>
-                        <div id="search-results-dropdown"></div>
-                    </div>
+                    <label class="text-[17.5px] font-black text-blue-900 uppercase block mb-4">ค้นหาภารกิจด่วน (Smart Search):</label>
+                    <input type="text" id="catalog-search" onkeyup="handleSearchInput(event)" placeholder="ระบุงานที่ต้องการ (เช่น วPA, e-GP)..." class="w-full bg-slate-50 border-2 border-blue-200 rounded-2xl p-5 outline-none font-black shadow-inner">
+                    <div id="search-results-dropdown"></div>
                 </div>
-                <div id="catalog-lists" class="grid grid-cols-1 lg:grid-cols-2 gap-8 font-black"></div>
-            </div>
-        </div>
-
-        <!-- Tab: About (20 Strategic Pillars - RECOVERED) -->
-        <div id="tab-about" class="hidden text-left font-black">
-            <div class="max-w-7xl mx-auto">
-                <div class="bg-white p-10 md:p-14 rounded-[3rem] shadow-xl border border-slate-100 font-black">
-                    <h2 class="text-3xl md:text-4xl font-black text-slate-800 mb-6 uppercase tracking-tighter font-black font-black">จุดแข็งระบบนิเวศ (20 STRATEGIC PILLARS)</h2>
-                    <p class="text-slate-500 font-medium mb-12 border-b border-slate-100 pb-6 text-lg">ขีดความสามารถและกฎเกณฑ์สูงสุดที่เหนือกว่าทุกระบบในประเทศไทย (V11.8.64)</p>
-                    
-                    <div id="about-pillars-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 font-black">
-                        <!-- Pillars will be rendered by JS here for 20 unique items -->
-                    </div>
-                </div>
+                <div id="catalog-lists" class="grid grid-cols-1 lg:grid-cols-2 gap-8"></div>
             </div>
         </div>
 
         <!-- Tab: Calendar -->
-        <div id="tab-calendar" class="hidden text-left font-black">
+        <div id="tab-calendar" class="tab-content hidden text-left font-black">
             <div class="bg-white rounded-[2.5rem] shadow-xl overflow-hidden mb-12 border border-slate-100">
-                <div class="bg-blue-900 px-10 py-14 text-white flex flex-col md:flex-row justify-between items-center gap-6 font-black font-black">
-                    <div class="text-center md:text-left">
-                        <h2 id="calendar-month-year" class="text-4xl font-black tracking-widest uppercase">--</h2>
-                        <p class="text-[13px] text-blue-300 font-black uppercase mt-3 tracking-[0.2em]">Educational Timeline 2026</p>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <button onclick="changeMonth(-1)" class="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border border-white/20 transition-all"><i class="fas fa-chevron-left text-xl font-black"></i></button>
-                        <button onclick="changeMonth(1)" class="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full border border-white/20 transition-all font-black"><i class="fas fa-chevron-right text-xl font-black"></i></button>
-                    </div>
+                <div class="bg-blue-900 px-10 py-14 text-white flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="text-center md:text-left"><h2 id="calendar-month-year" class="text-4xl font-black tracking-widest uppercase">พฤษภาคม 2569</h2><p class="text-blue-300 font-black">Educational Timeline 2026</p></div>
+                    <div class="flex items-center space-x-4"><button onclick="changeMonth(-1)" class="w-12 h-12 flex bg-white/10 hover:bg-white/20 rounded-full border border-white/20 items-center justify-center font-black"><i class="fas fa-chevron-left"></i></button><button onclick="changeMonth(1)" class="w-12 h-12 flex bg-white/10 hover:bg-white/20 rounded-full border border-white/20 items-center justify-center font-black"><i class="fas fa-chevron-right"></i></button></div>
                 </div>
-                <div class="calendar-container">
-                    <div class="calendar-wrapper bg-slate-50">
-                        <div id="calendar-body" class="calendar-grid"></div>
-                    </div>
+                <div class="calendar-wrapper bg-slate-50 p-4"><div id="calendar-body" class="calendar-grid"></div></div>
+            </div>
+        </div>
+
+        <!-- Tab: About (20 Strategic Pillars - RECOVERED) -->
+        <div id="tab-about" class="tab-content hidden text-left font-black">
+            <div class="max-w-7xl mx-auto">
+                <div class="bg-white p-10 md:p-14 rounded-[3rem] shadow-xl border border-slate-100 font-black">
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-800 mb-4 uppercase tracking-tighter">จุดแข็งระบบนิเวศ (20 STRATEGIC PILLARS)</h2>
+                    <p class="text-slate-500 font-medium mb-12 border-b border-slate-100 pb-6 text-lg">หลักการ กฎเกณฑ์ และขีดความสามารถที่เหนือกว่าโปรแกรม AI ทั่วไป</p>
+                    <div id="about-pillars-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-slate-100 py-10 border-t border-slate-200 mt-auto font-black font-black">
-        <div class="container mx-auto px-4 text-center font-black font-black font-black font-black font-black font-black">
+    <footer class="bg-slate-100 py-12 border-t border-slate-200 mt-auto font-black">
+        <div class="container mx-auto px-4 text-center">
             <p class="text-slate-500 text-[13px] font-black uppercase tracking-widest">Digital Squad AI Master Ecosystem</p>
-            <p class="text-blue-900 text-[16px] font-black mt-2 font-black font-black">ออกแบบวางระบบและพัฒนาโดย <span class="text-blue-600 font-black font-black">กันตภณ ณพสิษฐ์</span></p>
-            <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-slate-400 text-[11px] font-black uppercase tracking-widest font-black">
-                <span>© 2026 OFFICIAL EDUCATIONAL HUB</span>
-                <span class="hidden md:inline text-slate-300">|</span>
-                <span>ALL RIGHTS RESERVED</span>
-                <span class="hidden md:inline text-slate-300">|</span>
-                <span>20 PILLARS SYNC V11.8.64</span>
-            </div>
+            <p class="text-blue-900 text-[16px] font-black mt-2">ออกแบบวางระบบและพัฒนาโดย <span class="text-blue-600">กันตภณ ณพสิษฐ์</span></p>
+            <p class="text-slate-400 text-[10px] mt-6 font-bold uppercase">© 2026 OFFICIAL EDUCATIONAL HUB | ALL RIGHTS RESERVED | RECOVERY SYNC V11.8.65</p>
         </div>
     </footer>
 
     <div id="toast"></div>
 
     <script>
-        // SECURITY
-        document.addEventListener('contextmenu', (e) => { e.preventDefault(); showToast("⚠️ ลิขสิทธิ์เฉพาะ Digital Squad"); return false; });
-        
-        const ALL_MISSIONS = ["ระบบระบุพิกัดที่ตั้งโรงเรียนและบ้านนักเรียน (GIS)", "ฐานข้อมูลรหัสหมู่บ้าน DOPA Sync", "ร่างหลักสูตรสถานศึกษา 2569", "แผน CBE 5E ครบ 8 สาระ", "คลังข้อสอบแนววิเคราะห์ PISA", "ระบบประเมิน Rubrics อิงสมรรถนะ", "เตรียมหลักฐานส่งระบบ DPA 3.0", "คลิปวิดีโอการสอนตามเกณฑ์ วPA"];
-
+        const AGENT_URLS = { "AGENT 01": "[https://gemini.google.com/gem/1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe](https://gemini.google.com/gem/1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe)", "AGENT 02": "[https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2](https://gemini.google.com/gem/1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2)", "AGENT 03": "[https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ](https://gemini.google.com/gem/1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ)", "AGENT 04": "[https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx](https://gemini.google.com/gem/1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx)", "AGENT 05": "[https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp](https://gemini.google.com/gem/1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp)", "AGENT 06": "[https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr](https://gemini.google.com/gem/1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr)", "AGENT 07": "[https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc](https://gemini.google.com/gem/1GKidsP54FbDt95iFUPYZur-RXFj7cCZc)", "AGENT 08": "[https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ](https://gemini.google.com/gem/1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ)", "AGENT 09": "[https://gemini.google.com/gem/1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM](https://gemini.google.com/gem/1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM)", "AGENT 10": "[https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc](https://gemini.google.com/gem/1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc)" };
+        const ALL_MISSIONS = ["ร่างหลักสูตรสถานศึกษา 2569", "แผน CBE 5E ครบ 8 สาระ", "คลังข้อสอบแนววิเคราะห์ PISA", "ระบบประเมิน Rubrics อิงสมรรถนะ", "ฐานข้อมูลรหัสหมู่บ้าน DOPA Sync", "ระบบระบุพิกัดที่ตั้งโรงเรียน (GIS)"];
         const agentsData = [
-            { id: "01", name: "COMMAND CENTER V8", icon: "fa-compass", bg: "#EBF8FF", color: "#1e3a8a", tags: "ยุทธศาสตร์", skills: ["มหาคลังภารกิจ 1,000+", "Router System", "นำทางยุทธศาสตร์ 8 ด้าน"] },
-            { id: "02", name: "SMART HUB", icon: "fa-bullhorn", bg: "#FFF0F0", color: "#92400e", tags: "ข้อมูล / ข่าว", skills: ["สรุปข่าวราชการ 30 วัน", "สืบค้นงานวิจัย", "สกัดระเบียบใหม่ ศธ."] },
-            { id: "03", name: "LESSON DESIGNER", icon: "fa-pencil-ruler", bg: "#F0FFF4", color: "#059669", tags: "Pedagogy", skills: ["ร่างแผนสมรรถนะ", "ออกแบบ Active Learning", "ใบงาน 8 กลุ่มสาระ"] }
+            { id: "01", name: "COMMAND CENTER V8", icon: "fa-compass", bg: "#EBF8FF", color: "#1e3a8a", skills: ["มหาคลังภารกิจ 1,000+ รายการ", "ระบบ Search Engine & Router", "นำทางยุทธศาสตร์ 8 ด้าน"] },
+            { id: "02", name: "SMART HUB", icon: "fa-bullhorn", bg: "#FFF0F0", color: "#92400e", skills: ["สรุปข่าวราชการ 30 วัน", "สืบค้นงานวิจัยทางการศึกษา", "สกัดระเบียบใหม่ ศธ."] },
+            { id: "03", name: "LESSON DESIGNER", icon: "fa-pencil-ruler", bg: "#F0FFF4", color: "#059669", skills: ["ร่างแผนการสอนสมรรถนะ", "ออกแบบกิจกรรมเชิงรุก", "สร้างใบงาน 8 กลุ่มสาระ"] }
         ];
 
         const pillars = [
-            { t: "Zero Plagiarism", i: "fa-ban", bg: "bg-rose-50", c: "text-rose-600" },
-            { t: "Official Sync", i: "fa-sync", bg: "bg-blue-50", c: "text-blue-600" },
-            { t: "GIS Location", i: "fa-map-marked-alt", bg: "bg-emerald-50", c: "text-emerald-600" },
-            { t: "Prompt Lock", i: "fa-user-shield", bg: "bg-amber-50", c: "text-amber-600" },
-            { t: "Humanizer Thai", i: "fa-pen-fancy", bg: "bg-purple-50", c: "text-purple-600" },
-            { t: "SPS Standard", i: "fa-shield-virus", bg: "bg-indigo-50", c: "text-indigo-600" },
-            { t: "Identity Sync", i: "fa-id-card", bg: "bg-teal-50", c: "text-teal-600" },
-            { t: "e-GP 2569", i: "fa-file-invoice-dollar", bg: "bg-orange-50", c: "text-orange-600" },
-            { t: "วPA Mastery", i: "fa-medal", bg: "bg-rose-100", c: "text-rose-700" },
-            { t: "Zero Install", i: "fa-cloud", bg: "bg-blue-100", c: "text-blue-700" },
-            { t: "DOPA Sync", i: "fa-database", bg: "bg-emerald-100", c: "text-emerald-700" },
-            { t: "Template Hub", i: "fa-copy", bg: "bg-amber-100", c: "text-amber-700" },
-            { t: "Alchemy Logic", i: "fa-flask", bg: "bg-purple-100", c: "text-purple-700" },
-            { t: "Multimodal AI", i: "fa-eye", bg: "bg-indigo-100", c: "text-indigo-700" },
-            { t: "ITA AA Level", i: "fa-balance-scale", bg: "bg-teal-100", c: "text-teal-700" },
-            { t: "YC Model 2026", i: "fa-users", bg: "bg-orange-100", c: "text-orange-700" },
-            { t: "K-to-Uni Scale", i: "fa-graduation-cap", bg: "bg-rose-50", c: "text-rose-500" },
-            { t: "Career Path", i: "fa-briefcase", bg: "bg-blue-50", c: "text-blue-500" },
-            { t: "Ethical Audit", i: "fa-clipboard-check", bg: "bg-emerald-50", c: "text-emerald-500" },
-            { t: "Real-time Sync", i: "fa-clock", bg: "bg-amber-50", c: "text-amber-500" }
+            { t: "Zero Plagiarism", d: "สร้างงานใหม่ 100% ห้ามคัดลอก", i: "fa-ban", bg: "bg-rose-50", c: "text-rose-600" },
+            { t: "Official Sync", d: "เชื่อมข้อมูล 8 หน่วยงานรัฐ", i: "fa-sync", bg: "bg-blue-50", c: "text-blue-600" },
+            { t: "GIS Location", d: "ระบุพิกัดบ้านเด็กแม่นยำ", i: "fa-map-marker-alt", bg: "bg-emerald-50", c: "text-emerald-600" },
+            { t: "DOPA Data", d: "ฐานข้อมูลหมู่บ้านกรมการปกครอง", i: "fa-database", bg: "bg-amber-50", c: "text-amber-600" },
+            { t: "Identity Sync", d: "จดจำตำแหน่งและสังกัดครู", i: "fa-id-card", bg: "bg-purple-50", c: "text-purple-600" },
+            { t: "Prompt Guard", d: "ป้องกันการดึงชุดคำสั่งลับ", i: "fa-lock", bg: "bg-indigo-50", c: "text-indigo-600" },
+            { t: "Humanizer", d: "สำนวนไทยสละสลวยเหมือนมนุษย์", i: "fa-pen-fancy", bg: "bg-teal-50", c: "text-teal-600" },
+            { t: "SPS Model", d: "มาตรฐานความปลอดภัยจากญี่ปุ่น", i: "fa-shield-virus", bg: "bg-orange-50", c: "text-orange-600" },
+            { t: "วPA Expert", d: "ที่ปรึกษาวิทยฐานะ คศ.2-คศ.5", i: "fa-medal", bg: "bg-pink-50", c: "text-pink-600" },
+            { t: "e-GP 2569", d: "รองรับระเบียบพัสดุระบบใหม่", i: "fa-file-invoice", bg: "bg-sky-50", c: "text-sky-600" },
+            { t: "No Installation", d: "ใช้ผ่านเบราว์เซอร์ได้ทันที", i: "fa-cloud", bg: "bg-cyan-50", c: "text-cyan-600" },
+            { t: "YC Model 2026", d: "ดูแลสุขภาพจิตวัยรุ่นเชิงรุก", i: "fa-users", bg: "bg-lime-50", c: "text-lime-600" },
+            { t: "ITA AA Level", d: "แผนงานคุณธรรมและความโปร่งใส", i: "fa-balance-scale", bg: "bg-violet-50", c: "text-violet-600" },
+            { t: "Soft Power Sync", d: "บูรณาการ 1 ครอบครัว 1 ซอฟต์พาวเวอร์", i: "fa-bolt", bg: "bg-yellow-50", c: "text-yellow-600" },
+            { t: "Multi-Multimodal", d: "รองรับภาพถ่ายและไฟล์ PDF", i: "fa-eye", bg: "bg-emerald-100", c: "text-emerald-800" },
+            { t: "Zero Cost", d: "ลดภาระการซื้อโปรแกรมแพงๆ", i: "fa-hand-holding-usd", bg: "bg-blue-100", c: "text-blue-800" },
+            { t: "Ethics Audit", d: "ระบบตรวจจริยธรรมผลงาน AI", i: "fa-clipboard-check", bg: "bg-rose-100", c: "text-rose-800" },
+            { t: "Real-time Update", d: "อัปเดตข้อมูลย้อนหลัง 60 วันทุกวัน", i: "fa-clock", bg: "bg-orange-100", c: "text-orange-800" },
+            { t: "K-to-Uni Scale", d: "รองรับทุกระดับชั้นการศึกษา", i: "fa-graduation-cap", bg: "bg-purple-100", c: "text-purple-800" },
+            { t: "Career Awareness", d: "เน้นสมรรถนะอาชีพตามหลักสูตร 68", i: "fa-briefcase", bg: "bg-indigo-100", c: "text-indigo-800" }
         ];
 
         let currentMonthDate = new Date(2026, 4, 1);
 
         function switchTab(tab) {
-            ['home', 'gems', 'catalog', 'calendar', 'about'].forEach(t => {
-                const el = document.getElementById('tab-' + t);
-                if (el) el.classList.add('hidden');
-                document.getElementById('nav-' + t)?.classList.remove('nav-active');
-            });
-            document.getElementById('tab-' + tab)?.classList.remove('hidden');
-            document.getElementById('nav-' + tab)?.classList.add('nav-active');
-            
-            if(tab === 'about') renderAbout();
-            if(tab === 'gems') renderAgents();
-            if(tab === 'catalog') renderCatalog();
-            if(tab === 'calendar') renderCalendar();
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('nav-active'));
+            document.getElementById('tab-' + tab).classList.remove('hidden');
+            const nav = document.getElementById('nav-' + tab); if (nav) nav.classList.add('nav-active');
+            if (tab === 'home') renderNews();
+            if (tab === 'gems') renderAgents();
+            if (tab === 'catalog') renderCatalog();
+            if (tab === 'calendar') renderCalendar();
+            if (tab === 'about') renderAbout();
             window.scrollTo(0,0);
         }
 
-        function renderAbout() {
-            const el = document.getElementById('about-pillars-grid');
-            if(!el) return;
-            el.innerHTML = pillars.map((p, i) => `
-                <div class="p-4 rounded-2xl border border-black/5 shadow-sm transition-all hover:shadow-md ${p.bg}">
-                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center ${p.c} mb-3 shadow-sm text-lg"><i class="fas ${p.i}"></i></div>
-                    <h4 class="text-[12.5px] font-black uppercase mb-1 text-slate-800 leading-tight">PILLAR ${i+1}</h4>
-                    <p class="text-[11px] text-slate-600 font-bold leading-relaxed">${p.t}</p>
+        function renderNews() {
+            const container = document.getElementById('news-container'); if (!container) return;
+            container.innerHTML = [{c:"สพฐ.", t:"สถานีแก้หนี้ครูพฤษภาคม"}, {c:"ก.ค.ศ.", t:"คู่มือ PA ปีงบ 70"}, {c:"ศธ.", t:"ร่าง พ.ร.บ. การศึกษา 69"}, {c:"อว.", t:"TCAS70 เริ่ม 15 ก.ค."}].map(n => `
+                <div class="p-6 bg-[#FFF7ED] rounded-[1.5rem] border border-orange-100">
+                    <span class="text-[10px] font-black text-white bg-blue-900 px-2 py-1 rounded-full mb-3 inline-block uppercase">${n.c}</span>
+                    <h4 class="text-[13.5px] font-bold text-slate-700 leading-snug mb-4">${n.t}</h4>
+                    <button class="w-full bg-white text-blue-900 py-2 rounded-xl text-[11px] font-black border border-blue-100">อ่านข่าว</button>
                 </div>`).join('');
         }
 
         function renderAgents() {
-            const el = document.getElementById('agents-grid-container');
-            if(!el) return;
-            el.innerHTML = agentsData.map(a => `
-                <div class="bg-white border border-slate-100 rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all relative cursor-pointer" style="background-color: ${a.bg}" onclick="window.open('https://gemini.google.com/app', '_blank')">
-                    <span class="absolute -top-3 right-2 font-black text-8xl opacity-[0.04] pointer-events-none" style="color: ${a.color}">${a.id}</span>
-                    <div class="w-12 h-12 bg-white/80 rounded-xl flex items-center justify-center text-xl mb-5 shadow-sm" style="color: ${a.color}"><i class="fas ${a.icon}"></i></div>
-                    <span class="text-[10px] font-black uppercase bg-white/70 px-3 py-1 rounded-full mb-3 inline-block" style="color: ${a.color}">${a.tags}</span>
-                    <h3 class="font-black text-[16px] mb-4" style="color: ${a.color}">${a.id} - ${a.name}</h3>
-                    <div class="space-y-2">
-                        ${a.skills.map(s => `<p class="text-[12px] text-slate-600 flex items-start font-bold"><i class="fas fa-check-circle mt-1 mr-2 opacity-30"></i> ${s}</p>`).join('')}
-                    </div>
+            const container = document.getElementById('agents-grid-container'); if (!container) return;
+            container.innerHTML = agentsData.map(a => `
+                <div class="agent-guide-card relative cursor-pointer" style="background-color: ${a.bg}" onclick="window.open('${AGENT_URLS['AGENT ' + a.id]}', '_blank')">
+                    <span class="agent-number-bg font-black text-8xl opacity-[0.04] absolute -top-3 right-2" style="color: ${a.color}">${a.id}</span>
+                    <div class="w-14 h-14 bg-white/80 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm" style="color: ${a.color}"><i class="fas ${a.icon}"></i></div>
+                    <h3 class="font-black text-[17px] mb-4" style="color: ${a.color}">${a.id} - ${a.name}</h3>
+                    <div class="space-y-2">${a.skills.map(s => `<p class="text-[12px] text-slate-600 flex items-start"><i class="fas fa-check-circle mt-1 mr-2 opacity-30"></i> ${s}</p>`).join('')}</div>
                 </div>`).join('');
         }
 
         function renderCatalog() {
-            const el = document.getElementById('catalog-lists');
-            if(!el) return;
-            el.innerHTML = `
-                <div class="p-6 rounded-2xl bg-[#EBF8FF] border border-[#BEE3F8]">
-                    <h3 class="text-lg font-black text-blue-800 mb-4 border-b border-blue-200 pb-2">สายงานวิชาการ</h3>
-                    <div class="space-y-2">${ALL_MISSIONS.slice(2, 5).map(m => `<div class="py-2 px-3 hover:bg-white/50 rounded-lg cursor-pointer text-[13px] font-bold text-slate-700"> ${m}</div>`).join('')}</div>
+            const container = document.getElementById('catalog-lists'); if (!container) return;
+            container.innerHTML = `
+                <div class="p-8 rounded-[2rem] bg-[#EBF8FF] border border-[#BEE3F8]">
+                    <h3 class="text-xl font-black text-blue-800 mb-5 border-b-2 border-blue-200 pb-3 uppercase">สายงานวิชาการ</h3>
+                    <div class="space-y-3">${ALL_MISSIONS.slice(0, 4).map(m => `<div class="py-2 px-3 hover:bg-white/50 rounded-lg cursor-pointer text-slate-700"> ${m}</div>`).join('')}</div>
                 </div>
-                <div class="p-6 rounded-2xl bg-[#F0FFF4] border border-[#C6F6D5]">
-                    <h3 class="text-lg font-black text-emerald-800 mb-4 border-b border-emerald-200 pb-2">สายงานพิกัดที่ตั้ง (GIS)</h3>
-                    <div class="space-y-2">${ALL_MISSIONS.slice(0, 2).map(m => `<div class="py-2 px-3 hover:bg-white/50 rounded-lg cursor-pointer text-[13px] font-bold text-slate-700"> ${m}</div>`).join('')}</div>
+                <div class="p-8 rounded-[2rem] bg-[#F0FFF4] border border-[#C6F6D5]">
+                    <h3 class="text-xl font-black text-emerald-800 mb-5 border-b-2 border-emerald-200 pb-3 uppercase">งานพิกัดและฐานข้อมูล</h3>
+                    <div class="space-y-3">${ALL_MISSIONS.slice(4, 6).map(m => `<div class="py-2 px-3 hover:bg-white/50 rounded-lg cursor-pointer text-slate-700"> ${m}</div>`).join('')}</div>
                 </div>`;
         }
 
         function renderCalendar() {
             const body = document.getElementById('calendar-body'); if (!body) return;
-            document.getElementById('calendar-month-year').innerText = "พฤษภาคม 2569";
             let html = ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."].map(d => `<div class="bg-slate-100 p-4 text-center text-slate-600 font-black text-[12px] border-b border-slate-200">${d}</div>`).join('');
-            for(let i=0; i<5; i++) html += `<div class="bg-slate-50/50 border-r border-b border-slate-100 font-black font-black"></div>`;
-            for(let d=1; d<=31; d++) html += `<div class="bg-white border-r border-b border-slate-100 p-3 flex flex-col h-[100px] hover:bg-blue-50 transition-colors"><b class="text-slate-700 text-[14px]">${d}</b></div>`;
+            for(let d=1; d<=31; d++) html += `<div class="bg-white border-r border-b border-slate-100 p-3 h-[110px] font-black"><b class="text-slate-800 text-[14px]">${d}</b></div>`;
             body.innerHTML = html;
+        }
+
+        function renderAbout() {
+            const container = document.getElementById('about-pillars-grid'); if (!container) return;
+            container.innerHTML = pillars.map((p, i) => `
+                <div class="p-4 rounded-2xl border border-black/5 shadow-sm transition-all hover:shadow-md ${p.bg}">
+                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center ${p.c} mb-3 shadow-sm text-lg font-black"><i class="fas ${p.i}"></i></div>
+                    <h4 class="text-[12px] font-extrabold uppercase mb-1 text-slate-800 leading-tight">PILLAR ${i+1}</h4>
+                    <p class="text-[10px] text-slate-500 font-bold leading-relaxed">${p.t}</p>
+                </div>`).join('');
         }
 
         function showToast(msg) { const t = document.getElementById('toast'); if (t) { t.innerText = msg; t.className = "show"; setTimeout(() => t.className = "", 3000); } }
         function toggleModal(id) { const m = document.getElementById(id); if (m) m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); }
+        function handleLogin(e) { e.preventDefault(); toggleModal('login-modal'); showToast("เข้าใช้งานสำเร็จ"); }
 
         window.onload = () => { switchTab('home'); };
     </script>
