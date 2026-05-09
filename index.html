@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Digital Squad AI V11.8.60 - The Master Blueprint</title>
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <script src="[https://cdn.jsdelivr.net/npm/chart.js](https://cdn.jsdelivr.net/npm/chart.js)"></script>
-    <link href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('[https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap)');
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap');
         :root {
             --primary-blue: #1e3a8a;
             --accent-blue: #3b82f6;
@@ -84,7 +84,7 @@
     <header class="site-header sticky top-0 z-50 shadow-lg px-4">
         <div class="container mx-auto flex items-center justify-between h-16">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
-                <img src="app%20icon.jpg" alt="Logo" class="w-11 h-11 rounded-xl object-cover bg-white shadow-md" onerror="this.src='[https://cdn-icons-png.flaticon.com/512/2103/2103828.png](https://cdn-icons-png.flaticon.com/512/2103/2103828.png)'">
+                <img src="https://cdn-icons-png.flaticon.com/512/2103/2103828.png" alt="Logo" class="w-11 h-11 rounded-xl object-cover bg-white shadow-md">
                 <div class="text-left text-white">
                     <h1 class="font-extrabold text-lg leading-tight uppercase tracking-tighter">Digital Squad AI <span class="text-blue-300">V11.8.60</span></h1>
                     <p class="text-[11.5px] text-blue-200 tracking-[0.2em] uppercase font-bold">The Master Blueprint</p>
@@ -173,7 +173,6 @@
                         </button>
                     </div>
                 </div>
-                <img src="app%20icon.jpg" class="absolute -right-20 -bottom-20 w-[420px] h-[420px] opacity-10 rotate-12" style="filter: brightness(0) invert(1);">
             </div>
 
             <div class="mb-12">
@@ -195,7 +194,7 @@
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="training-list-container"></div>
                     <div class="mt-8 text-center">
-                        <button onclick="window.open('[https://www.kurusapa.or.th/th/category/training/](https://www.kurusapa.or.th/th/category/training/)', '_blank')" class="bg-slate-50 text-slate-600 px-8 py-3 rounded-xl text-[13px] font-bold uppercase hover:bg-slate-100 transition border border-slate-200">
+                        <button onclick="window.open('https://www.kurusapa.or.th/th/category/training/', '_blank')" class="bg-slate-50 text-slate-600 px-8 py-3 rounded-xl text-[13px] font-bold uppercase hover:bg-slate-100 transition border border-slate-200">
                             อ่านข่าวฝึกอบรมทั้งหมด <i class="fas fa-external-link-alt ml-1 opacity-60"></i>
                         </button>
                     </div>
@@ -421,16 +420,16 @@
             toggleModal('task-modal'); 
         }
 
-        function launchAgent() { window.open("[https://gemini.google.com/app](https://gemini.google.com/app)", '_blank'); }
+        function launchAgent() { window.open("https://gemini.google.com/app", '_blank'); }
 
         function renderHome() {
             const news = document.getElementById('news-container');
             if (news) {
                 const data = [
-                    {cat:"สพฐ. (ANNOUNCE)", url:"[https://www.obec.go.th/](https://www.obec.go.th/)", items:["สถานีแก้หนี้ครู ลงพื้นที่เชิงรุกพฤษภาคม 69","ประกาศเกณฑ์กองทุน WCT แก้หนี้ครู ดอกเบี้ย 4%"]},
-                    {cat:"สกร. (NFE)", url:"[https://www.nfe.go.th/](https://www.nfe.go.th/)", items:["สกร. x กองทัพบก: ทหารประจำการจบไว 1 ปี","โละหลักสูตร 51 ตั้งเป้าใช้หลักสูตรใหม่ปี 70"]},
-                    {cat:"ก.ค.ศ. (วPA)", url:"[https://www.otepc.go.th/](https://www.otepc.go.th/)", items:["คู่มือเขียนข้อตกลง PA ปีงบ 70","ย้ายครู รอบที่ 2 มีผล 15 ต.ค. 69"]},
-                    {cat:"อว./IT (EDU)", url:"[https://www.mhesi.go.th/](https://www.mhesi.go.th/)", items:["ศธ. x Google ดึง AI ลดงานครู 10 ชม.","ปฏิทิน TCAS70: เริ่มลงทะเบียน 15 ก.ค. 69"]}
+                    {cat:"สพฐ. (ANNOUNCE)", url:"https://www.obec.go.th/", items:["สถานีแก้หนี้ครู ลงพื้นที่เชิงรุกพฤษภาคม 69","ประกาศเกณฑ์กองทุน WCT แก้หนี้ครู ดอกเบี้ย 4%"]},
+                    {cat:"สกร. (NFE)", url:"https://www.nfe.go.th/", items:["สกร. x กองทัพบก: ทหารประจำการจบไว 1 ปี","โละหลักสูตร 51 ตั้งเป้าใช้หลักสูตรใหม่ปี 70"]},
+                    {cat:"ก.ค.ศ. (วPA)", url:"https://www.otepc.go.th/", items:["คู่มือเขียนข้อตกลง PA ปีงบ 70","ย้ายครู รอบที่ 2 มีผล 15 ต.ค. 69"]},
+                    {cat:"อว./IT (EDU)", url:"https://www.mhesi.go.th/", items:["ศธ. x Google ดึง AI ลดงานครู 10 ชม.","ปฏิทิน TCAS70: เริ่มลงทะเบียน 15 ก.ค. 69"]}
                 ];
                 news.innerHTML = data.map(n => `
                     <div class="p-6 shadow-sm flex flex-col h-full rounded-[1.5rem] border border-orange-100/50 transition-all hover:shadow-md" style="background-color: #FFF7ED;">
@@ -445,10 +444,10 @@
             const training = document.getElementById('training-list-container');
             if (training) {
                 const courses = [
-                    {t:"AI Literacy for Teachers 2026", a:"สพฐ. x Google", d:"15-20 พ.ค. 69", url:"[https://www.obec.go.th/](https://www.obec.go.th/)"},
-                    {t:"Active Learning & CBE 5E", a:"คุรุสภา", d:"2 มิ.ย. 69", url:"[https://www.ksp.or.th/](https://www.ksp.or.th/)"},
-                    {t:"Digital Wellness in School", a:"Thai MOOC", d:"เรียนได้ตลอดปี", url:"[https://thaimooc.org/](https://thaimooc.org/)"},
-                    {t:"นวัตกรรมแก้ปัญหาผู้เรียน (PA)", a:"สถาบันพัฒนาครู", d:"20-25 มิ.ย. 69", url:"[https://www.obec.go.th/](https://www.obec.go.th/)"}
+                    {t:"AI Literacy for Teachers 2026", a:"สพฐ. x Google", d:"15-20 พ.ค. 69", url:"https://www.obec.go.th/"},
+                    {t:"Active Learning & CBE 5E", a:"คุรุสภา", d:"2 มิ.ย. 69", url:"https://www.ksp.or.th/"},
+                    {t:"Digital Wellness in School", a:"Thai MOOC", d:"เรียนได้ตลอดปี", url:"https://thaimooc.org/"},
+                    {t:"นวัตกรรมแก้ปัญหาผู้เรียน (PA)", a:"สถาบันพัฒนาครู", d:"20-25 มิ.ย. 69", url:"https://www.obec.go.th/"}
                 ];
                 training.innerHTML = courses.map(c => `
                     <div class="training-card p-6 bg-white border border-slate-200 rounded-[1.5rem] flex flex-col h-full transition-all hover:-translate-y-1 hover:shadow-lg">
@@ -471,7 +470,7 @@
                 const colors = ["#1e3a8a", "#92400e", "#0891b2", "#059669", "#db2777", "#475569", "#7c3aed", "#c2410c", "#0d9488", "#dc2626"];
                 const bgColors = ["#EBF8FF", "#FFF0F0", "#F0FFF4", "#FFF9F0", "#F5F0FF", "#F0FFFF", "#FFF0FB", "#F9FFF0", "#F0F2FF", "#FFF5F0"];
                 agentsEl.innerHTML = agentsData.map((a, i) => `
-                    <div class="agent-guide-card group bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl transition-all relative overflow-hidden flex flex-col h-full cursor-pointer" style="background-color: ${bgColors[i]}" onclick="window.open('${AGENT_URLS['AGENT ' + a.id]}', '_blank')">
+                    <div class="agent-guide-card group bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl transition-all relative overflow-hidden flex flex-col h-full cursor-pointer" style="background-color: ${bgColors[i]}" onclick="window.open('https://gemini.google.com/app', '_blank')">
                         <span class="absolute -top-4 -right-2 font-black text-8xl opacity-[0.04] pointer-events-none">${a.id}</span>
                         <div class="w-14 h-14 bg-white/80 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm" style="color: ${colors[i]}"><i class="fas ${a.icon}"></i></div>
                         <div class="relative z-10 flex-grow">
