@@ -1166,6 +1166,17 @@
             showToast(`สวัสดีคุณ ${name} (${pos}) สังกัด ${agency} เข้าสู่ระบบสำเร็จ!`); 
         }
 
+        // ================= Firebase Integration (Step 1) =================
+        // ส่วนนี้คือการนำเข้าเครื่องมือ (Library) ของ Firebase แบบ Modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, onSnapshot, collection, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // ตัวแปรสำหรับเก็บอุปกรณ์ของ Firebase
+        let db;
+        let auth;
+        // ===============================================================
+
         window.onload = () => { initDynamicContent(); initDailyTrick(); switchTab('home'); };
     </script>
 </body>
