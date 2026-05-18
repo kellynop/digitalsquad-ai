@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V13.12.53 - Premium Educational Ecosystem</title>
+    <title>Digital Squad AI V13.13.01 - Premium Educational Ecosystem</title>
     
     <!-- 🛡️ ระบบดาวน์โหลดดีไซน์อัจฉริยะแบบไดนามิก ป้องกันการแปลงลิงก์ Markdown ของแชทบอตพัง -->
     <script>
@@ -27,17 +27,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <script>
-        // กำหนดธีมดีไซน์และฟอนต์หลักของระบบ
-        setTimeout(function() {
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        fontFamily: { sans: ['Sarabun', 'sans-serif'] },
-                        colors: { primary: '#1e3a8a', secondary: '#3b82f6', accent: '#facc15', cream: '#fff7ed' }
-                    }
+        // 🛠️ แก้ไขวิกฤตความเสถียร: ล้างระบบหน่วงเวลา Tailwind Config ทิ้ง เพื่อให้แสดงผลธีมสีน้ำเงินเข้มได้ทันที 100% ป้องกันหน้าขาวรวน
+        window.tailwind = window.tailwind || {};
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Sarabun', 'sans-serif'] },
+                    colors: { primary: '#1e3a8a', secondary: '#3b82f6', accent: '#facc15', cream: '#fff7ed' }
                 }
             }
-        }, 100);
+        }
     </script>
 
     <style>
@@ -74,7 +73,7 @@
         .cal-day-cell.today { border: 2px solid #3b82f6; }
     </style>
 </head>
-<body class="text-slate-800 text-left">
+<body class="font-sans text-slate-800 text-left">
 
     <!-- Header -->
     <header class="bg-primary sticky top-0 z-50 shadow-lg px-4">
@@ -84,7 +83,7 @@
                 <div class="text-left leading-tight">
                     <h1 class="font-black text-sm md:text-xl uppercase tracking-tighter text-white">Digital Squad AI</h1>
                     <span class="text-blue-200 font-bold text-xs md:text-[15px] block leading-none mt-0.5">เพื่อนครูไทย</span>
-                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.12.53</p>
+                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.13.01</p>
                 </div>
             </div>
             <nav class="hidden lg:flex space-x-8 text-white h-full items-center font-bold">
@@ -111,8 +110,9 @@
         
         <!-- ================= TAB: HOME ================= -->
         <div id="tab-home" class="tab-content">
-            <!-- Blue Hero Section from V13.12.53 (FROZEN & LOCKED) -->
+            <!-- Blue Hero Section from V13.13.01 (FROZEN & LOCKED) -->
             <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600 flex flex-col lg:flex-row items-center justify-between gap-8">
+                <!-- Background Globe Deco -->
                 <div class="absolute right-[-40px] top-[-40px] text-white opacity-5 text-[20rem] pointer-events-none">
                     <i class="fas fa-globe"></i>
                 </div>
@@ -122,6 +122,7 @@
                     <h2 class="text-2xl md:text-5xl font-black mb-6 leading-tight">Digital Squad AI ระบบนิเวศทางการศึกษาที่สมบูรณ์แบบ</h2>
                     <p class="text-blue-100 text-sm md:text-lg mb-10 max-w-5xl leading-relaxed font-medium">ใช้ Generative AI Agent เป็นที่ปรึกษา พี่เลี้ยง ผู้ช่วย และเครื่องมือช่วยลดภาระ ลดเวลาในการทำงานของครู คืนเวลาครูให้มีเวลาเหลือไปใช้กับการสอน กับนักเรียน และกับการใช้ชีวิตส่วนตัวให้มีคุณภาพมากขึ้น</p>
                     
+                    <!-- 5 translucent glass boxes inside the blue banner -->
                     <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6">
                         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 hover:bg-white/20 transition shadow-lg flex flex-col justify-between">
                             <div>
@@ -161,6 +162,7 @@
                     </div>
                 </div>
 
+                <!-- 📸 แสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
                 <div class="relative z-10 lg:w-1/3 flex justify-center items-center">
                     <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Digital Squad AI Premium Logo" class="max-w-[260px] md:max-w-[300px] rounded-3xl shadow-2xl bg-white p-5 hover:scale-105 transition-transform duration-300 border border-blue-200">
                 </div>
@@ -480,7 +482,7 @@
     </main>
 
     <footer class="bg-white border-t py-12 text-center mt-auto text-slate-400">
-        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.12.53 (PREMIUM RESTORATION EDITION)</p>
+        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.13.01 (SUPREME SYNC EDITION)</p>
         <p class="text-primary text-[14px] font-black text-center mb-1">ผู้ออกแบบและพัฒนาโปรแกรม โดย : กันตภณ ณพสิษฐ์ (สงวนลิขสิทธิ์)</p>
         <p class="text-slate-400 text-[12px] text-center">© 2026 OFFICIAL EDUCATIONAL HUB. ALL RIGHTS RESERVED.</p>
     </footer>
@@ -638,6 +640,42 @@
             { id: "ict", name: "สื่อดิจิทัลและเทคโนโลยี IT", ic: "fa-laptop-code", col: "bg-cyan-600", agent: "09", list: ["การจัดการ Google Workspace", "เว็บไซต์สถานศึกษา", "ระบบเครือข่ายอินเทอร์เน็ตโรงเรียน", "การซ่อมบำรุงคอมพิวเตอร์", "การเขียน Prompt Engineering", "การสร้าง Web App การศึกษา", "ผลิตสื่อวิดีโอเทิดพระเกียรติ", "กราฟิกและ Infographic", "ระบบลงทะเบียนออนไลน์", "การจัดการฐานข้อมูล (SQL/Looker)"] },
             { id: "network", name: "ชุมชนสัมพันธ์และเครือข่าย", ic: "fa-handshake", col: "bg-pink-600", agent: "01", list: ["โครงการผ้าป่าการศึกษา", "หนังสือเชิญผู้ปกครอง/ชุมชน", "วารสารประชาสัมพันธ์โรงเรียน", "กิจกรรมวันสำคัญทางประเพณี", "เครือข่ายศิษย์เก่า", "รายงานความร่วมมือ MOU", "กิจกรรมจิตอาสา", "ศูนย์เรียนรู้ปรัชญาเศรษฐกิจพอเพียง", "โครงการ To Be Number One", "เครือข่ายผู้ปกครองนักเรียน"] },
             { id: "quickwin", name: "นโยบายด่วน (Quick Win)", ic: "fa-rocket", col: "bg-yellow-600", agent: "10", list: ["รายงานผล Quick Win", "โครงการลดภาระครู 5 ด้าน", "การขับเคลื่อน 1 อำเภอ 1 ทุน (ODOS)", "นโยบายเรียนดี มีความสุข", "โรงเรียนปลอดบุหรี่ไฟฟ้า", "การแก้ไขปัญหาหนี้สินครู", "โครงการ Soft Power สถานศึกษา", "การจัดการศึกษาเพื่อการมีงานทำ", "โรงเรียนสีเขียว (Green School)", "โครงการโรงเรียนคุณภาพประจำตำบล"] }
+        ];
+
+        // --- DAILY TRICKS DATA (กลเม็ดและความก้าวหน้าของวิชาชีพครูรายวัน) ---
+        const DAILY_TRICKS = [
+            {
+                text: "ถ่ายคลิปการสอน วPA อย่ากลัวความเงียบ! ก.ค.ศ. ชอบห้องเรียนตามธรรมชาติ หากเด็กหยุดคิดหรือมีจุดขัดข้อง นั่นคือโอกาสทองที่ครูจะได้แสดงทักษะการแก้ปัญหาเฉพาะหน้า (ตัวชี้วัดที่ 5) ห้ามสั่งคัตเด็ดขาดครับ",
+                tag: "เกณฑ์ วPA & วิทยฐานะดิจิทัล"
+            },
+            {
+                text: "คลิปแรงบันดาลใจ 10 นาที ไม่ต้องใช้นักแสดงสมทบหรือทำกราฟิกหรูหรา สิ่งที่กรรมการต้องการเห็นคือ 'ข้อมูลเชิงสถิติ' ว่าคะแนนของเด็กก่อนหน้านี้มีปัญหาตรงไหน และแผนการสอนของครูจะช่วยแก้ปัญหานั้นได้อย่างไร พูดให้ตรงประเด็นใน 3 นาทีแรกเลยครับ",
+                tag: "คลิปแรงบันดาลใจ วPA"
+            },
+            {
+                text: "การจัดกลุ่ม PLC ที่ดี ไม่ใช่การนั่งประชุมกันยาวๆ 3 ชั่วโมง แต่คือการแชร์ไอเดียแก้ปัญหาเด็กเพียง 15 นาที แล้วแยกย้ายไปทดลองใช้ ลองใช้ Agent 08 ช่วยเขียนบันทึกการประชุม PLC เพื่อประหยัดเวลาดูสิครับ",
+                tag: "เทคนิคการทำงานอัจฉริยะ"
+            },
+            {
+                text: "อย่าพยายามทำสไลด์ให้สวยจนไม่ได้นอน คณะกรรมการประเมินจาก 'ความเข้าใจของเด็ก' ไม่ใช่สีสันบนหน้าจอ ใช้เทมเพลตมาตรฐานที่อ่านง่าย เน้นภาพชิ้นงานจริงของนักเรียนประกอบดีที่สุด",
+                tag: "การสร้างนวัตกรรมการสอน"
+            },
+            {
+                text: "ครูที่เก่งที่สุดไม่ใช่ครูที่ไม่มีเด็กสอบตก แต่คือครูที่รู้วิธีฉุดกระชากเด็กที่กำลังจะถอดใจให้กลับมามีรอยยิ้มในการเรียนได้อีกครั้ง วันนี้ลองกอดหรือเอ่ยชมเด็กที่เรียนหลังห้องสักคนนะครับ พลังของคุณเปลี่ยนชีวิตเขาได้",
+                tag: "พลังใจและจริยธรรมครูไทย"
+            },
+            {
+                text: "AI เป็นผู้ช่วยที่ยอดเยี่ยม แต่อย่าลืมว่า 'ความรักความใส่ใจและความเข้าใจความรู้สึกเด็ก' เป็นสิ่งเดียวที่ AI เลียนแบบครูไม่ได้ ปลดปล่อยงานเอกสารให้ AI ทำ แล้วเอาหัวใจของคุณกลับคืนสู่ห้องเรียนกันครับ",
+                tag: "พลังใจและจริยธรรมครูไทย"
+            },
+            {
+                text: "การบันทึกผลหลังการสอนที่ดี ควรระบุจำนวนนักเรียนที่ผ่านและไม่ผ่านเกณฑ์อย่างชัดเจน และบันทึกแนวทางแก้ไขนักเรียนที่ไม่ผ่านเกณฑ์นั้นในแผนถัดไปทันที เพื่อแสดงให้เห็นถึงความต่อเนื่องและการพัฒนาผู้เรียนอย่างจริงจังครับ",
+                tag: "เกณฑ์ วPA & วิทยฐานะดิจิทัล"
+            },
+            {
+                text: "จัดระเบียบ Google Drive ประจำสัปดาห์ด้วยโครงสร้างโฟลเดอร์ วPA แยกรายห้องเรียนและรายตัวชี้วัด สะสมผลงานนักเรียนสัปดาห์ละ 3-4 ชิ้น เมื่อถึงเวลาประเมินจะดึงข้อมูลไปใช้ได้ทันทีโดยไม่ต้องรื้อค้นครับ",
+                tag: "เทคนิคการทำงานอัจฉริยะ"
+            }
         ];
 
         // --- Core Functions ---
