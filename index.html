@@ -63,7 +63,7 @@
         
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); display: flex; justify-content: space-around; padding: 0.75rem 0; box-shadow: 0 -4px 20px rgba(0,0,0,0.05); z-index: 1000; border-top: 1px solid #e2e8f0; }
         
-        /* ✨ Mobile Nav Premium UX (Active State & Indicator Dot) */
+        /* ✨ Mobile Nav Premium UX */
         .bottom-nav-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; font-size: 0.8rem; font-weight: 700; cursor: pointer; position: relative; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .bottom-nav-item.active { color: #1e3a8a; transform: scale(1.1); }
         html.dark .bottom-nav-item.active { color: #60a5fa; }
@@ -129,11 +129,9 @@
             </nav>
 
             <div class="flex items-center gap-2 md:gap-4">
-                <!-- 🔍 Global Search Bar Toggle -->
                 <button aria-label="ค้นหาข้อมูลและภารกิจ" onclick="toggleModal('search-modal')" class="w-10 h-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition flex items-center justify-center shadow-inner border border-white/10" title="ค้นหาข้อมูลและภารกิจ (Search)">
                     <i class="fas fa-search"></i>
                 </button>
-                <!-- 🌙 Dark Mode Toggle -->
                 <button aria-label="สลับโหมดถนอมสายตา" onclick="toggleDarkMode()" class="w-10 h-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition flex items-center justify-center shadow-inner border border-white/10" title="สลับโหมดถนอมสายตา (Dark Mode)">
                     <i id="dark-mode-icon" class="fas fa-moon"></i>
                 </button>
@@ -592,7 +590,18 @@
 
     <div id="toast"></div>
 
-    <script>
+    <script type="module">
+        // ================= Firebase Integration (Step 1) =================
+        // ส่วนนี้คือการนำเข้าเครื่องมือ (Library) ของ Firebase แบบ Modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, onSnapshot, collection, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // ตัวแปรสำหรับเก็บอุปกรณ์ของ Firebase
+        let db;
+        let auth;
+        // ===============================================================
+
         const apiKey = ""; 
         let currentYear = 2026;
         let currentMonth = 4; // พฤษภาคม
@@ -1166,16 +1175,21 @@
             showToast(`สวัสดีคุณ ${name} (${pos}) สังกัด ${agency} เข้าสู่ระบบสำเร็จ!`); 
         }
 
-        // ================= Firebase Integration (Step 1) =================
-        // ส่วนนี้คือการนำเข้าเครื่องมือ (Library) ของ Firebase แบบ Modules
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, onSnapshot, collection, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // ตัวแปรสำหรับเก็บอุปกรณ์ของ Firebase
-        let db;
-        let auth;
-        // ===============================================================
+        // 🛠️ ปลดล็อกฟังก์ชันให้เรียกใช้จาก HTML ได้ (เนื่องจากเราใช้ type="module")
+        window.switchTab = switchTab;
+        window.toggleModal = toggleModal;
+        window.toggleDarkMode = toggleDarkMode;
+        window.handleGlobalSearch = handleGlobalSearch;
+        window.launchAgent = launchAgent;
+        window.renderMissionFeed = renderMissionFeed;
+        window.rotateTrick = rotateTrick;
+        window.selectCalendarDay = selectCalendarDay;
+        window.savePrivateEventForSelectedDate = savePrivateEventForSelectedDate;
+        window.changeCalMonth = changeCalMonth;
+        window.resetCalToday = resetCalToday;
+        window.exportCalendarToICS = exportCalendarToICS;
+        window.initStatsCharts = initStatsCharts;
+        window.handleLogin = handleLogin;
 
         window.onload = () => { initDynamicContent(); initDailyTrick(); switchTab('home'); };
     </script>
