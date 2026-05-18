@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V13.15.01 - Premium Educational Ecosystem</title>
+    <title>Digital Squad AI V13.16.01 - Premium Educational Ecosystem</title>
     
-    <!-- 🛡️ ระบบดาวน์โหลดดีไซน์อัจฉริยะแบบซิงโครนัส (Synchronous Blocking Load) ป้องกันการแปลงลิงก์ Markdown และป้องกันสไตล์รวน -->
+    <!-- 🛡️ ระบบดาวน์โหลดดีไซน์อัจฉริยะแบบซิงโครนัส ป้องกันการแปลงลิงก์ Markdown และป้องกันสไตล์รวน -->
     <script>
         (function() {
           var tw = document.createElement("script");
@@ -51,7 +51,6 @@
         .allow-select { user-select: text !important; -webkit-user-select: text !important; }
         @media (min-width: 1024px) { body { padding-bottom: 0; } }
         
-        /* ตรึงสีน้ำเงินเข้มให้แก่แผงนำทางด้านบนอย่างเหนียวแน่น ไม่มีวันโปร่งแสงส่งผลให้ตัวหนังสือซ้อนกัน */
         .bg-primary { background-color: var(--primary) !important; }
         .bg-secondary { background-color: var(--secondary) !important; }
         .text-primary { color: var(--primary) !important; }
@@ -95,16 +94,15 @@
 </head>
 <body class="font-sans text-slate-800 text-left">
 
-    <!-- Header (ตรึงสีน้ำเงินเข้ม bg-primary ด้วย Inline style ป้องกันล่องหนทับซ้อนกัน) -->
+    <!-- Header -->
     <header style="background-color: #1e3a8a !important;" class="bg-primary sticky top-0 z-50 shadow-lg px-4">
         <div class="container mx-auto flex items-center justify-between h-16 md:h-24">
             <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchTab('home')">
-                <!-- 📸 แสดงผลโลโก้ไอคอนอย่างเสถียร (และแสดงผลถูกต้องตามที่ครูเอแจ้งว่าทำงานแล้ว) -->
                 <img src="app icon.jpg" alt="Digital Squad AI Icon" class="w-10 h-10 md:w-16 md:h-16 rounded-xl shadow-md group-hover:scale-105 transition-transform duration-300 object-cover bg-white p-0.5">
                 <div class="text-left leading-tight">
                     <h1 class="font-black text-sm md:text-xl uppercase tracking-tighter text-white">Digital Squad AI</h1>
                     <span class="text-blue-200 font-bold text-xs md:text-[15px] block leading-none mt-0.5">เพื่อนครูไทย</span>
-                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.15.01</p>
+                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.16.01</p>
                 </div>
             </div>
             <nav class="hidden lg:flex space-x-8 text-white h-full items-center font-bold">
@@ -131,8 +129,7 @@
         
         <!-- ================= TAB: HOME ================= -->
         <div id="tab-home" class="tab-content">
-            <!-- Blue Hero Section from V13.15.01 (FROZEN & LOCKED) -->
-            <!-- 📸 ปรับเลย์เอาต์เพื่อแทรก Logo สหวิทยาการขนาดใหญ่อย่างสง่างามทางด้านขวาบนหน้าจอใหญ่ -->
+            <!-- Blue Hero Section from V13.16.01 (FROZEN & LOCKED) -->
             <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600 flex flex-col lg:flex-row items-center justify-between gap-8">
                 <!-- Background Globe Deco -->
                 <div class="absolute right-[-40px] top-[-40px] text-white opacity-5 text-[20rem] pointer-events-none">
@@ -184,7 +181,7 @@
                     </div>
                 </div>
 
-                <!-- 📸 รูปแบบแสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
+                <!-- 📸 แสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
                 <div class="relative z-10 lg:w-1/3 flex justify-center items-center">
                     <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Digital Squad AI Premium Logo" class="max-w-[260px] md:max-w-[300px] rounded-3xl shadow-2xl bg-white p-5 hover:scale-105 transition-transform duration-300 border border-blue-200">
                 </div>
@@ -428,7 +425,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- ฝั่งซ้าย: ตารางปฏิทินแบบตาราง 7 วัน (ประหยัดโค้ด สวยงาม มั่นคง) -->
                 <div class="lg:col-span-2 bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden flex flex-col h-full">
-                    <!-- 🛡️ ตรึงหัวข้อปฏิทินสีน้ำเงินเข้มด้วย Inline style เพื่อให้ไม่โปรงใสทับซ้อนกันเวลากดสลับหน้า -->
+                    <!-- 🛡️ ตรึงหัวข้อปฏิทินสีน้ำเงินเข้มด้วย Inline style เพื่อให้ไม่โปร่งใสทับซ้อนกันเวลากดสลับหน้า -->
                     <div style="background-color: #1e3a8a !important;" class="bg-primary p-6 text-white flex justify-between items-center">
                         <div>
                             <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white" id="cal-month-title">มกราคม 2569</h2>
@@ -444,7 +441,7 @@
                     <div class="p-6 bg-slate-50 flex-grow">
                         <!-- 🛡️ ตรึงหัวตาราง 7 วันด้วย Inline CSS Grid สากล ป้องกันแนวคอลัมน์โย้เย้ไปทางซ้ายมือ 100% -->
                         <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem;" class="text-center text-xs font-black uppercase tracking-wider text-slate-400 mb-4">
-                            <div class="text-rose-500">อา.</div>
+                            <div class="text-rose-500 font-bold">อา.</div>
                             <div>จ.</div>
                             <div>อ.</div>
                             <div>พ.</div>
@@ -505,7 +502,7 @@
     </main>
 
     <footer class="bg-white border-t py-12 text-center mt-auto text-slate-400">
-        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.15.01 (SUPREME SYNC EDITION)</p>
+        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800 font-bold">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.16.01 (SUPREME SYNC EDITION)</p>
         <p class="text-primary text-[14px] font-black text-center mb-1">ผู้ออกแบบและพัฒนาโปรแกรม โดย : กันตภณ ณพสิษฐ์ (สงวนลิขสิทธิ์)</p>
         <p class="text-slate-400 text-[12px] text-center">© 2026 OFFICIAL EDUCATIONAL HUB. ALL RIGHTS RESERVED.</p>
     </footer>
@@ -589,15 +586,13 @@
         let selectedDay = 18; // ตั้งให้เลือกวันปัจจุบัน (18 พฤษภาคม 2569 เป็นวันตั้งต้น)
         let chartsInitialized = false;
 
-        // --- MASTER DATAHUB ---
+        // --- MASTER DATAHUB (สถิติ ข้อมูล และ แหล่งข่าวประชาสัมพันธ์ สอดประสานกับ V13.16.01) ---
         const MASTER_DATA = {
             obec: { name: "สพฐ. (OBEC)", ic: "fa-university", col: "text-blue-600", bg: "bg-blue-600", news_url: "https://www.obec.go.th/news", train_url: "https://www.obec.go.th/category/news/train",
-                events: [{ d: "2026-0-10", t: "วันเด็กแห่งชาติ" }, { d: "2026-0-16", t: "วันครู (หยุด)", holiday: true }, { d: "2026-4-16", t: "เปิดภาคเรียน 1/2569" }, { d: "2026-5-18", t: "พิธีไหว้ครู" }],
                 news_list: ["ระเบียบการย้ายครู 2569 ฉบับสมบูรณ์", "มาตรการความปลอดภัยเปิดเทอม 2569", "โครงการคอมพิวเตอร์พกพาเพื่อการเรียนรู้", "สรุปคะแนน O-NET ปีล่าสุด", "ประกาศผลสอบครูผู้ช่วย"],
                 training_list: ["AI Literacy สำหรับครูประถม", "Active Learning ฐานสมรรถนะ", "การใช้สื่อดิจิทัลในห้องเรียน", "Coding for primary schools"]
             },
             bma: { name: "กทม. (BMA)", ic: "fa-city", col: "text-emerald-600", bg: "bg-emerald-600", news_url: "https://www.bangkok.go.th/bma-news", train_url: "https://www.bangkok.go.th/bma-hr-train",
-                events: [{ d: "2026-4-18", t: "กิจกรรมปฐมนิเทศก์ข้าราชการครู กทม. ประจำปี" }],
                 news_list: ["ทุนเรียนต่อ ป.เอก ครู กทม.", "โครงการพัฒนากระเป๋านักเรียนดิจิทัล", "สวัสดิการพยาบาล 2569", "รับมือฝุ่น PM2.5 ในโรงเรียน"],
                 training_list: ["BMA Creative Teaching 2026", "ทักษะภาษาอังกฤษเพื่อครู กทม.", "จิตวิทยาเด็กประถม กทม."]
             },
@@ -609,8 +604,96 @@
             mhesi: { name: "อว. (MHESI)", ic: "fa-flask", col: "text-rose-600", bg: "bg-rose-600", news_url: "https://www.mhesi.go.th/index.php/pr.html", train_url: "https://www.mhesi.go.th/index.php/scholarship.html", news_list: ["ทุนวิจัยมหาลัย 2570", "ธนาคารหน่วยกิตดิจิทัล"], training_list: ["นวัตกรรมดิจิทัลมหาลัย", "การจดสิทธิบัตรงานวิจัย"] },
             nxpo: { name: "สอวช. (NXPO)", ic: "fa-atom", col: "text-cyan-600", bg: "bg-cyan-600", news_url: "https://www.nxpo.or.th/th/category/news/", train_url: "https://www.nxpo.or.th/th/events/", news_list: ["ดัชนีนวัตกรรมไทย 2569", "นโยบายเศรษฐกิจดิจิทัล"], training_list: ["BCG เพื่อการศึกษา", "Data Science ในห้องเรียน"] },
             ovec: { name: "สอศ. (OVEC)", ic: "fa-tools", col: "text-orange-600", bg: "bg-orange-600", news_url: "https://www.vec.go.th/news", train_url: "https://www.vec.go.th/category/vocational-training", news_list: ["งานอาชีวะแฟร์ 2569", "ผลประเมิน V-NET"], training_list: ["สมรรถนะอาชีวศึกษาใหม่", "ช่างเทคนิค EV"] },
-            moe: { name: "ศธ. (MOE)", ic: "fa-globe", col: "text-slate-600", bg: "bg-slate-600", news_url: "https://www.moe.go.th/category/news", train_url: "https://www.moe.go.th/category/training", events: [{ d: "2026-0-1", t: "วันขึ้นปีใหม่", holiday: true }, { d: "2026-3-13", t: "วันสงกรานต์", holiday: true }], news_list: ["รัฐมนตรีสัญจรพบครูทั่วไทย", "นโยบายลดเวลาเรียน เพิ่มทักษะ"], training_list: ["อบรมจรรยาบรรณวิชาชีพ", "Digital Leadership"] }
+            moe: { name: "ศธ. (MOE)", ic: "fa-globe", col: "text-slate-600", bg: "bg-slate-600", news_url: "https://www.moe.go.th/category/news", train_url: "https://www.moe.go.th/category/training", news_list: ["รัฐมนตรีสัญจรพบครูทั่วไทย", "นโยบายลดเวลาเรียน เพิ่มทักษะ"], training_list: ["อบรมจรรยาบรรณวิชาชีพ", "Digital Leadership"] }
         };
+
+        // 🛡️ ฐานข้อมูลปฏิทินละเอียดรายวันการศึกษาไทยประจำปี 2569 แบบช่วงวัน (Sequential Range Mapping)
+        const EDUCATIONAL_EVENTS = [
+            // มกราคม 2569 (0)
+            { start: "2026-0-2", end: "2026-0-9", t: "เปิดทำการหลังปีใหม่ / สรุปงาน Q1", agency: "moe" },
+            { start: "2026-0-5", end: "2026-0-20", t: "เตรียมสอบ O-NET", agency: "obec" },
+            { start: "2026-0-6", end: "2026-0-31", t: "รับสมัครนักเรียนหลายพื้นที่", agency: "obec" },
+            { start: "2026-0-10", end: "2026-0-25", t: "เตรียมข้อมูล NT / RT", agency: "obec" },
+            { start: "2026-0-15", end: "2026-0-15", t: "ส่งรายงานการใช้จ่ายงบประมาณ", agency: "moe" },
+            { start: "2026-0-16", end: "2026-0-16", t: "วันครูแห่งชาติ (หยุดทำการ)", agency: "otepc", holiday: true },
+            { start: "2026-0-20", end: "2026-0-31", t: "ตรวจราชการรอบต้นปี", agency: "moe" },
+            { start: "2026-0-1", end: "2026-0-31", t: "TCAS Portfolio / Quota", agency: "mhesi" },
+
+            // กุมภาพันธ์ 2569 (1)
+            { start: "2026-1-1", end: "2026-1-15", t: "สอบ O-NET", agency: "obec" },
+            { start: "2026-1-5", end: "2026-1-20", t: "ประเมิน RT ป.1", agency: "obec" },
+            { start: "2026-1-10", end: "2026-1-28", t: "สอบ NT ป.3", agency: "obec" },
+            { start: "2026-1-15", end: "2026-1-28", t: "รับสมัครนักเรียน สพฐ./กทม.", agency: "obec" },
+            { start: "2026-1-1", end: "2026-1-28", t: "ประเมินคุณภาพภายในสถานศึกษา", agency: "onec" },
+            { start: "2026-1-1", end: "2026-1-28", t: "ก.ค.ศ. ติดตามบันทึก PA", agency: "otepc" },
+
+            // มีนาคม 2569 (2)
+            { start: "2026-2-1", end: "2026-2-10", t: "สอบปลายภาคเรียน", agency: "obec" },
+            { start: "2026-2-5", end: "2026-2-20", t: "แก้ 0 ร มส", agency: "obec" },
+            { start: "2026-2-10", end: "2026-2-25", t: "สรุปผลการเรียน ปพ. และอนุมัติจบ", agency: "obec" },
+            { start: "2026-2-15", end: "2026-2-31", t: "ปิดภาคเรียนประจำปี", agency: "moe" },
+            { start: "2026-2-20", end: "2026-2-31", t: "จัดตารางสอนปีการศึกษาใหม่", agency: "obec" },
+            { start: "2026-2-1", end: "2026-2-31", t: "รับสมัคร ปวช./ปวส. ประจำปี", agency: "ovec" },
+
+            // เมษายน 2569 (3)
+            { start: "2026-3-1", end: "2026-3-10", t: "จัดซื้อหนังสือเรียนประจำโรงเรียน", agency: "moe" },
+            { start: "2026-3-1", end: "2026-3-20", t: "อบรมครูและข้าราชการใหม่", agency: "obec" },
+            { start: "2026-3-5", end: "2026-3-25", t: "จัดเตรียมห้องเรียนและความปลอดภัย", agency: "obec" },
+            { start: "2026-3-10", end: "2026-3-30", t: "ย้ายครู/แต่งตั้งข้าราชการ", agency: "otepc" },
+            { start: "2026-3-13", end: "2026-3-15", t: "เทศกาลวันสงกรานต์ (วันหยุดราชการ)", agency: "moe", holiday: true },
+            { start: "2026-3-1", end: "2026-3-30", t: "TCAS รอบ Admission ทั่วประเทศ", agency: "mhesi" },
+
+            // พฤษภาคม 2569 (4)
+            { start: "2026-4-1", end: "2026-4-10", t: "เตรียมเปิดภาคเรียนและประชุมใหญ่", agency: "obec" },
+            { start: "2026-4-15", end: "2026-4-15", t: "วันเปิดภาคเรียน 1/2569 (สพฐ.)", agency: "moe" },
+            { start: "2026-4-15", end: "2026-4-31", t: "กิจกรรมปฐมนิเทศนักเรียนใหม่", agency: "obec" },
+            { start: "2026-4-15", end: "2026-4-31", t: "เก็บข้อมูลและรายงานระบบ DMC", agency: "obec" },
+            { start: "2026-4-1", end: "2026-4-31", t: "ขอรับงบประมาณรายหัวการศึกษา", agency: "moe" },
+
+            // มิถุนายน 2569 (5)
+            { start: "2026-5-1", end: "2026-5-15", t: "นิเทศติดตามและเยี่ยมบ้านนักเรียน", agency: "obec" },
+            { start: "2026-5-1", end: "2026-5-30", t: "จัดกิจกรรมบันทึกและขับเคลื่อน PLC", agency: "otepc" },
+            { start: "2026-5-10", end: "2026-5-30", t: "ประเมินและติดตามผลสัมฤทธิ์ทางการเรียน", agency: "onec" },
+            { start: "2026-5-1", end: "2026-5-30", t: "เปิดทุนวิจัยทางการศึกษาของ อว./สอวช.", agency: "mhesi" },
+
+            // กรกฎาคม 2569 (6)
+            { start: "2026-6-1", end: "2026-6-15", t: "สอบกลางภาคเรียนที่ 1", agency: "obec" },
+            { start: "2026-6-10", end: "2026-6-31", t: "วิเคราะห์ผลสอบกลางภาคและคัดกรอง", agency: "obec" },
+            { start: "2026-6-20", end: "2026-6-31", t: "นิเทศภายในห้องเรียนสากล", agency: "obec" },
+            { start: "2026-6-28", end: "2026-6-28", t: "วันเฉลิมพระชนมพรรษา (วันหยุดราชการ)", agency: "moe", holiday: true },
+            { start: "2026-6-1", end: "2026-6-31", t: "แข่งขันทักษะทางวิชาการและศิลปหัตถกรรม", agency: "obec" },
+
+            // สิงหาคม 2569 (7)
+            { start: "2026-7-1", end: "2026-7-15", t: "ประเมินและตรวจคุณภาพสถานศึกษาภายใน", agency: "onec" },
+            { start: "2026-7-1", end: "2026-7-31", t: "ส่งข้อตกลงในการพัฒนางาน (PA)", agency: "otepc" },
+            { start: "2026-7-10", end: "2026-7-31", t: "ตรวจแผนงบประมาณโครงการโรงเรียน", agency: "moe" },
+            { start: "2026-7-1", end: "2026-7-31", t: "จัดเตรียมคำขอตั้งงบประมาณรายจ่ายประจำปี 2570", agency: "moe" },
+
+            // กันยายน 2569 (8)
+            { start: "2026-8-1", end: "2026-8-15", t: "เร่งรัดการเบิกจ่ายงบประมาณแผ่นดิน", agency: "moe" },
+            { start: "2026-8-15", end: "2026-8-30", t: "ปิดระบบและรายงานงบประมาณประจำปี", agency: "moe" },
+            { start: "2026-8-20", end: "2026-8-30", t: "สรุป KPI รายบุคคลของบุคลากร", agency: "onec" },
+            { start: "2026-8-30", end: "2026-8-30", t: "วันสิ้นปีงบประมาณแผ่นดินประจำปี", agency: "moe" },
+
+            // ตุลาคม 2569 (9)
+            { start: "2026-9-1", end: "2026-9-10", t: "สอบปลายภาคเรียนที่ 1", agency: "obec" },
+            { start: "2026-9-10", end: "2026-9-20", t: "แก้ผลการเรียนและติดตามงานค้าง", agency: "obec" },
+            { start: "2026-9-15", end: "2026-9-31", t: "ปิดภาคเรียนที่ 1", agency: "moe" },
+            { start: "2026-9-1", end: "2026-9-31", t: "ทำเรื่องขอย้ายข้าราชการครูรอบใหม่", agency: "otepc" },
+
+            // พฤศจิกายน 2569 (10)
+            { start: "2026-10-1", end: "2026-10-10", t: "เตรียมเปิดเทอม 2/2569", agency: "obec" },
+            { start: "2026-10-1", end: "2026-10-15", t: "ปฐมนิเทศแผนการศึกษาภาคเรียนใหม่", agency: "obec" },
+            { start: "2026-10-1", end: "2026-10-1", t: "วันเปิดภาคเรียนที่ 2 (สพฐ.)", agency: "moe" },
+            { start: "2026-10-10", end: "2026-10-30", t: "จัดการแข่งขันกีฬาสถานศึกษา", agency: "obec" },
+            { start: "2026-10-1", end: "2026-10-30", t: "จัดการแข่งขันวิชาการกลุ่มสถานศึกษา", agency: "obec" },
+
+            // ธันวาคม 2569 (11)
+            { start: "2026-11-1", end: "2026-11-15", t: "สอบกลางภาคเรียนที่ 2", agency: "obec" },
+            { start: "2026-11-1", end: "2026-11-31", t: "สรุปรายงานการปฏิบัติราชการปลายปี", agency: "onec" },
+            { start: "2026-11-10", end: "2026-11-25", t: "เตรียมงบประมาณประจำปี 2570", agency: "moe" },
+            { start: "2026-11-25", end: "2026-11-31", t: "สรุปและประเมิน KPI รายปี", agency: "onec" }
+        ];
 
         // ตารางกิจกรรมส่วนบุคคลที่ผู้ใช้พิมพ์เพิ่มลงระบบ
         let PRIVATE_EVENTS = {};
@@ -665,42 +748,6 @@
             { id: "quickwin", name: "นโยบายด่วน (Quick Win)", ic: "fa-rocket", col: "bg-yellow-600", agent: "10", list: ["รายงานผล Quick Win", "โครงการลดภาระครู 5 ด้าน", "การขับเคลื่อน 1 อำเภอ 1 ทุน (ODOS)", "นโยบายเรียนดี มีความสุข", "โรงเรียนปลอดบุหรี่ไฟฟ้า", "การแก้ไขปัญหาหนี้สินครู", "โครงการ Soft Power สถานศึกษา", "การจัดการศึกษาเพื่อการมีงานทำ", "โรงเรียนสีเขียว (Green School)", "โครงการโรงเรียนคุณภาพประจำตำบล"] }
         ];
 
-        // --- DAILY TRICKS DATA (กลเม็ดและความก้าวหน้าของวิชาชีพครูรายวัน) ---
-        const DAILY_TRICKS = [
-            {
-                text: "ถ่ายคลิปการสอน วPA อย่ากลัวความเงียบ! ก.ค.ศ. ชอบห้องเรียนตามธรรมชาติ หากเด็กหยุดคิดหรือมีจุดขัดข้อง นั่นคือโอกาสทองที่ครูจะได้แสดงทักษะการแก้ปัญหาเฉพาะหน้า (ตัวชี้วัดที่ 5) ห้ามสั่งคัตเด็ดขาดครับ",
-                tag: "เกณฑ์ วPA & วิทยฐานะดิจิทัล"
-            },
-            {
-                text: "คลิปแรงบันดาลใจ 10 นาที ไม่ต้องใช้นักแสดงสมทบหรือทำกราฟิกหรูหรา สิ่งที่กรรมการต้องการเห็นคือ 'ข้อมูลเชิงสถิติ' ว่าคะแนนของเด็กก่อนหน้านี้มีปัญหาตรงไหน และแผนการสอนของครูจะช่วยแก้ปัญหานั้นได้อย่างไร พูดให้ตรงประเด็นใน 3 นาทีแรกเลยครับ",
-                tag: "คลิปแรงบันดาลใจ วPA"
-            },
-            {
-                text: "การจัดกลุ่ม PLC ที่ดี ไม่ใช่การนั่งประชุมกันยาวๆ 3 ชั่วโมง แต่คือการแชร์ไอเดียแก้ปัญหาเด็กเพียง 15 นาที แล้วแยกย้ายไปทดลองใช้ ลองใช้ Agent 08 ช่วยเขียนบันทึกการประชุม PLC เพื่อประหยัดเวลาดูสิครับ",
-                tag: "เทคนิคการทำงานอัจฉริยะ"
-            },
-            {
-                text: "อย่าพยายามทำสไลด์ให้สวยจนไม่ได้นอน คณะกรรมการประเมินจาก 'ความเข้าใจของเด็ก' ไม่ใช่สีสันบนหน้าจอ ใช้เทมเพลตมาตรฐานที่อ่านง่าย เน้นภาพชิ้นงานจริงของนักเรียนประกอบดีที่สุด",
-                tag: "การสร้างนวัตกรรมการสอน"
-            },
-            {
-                text: "ครูที่เก่งที่สุดไม่ใช่ครูที่ไม่มีเด็กสอบตก แต่คือครูที่รู้วิธีฉุดกระชากเด็กที่กำลังจะถอดใจให้กลับมามีรอยยิ้มในการเรียนได้อีกครั้ง วันนี้ลองกอดหรือเอ่ยชมเด็กที่เรียนหลังห้องสักคนนะครับ พลังของคุณเปลี่ยนชีวิตเขาได้",
-                tag: "พลังใจและจริยธรรมครูไทย"
-            },
-            {
-                text: "AI เป็นผู้ช่วยที่ยอดเยี่ยม แต่อย่าลืมว่า 'ความรักความใส่ใจและความเข้าใจความรู้สึกเด็ก' เป็นสิ่งเดียวที่ AI เลียนแบบครูไม่ได้ ปลดปล่อยงานเอกสารให้ AI ทำ แล้วเอาหัวใจของคุณกลับคืนสู่ห้องเรียนกันครับ",
-                tag: "พลังใจและจริยธรรมครูไทย"
-            },
-            {
-                text: "การบันทึกผลหลังการสอนที่ดี ควรระบุจำนวนนักเรียนที่ผ่านและไม่ผ่านเกณฑ์อย่างชัดเจน และบันทึกแนวทางแก้ไขนักเรียนที่ไม่ผ่านเกณฑ์นั้นในแผนถัดไปทันที เพื่อแสดงให้เห็นถึงความต่อเนื่องและการพัฒนาผู้เรียนอย่างจริงจังครับ",
-                tag: "เกณฑ์ วPA & วิทยฐานะดิจิทัล"
-            },
-            {
-                text: "จัดระเบียบ Google Drive ประจำสัปดาห์ด้วยโครงสร้างโฟลเดอร์ วPA แยกรายห้องเรียนและรายตัวชี้วัด สะสมผลงานนักเรียนสัปดาห์ละ 3-4 ชิ้น เมื่อถึงเวลาประเมินจะดึงข้อมูลไปใช้ได้ทันทีโดยไม่ต้องรื้อค้นครับ",
-                tag: "เทคนิคการทำงานอัจฉริยะ"
-            }
-        ];
-
         // --- Core Functions ---
         function switchTab(t) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
@@ -716,7 +763,7 @@
         function toggleModal(id) { const m = document.getElementById(id); if(m) m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); }
 
         function launchAgent(id) {
-            const links = { "01": "1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe", "02": "1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2", "03": "1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ", "04": "1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx", "05": "1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp", "06": "1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr", "07": "1GKidsP54FbDt95iFUPYZur-RXFj7cCZc", "08": "1CkGmj04_4CQUMag7mY-xFjGUBcEceQfZ", "09": "1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM", "10": "1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc" };
+            const links = { "01": "1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe", "02": "1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2", "03": "1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ", "04": "1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx", "05": "1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp", "06": "1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr", "07": "1GKidsP54FbDt95iFUPYZur-RXFj7cCZc", "08": "1C_fG8RuW0S3cmlYyIrrbyRAM", "09": "1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM", "10": "1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc" };
             window.open(`https://gemini.google.com/gem/${links[id] || '1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe'}?usp=sharing`, '_blank');
         }
 
@@ -802,7 +849,45 @@
             showToast("🎲 สลับกลเม็ดถัดไปเรียบร้อยแล้วครับ!");
         }
 
-        // ================= BULLETPROOF RENDER CALENDAR (ตารางปฏิทินรายเดือน 7 คอลัมน์ด้วย CSS มาตรฐานเสถียรที่สุด) =================
+        // ================= 🛠️ ระบบสลับตรวจหาวันที่และดึงกิจกรรมแบบ Real-time ช่วงวัน (V13.16.01) =================
+        function getEventsForDate(year, month, day) {
+            const checkDate = new Date(year, month, day);
+            checkDate.setHours(0,0,0,0);
+            const dateKey = `${year}-${month}-${day}`;
+            let list = [];
+
+            // 1. ดึงข้อมูลส่วนตัว (PRIVATE_EVENTS)
+            if (PRIVATE_EVENTS[dateKey]) {
+                PRIVATE_EVENTS[dateKey].forEach(text => {
+                    list.push({ text: text, badge: "บันทึกส่วนตัว", bg: "bg-orange-500", isHoliday: false, agency: "private" });
+                });
+            }
+
+            // 2. ดึงข้อมูลกิจกรรมการศึกษา 2569 ของทุกสังกัด (EDUCATIONAL_EVENTS)
+            EDUCATIONAL_EVENTS.forEach(e => {
+                const startParts = e.start.split('-');
+                const endParts = e.end.split('-');
+                const startDate = new Date(parseInt(startParts[0]), parseInt(startParts[1]), parseInt(startParts[2]));
+                startDate.setHours(0,0,0,0);
+                const endDate = new Date(parseInt(endParts[0]), parseInt(endParts[1]), parseInt(endParts[2]));
+                endDate.setHours(0,0,0,0);
+
+                if (checkDate >= startDate && checkDate <= endDate) {
+                    const org = MASTER_DATA[e.agency];
+                    list.push({
+                        text: e.t,
+                        badge: org ? org.name.split(' ')[0] : e.agency.toUpperCase(),
+                        bg: org ? org.bg : "bg-slate-500",
+                        isHoliday: !!e.holiday,
+                        agency: e.agency
+                    });
+                }
+            });
+
+            return list;
+        }
+
+        // ================= BULLETPROOF RENDER CALENDAR (ตารางปฏิทินรายเดือน 7 คอลัมน์) =================
         function renderCalendar() {
             const gridArea = document.getElementById('calendar-grid-area');
             const title = document.getElementById('cal-month-title');
@@ -824,36 +909,38 @@
 
             // 2. เรนเดอร์วันที่ 1 ถึงสิ้นเดือน
             for (let d = 1; d <= totalDays; d++) {
-                const dateKey = `${currentYear}-${currentMonth}-${d}`;
                 const isSelected = (selectedDay === d);
                 const isToday = (today.getFullYear() === currentYear && today.getMonth() === currentMonth && today.getDate() === d);
 
-                let hasHoliday = false;
-                let hasOfficialEvent = false;
-                let hasPrivateEvent = (PRIVATE_EVENTS[dateKey] && PRIVATE_EVENTS[dateKey].length > 0);
-
-                Object.keys(MASTER_DATA).forEach(k => {
-                    const found = (MASTER_DATA[k].events || []).filter(e => e.d === dateKey);
-                    if (found.length > 0) {
-                        hasOfficialEvent = true;
-                        if (found.some(e => e.holiday)) hasHoliday = true;
-                    }
-                });
+                // ดึงรายการกิจกรรมทั้งหมดในวันที่ d
+                const dayEvents = getEventsForDate(currentYear, currentMonth, d);
+                
+                const hasHoliday = dayEvents.some(e => e.isHoliday);
+                const hasOfficialEvent = dayEvents.some(e => !e.isHoliday && e.agency !== 'private');
+                const hasPrivateEvent = dayEvents.some(e => e.agency === 'private');
 
                 const currentDayOfWeek = new Date(currentYear, currentMonth, d).getDay();
-                let weekendClass = "";
-                if (currentDayOfWeek === 0) weekendClass = "text-rose-500 bg-rose-50/30"; // วันอาทิตย์
-                if (currentDayOfWeek === 6) weekendClass = "text-slate-500 bg-slate-50/50"; // วันเสาร์
+                
+                // กำหนดโทนสีพื้นหลัง (วันหยุดราชการ = สีแดงส้มอ่อน)
+                let cellStyle = "bg-white border-slate-100 text-slate-800";
+                
+                if (hasHoliday) {
+                    cellStyle = "bg-rose-50 border-rose-200 text-rose-600"; // วันหยุดราชการแดงส้มอ่อน
+                } else if (currentDayOfWeek === 0) {
+                    cellStyle = "text-rose-500 bg-rose-50/20"; // วันอาทิตย์
+                } else if (currentDayOfWeek === 6) {
+                    cellStyle = "text-slate-500 bg-slate-50/50"; // วันเสาร์
+                }
 
-                let todayClass = isToday ? "today font-extrabold shadow-sm" : "";
+                let todayClass = isToday ? "today font-extrabold shadow-inner border-2 border-blue-500" : "";
                 let selectedClass = isSelected ? "selected shadow-md scale-105" : "";
 
                 gridHtml += `
-                    <div onclick="selectCalendarDay(${d})" class="cal-day-cell ${weekendClass} ${todayClass} ${selectedClass} border border-slate-100 p-2 text-center">
+                    <div onclick="selectCalendarDay(${d})" class="cal-day-cell ${cellStyle} ${todayClass} ${selectedClass} border p-2 text-center">
                         <span class="z-10">${d}</span>
                         <div class="flex justify-center gap-1 mt-1 w-full min-h-[6px]">
                             ${hasHoliday ? '<span class="w-1.5 h-1.5 bg-rose-500 rounded-full block"></span>' : ''}
-                            ${hasOfficialEvent && !hasHoliday ? '<span class="w-1.5 h-1.5 bg-blue-500 rounded-full block"></span>' : ''}
+                            ${hasOfficialEvent ? '<span class="w-1.5 h-1.5 bg-blue-500 rounded-full block"></span>' : ''}
                             ${hasPrivateEvent ? '<span class="w-1.5 h-1.5 bg-orange-500 rounded-full block"></span>' : ''}
                         </div>
                     </div>`;
@@ -866,36 +953,18 @@
         // อัปเดตข้อมูลกิจกรรมทางแผงฝั่งขวา
         function updateSelectedDatePanel() {
             const monthsTH = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
-            const dateKey = `${currentYear}-${currentMonth}-${selectedDay}`;
             
             document.getElementById('selected-date-badge').innerText = `วันที่ ${selectedDay} ${monthsTH[currentMonth]} ${currentYear + 543}`;
             const panel = document.getElementById('selected-date-events');
             
+            // ดึงกิจกรรมผ่านระบบตรวจหาช่วงวัน V13.16.01
+            const list = getEventsForDate(currentYear, currentMonth, selectedDay);
+
             let html = "";
-            let list = [];
-
-            Object.keys(MASTER_DATA).forEach(k => {
-                const found = (MASTER_DATA[k].events || []).filter(e => e.d === dateKey);
-                found.forEach(e => {
-                    list.push({
-                        text: e.t,
-                        badge: MASTER_DATA[k].name.split(' ')[0],
-                        bg: MASTER_DATA[k].bg,
-                        isHoliday: e.holiday
-                    });
-                });
-            });
-
-            if (PRIVATE_EVENTS[dateKey]) {
-                PRIVATE_EVENTS[dateKey].forEach(text => {
-                    list.push({ text: text, badge: "บันทึกส่วนตัว", bg: "bg-orange-500", isHoliday: false });
-                });
-            }
-
             if (list.length > 0) {
                 html = list.map(item => `
                     <div class="p-3 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-between gap-3 font-semibold text-slate-700 shadow-sm ${item.isHoliday ? 'border-l-4 border-l-rose-500 bg-rose-50/20' : 'border-l-4 border-l-blue-500'}">
-                        <span class="text-[13.5px] leading-snug">${item.text}</span>
+                        <span class="text-[13.5px] leading-snug text-slate-800 font-bold">${item.text}</span>
                         <span class="text-[9px] px-2 py-0.5 text-white rounded-md shrink-0 uppercase font-black ${item.bg}">${item.badge}</span>
                     </div>
                 `).join('');
