@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V13.13.01 - Premium Educational Ecosystem</title>
+    <title>Digital Squad AI V13.14.01 - Premium Educational Ecosystem</title>
     
     <!-- 🛡️ ระบบดาวน์โหลดดีไซน์อัจฉริยะแบบไดนามิก ป้องกันการแปลงลิงก์ Markdown ของแชทบอตพัง -->
     <script>
@@ -27,7 +27,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <script>
-        // 🛠️ แก้ไขวิกฤตความเสถียร: ล้างระบบหน่วงเวลา Tailwind Config ทิ้ง เพื่อให้แสดงผลธีมสีน้ำเงินเข้มได้ทันที 100% ป้องกันหน้าขาวรวน
+        // 🛠️ ตรึงชุดดีไซน์และธีมสีของแบรนด์ Digital Squad ให้ทำงานอย่างมีเอกภาพ
         window.tailwind = window.tailwind || {};
         tailwind.config = {
             theme: {
@@ -66,7 +66,7 @@
         .spinner { border: 4px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top: 4px solid #fff; width: 20px; height: 20px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* ปรับระดับความคมชัดและนุ่มนวลของตารางปฏิทินใหม่ (ประหยัด DOM และโค้ด ไม่รวนแน่นอน) */
+        /* ปรับระดับความคมชัดของตารางปฏิทินแบบ 7 คอลัมน์ */
         .cal-day-cell { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 1rem; cursor: pointer; transition: all 0.2s; position: relative; font-weight: 700; font-size: 0.95rem; }
         .cal-day-cell:hover { background-color: #f1f5f9; }
         .cal-day-cell.selected { background-color: #1e3a8a !important; color: white !important; }
@@ -83,7 +83,7 @@
                 <div class="text-left leading-tight">
                     <h1 class="font-black text-sm md:text-xl uppercase tracking-tighter text-white">Digital Squad AI</h1>
                     <span class="text-blue-200 font-bold text-xs md:text-[15px] block leading-none mt-0.5">เพื่อนครูไทย</span>
-                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.13.01</p>
+                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.14.01</p>
                 </div>
             </div>
             <nav class="hidden lg:flex space-x-8 text-white h-full items-center font-bold">
@@ -110,7 +110,7 @@
         
         <!-- ================= TAB: HOME ================= -->
         <div id="tab-home" class="tab-content">
-            <!-- Blue Hero Section from V13.13.01 (FROZEN & LOCKED) -->
+            <!-- Blue Hero Section from V13.14.01 (FROZEN & LOCKED) -->
             <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600 flex flex-col lg:flex-row items-center justify-between gap-8">
                 <!-- Background Globe Deco -->
                 <div class="absolute right-[-40px] top-[-40px] text-white opacity-5 text-[20rem] pointer-events-none">
@@ -419,8 +419,8 @@
                     </div>
                     
                     <div class="p-6 bg-slate-50 flex-grow">
-                        <!-- วันในรอบสัปดาห์ (Sunday - Saturday) -->
-                        <div class="grid grid-cols-7 gap-2 text-center text-xs font-black uppercase tracking-wider text-slate-400 mb-4">
+                        <!-- 🛠️ ตรึงหัวตาราง 7 วันด้วย Inline CSS Grid ป้องกันปฏิทินเบี้ยวโย้ทางซ้ายตั้งแต่เสี้ยววินาทีแรก -->
+                        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem;" class="text-center text-xs font-black uppercase tracking-wider text-slate-400 mb-4">
                             <div class="text-rose-500">อา.</div>
                             <div>จ.</div>
                             <div>อ.</div>
@@ -429,8 +429,8 @@
                             <div>ศ.</div>
                             <div class="text-slate-500 font-bold">ส.</div>
                         </div>
-                        <!-- พื้นที่เรนเดอร์วันที่ตาราง 7 คอลัมน์ (Auto-Render) -->
-                        <div id="calendar-grid-area" class="grid grid-cols-7 gap-2"></div>
+                        <!-- 🛠️ ตรึงพื้นที่วันในปฏิทินด้วย Inline CSS Grid สากล ประสิทธิภาพสูง ไม่พังแน่นอน -->
+                        <div id="calendar-grid-area" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem;"></div>
                     </div>
                 </div>
 
@@ -482,7 +482,7 @@
     </main>
 
     <footer class="bg-white border-t py-12 text-center mt-auto text-slate-400">
-        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.13.01 (SUPREME SYNC EDITION)</p>
+        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.14.01 (SUPREME SYNC EDITION)</p>
         <p class="text-primary text-[14px] font-black text-center mb-1">ผู้ออกแบบและพัฒนาโปรแกรม โดย : กันตภณ ณพสิษฐ์ (สงวนลิขสิทธิ์)</p>
         <p class="text-slate-400 text-[12px] text-center">© 2026 OFFICIAL EDUCATIONAL HUB. ALL RIGHTS RESERVED.</p>
     </footer>
@@ -779,7 +779,7 @@
             showToast("🎲 สลับกลเม็ดถัดไปเรียบร้อยแล้วครับ!");
         }
 
-        // ================= NEW RENDER CALENDAR (ตารางปฏิทินรายเดือน 7 คอลัมน์ ประหยัดโค้ด ไม่รวนแน่นอน) =================
+        // ================= BULLETPROOF RENDER CALENDAR (ตารางปฏิทินรายเดือน 7 คอลัมน์ด้วย CSS มาตรฐานเสถียรที่สุด) =================
         function renderCalendar() {
             const gridArea = document.getElementById('calendar-grid-area');
             const title = document.getElementById('cal-month-title');
