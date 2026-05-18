@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V13.18.01 - Premium Educational Ecosystem</title>
+    <title>Digital Squad AI V13.17.03 - Premium Educational Ecosystem</title>
     
-    <!-- 🛡️ ระบบดาวน์โหลดดีไซ็น์อัจฉริยะแบบซิงโครนัส ป้องกันการแปลงลิงก์ Markdown และป้องกันสไตล์รวน -->
+    <!-- 🛡️ ระบบดาวน์โหลดดีไซน์อัจฉริยะแบบซิงโครนัส -->
     <script>
         (function() {
           var tw = document.createElement("script");
@@ -27,9 +27,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <script>
-        // 🛠️ ตรึงชุดดีไซน์และธีมสีของแบรนด์ Digital Squad ให้ทำงานอย่างมีเอกภาพ
         window.tailwind = window.tailwind || {};
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: { sans: ['Sarabun', 'sans-serif'] },
@@ -40,30 +40,34 @@
     </script>
 
     <style>
-        /* 🛡️ สถิติตัวแปรสีหลักของแบรนด์ (ตรึงสไตล์ถาวรป้องกันปัญหาระบบแสดงผลล้มเหลว) */
         :root {
             --primary: #1e3a8a;
             --secondary: #3b82f6;
             --accent: #facc15;
+            --bg-body: #f8fafc;
         }
 
-        body { background-color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; padding-bottom: 80px; font-family: 'Sarabun', sans-serif; }
+        /* 🌙 Dark Mode Variables & Overrides */
+        html.dark { --bg-body: #0f172a; }
+        
+        body { background-color: var(--bg-body); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; padding-bottom: 80px; font-family: 'Sarabun', sans-serif; transition: background-color 0.3s; }
         .allow-select { user-select: text !important; -webkit-user-select: text !important; }
         @media (min-width: 1024px) { body { padding-bottom: 0; } }
         
         .bg-primary { background-color: var(--primary) !important; }
         .bg-secondary { background-color: var(--secondary) !important; }
         .text-primary { color: var(--primary) !important; }
-        .text-secondary { color: var(--secondary) !important; }
-        .text-accent { color: var(--accent) !important; }
-        .bg-accent { background-color: var(--accent) !important; }
-
+        
         .nav-link { border-bottom: 3px solid transparent; transition: all 0.3s; cursor: pointer; color: #bfdbfe; font-size: 1.05rem; padding: 1.25rem 0.5rem; font-weight: 700; }
         .nav-link:hover, .nav-active { border-bottom: 3px solid #60a5fa; color: white !important; }
         
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); display: flex; justify-content: space-around; padding: 0.75rem 0; box-shadow: 0 -4px 20px rgba(0,0,0,0.05); z-index: 1000; border-top: 1px solid #e2e8f0; }
-        .bottom-nav-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
-        .bottom-nav-item.active { color: #1e3a8a; }
+        
+        /* ✨ Mobile Nav Premium UX (Active State & Indicator Dot) */
+        .bottom-nav-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; font-size: 0.8rem; font-weight: 700; cursor: pointer; position: relative; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .bottom-nav-item.active { color: #1e3a8a; transform: scale(1.1); }
+        html.dark .bottom-nav-item.active { color: #60a5fa; }
+        .bottom-nav-item.active::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 5px; height: 5px; border-radius: 50%; background-color: currentColor; }
         
         .tab-content { animation: fadeIn 0.4s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -74,183 +78,168 @@
         
         #toast { visibility: hidden; min-width: 300px; background-color: #10b981; color: #fff; text-align: center; border-radius: 50px; padding: 1rem 1.75rem; position: fixed; z-index: 100000; left: 50%; bottom: 100px; transform: translateX(-50%) translateY(20px); font-weight: 700; opacity: 0; transition: all 0.4s; box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4); }
         #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
-        .agent-number-bg { position: absolute; top: -10px; right: 10px; font-size: 6rem; font-weight: 900; color: rgba(0,0,0,0.01); z-index: 0; pointer-events: none; }
         
-        /* Custom Scrollbar for Feeds & Split Pane */
+        .agent-number-bg { position: absolute; top: -10px; right: 10px; font-size: 6rem; font-weight: 900; color: rgba(0,0,0,0.06); z-index: 0; pointer-events: none; transition: color 0.3s; }
+        
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         
-        .spinner { border: 4px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top: 4px solid #fff; width: 20px; height: 20px; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        /* ปรับระดับความคมชัดของตารางปฏิทินแบบ 7 คอลัมน์ */
         .cal-day-cell { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 1rem; cursor: pointer; transition: all 0.2s; position: relative; font-weight: 700; font-size: 0.95rem; }
-        .cal-day-cell:hover { background-color: #f5eed3; }
-        .cal-day-cell.selected { background-color: #d97706 !important; color: white !important; }
-        .cal-day-cell.today { border: 2px solid #ea580c; }
+        .cal-day-cell:hover { background-color: rgba(0,0,0,0.05); }
+        .cal-day-cell.selected { background-color: #d97706 !important; color: white !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .cal-day-cell.today { border: 2px solid #d97706; font-weight: 900; }
+
+        /* 🌙 Dark Mode Globals */
+        html.dark .bg-white { background-color: #1e293b !important; border-color: #334155 !important; }
+        html.dark .text-slate-800 { color: #f8fafc !important; }
+        html.dark .text-slate-700 { color: #e2e8f0 !important; }
+        html.dark .text-slate-500 { color: #94a3b8 !important; }
+        html.dark .bg-slate-50 { background-color: #0f172a !important; border-color: #1e293b !important; }
+        html.dark .border-slate-200, html.dark .border-slate-100 { border-color: #334155 !important; }
+        html.dark .modal-content { background-color: #1e293b; color: #f8fafc; }
+        html.dark .bottom-nav { background: rgba(15, 23, 42, 0.95); border-top-color: #334155; }
+        html.dark footer { background-color: #0f172a !important; border-top-color: #1e293b; }
+        html.dark .agent-number-bg { color: rgba(255,255,255,0.05); } 
+        html.dark input, html.dark select, html.dark textarea { background-color: #0f172a !important; color: white !important; border-color: #334155 !important; }
     </style>
 </head>
 <body class="font-sans text-slate-800 text-left">
 
     <!-- Header -->
-    <header style="background-color: #1e3a8a !important;" class="bg-primary sticky top-0 z-50 shadow-lg px-4">
+    <header id="main-header" style="background-color: #1e3a8a !important;" class="bg-primary sticky top-0 z-50 shadow-lg px-4 transition-colors duration-300">
         <div class="container mx-auto flex items-center justify-between h-16 md:h-24">
             <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchTab('home')">
-                <img src="app icon.jpg" alt="Digital Squad AI Icon" class="w-10 h-10 md:w-16 md:h-16 rounded-xl shadow-md group-hover:scale-105 transition-transform duration-300 object-cover bg-white p-0.5">
+                <img src="app%20icon.jpg" onerror="this.onerror=null; this.src='logo.png';" alt="Digital Squad AI Icon" class="w-10 h-10 md:w-14 md:h-14 rounded-xl shadow-md group-hover:scale-105 transition-transform duration-300 object-cover bg-white p-0.5 border border-blue-300">
                 <div class="text-left leading-tight">
                     <h1 class="font-black text-sm md:text-xl uppercase tracking-tighter text-white">Digital Squad AI</h1>
                     <span class="text-blue-200 font-bold text-xs md:text-[15px] block leading-none mt-0.5">เพื่อนครูไทย</span>
-                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.18.01</p>
+                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.17.03</p>
                 </div>
             </div>
+            
             <nav class="hidden lg:flex space-x-8 text-white h-full items-center font-bold">
                 <a onclick="switchTab('home')" id="nav-home" class="nav-link nav-active">Dashboard</a>
                 <a onclick="switchTab('gems')" id="nav-gems" class="nav-link">AI Agent</a>
                 <a onclick="switchTab('catalog')" id="nav-catalog" class="nav-link">ปฏิบัติการยุทธศาสตร์</a>
                 <a onclick="switchTab('calendar')" id="nav-calendar" class="nav-link">ปฏิทินกิจกรรม</a>
+                <a onclick="switchTab('guide')" id="nav-guide" class="nav-link">คู่มือการใช้</a>
                 <a onclick="switchTab('about')" id="nav-about" class="nav-link">เกี่ยวกับเรา</a>
             </nav>
-            <button onclick="toggleModal('login-modal')" class="bg-blue-600 hover:bg-blue-500 px-4 md:px-6 py-2.5 rounded-full text-xs md:text-sm font-bold transition shadow-lg text-white border border-blue-400 active:scale-95">REGISTER / LOGIN</button>
+
+            <div class="flex items-center gap-2 md:gap-4">
+                <!-- 🔍 Global Search Bar Toggle -->
+                <button aria-label="ค้นหาข้อมูลและภารกิจ" onclick="toggleModal('search-modal')" class="w-10 h-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition flex items-center justify-center shadow-inner border border-white/10" title="ค้นหาข้อมูลและภารกิจ (Search)">
+                    <i class="fas fa-search"></i>
+                </button>
+                <!-- 🌙 Dark Mode Toggle -->
+                <button aria-label="สลับโหมดถนอมสายตา" onclick="toggleDarkMode()" class="w-10 h-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition flex items-center justify-center shadow-inner border border-white/10" title="สลับโหมดถนอมสายตา (Dark Mode)">
+                    <i id="dark-mode-icon" class="fas fa-moon"></i>
+                </button>
+                <button aria-label="เข้าสู่ระบบหรือลงทะเบียน" onclick="toggleModal('login-modal')" class="bg-blue-600 hover:bg-blue-500 px-4 md:px-6 py-2.5 rounded-full text-xs md:text-sm font-bold transition shadow-lg text-white border border-blue-400 active:scale-95">REGISTER / LOGIN</button>
+            </div>
         </div>
     </header>
 
     <!-- Mobile Nav -->
-    <nav class="bottom-nav lg:hidden">
-        <div onclick="switchTab('home')" id="m-nav-home" class="bottom-nav-item active text-center"><i class="fas fa-home text-lg"></i><span>หน้าแรก</span></div>
-        <div onclick="switchTab('gems')" id="m-nav-gems" class="bottom-nav-item text-center"><i class="fas fa-robot text-lg"></i><span>Agent</span></div>
-        <div onclick="switchTab('catalog')" id="m-nav-catalog" class="bottom-nav-item text-center"><i class="fas fa-route text-lg"></i><span>ยุทธศาสตร์</span></div>
-        <div onclick="switchTab('calendar')" id="m-nav-calendar" class="bottom-nav-item text-center"><i class="fas fa-calendar-alt text-lg"></i><span>ปฏิทิน</span></div>
-        <div onclick="switchTab('about')" id="m-nav-about" class="bottom-nav-item text-center"><i class="fas fa-info-circle text-lg"></i><span>ข้อมูล</span></div>
+    <nav class="bottom-nav lg:hidden" aria-label="เมนูนำทางหลักสำหรับมือถือ">
+        <div aria-label="หน้าแรก" onclick="switchTab('home')" id="m-nav-home" class="bottom-nav-item active text-center"><i class="fas fa-home text-lg"></i><span>หน้าแรก</span></div>
+        <div aria-label="เครื่องมือเอไอ" onclick="switchTab('gems')" id="m-nav-gems" class="bottom-nav-item text-center"><i class="fas fa-robot text-lg"></i><span>Agent</span></div>
+        <div aria-label="ยุทธศาสตร์และภารกิจ" onclick="switchTab('catalog')" id="m-nav-catalog" class="bottom-nav-item text-center"><i class="fas fa-route text-lg"></i><span>ยุทธศาสตร์</span></div>
+        <div aria-label="ปฏิทินกิจกรรม" onclick="switchTab('calendar')" id="m-nav-calendar" class="bottom-nav-item text-center"><i class="fas fa-calendar-alt text-lg"></i><span>ปฏิทิน</span></div>
+        <div aria-label="คู่มือการใช้" onclick="switchTab('guide')" id="m-nav-guide" class="bottom-nav-item text-center"><i class="fas fa-book-open text-lg"></i><span>คู่มือ</span></div>
+        <div aria-label="เกี่ยวกับระบบ" onclick="switchTab('about')" id="m-nav-about" class="bottom-nav-item text-center"><i class="fas fa-info-circle text-lg"></i><span>ข้อมูล</span></div>
     </nav>
 
     <main class="flex-grow container mx-auto px-4 py-6 md:py-10 text-left allow-select">
         
         <!-- ================= TAB: HOME ================= -->
         <div id="tab-home" class="tab-content">
-            <!-- Blue Hero Section from V13.18.01 (FROZEN & LOCKED) -->
+            <!-- Hero Section -->
             <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600 flex flex-col lg:flex-row items-center justify-between gap-8">
-                <!-- Background Globe Deco -->
-                <div class="absolute right-[-40px] top-[-40px] text-white opacity-5 text-[20rem] pointer-events-none">
-                    <i class="fas fa-globe"></i>
-                </div>
-                
+                <div class="absolute right-[-40px] top-[-40px] text-white opacity-5 text-[20rem] pointer-events-none"><i class="fas fa-globe"></i></div>
                 <div class="relative z-10 text-left lg:w-2/3">
                     <span class="bg-yellow-400 text-slate-900 text-xs font-black px-4 py-1.5 rounded-full mb-6 inline-block shadow-lg uppercase tracking-wider">OFFICIAL RELEASE 2026</span>
                     <h2 class="text-2xl md:text-5xl font-black mb-6 leading-tight">Digital Squad AI ระบบนิเวศทางการศึกษาที่สมบูรณ์แบบ</h2>
                     <p class="text-blue-100 text-sm md:text-lg mb-10 max-w-5xl leading-relaxed font-medium">ใช้ Generative AI Agent เป็นที่ปรึกษา พี่เลี้ยง ผู้ช่วย และเครื่องมือช่วยลดภาระ ลดเวลาในการทำงานของครู คืนเวลาครูให้มีเวลาเหลือไปใช้กับการสอน กับนักเรียน และกับการใช้ชีวิตส่วนตัวให้มีคุณภาพมากขึ้น</p>
-                    
-                    <!-- 5 translucent glass boxes inside the blue banner -->
                     <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6">
                         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 hover:bg-white/20 transition shadow-lg flex flex-col justify-between">
-                            <div>
-                                <div class="text-yellow-400 text-2xl mb-2"><i class="fas fa-users"></i></div>
-                                <strong class="text-white text-[15px] font-black block">บุคลากรทุกระดับ</strong>
-                            </div>
+                            <div><div class="text-yellow-400 text-2xl mb-2"><i class="fas fa-users"></i></div><strong class="text-white text-[15px] font-black block">บุคลากรทุกระดับ</strong></div>
                             <p class="text-[12px] text-blue-100 mt-2 font-medium leading-snug">ผู้บริหาร ครู ธุรการ ฝ่ายประเมิน</p>
                         </div>
                         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 hover:bg-white/20 transition shadow-lg flex flex-col justify-between">
-                            <div>
-                                <div class="text-yellow-400 text-2xl mb-2"><i class="fas fa-school"></i></div>
-                                <strong class="text-white text-[15px] font-black block">8 สังกัดการศึกษา</strong>
-                            </div>
+                            <div><div class="text-yellow-400 text-2xl mb-2"><i class="fas fa-school"></i></div><strong class="text-white text-[15px] font-black block">8 สังกัดการศึกษา</strong></div>
                             <p class="text-[12px] text-blue-100 mt-2 font-medium leading-snug">สพฐ. กทม. สอศ. อว. สกศ. ฯลฯ</p>
                         </div>
                         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 hover:bg-white/20 transition shadow-lg flex flex-col justify-between">
-                            <div>
-                                <div class="text-yellow-400 text-2xl mb-2"><i class="fas fa-briefcase"></i></div>
-                                <strong class="text-white text-[15px] font-black block">10 สายงานหลัก</strong>
-                            </div>
+                            <div><div class="text-yellow-400 text-2xl mb-2"><i class="fas fa-briefcase"></i></div><strong class="text-white text-[15px] font-black block">6 สายงานหลัก</strong></div>
                             <p class="text-[12px] text-blue-100 mt-2 font-medium leading-snug">ครอบคลุมทุกรูปแบบภารกิจสำคัญ</p>
                         </div>
                         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 hover:bg-white/20 transition shadow-lg flex flex-col justify-between">
-                            <div>
-                                <div class="text-yellow-400 text-2xl mb-2"><i class="fas fa-bullseye"></i></div>
-                                <strong class="text-white text-[15px] font-black block">หนุนนโยบายรัฐ</strong>
-                            </div>
+                            <div><div class="text-yellow-400 text-2xl mb-2"><i class="fas fa-bullseye"></i></div><strong class="text-white text-[15px] font-black block">หนุนนโยบายรัฐ</strong></div>
                             <p class="text-[12px] text-blue-100 mt-2 font-medium leading-snug">สอดรับทุกหน่วยงานต้นสังกัด</p>
                         </div>
                         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 hover:bg-white/20 transition shadow-lg flex flex-col justify-between">
-                            <div>
-                                <div class="text-yellow-400 text-2xl mb-2"><i class="fas fa-balance-scale"></i></div>
-                                <strong class="text-white text-[15px] font-black block">ธรรมาภิบาล AI</strong>
-                            </div>
+                            <div><div class="text-yellow-400 text-2xl mb-2"><i class="fas fa-balance-scale"></i></div><strong class="text-white text-[15px] font-black block">ธรรมาภิบาล AI</strong></div>
                             <p class="text-[12px] text-blue-100 mt-2 font-medium leading-snug">เคร่งครัดจรรยาบรรณวิชาชีพ</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- 📸 แสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
                 <div class="relative z-10 lg:w-1/3 flex justify-center items-center">
                     <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Digital Squad AI Premium Logo" class="max-w-[260px] md:max-w-[300px] rounded-3xl shadow-2xl bg-white p-5 hover:scale-105 transition-transform duration-300 border border-blue-200">
                 </div>
             </div>
 
-            <!-- Bottom stats bar (ตรึงค่าข้อมูลอย่างสมบูรณ์แบบต่อจากกล่องน้ำเงิน) -->
+            <!-- Bottom stats bar -->
             <div class="mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="md:col-span-2 bg-white rounded-3xl border border-slate-200 p-6 flex flex-col md:flex-row items-center justify-around gap-6 shadow-sm border-b-4 border-b-blue-100">
+                <div class="md:col-span-2 bg-white rounded-3xl border border-slate-200 p-6 flex flex-col md:flex-row items-center justify-around gap-6 shadow-sm border-b-4 border-b-blue-100 dark:border-b-blue-900">
                     <div class="flex items-center gap-5">
-                        <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl"><i class="fas fa-users text-blue-600"></i></div>
-                        <div>
-                            <p class="text-xs font-black text-slate-400 uppercase mb-1">คนใช้งานทั้งหมด</p>
-                            <h3 id="stat-total-users" class="text-3xl font-black text-slate-800 tracking-tight">2,154</h3>
-                        </div>
+                        <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl dark:bg-blue-900/50 dark:text-blue-400"><i class="fas fa-users"></i></div>
+                        <div><p class="text-xs font-black text-slate-400 uppercase mb-1">คนใช้งานทั้งหมด</p><h3 id="stat-total-users" class="text-3xl font-black text-slate-800 tracking-tight">2,154</h3></div>
                     </div>
-                    <div class="w-px h-12 bg-slate-100 hidden md:block"></div>
+                    <div class="w-px h-12 bg-slate-100 dark:bg-slate-700 hidden md:block"></div>
                     <div class="flex items-center gap-5">
-                        <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl shadow-sm"><i class="fas fa-bolt text-emerald-600"></i></div>
-                        <div>
-                            <p class="text-xs font-black text-slate-400 uppercase mb-1 text-left">เรียกใช้งาน AI</p>
-                            <h3 id="stat-ai-calls" class="text-3xl font-black text-slate-800 tracking-tight">14,830</h3>
-                        </div>
+                        <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl shadow-sm dark:bg-emerald-900/50 dark:text-emerald-400"><i class="fas fa-bolt"></i></div>
+                        <div><p class="text-xs font-black text-slate-400 uppercase mb-1 text-left">เรียกใช้งาน AI</p><h3 id="stat-ai-calls" class="text-3xl font-black text-slate-800 tracking-tight">14,830</h3></div>
                     </div>
                 </div>
-                <button onclick="toggleModal('stats-modal'); initStatsCharts();" class="bg-slate-800 text-white rounded-3xl p-6 flex items-center justify-center gap-4 shadow-lg hover:bg-slate-900 active:scale-95 transition-all">
-                    <div class="text-left text-white"><h4 class="text-xl font-black">ดูสถิติทั้งหมด</h4><p class="text-xs text-slate-400 font-bold uppercase tracking-tighter">Analytics Sync</p></div>
+                <button aria-label="เปิดหน้าต่างดูสถิติระบบ" onclick="toggleModal('stats-modal'); initStatsCharts();" class="bg-slate-800 text-white rounded-3xl p-6 flex items-center justify-center gap-4 shadow-lg hover:bg-slate-900 active:scale-95 transition-all dark:bg-blue-600 dark:hover:bg-blue-500">
+                    <div class="text-left text-white"><h4 class="text-xl font-black">ดูสถิติทั้งหมด</h4><p class="text-xs text-slate-300 font-bold uppercase tracking-tighter">Analytics Sync</p></div>
                     <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl"><i class="fas fa-chart-line text-white"></i></div>
                 </button>
             </div>
 
-            <!-- 💡 DAILY TRICKS & INSPIRATION (โทนสีครีมส้มอบอุ่น) -->
-            <div class="mb-10 bg-[#fffaf0] border-2 border-orange-200 rounded-[2.5rem] p-6 md:p-10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden text-left">
-                <div class="absolute -right-12 -bottom-12 text-orange-200/20 text-9xl pointer-events-none"><i class="fas fa-lightbulb"></i></div>
+            <!-- 💡 DAILY TRICKS -->
+            <div class="mb-10 bg-[#fffaf0] dark:bg-orange-950/30 border-2 border-orange-200 dark:border-orange-900/50 rounded-[2.5rem] p-6 md:p-10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden text-left">
+                <div class="absolute -right-12 -bottom-12 text-orange-200/20 dark:text-orange-500/10 text-9xl pointer-events-none"><i class="fas fa-lightbulb"></i></div>
                 <div class="flex items-start gap-5 relative z-10">
-                    <div class="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0"><i class="fas fa-lightbulb animate-pulse"></i></div>
+                    <div class="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0 dark:bg-orange-900/50 dark:text-orange-400"><i class="fas fa-lightbulb animate-pulse"></i></div>
                     <div>
-                        <h3 class="text-lg md:text-2xl font-black text-orange-950 mb-2 flex items-center gap-2">💡 กลเม็ด & แรงบันดาลใจครูอัจฉริยะรายวัน (Daily Career Tricks)</h3>
-                        <p id="daily-trick-text" class="text-orange-900 text-sm md:text-[15.5px] font-semibold leading-relaxed max-w-4xl allow-select italic">
-                            "กำลังโหลดกลเม็ดความสำเร็จเพื่อครูไทย..."
-                        </p>
-                        <span id="daily-trick-tag" class="inline-block mt-3 text-[10px] font-black uppercase tracking-wider text-orange-700 bg-orange-100 px-3 py-1 rounded-full">
-                            หมวดหมู่: เกณฑ์ วPA & วิทยฐานะดิจิทัล
-                        </span>
+                        <h3 class="text-lg md:text-2xl font-black text-orange-950 dark:text-orange-200 mb-2 flex items-center gap-2">💡 กลเม็ด & แรงบันดาลใจครูอัจฉริยะรายวัน</h3>
+                        <p id="daily-trick-text" class="text-orange-900 dark:text-orange-300 text-sm md:text-[15.5px] font-semibold leading-relaxed max-w-4xl allow-select italic">"กำลังโหลดกลเม็ดความสำเร็จเพื่อครูไทย..."</p>
+                        <span id="daily-trick-tag" class="inline-block mt-3 text-[10px] font-black uppercase tracking-wider text-orange-700 bg-orange-100 px-3 py-1 rounded-full dark:bg-orange-900/50 dark:text-orange-300">หมวดหมู่: เกณฑ์ วPA</span>
                     </div>
                 </div>
-                <button onclick="rotateTrick()" class="bg-orange-600 hover:bg-orange-500 text-white font-black px-6 py-3.5 rounded-2xl shadow-lg transition active:scale-95 text-xs whitespace-nowrap relative z-10 shrink-0 uppercase tracking-widest">
-                    <i class="fas fa-random mr-2"></i> สลับเคล็ดลับถัดไป
-                </button>
+                <button aria-label="สลับเคล็ดลับถัดไป" onclick="rotateTrick()" class="bg-orange-600 hover:bg-orange-500 text-white font-black px-6 py-3.5 rounded-2xl shadow-lg transition active:scale-95 text-xs whitespace-nowrap relative z-10 shrink-0 uppercase tracking-widest"><i class="fas fa-random mr-2"></i> สลับเคล็ดลับถัดไป</button>
             </div>
 
-            <!-- News & Training FEEDS (Smart Hub Layout V30) -->
+            <!-- News & Training FEEDS -->
             <div id="dashboard-hubs" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- กระดานข่าว (News Feed) -->
-                <div class="bg-gradient-to-b from-blue-50 to-white rounded-[2.5rem] p-6 md:p-8 border-2 border-blue-100 shadow-sm flex flex-col h-[600px]">
-                    <div class="flex items-center justify-between mb-6 border-b border-blue-100 pb-4">
+                <div class="bg-gradient-to-b from-blue-50 to-white dark:from-slate-800 dark:to-slate-900 rounded-[2.5rem] p-6 md:p-8 border-2 border-blue-100 dark:border-slate-700 shadow-sm flex flex-col h-[600px]">
+                    <div class="flex items-center justify-between mb-6 border-b border-blue-100 dark:border-slate-700 pb-4">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md shrink-0"><i class="fas fa-newspaper"></i></div>
-                            <div><h3 class="text-xl md:text-2xl font-black text-blue-900 leading-none">กระดานข่าวสารราชการ</h3><p class="text-blue-500 text-[10px] md:text-xs font-bold uppercase tracking-widest mt-1">Official Synced News (8 Agencies)</p></div>
+                            <div><h3 class="text-xl md:text-2xl font-black text-blue-900 dark:text-blue-200 leading-none">กระดานข่าวสารราชการ</h3><p class="text-blue-500 dark:text-blue-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mt-1">Official Synced News (8 Agencies)</p></div>
                         </div>
                     </div>
                     <div id="unified-news-feed" class="flex-grow overflow-y-auto pr-2 custom-scrollbar space-y-3"></div>
                 </div>
-
-                <!-- กระดานฝึกอบรม (Training Feed) -->
-                <div class="bg-gradient-to-b from-amber-50 to-white rounded-[2.5rem] p-6 md:p-8 border-2 border-amber-100 shadow-sm flex flex-col h-[600px]">
-                    <div class="flex items-center justify-between mb-6 border-b border-amber-100 pb-4">
+                <div class="bg-gradient-to-b from-amber-50 to-white dark:from-slate-800 dark:to-slate-900 rounded-[2.5rem] p-6 md:p-8 border-2 border-amber-100 dark:border-slate-700 shadow-sm flex flex-col h-[600px]">
+                    <div class="flex items-center justify-between mb-6 border-b border-amber-100 dark:border-slate-700 pb-4">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-amber-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md shrink-0"><i class="fas fa-chalkboard-teacher"></i></div>
-                            <div><h3 class="text-xl md:text-2xl font-black text-amber-900 leading-none">ข่าวฝึกอบรมเพื่อพัฒนาอาชีพ</h3><p class="text-amber-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mt-1">Professional Training Hub Sync</p></div>
+                            <div><h3 class="text-xl md:text-2xl font-black text-amber-900 dark:text-amber-200 leading-none">ข่าวฝึกอบรมเพื่อพัฒนาอาชีพ</h3><p class="text-amber-600 dark:text-amber-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mt-1">Professional Training Hub Sync</p></div>
                         </div>
                     </div>
                     <div id="unified-training-feed" class="flex-grow overflow-y-auto pr-2 custom-scrollbar space-y-3"></div>
@@ -258,167 +247,100 @@
             </div>
         </div>
 
-        <!-- ================= TAB: AI AGENTS (V13.18.01 UPGRADE) ================= -->
+        <!-- ================= TAB: AI AGENTS ================= -->
         <div id="tab-gems" class="tab-content hidden text-center">
-             <!-- 📸 อัปเกรดหัวข้อหลักด้านบนเพื่อความมืออาชีพตามคำขอของคุณครูเอ -->
              <div class="mb-8 max-w-5xl mx-auto text-center">
-                 <h2 class="text-2xl md:text-4xl font-black tracking-tight text-slate-800 leading-snug">
-                     Agent AI Team ที่ปรึกษา ผู้ช่วย และเครื่องมืออัจฉริยะ ที่จะช่วยให้คุณสร้างงานทุกอย่างได้อย่างมืออาชีพ
-                 </h2>
+                 <h2 class="text-2xl md:text-4xl font-black tracking-tight text-slate-800 leading-snug">Agent AI Team ที่ปรึกษา ผู้ช่วย และเครื่องมืออัจฉริยะ ที่จะช่วยให้คุณสร้างงานทุกอย่างได้อย่างมืออาชีพ</h2>
              </div>
-             
-             <!-- 📸 กรอบเริ่มต้นใช้งานระบบอัจฉริยะ เปลี่ยนสีพื้นเป็นสีครีมส้ม สวยงาม อบอุ่น สไตล์ครูไทยยุคใหม่ -->
-             <div class="bg-gradient-to-br from-orange-50 via-orange-100/70 to-orange-50 rounded-[2.5rem] p-6 md:p-12 text-orange-950 shadow-xl mb-12 text-left border-4 border-orange-200 relative overflow-hidden">
-                <div class="flex items-center gap-4 mb-6 pb-6 border-b border-orange-200/60 relative z-10">
-                    <span class="text-orange-700 text-xl font-black">>_</span> 
-                    <h3 class="text-xl md:text-3xl font-black uppercase tracking-wide text-orange-900">เริ่มต้นใช้งานระบบ AI AGENT</h3>
+             <div class="bg-gradient-to-br from-orange-50 via-orange-100/70 to-orange-50 dark:from-orange-950/40 dark:via-orange-900/20 dark:to-slate-900 rounded-[2.5rem] p-6 md:p-12 text-orange-950 dark:text-orange-100 shadow-xl mb-12 text-left border-4 border-orange-200 dark:border-orange-800/50 relative overflow-hidden">
+                <div class="flex items-center gap-4 mb-6 pb-6 border-b border-orange-200/60 dark:border-orange-800/50 relative z-10">
+                    <span class="text-orange-700 dark:text-orange-400 text-xl font-black">>_</span> 
+                    <h3 class="text-xl md:text-3xl font-black uppercase tracking-wide text-orange-900 dark:text-orange-300">เริ่มต้นใช้งานระบบ AI AGENT</h3>
                 </div>
-                <div class="space-y-5 relative z-10 text-left text-orange-900 font-semibold leading-relaxed">
-                    <div class="flex items-start bg-white/60 backdrop-blur-md p-5 rounded-2xl border border-orange-200"><i class="fas fa-play text-orange-600 text-2xl mr-5 mt-1 shrink-0"></i><p class="text-[16px] font-bold">- ทุกครั้ง เริ่มต้นด้วยพิมพ์ Go แล้วกด Enter เพื่อเริ่มระบบ</p></div>
-                    <div class="flex items-start bg-white/60 backdrop-blur-md p-5 rounded-2xl border border-orange-200"><i class="fas fa-info-circle text-orange-600 text-2xl mr-5 mt-1 shrink-0"></i><p class="text-[16px] font-bold">- เริ่มที่ Agent 01 เพื่อศึกษาวิธีใช้ / บันทึก Context</p></div>
-                    <div class="flex items-start bg-white/60 backdrop-blur-md p-5 rounded-2xl border border-orange-200"><i class="fas fa-route text-emerald-700 text-2xl mr-5 mt-1 shrink-0"></i><p class="text-[16px] font-bold">- เลือก Agent 02 เพื่อแยกกลุ่มงานและชี้ทางเข้าสู่ระบบปฏิบัติการ</p></div>
-                    <div class="flex items-start bg-white/60 backdrop-blur-md p-5 rounded-2xl border border-orange-200 border-l-8 border-l-rose-500"><i class="fas fa-clipboard-check text-rose-600 text-2xl mr-5 mt-1 shrink-0"></i><p class="text-[16px] font-bold">- เลือก Agent 10 เพื่อตรวจความถูกต้องสมบูรณ์ของทุกงานก่อนส่งออก</p></div>
+                <div class="space-y-5 relative z-10 text-left text-orange-900 dark:text-orange-200 font-semibold leading-relaxed">
+                    <div class="flex items-start bg-white/60 dark:bg-slate-800/60 backdrop-blur-md p-5 rounded-2xl border border-orange-200 dark:border-slate-700"><i class="fas fa-play text-orange-600 dark:text-orange-400 text-2xl mr-5 mt-1 shrink-0"></i><p class="text-[16px] font-bold">- ทุกครั้ง เริ่มต้นด้วยพิมพ์ Go แล้วกด Enter เพื่อเริ่มระบบ</p></div>
+                    <div class="flex items-start bg-white/60 dark:bg-slate-800/60 backdrop-blur-md p-5 rounded-2xl border border-orange-200 dark:border-slate-700"><i class="fas fa-info-circle text-orange-600 dark:text-orange-400 text-2xl mr-5 mt-1 shrink-0"></i><p class="text-[16px] font-bold">- เริ่มที่ Agent 01 เพื่อศึกษาวิธีใช้ / บันทึก Context</p></div>
+                    <div class="flex items-start bg-white/60 dark:bg-slate-800/60 backdrop-blur-md p-5 rounded-2xl border border-orange-200 dark:border-slate-700"><i class="fas fa-route text-emerald-700 dark:text-emerald-400 text-2xl mr-5 mt-1 shrink-0"></i><p class="text-[16px] font-bold">- เลือก Agent 02 เพื่อแยกกลุ่มงานและชี้ทางเข้าสู่ระบบปฏิบัติการ</p></div>
+                    <div class="flex items-start bg-white/60 dark:bg-slate-800/60 backdrop-blur-md p-5 rounded-2xl border border-orange-200 dark:border-slate-700 border-l-8 border-l-rose-500"><i class="fas fa-clipboard-check text-rose-600 dark:text-rose-400 text-2xl mr-5 mt-1 shrink-0"></i><p class="text-[16px] font-bold">- เลือก Agent 10 เพื่อตรวจความถูกต้องสมบูรณ์ของทุกงานก่อนส่งออก</p></div>
                 </div>
              </div>
              <div id="agent-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 text-left"></div>
         </div>
 
-        <!-- ================= TAB: STRATEGIC HUB (V31 ULTIMATE FIX) ================= -->
+        <!-- ================= TAB: STRATEGIC HUB ================= -->
         <div id="tab-catalog" class="tab-content hidden text-left">
-            
-            <!-- 🏆 ฐานปฏิบัติการอัจฉริยะ สำหรับบุคลากรด้านการศึกษา (Restored Header V32) -->
             <div class="bg-gradient-to-br from-blue-900 via-primary to-indigo-950 rounded-[2.5rem] p-8 md:p-12 text-white shadow-xl mb-10 relative overflow-hidden border-b-8 border-blue-950">
-                <div class="absolute right-[-20px] bottom-[-20px] text-white opacity-5 text-[15rem] pointer-events-none">
-                    <i class="fas fa-network-wired"></i>
-                </div>
-                
+                <div class="absolute right-[-20px] bottom-[-20px] text-white opacity-5 text-[15rem] pointer-events-none"><i class="fas fa-network-wired"></i></div>
                 <div class="relative z-10 text-left">
                     <span class="bg-amber-400 text-slate-900 text-xs font-black px-4 py-1.5 rounded-full mb-4 inline-block shadow-lg uppercase tracking-wider">STRATEGIC COMMAND</span>
                     <h2 class="text-2xl md:text-4xl font-black mb-3 leading-tight text-white">ฐานปฏิบัติการอัจฉริยะ สำหรับบุคลากรด้านการศึกษา</h2>
-                    <p class="text-blue-100 text-sm md:text-xl font-medium mb-8 leading-relaxed">
-                        เข้าถึงงานครูมากกว่า <span class="text-yellow-300 font-black underline">1,000 โครงการ</span> และแตกแขนงต่อยอดงาน ไปได้มากกว่า <span class="text-yellow-300 font-black underline">10,000 เนื้องาน</span>
-                    </p>
-                    
-                    <!-- 6 Main Classified Educational Tasks (Grid) -->
+                    <p class="text-blue-100 text-sm md:text-xl font-medium mb-8 leading-relaxed">เข้าถึงงานครูมากกว่า <span class="text-yellow-300 font-black underline">1,000 โครงการ</span> และแตกแขนงต่อยอดงาน ไปได้มากกว่า <span class="text-yellow-300 font-black underline">10,000 เนื้องาน</span></p>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                            <div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-file-signature"></i></div>
-                            <span class="text-xs md:text-sm font-bold text-white leading-snug">งานสารบรรณและธุรการสถานศึกษา<br><span class="text-[10px] text-blue-200 font-normal">General Administration & e-Document</span></span>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                            <div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-book-open"></i></div>
-                            <span class="text-xs md:text-sm font-bold text-white leading-snug">งานวิชาการและการออกแบบการเรียนรู้<br><span class="text-[10px] text-blue-200 font-normal">Academic & Instructional Design</span></span>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                            <div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-calculator"></i></div>
-                            <span class="text-xs md:text-sm font-bold text-white leading-snug">งานพัสดุ การเงิน และควบคุมงบประมาณ<br><span class="text-[10px] text-blue-200 font-normal">Procurement, Finance & Asset Control</span></span>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                            <div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-chart-line"></i></div>
-                            <span class="text-xs md:text-sm font-bold text-white leading-snug">งานข้อมูล สถิติ และระบบสารสนเทศ<br><span class="text-[10px] text-blue-200 font-normal">Dynamic Information & Database Systems</span></span>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                            <div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-user-shield"></i></div>
-                            <span class="text-xs md:text-sm font-bold text-white leading-snug">งานดูแลช่วยเหลือนักเรียนและสุขภาวะ<br><span class="text-[10px] text-blue-200 font-normal">Student Care & Psychological Support</span></span>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                            <div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-medal"></i></div>
-                            <span class="text-xs md:text-sm font-bold text-white leading-snug">งานวิทยฐานะและการพัฒนาวิชาชีพครู<br><span class="text-[10px] text-blue-200 font-normal">วPA & Professional Learning</span></span>
-                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3"><div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-file-signature"></i></div><span class="text-xs md:text-sm font-bold text-white leading-snug">งานสารบรรณและธุรการสถานศึกษา<br><span class="text-[10px] text-blue-200 font-normal">General Administration</span></span></div>
+                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3"><div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-book-open"></i></div><span class="text-xs md:text-sm font-bold text-white leading-snug">งานวิชาการและการออกแบบการเรียนรู้<br><span class="text-[10px] text-blue-200 font-normal">Academic Design</span></span></div>
+                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3"><div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-calculator"></i></div><span class="text-xs md:text-sm font-bold text-white leading-snug">งานพัสดุ การเงิน และควบคุมงบประมาณ<br><span class="text-[10px] text-blue-200 font-normal">Finance & Asset Control</span></span></div>
+                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3"><div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-chart-line"></i></div><span class="text-xs md:text-sm font-bold text-white leading-snug">งานข้อมูล สถิติ และระบบสารสนเทศ<br><span class="text-[10px] text-blue-200 font-normal">Database Systems</span></span></div>
+                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3"><div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-user-shield"></i></div><span class="text-xs md:text-sm font-bold text-white leading-snug">งานดูแลช่วยเหลือนักเรียนและสุขภาวะ<br><span class="text-[10px] text-blue-200 font-normal">Student Care Support</span></span></div>
+                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3"><div class="text-yellow-400 text-xl shrink-0"><i class="fas fa-medal"></i></div><span class="text-xs md:text-sm font-bold text-white leading-snug">งานวิทยฐานะและการพัฒนาวิชาชีพครู<br><span class="text-[10px] text-blue-200 font-normal">วPA & Learning</span></span></div>
                     </div>
                 </div>
             </div>
 
-            <!-- 💡 5 ขั้นตอนการทำวิจัยร่วมกับ AI ขั้นสูง (สีพื้นกรอบสีเหลืองส้มสุดพรีเมียม) -->
             <div class="bg-gradient-to-br from-amber-400 via-orange-500 to-amber-600 rounded-[2.5rem] p-6 md:p-10 text-white shadow-xl mb-10 relative overflow-hidden border-b-8 border-orange-700">
-                <div class="absolute -right-16 -top-16 text-white/10 text-[18rem] pointer-events-none">
-                    <i class="fas fa-chart-bar"></i>
-                </div>
-                
+                <div class="absolute -right-16 -top-16 text-white/10 text-[18rem] pointer-events-none"><i class="fas fa-chart-bar"></i></div>
                 <div class="relative z-10 text-left">
-                    <h3 class="text-xl md:text-3xl font-black text-white mb-2 flex items-center gap-3 leading-tight">
-                        <i class="fas fa-microscope text-yellow-300 animate-bounce"></i> 5 ขั้นตอนการทำวิจัยร่วมกับ AI ขั้นสูง (Advanced Classroom Action Research)
-                    </h3>
-                    <p class="text-orange-50 text-xs md:text-base font-bold mb-8 max-w-5xl leading-relaxed">
-                        การวิจัยในชั้นเรียน (CAR) และการแก้ปัญหาผู้เรียนเป็นประเด็นท้าทาย ถือเป็นงานยุทธศาสตร์สำคัญสำหรับบุคลากรครูเพื่อการเลื่อนตำแหน่งและเลื่อนวิทยฐานะตามเกณฑ์ วPA และการประเมินในระบบ DPA
-                    </p>
-                    
-                    <!-- 5 Steps Interactive Links -->
+                    <h3 class="text-xl md:text-3xl font-black text-white mb-2 flex items-center gap-3 leading-tight"><i class="fas fa-microscope text-yellow-300 animate-bounce"></i> 5 ขั้นตอนการทำวิจัยร่วมกับ AI ขั้นสูง</h3>
+                    <p class="text-orange-50 text-xs md:text-base font-bold mb-8 max-w-5xl leading-relaxed">การวิจัยในชั้นเรียน (CAR) และการแก้ปัญหาผู้เรียนเป็นประเด็นท้าทาย ถือเป็นงานยุทธศาสตร์สำคัญสำหรับบุคลากรครูเพื่อการเลื่อนตำแหน่งและเลื่อนวิทยฐานะตามเกณฑ์ วPA</p>
                     <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-                        <div onclick="launchAgent('02')" class="bg-white/15 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/25 hover:shadow-lg transition cursor-pointer flex flex-col justify-between h-full group active:scale-95">
-                            <div>
-                                <span class="text-[10px] text-yellow-300 font-black uppercase tracking-wider block mb-1">STEP 01</span>
-                                <h4 class="text-[14px] font-bold text-white mb-2 leading-snug group-hover:text-yellow-300 transition-colors">วิเคราะห์ปัญหา & หัวข้อวิจัย</h4>
-                            </div>
+                        <div aria-label="ขั้นตอนที่ 1" onclick="launchAgent('02')" class="bg-white/15 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/25 hover:shadow-lg transition cursor-pointer flex flex-col justify-between h-full group active:scale-95">
+                            <div><span class="text-[10px] text-yellow-300 font-black uppercase tracking-wider block mb-1">STEP 01</span><h4 class="text-[14px] font-bold text-white mb-2 leading-snug group-hover:text-yellow-300 transition-colors">วิเคราะห์ปัญหา & หัวข้อวิจัย</h4></div>
                             <span class="text-[10px] bg-white/25 text-white font-bold py-1 px-2.5 rounded-lg self-start mt-4"><i class="fas fa-robot mr-1"></i> Agent 02</span>
                         </div>
-                        
-                        <div onclick="launchAgent('02')" class="bg-white/15 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/25 hover:shadow-lg transition cursor-pointer flex flex-col justify-between h-full group active:scale-95">
-                            <div>
-                                <span class="text-[10px] text-yellow-300 font-black uppercase tracking-wider block mb-1">STEP 02</span>
-                                <h4 class="text-[14px] font-bold text-white mb-2 leading-snug group-hover:text-yellow-300 transition-colors">ทบทวนวรรณกรรม & แนวคิด</h4>
-                            </div>
+                        <div aria-label="ขั้นตอนที่ 2" onclick="launchAgent('02')" class="bg-white/15 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/25 hover:shadow-lg transition cursor-pointer flex flex-col justify-between h-full group active:scale-95">
+                            <div><span class="text-[10px] text-yellow-300 font-black uppercase tracking-wider block mb-1">STEP 02</span><h4 class="text-[14px] font-bold text-white mb-2 leading-snug group-hover:text-yellow-300 transition-colors">ทบทวนวรรณกรรม & แนวคิด</h4></div>
                             <span class="text-[10px] bg-white/25 text-white font-bold py-1 px-2.5 rounded-lg self-start mt-4"><i class="fas fa-robot mr-1"></i> Agent 02</span>
                         </div>
-                        
-                        <div onclick="launchAgent('03')" class="bg-white/15 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/25 hover:shadow-lg transition cursor-pointer flex flex-col justify-between h-full group active:scale-95">
-                            <div>
-                                <span class="text-[10px] text-yellow-300 font-black uppercase tracking-wider block mb-1">STEP 03</span>
-                                <h4 class="text-[14px] font-bold text-white mb-2 leading-snug group-hover:text-yellow-300 transition-colors">ออกแบบแผนจัดเรียนรู้นวัตกรรม</h4>
-                            </div>
+                        <div aria-label="ขั้นตอนที่ 3" onclick="launchAgent('03')" class="bg-white/15 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/25 hover:shadow-lg transition cursor-pointer flex flex-col justify-between h-full group active:scale-95">
+                            <div><span class="text-[10px] text-yellow-300 font-black uppercase tracking-wider block mb-1">STEP 03</span><h4 class="text-[14px] font-bold text-white mb-2 leading-snug group-hover:text-yellow-300 transition-colors">ออกแบบแผนจัดเรียนรู้นวัตกรรม</h4></div>
                             <span class="text-[10px] bg-white/25 text-white font-bold py-1 px-2.5 rounded-lg self-start mt-4"><i class="fas fa-robot mr-1"></i> Agent 03</span>
                         </div>
-                        
-                        <div onclick="launchAgent('04')" class="bg-white/15 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/25 hover:shadow-lg transition cursor-pointer flex flex-col justify-between h-full group active:scale-95">
-                            <div>
-                                <span class="text-[10px] text-yellow-300 font-black uppercase tracking-wider block mb-1">STEP 04</span>
-                                <h4 class="text-[14px] font-bold text-white mb-2 leading-snug group-hover:text-yellow-300 transition-colors">ประเมินสถิติ & สร้างข้อสอบ</h4>
-                            </div>
+                        <div aria-label="ขั้นตอนที่ 4" onclick="launchAgent('04')" class="bg-white/15 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/25 hover:shadow-lg transition cursor-pointer flex flex-col justify-between h-full group active:scale-95">
+                            <div><span class="text-[10px] text-yellow-300 font-black uppercase tracking-wider block mb-1">STEP 04</span><h4 class="text-[14px] font-bold text-white mb-2 leading-snug group-hover:text-yellow-300 transition-colors">ประเมินสถิติ & สร้างข้อสอบ</h4></div>
                             <span class="text-[10px] bg-white/25 text-white font-bold py-1 px-2.5 rounded-lg self-start mt-4"><i class="fas fa-robot mr-1"></i> Agent 04</span>
                         </div>
-                        
-                        <div onclick="launchAgent('08')" class="bg-white/15 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/25 hover:shadow-lg transition cursor-pointer flex flex-col justify-between h-full group active:scale-95">
-                            <div>
-                                <span class="text-[10px] text-yellow-300 font-black uppercase tracking-wider block mb-1">STEP 05</span>
-                                <h4 class="text-[14px] font-bold text-white mb-2 leading-snug group-hover:text-yellow-300 transition-colors">สรุปรูปเล่ม & โค้ช วPA</h4>
-                            </div>
+                        <div aria-label="ขั้นตอนที่ 5" onclick="launchAgent('08')" class="bg-white/15 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/25 hover:shadow-lg transition cursor-pointer flex flex-col justify-between h-full group active:scale-95">
+                            <div><span class="text-[10px] text-yellow-300 font-black uppercase tracking-wider block mb-1">STEP 05</span><h4 class="text-[14px] font-bold text-white mb-2 leading-snug group-hover:text-yellow-300 transition-colors">สรุปรูปเล่ม & โค้ช วPA</h4></div>
                             <span class="text-[10px] bg-white/25 text-white font-bold py-1 px-2.5 rounded-lg self-start mt-4"><i class="fas fa-robot mr-1"></i> Agent 08</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Urgent Tasks (10 Items Restored) -->
-            <div class="mb-14 bg-white rounded-[3rem] p-8 md:p-12 border border-slate-200 shadow-sm mt-10">
+            <!-- Urgent Tasks -->
+            <div class="mb-14 bg-[#fefcf5] dark:bg-slate-800/80 rounded-[3rem] p-8 md:p-12 border border-orange-100 dark:border-slate-700 shadow-sm mt-10 transition-colors">
                 <div class="flex items-center gap-4 mb-10 text-left">
-                    <div class="w-14 h-14 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-3xl shadow-sm"><i class="fas fa-bolt"></i></div>
-                    <div>
-                        <h3 class="text-xl md:text-3xl font-black text-slate-800 uppercase tracking-tight">งานด่วนประจำเดือน (TOP 10 URGENT)</h3>
-                        <p class="text-slate-400 font-bold text-sm tracking-wide uppercase">Click to launch AI assistant</p>
-                    </div>
+                    <div class="w-14 h-14 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-3xl shadow-sm dark:bg-rose-900/50 dark:text-rose-400"><i class="fas fa-bolt"></i></div>
+                    <div><h3 class="text-xl md:text-3xl font-black text-slate-800 uppercase tracking-tight">งานด่วนประจำเดือน (TOP 10 URGENT)</h3><p class="text-slate-400 font-bold text-sm tracking-wide uppercase">Click to launch AI assistant</p></div>
                 </div>
                 <div id="urgent-tasks-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"></div>
             </div>
             
-            <!-- SPLIT-PANE SMART FEED FOR 10 TRACKS (V31 Innovation) -->
-            <div class="mb-14 bg-white rounded-[3rem] p-8 md:p-12 border border-slate-200 shadow-sm">
+            <!-- ✨ Sticky SPLIT-PANE SMART FEED -->
+            <div class="mb-14 bg-white rounded-[3rem] p-8 md:p-12 border border-slate-200 shadow-sm relative">
                 <div class="flex items-center gap-4 mb-8 text-left">
-                    <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl shadow-sm"><i class="fas fa-briefcase"></i></div>
-                    <div>
-                        <h3 class="text-xl md:text-3xl font-black text-slate-800 uppercase tracking-tight">กระดานปฏิบัติการ 10 สายงานหลัก</h3>
-                        <p class="text-slate-400 font-bold text-sm tracking-wide uppercase">Click a track to load specialized missions</p>
-                    </div>
+                    <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl shadow-sm dark:bg-blue-900/50 dark:text-blue-400"><i class="fas fa-briefcase"></i></div>
+                    <div><h3 class="text-xl md:text-3xl font-black text-slate-800 uppercase tracking-tight">กระดานปฏิบัติการ 6 สายงานหลัก</h3><p class="text-slate-400 font-bold text-sm tracking-wide uppercase">Click a track to load specialized missions</p></div>
                 </div>
 
-                <div class="flex flex-col lg:flex-row gap-8">
-                    <!-- Left Pane: 10 Buttons -->
-                    <div class="lg:w-1/3 flex flex-col space-y-3 max-h-[600px] overflow-y-auto custom-scrollbar pr-2" id="career-track-menu"></div>
+                <div class="flex flex-col lg:flex-row gap-8 items-start relative">
+                    <!-- 📌 Left Pane (Sticky Configuration) -->
+                    <div class="lg:w-1/3 flex flex-col space-y-3 max-h-[600px] overflow-y-auto custom-scrollbar pr-2 lg:sticky lg:top-28 w-full" id="career-track-menu"></div>
                     
-                    <!-- Right Pane: Scrolling Feed of Missions -->
-                    <div class="lg:w-2/3 bg-slate-50 rounded-3xl p-6 md:p-8 border-2 border-slate-100 h-[600px] flex flex-col shadow-inner">
+                    <!-- Right Pane -->
+                    <div class="lg:w-2/3 bg-slate-50 rounded-3xl p-6 md:p-8 border-2 border-slate-100 min-h-[600px] flex flex-col shadow-inner w-full">
                         <div class="flex justify-between items-center mb-6 border-b-2 border-slate-200 pb-4">
-                            <h4 id="mission-feed-title" class="text-xl font-bold text-blue-900"><i class="fas fa-list-ul mr-2"></i> เลือกสายงานด้านซ้าย</h4>
-                            <span id="mission-feed-badge" class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">0 Missions</span>
+                            <h4 id="mission-feed-title" class="text-xl font-bold text-blue-900 dark:text-blue-200"><i class="fas fa-list-ul mr-2"></i> เลือกสายงานด้านซ้าย</h4>
+                            <span id="mission-feed-badge" class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-xs font-bold px-3 py-1 rounded-full">0 Missions</span>
                         </div>
                         <div id="mission-feed-list" class="flex-grow overflow-y-auto custom-scrollbar space-y-4 pr-2">
                             <div class="flex h-full items-center justify-center text-slate-400">
@@ -430,60 +352,47 @@
             </div>
         </div>
 
-        <!-- ================= TAB: CALENDAR (ตารางปฏิทินรายเดือนอัจฉริยะ 7 คอลัมน์) ================= -->
+        <!-- ================= TAB: CALENDAR ================= -->
         <div id="tab-calendar" class="tab-content hidden text-left">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- ฝั่งซ้าย: ตารางปฏิทินแบบตาราง 7 วัน (ประหยัดโค้ด สวยงาม มั่นคง) -->
+                <!-- ฝั่งซ้าย: ตารางปฏิทิน -->
                 <div class="lg:col-span-2 bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden flex flex-col h-full">
-                    <!-- 🛡️ ตรึงหัวข้อปฏิทินสีเหลืองส้มอบอุ่นเพื่อลดความตึงเครียดของสายตา -->
-                    <div style="background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%) !important;" class="p-6 text-white flex justify-between items-center">
+                    <div style="background-color: #d97706 !important;" class="p-6 text-white flex justify-between items-center transition-colors">
                         <div>
-                            <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white" id="cal-month-title">มกราคม 2569</h2>
-                            <p class="text-orange-100 text-[10px] font-bold uppercase tracking-widest mt-1">Ecosystem Calendar Sync Active</p>
+                            <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white drop-shadow-md" id="cal-month-title">มกราคม 2569</h2>
+                            <p class="text-yellow-100 text-[10px] font-bold uppercase tracking-widest mt-1">Ecosystem Calendar Sync Active</p>
                         </div>
                         <div class="flex items-center gap-3">
-                            <button onclick="changeCalMonth(-1)" class="w-10 h-10 bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition flex items-center justify-center text-sm text-white"><i class="fas fa-chevron-left"></i></button>
-                            <button onclick="resetCalToday()" class="px-4 py-2 bg-white text-orange-600 font-black rounded-full hover:bg-orange-50 transition shadow text-xs uppercase tracking-widest">วันนี้</button>
-                            <button onclick="changeCalMonth(1)" class="w-10 h-10 bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition flex items-center justify-center text-sm text-white"><i class="fas fa-chevron-right"></i></button>
+                            <!-- 📅 Export Calendar ICS Button -->
+                            <button aria-label="ส่งออกปฏิทินเป็นไฟล์ ICS" onclick="exportCalendarToICS()" class="w-10 h-10 bg-black/20 text-white rounded-full hover:bg-black/40 transition flex items-center justify-center text-sm shadow-sm border border-white/20" title="ส่งออกข้อมูลปฏิทิน (.ics)"><i class="fas fa-file-export"></i></button>
+                            <!-- 既存ボタン -->
+                            <button aria-label="เดือนก่อนหน้า" onclick="changeCalMonth(-1)" class="w-10 h-10 bg-white/20 rounded-full border border-white/30 hover:bg-white/30 transition flex items-center justify-center text-sm text-white"><i class="fas fa-chevron-left"></i></button>
+                            <button aria-label="ข้ามมาวันนี้" onclick="resetCalToday()" class="px-4 py-2 bg-white text-yellow-700 font-black rounded-full hover:bg-yellow-50 transition shadow text-xs uppercase tracking-widest">วันนี้</button>
+                            <button aria-label="เดือนถัดไป" onclick="changeCalMonth(1)" class="w-10 h-10 bg-white/20 rounded-full border border-white/30 hover:bg-white/30 transition flex items-center justify-center text-sm text-white"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
                     
-                    <!-- 📸 ปรับแต่งพื้นหลังปฏิทินปูพื้นด้วยสีครีมนุ่มนวลสบายตา #fffbeb -->
-                    <div style="background-color: #fffbeb !important;" class="p-6 flex-grow">
-                        <!-- 🛡️ ตรึงหัวตาราง 7 วันด้วย Inline CSS Grid สากล ป้องกันแนวคอลัมน์โย้เย้ไปทางซ้ายมือ 100% -->
-                        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem;" class="text-center text-xs font-black uppercase tracking-wider text-slate-500 mb-4">
-                            <div class="text-rose-500 font-bold">อา.</div>
-                            <div>จ.</div>
-                            <div>อ.</div>
-                            <div>พ.</div>
-                            <div>พฤ.</div>
-                            <div>ศ.</div>
-                            <div class="text-slate-500 font-bold">ส.</div>
+                    <!-- สีพื้นตารางพาสเทล -->
+                    <div class="p-6 flex-grow transition-colors" style="background-color: #fefcf5;" id="calendar-bg-wrapper">
+                        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem;" class="text-center text-xs font-black uppercase tracking-wider text-slate-400 mb-4">
+                            <div class="text-rose-500 font-bold">อา.</div><div>จ.</div><div>อ.</div><div>พ.</div><div>พฤ.</div><div>ศ.</div><div class="text-slate-500 font-bold">ส.</div>
                         </div>
-                        <!-- 🛡️ ตรึงพื้นที่วันในปฏิทินด้วย Inline CSS Grid สากล ประสิทธิภาพสูง ไม่พังแน่นอน -->
                         <div id="calendar-grid-area" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem;"></div>
                     </div>
                 </div>
 
-                <!-- ฝั่งขวา: รายละเอียดของกิจกรรมวันที่เลือก และช่องบันทึกส่วนตัว -->
+                <!-- ฝั่งขวา: รายละเอียดของกิจกรรม -->
                 <div class="flex flex-col gap-6">
-                    <!-- รายละเอียดกิจกรรมในวันที่คลิกเลือก -->
                     <div class="bg-white rounded-[2.5rem] p-6 border border-slate-200 shadow-md flex-grow flex flex-col justify-between min-h-[250px]">
                         <div>
-                            <div class="flex items-center gap-3 mb-4 pb-3 border-b">
-                                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-lg shadow-sm"><i class="fas fa-calendar-day"></i></div>
-                                <div>
-                                    <h4 class="text-slate-800 font-black text-sm uppercase">รายละเอียดกิจกรรม</h4>
-                                    <span id="selected-date-badge" class="text-xs text-slate-400 font-bold">กรุณาเลือกวันที่บนปฏิทิน</span>
-                                </div>
+                            <div class="flex items-center gap-3 mb-4 pb-3 border-b border-slate-100">
+                                <div class="w-10 h-10 bg-yellow-50 text-yellow-600 rounded-xl flex items-center justify-center text-lg shadow-sm"><i class="fas fa-calendar-day"></i></div>
+                                <div><h4 class="text-slate-800 font-black text-sm uppercase">รายละเอียดกิจกรรม</h4><span id="selected-date-badge" class="text-xs text-slate-400 font-bold">กรุณาเลือกวันที่บนปฏิทิน</span></div>
                             </div>
                             <div id="selected-date-events" class="space-y-3 max-h-[220px] overflow-y-auto custom-scrollbar pr-2">
-                                <div class="text-center text-slate-400 py-10 font-bold text-xs">
-                                    <i class="fas fa-calendar-alt text-2xl mb-2 block"></i> คลิกที่วันที่ในปฏิทินเพื่อดูกิจกรรม
-                                </div>
+                                <div class="text-center text-slate-400 py-10 font-bold text-xs"><i class="fas fa-calendar-alt text-2xl mb-2 block"></i> คลิกที่วันที่ในปฏิทินเพื่อดูกิจกรรม</div>
                             </div>
                         </div>
-                        <!-- แนะนำสีสัญกรณ์นำทางของปฏิทิน -->
                         <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2 text-[10px] font-black">
                             <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 bg-rose-500 rounded-full block"></span>วันหยุด</span>
                             <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 bg-blue-500 rounded-full block"></span>กิจกรรมสังกัด</span>
@@ -491,99 +400,192 @@
                         </div>
                     </div>
 
-                    <!-- ฟอร์มพิมพ์บันทึกกิจกรรมส่วนตัวของวันที่เลือก -->
                     <div class="bg-white rounded-[2.5rem] p-6 border border-slate-200 shadow-md text-left">
-                        <h3 class="font-black text-slate-800 mb-4 flex items-center gap-2 text-sm"><i class="fas fa-sticky-note text-orange-500"></i> บันทึกกิจกรรมส่วนตัวในวันที่เลือก</h3>
-                        <textarea id="cal-notes" class="w-full h-24 bg-slate-50 border-2 border-slate-100 p-4 rounded-2xl text-xs font-bold text-slate-700 outline-none focus:border-primary transition" placeholder="พิมพ์ชื่อกิจกรรมเพื่อบันทึกในวันที่ท่านเลือกบนตารางปฏิทิน..."></textarea>
-                        <button onclick="savePrivateEventForSelectedDate()" class="mt-4 w-full bg-primary text-white py-3 rounded-xl font-black text-[11px] uppercase tracking-widest shadow-md active:scale-95 transition">
-                            <i class="fas fa-save mr-1"></i> บันทึกกิจกรรมลงปฏิทิน
-                        </button>
+                        <h3 class="font-black text-slate-800 mb-4 flex items-center gap-2 text-sm"><i class="fas fa-sticky-note text-orange-500"></i> บันทึกกิจกรรมส่วนตัว</h3>
+                        <textarea aria-label="พิมพ์ข้อความบันทึกกิจกรรมส่วนตัว" id="cal-notes" class="w-full h-24 bg-slate-50 border-2 border-slate-100 p-4 rounded-2xl text-xs font-bold text-slate-700 outline-none focus:border-yellow-500 transition" placeholder="พิมพ์ชื่อกิจกรรมเพื่อบันทึกในวันที่ท่านเลือก..."></textarea>
+                        <button aria-label="บันทึกกิจกรรมลงปฏิทิน" onclick="savePrivateEventForSelectedDate()" class="mt-4 w-full bg-yellow-600 hover:bg-yellow-500 text-white py-3 rounded-xl font-black text-[11px] uppercase tracking-widest shadow-md active:scale-95 transition"><i class="fas fa-save mr-1"></i> บันทึกกิจกรรมลงปฏิทิน</button>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- ================= TAB: GUIDE (คู่มือการใช้งาน) ================= -->
+        <div id="tab-guide" class="tab-content hidden text-left">
+            <!-- Header คู่มือ -->
+            <div class="bg-gradient-to-br from-indigo-800 via-blue-700 to-cyan-700 rounded-[2.5rem] p-8 md:p-14 text-white shadow-xl mb-10 relative overflow-hidden border-b-8 border-indigo-950">
+                <div class="absolute right-[-20px] bottom-[-20px] text-white opacity-10 text-[15rem] pointer-events-none">
+                    <i class="fas fa-book-reader"></i>
+                </div>
+                <div class="relative z-10 text-left max-w-4xl">
+                    <span class="bg-cyan-300 text-indigo-900 text-xs font-black px-4 py-1.5 rounded-full mb-4 inline-block shadow-lg uppercase tracking-wider">SMART USER MANUAL</span>
+                    <h2 class="text-3xl md:text-5xl font-black mb-4 leading-tight text-white">คู่มือการใช้งานอัจฉริยะ</h2>
+                    <p class="text-blue-100 text-base md:text-xl font-medium leading-relaxed">
+                        เปลี่ยนเรื่องไอทีที่ดูซับซ้อน ให้กลายเป็นเรื่องง่าย! ที่นี่เราออกแบบให้ <span class="text-yellow-300 font-bold">"AI ทำงานยากแทนคุณ"</span> คุณไม่ต้องเก่งคอมพิวเตอร์ก็สามารถสร้างผลงานระดับมืออาชีพได้
+                    </p>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 1: การใช้งาน AI พื้นฐาน -->
+            <div class="mb-10 bg-white dark:bg-slate-800/80 rounded-[3rem] p-8 md:p-12 border border-slate-200 dark:border-slate-700 shadow-sm transition-colors">
+                <div class="flex items-center gap-4 mb-8 text-left">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl shadow-sm dark:bg-emerald-900/50 dark:text-emerald-400"><i class="fas fa-comments"></i></div>
+                    <div><h3 class="text-2xl md:text-3xl font-black text-slate-800 dark:text-slate-100 uppercase tracking-tight">1. วิธีคุยกับ AI ให้ได้งานตรงใจ</h3><p class="text-slate-400 font-bold text-sm tracking-wide">Basic Prompting Guide</p></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-6 rounded-3xl border border-slate-100 dark:border-slate-600">
+                        <div class="text-emerald-500 text-3xl mb-4"><i class="fas fa-keyboard"></i></div>
+                        <h4 class="font-black text-slate-800 dark:text-slate-200 text-lg mb-2">ระบุเป้าหมายชัดเจน</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">แทนที่จะบอกว่า "เขียนแผนให้หน่อย" ลองเปลี่ยนเป็น "ช่วยเขียนแผนการสอน วิชาวิทยาศาสตร์ ป.4 เรื่องระบบสุริยะ แบบ Active Learning"</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-6 rounded-3xl border border-slate-100 dark:border-slate-600">
+                        <div class="text-emerald-500 text-3xl mb-4"><i class="fas fa-user-tag"></i></div>
+                        <h4 class="font-black text-slate-800 dark:text-slate-200 text-lg mb-2">กำหนดบทบาท (Role)</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">บอก AI ว่าเขาคือใคร เช่น "ให้คุณทำหน้าที่เป็นผู้เชี่ยวชาญการประเมิน วPA ช่วยวิเคราะห์ผลงานชิ้นนี้ให้หน่อยว่าตรงเกณฑ์กี่เปอร์เซ็นต์"</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-6 rounded-3xl border border-slate-100 dark:border-slate-600">
+                        <div class="text-emerald-500 text-3xl mb-4"><i class="fas fa-copy"></i></div>
+                        <h4 class="font-black text-slate-800 dark:text-slate-200 text-lg mb-2">ให้ตัวอย่าง (Example)</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">หากคุณมีรูปแบบที่ชอบ สามารถก็อปปี้ตัวอย่างนั้นแปะให้ AI ดูแล้วสั่งว่า "ช่วยเขียนรายงานโครงการใหม่ โดยยึดรูปแบบตามตัวอย่างนี้"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 2: ไฮไลท์ - การสร้าง Web App ด้วย AI (ขจัดความกลัว) -->
+            <div class="mb-10 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-slate-800 dark:to-slate-800/80 rounded-[3rem] p-8 md:p-12 border-2 border-orange-200 dark:border-orange-900/50 shadow-md transition-colors relative overflow-hidden">
+                <div class="flex items-center gap-4 mb-6 text-left relative z-10">
+                    <div class="w-14 h-14 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-3xl shadow-lg"><i class="fas fa-magic"></i></div>
+                    <div><h3 class="text-2xl md:text-3xl font-black text-slate-800 dark:text-slate-100 uppercase tracking-tight">2. สร้าง Web App ด้วยตัวเอง (ง่ายกว่าที่คิด!)</h3><p class="text-orange-600 dark:text-orange-400 font-bold text-sm tracking-wide">No-Code / Low-Code with AI Assistant</p></div>
+                </div>
+
+                <p class="text-slate-700 dark:text-slate-300 font-semibold mb-8 text-base md:text-lg max-w-4xl relative z-10">
+                    หลายท่านอาจกังวลเมื่อได้ยินคำว่า <span class="text-orange-600 dark:text-orange-400 font-bold">"เขียนโค้ด"</span> หรือ <span class="text-orange-600 dark:text-orange-400 font-bold">"Apps Script"</span> ข่าวดีคือ... <span class="bg-orange-200 dark:bg-orange-900/50 px-2 py-1 rounded">คุณไม่ต้องเขียนโค้ดเองแม้แต่บรรทัดเดียว!</span> เพราะ AI (Agent 09) จะทำหน้าที่เป็นโปรแกรมเมอร์ส่วนตัว พิมพ์โค้ดทั้งหมดให้คุณ คุณแค่มีหน้าที่ <b>"สั่งการ"</b> และ <b>"คัดลอก (Copy)"</b> เท่านั้น
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                    <!-- Step 1 -->
+                    <div class="bg-white dark:bg-slate-700 p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-600 relative mt-4">
+                        <div class="absolute -top-5 left-6 w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center font-black text-xl border-4 border-amber-50 dark:border-slate-800">1</div>
+                        <h4 class="font-black text-orange-600 dark:text-orange-400 text-lg mb-3 mt-2"><i class="fas fa-comment-dots mr-2"></i> สั่งงาน AI (Prompt)</h4>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm font-medium leading-relaxed mb-4">เข้าใช้งาน Agent 09 แล้วพิมพ์คำสั่งสิ่งที่คุณต้องการด้วยภาษามนุษย์ปกติ</p>
+                        <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl border-l-4 border-orange-400 text-[12px] text-slate-700 dark:text-slate-400 font-mono">
+                            "ช่วยเขียนโค้ด Google Apps Script ทำระบบบันทึกเวลาเข้าเรียนของนักเรียน โดยให้แสดงผลเป็น Web App สวยๆ ให้หน่อย"
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-white dark:bg-slate-700 p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-600 relative mt-4">
+                        <div class="absolute -top-5 left-6 w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center font-black text-xl border-4 border-amber-50 dark:border-slate-800">2</div>
+                        <h4 class="font-black text-orange-600 dark:text-orange-400 text-lg mb-3 mt-2"><i class="fas fa-copy mr-2"></i> คัดลอกโค้ด (Copy & Paste)</h4>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm font-medium leading-relaxed mb-4">AI จะสร้างโค้ดที่สมบูรณ์มาให้ คุณแค่กดปุ่ม Copy แล้วนำไปวางในช่องว่างของ Google Apps Script ลบโค้ดเก่าทิ้งแล้ววางทับได้เลย</p>
+                        <div class="flex items-center justify-center gap-2 text-slate-400 dark:text-slate-500">
+                            <i class="fas fa-file-code text-2xl"></i> <i class="fas fa-arrow-right"></i> <i class="fab fa-google text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-white dark:bg-slate-700 p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-600 relative mt-4">
+                        <div class="absolute -top-5 left-6 w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center font-black text-xl border-4 border-amber-50 dark:border-slate-800">3</div>
+                        <h4 class="font-black text-orange-600 dark:text-orange-400 text-lg mb-3 mt-2"><i class="fas fa-rocket mr-2"></i> เผยแพร่ (Deploy)</h4>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm font-medium leading-relaxed">บน Google Apps Script ให้กดปุ่ม <b>"การทำให้ใช้งานได้ (Deploy)"</b> เลือกแบบ Web App กำหนดสิทธิ์ให้ทุกคนเข้าถึงได้ จากนั้นคุณก็จะได้ Link ระบบไปให้เด็กๆ ใช้งานทันที!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 3: คำถามที่พบบ่อย (FAQ) -->
+            <div class="bg-white dark:bg-slate-800/80 rounded-[3rem] p-8 md:p-12 border border-slate-200 dark:border-slate-700 shadow-sm transition-colors">
+                 <h3 class="text-xl md:text-2xl font-black text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-3"><i class="fas fa-question-circle text-blue-500"></i> คำถามที่พบบ่อย (FAQ)</h3>
+                 
+                 <div class="space-y-4">
+                     <div class="p-5 border border-slate-100 dark:border-slate-600 bg-slate-50/50 dark:bg-slate-700/50 rounded-2xl">
+                         <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm mb-2 text-blue-700 dark:text-blue-400">Q: ข้อมูลโรงเรียนหรือนักเรียนที่พิมพ์ลงไปจะปลอดภัยไหม?</h4>
+                         <p class="text-xs text-slate-600 dark:text-slate-400">A: ปลอดภัย 100% ครับ ระบบของเราออกแบบมาภายใต้มาตรฐาน Prompt Shield ข้อมูลส่วนบุคคลจะไม่ถูกนำไปใช้สอน (Train) AI ต่ออย่างเด็ดขาด อย่างไรก็ตาม แนะนำให้ใช้นามสมมติแทนการใช้เลขบัตรประชาชนของนักเรียนครับ</p>
+                     </div>
+                     <div class="p-5 border border-slate-100 dark:border-slate-600 bg-slate-50/50 dark:bg-slate-700/50 rounded-2xl">
+                         <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm mb-2 text-blue-700 dark:text-blue-400">Q: ถ้าระบบ AI ตอบไม่ตรงคำถาม หรือตอบสั้นเกินไป ต้องทำอย่างไร?</h4>
+                         <p class="text-xs text-slate-600 dark:text-slate-400">A: AI เหมือนผู้ช่วยที่ต้องการคำสั่งชัดเจนครับ ลองพิมพ์เพิ่มเติมว่า "ขอรายละเอียดเพิ่มเติมอีก 3 ข้อ" หรือ "ช่วยอธิบายส่วนนี้ให้ยาวและทางการมากขึ้น" AI ก็จะปรับปรุงคำตอบให้ทันทีครับ</p>
+                     </div>
+                 </div>
+            </div>
+        </div>
+
         <!-- ================= TAB: ABOUT ================= -->
         <div id="tab-about" class="tab-content hidden text-left">
-            <div class="max-w-7xl mx-auto bg-white p-10 md:p-14 rounded-[3rem] shadow-xl border border-slate-100 relative overflow-hidden text-left">
-                <h2 class="text-3xl md:text-4xl font-black text-slate-800 mb-6 uppercase tracking-tighter text-left leading-tight">จุดแข็งระบบนิเวศ (20 STRATEGIC PILLARS)</h2>
-                <div id="about-pillars-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6 text-left"></div>
+            <div class="max-w-7xl mx-auto bg-[#fffaf0] dark:bg-slate-800/80 p-10 md:p-14 rounded-[3rem] shadow-xl border-2 border-orange-100 dark:border-slate-700 relative overflow-hidden text-left transition-colors">
+                <h2 class="text-3xl md:text-4xl font-black text-slate-800 dark:text-slate-100 mb-8 uppercase tracking-tighter text-left leading-tight border-b pb-4 border-orange-200 dark:border-slate-700">จุดแข็งระบบนิเวศ (20 STRATEGIC PILLARS)</h2>
+                <!-- 💡 ปรับ Grid จาก 5 คอลัมน์ เป็น 2 คอลัมน์ เพื่อรองรับ List View แนวนอนที่ประหยัดพื้นที่และอ่านง่าย -->
+                <div id="about-pillars-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 text-left"></div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-white border-t py-12 text-center mt-auto text-slate-400">
-        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800 font-bold">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.18.01 (SUPREME SYNC EDITION)</p>
-        <p class="text-primary text-[14px] font-black text-center mb-1">ผู้ออกแบบและพัฒนาโปรแกรม โดย : กันตภณ ณพสิษฐ์ (สงวนลิขสิทธิ์)</p>
+    <footer class="bg-white border-t py-12 text-center mt-auto text-slate-400 flex flex-col items-center">
+        <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Digital Squad AI Logo" class="h-12 object-contain mb-4 opacity-80 hover:opacity-100 transition-opacity">
+        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800 font-bold">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.17.03 (ULTIMATE SYNC)</p>
+        <p class="text-primary text-[14px] font-black text-center mb-1 dark:text-blue-400">ผู้ออกแบบและพัฒนาโปรแกรม โดย : กันตภณ ณพสิษฐ์ (สงวนลิขสิทธิ์)</p>
         <p class="text-slate-400 text-[12px] text-center">© 2026 OFFICIAL EDUCATIONAL HUB. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <!-- Modals -->
+    <!-- Login Modal -->
     <div id="login-modal" class="modal-overlay" onclick="toggleModal('login-modal')">
         <div class="modal-content text-left max-h-[90vh] overflow-y-auto custom-scrollbar" onclick="event.stopPropagation()">
             <div class="flex justify-center mb-6">
                 <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Digital Squad AI Full Logo" class="h-20 object-contain rounded-xl shadow-md border border-slate-100 bg-white p-2">
             </div>
-            <h3 class="text-2xl font-black uppercase text-primary text-center mb-6">ลงทะเบียนเข้าใช้งาน</h3>
+            <h3 class="text-2xl font-black uppercase text-primary dark:text-blue-400 text-center mb-6">ลงทะเบียนเข้าใช้งาน</h3>
             <form onsubmit="handleLogin(event)" class="space-y-4">
-                <div class="space-y-1">
-                    <label class="text-xs font-black text-slate-400 uppercase">ชื่อจริง / นามสมมติ</label>
-                    <input type="text" id="user-name-input" required class="w-full bg-slate-50 border-2 p-3.5 rounded-xl outline-none focus:border-blue-500 font-bold" placeholder="ระบุชื่อหรือนามแฝงของท่าน">
-                </div>
-                
+                <div class="space-y-1"><label class="text-xs font-black text-slate-400 uppercase">ชื่อจริง / นามสมมติ</label><input type="text" id="user-name-input" required class="w-full bg-slate-50 border-2 p-3.5 rounded-xl outline-none focus:border-blue-500 font-bold" placeholder="ระบุชื่อหรือนามแฝงของท่าน"></div>
                 <div class="space-y-1">
                     <label class="text-xs font-black text-slate-400 uppercase">สังกัดหน่วยงาน</label>
                     <select id="user-agency-input" required class="w-full bg-slate-50 border-2 p-3.5 rounded-xl outline-none focus:border-blue-500 font-bold">
-                        <option value="obec">สพฐ. (OBEC)</option>
-                        <option value="bma">กทม. (BMA)</option>
-                        <option value="moe">ศธ. (MOE)</option>
-                        <option value="otepc">ก.ค.ศ. (วPA)</option>
-                        <option value="ovec">สอศ. (OVEC)</option>
-                        <option value="onec">สกศ. (ONEC)</option>
-                        <option value="mhesi">อว. (MHESI)</option>
-                        <option value="other">อื่น ๆ</option>
+                        <option value="obec">สพฐ. (OBEC)</option><option value="bma">กทม. (BMA)</option><option value="moe">ศธ. (MOE)</option><option value="otepc">ก.ค.ศ. (วPA)</option><option value="ovec">สอศ. (OVEC)</option><option value="onec">สกศ. (ONEC)</option><option value="mhesi">อว. (MHESI)</option><option value="other">อื่น ๆ</option>
                     </select>
                 </div>
-
                 <div class="space-y-1">
                     <label class="text-xs font-black text-slate-400 uppercase">ตำแหน่งหลัก</label>
                     <select id="user-pos-input" required class="w-full bg-slate-50 border-2 p-3.5 rounded-xl outline-none focus:border-blue-500 font-bold">
-                        <option value="ครูผู้สอน">ครูผู้สอน / ครูประจำชั้น</option>
-                        <option value="บริหาร">ผู้อำนวยการ / รองผู้อำนวยการ</option>
-                        <option value="ธุรการ">ธุรการ / เจ้าหน้าที่</option>
-                        <option value="การเงิน">การเงิน / พัสดุ</option>
-                        <option value="ประเมิน">ฝ่ายวิชาการ / วัดผล</option>
-                        <option value="อื่น ๆ">ตำแหน่งอื่น ๆ</option>
+                        <option value="ครูผู้สอน">ครูผู้สอน / ครูประจำชั้น</option><option value="บริหาร">ผู้อำนวยการ / รองผู้อำนวยการ</option><option value="ธุรการ">ธุรการ / เจ้าหน้าที่</option><option value="การเงิน">การเงิน / พัสดุ</option><option value="ประเมิน">ฝ่ายวิชาการ / วัดผล</option><option value="อื่น ๆ">ตำแหน่งอื่น ๆ</option>
                     </select>
                 </div>
-
                 <div class="space-y-1">
                     <label class="text-xs font-black text-slate-400 uppercase">สายงานหลัก / กลุ่มสาระ</label>
                     <select id="user-track-input" required class="w-full bg-slate-50 border-2 p-3.5 rounded-xl outline-none focus:border-blue-500 font-bold">
-                        <option value="acad">วิชาการ/วิจัย</option>
-                        <option value="student">สุขภาวะ/จิตวิทยา</option>
-                        <option value="admin">บริหาร/ยุทธศาสตร์</option>
-                        <option value="supply">พัสดุ/การเงิน</option>
-                        <option value="hr">บุคคล/วิทยฐานะ</option>
-                        <option value="other">อื่น ๆ</option>
+                        <option value="acad">วิชาการ/วิจัย</option><option value="student">สุขภาวะ/จิตวิทยา</option><option value="admin">บริหาร/ยุทธศาสตร์</option><option value="supply">พัสดุ/การเงิน</option><option value="hr">บุคคล/วิทยฐานะ</option><option value="other">อื่น ๆ</option>
                     </select>
                 </div>
-
-                <button type="submit" class="w-full bg-primary text-white py-4 rounded-xl font-bold uppercase shadow-lg active:scale-95 mt-4">บันทึกข้อมูลและเข้าสู่ระบบ</button>
+                <button aria-label="บันทึกข้อมูลและเข้าสู่ระบบ" type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-xl font-bold uppercase shadow-lg active:scale-95 mt-4">บันทึกข้อมูลและเข้าสู่ระบบ</button>
             </form>
         </div>
     </div>
 
     <!-- Stats Modal -->
     <div id="stats-modal" class="modal-overlay" onclick="toggleModal('stats-modal')">
-        <div class="modal-content modal-content-lg p-8">
+        <div class="modal-content modal-content-lg p-8" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b pb-4 mb-8">
-                <h3 class="text-2xl font-black text-primary uppercase">Ecosystem Stats Sync</h3>
-                <button onclick="toggleModal('stats-modal')" class="text-2xl text-slate-400"><i class="fas fa-times"></i></button>
+                <h3 class="text-2xl font-black text-primary dark:text-blue-400 uppercase">Ecosystem Stats Sync</h3>
+                <button aria-label="ปิดหน้าต่างสถิติ" onclick="toggleModal('stats-modal')" class="text-2xl text-slate-400"><i class="fas fa-times"></i></button>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="h-64"><canvas id="chart-positions"></canvas></div>
                 <div class="h-64"><canvas id="chart-agencies"></canvas></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✨ Search Modal (Global Search Bar Feature) -->
+    <div id="search-modal" class="modal-overlay" onclick="toggleModal('search-modal')">
+        <div class="modal-content text-left" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-black text-slate-800 dark:text-slate-100 flex items-center gap-2"><i class="fas fa-search text-blue-500"></i> ค้นหาระบบนิเวศ</h3>
+                <button aria-label="ปิดหน้าต่างค้นหา" onclick="toggleModal('search-modal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div class="relative mb-4">
+                <input type="text" id="global-search-input" onkeyup="handleGlobalSearch()" class="w-full bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-600 p-4 rounded-xl outline-none focus:border-blue-500 font-bold text-slate-800 dark:text-slate-100 pl-12" placeholder="พิมพ์ชื่อภารกิจ, หมวดหมู่, หรือรหัส Agent...">
+                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 text-lg"></i>
+            </div>
+            <div id="search-results-container" class="max-h-[50vh] overflow-y-auto custom-scrollbar space-y-2 pr-2">
+                <div class="text-center text-slate-400 py-6 text-sm font-bold">พิมพ์คำค้นหาเพื่อเริ่มต้นระบบสืบค้นอัจฉริยะ<br>(เช่น "วPA", "แผนการสอน", "08")</div>
             </div>
         </div>
     </div>
@@ -593,11 +595,35 @@
     <script>
         const apiKey = ""; 
         let currentYear = 2026;
-        let currentMonth = 4; // เดือนพฤษภาคม (0-indexed คือ พฤษภาคม = 4)
-        let selectedDay = 18; // ตั้งให้เลือกวันปัจจุบัน (18 พฤษภาคม 2569 เป็นวันตั้งต้น)
+        let currentMonth = 4; // พฤษภาคม
+        let selectedDay = 18; 
         let chartsInitialized = false;
 
-        // --- MASTER DATAHUB (สถิติ ข้อมูล และ แหล่งข่าวประชาสัมพันธ์ สอดประสานกับ V13.16.01) ---
+        // 💾 ดึงข้อมูลปฏิทินส่วนตัวจาก LocalStorage
+        let PRIVATE_EVENTS = JSON.parse(localStorage.getItem('digitalSquadPrivateEvents')) || {};
+
+        // 🌙 ระบบ Dark Mode
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('digitalSquadTheme', isDark ? 'dark' : 'light');
+            updateDarkModeIcon(isDark);
+            
+            const calBg = document.getElementById('calendar-bg-wrapper');
+            if(calBg) calBg.style.backgroundColor = isDark ? '#1e293b' : '#fefcf5';
+        }
+
+        function updateDarkModeIcon(isDark) {
+            const btnIcon = document.getElementById('dark-mode-icon');
+            if (btnIcon) btnIcon.className = isDark ? 'fas fa-sun text-yellow-300' : 'fas fa-moon';
+        }
+
+        if (localStorage.getItem('digitalSquadTheme') === 'dark' || (!('digitalSquadTheme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            updateDarkModeIcon(true);
+        }
+
+        // --- MASTER DATAHUB ---
         const MASTER_DATA = {
             obec: { name: "สพฐ. (OBEC)", ic: "fa-university", col: "text-blue-600", bg: "bg-blue-600", news_url: "https://www.obec.go.th/news", train_url: "https://www.obec.go.th/category/news/train",
                 news_list: ["ระเบียบการย้ายครู 2569 ฉบับสมบูรณ์", "มาตรการความปลอดภัยเปิดเทอม 2569", "โครงการคอมพิวเตอร์พกพาเพื่อการเรียนรู้", "สรุปคะแนน O-NET ปีล่าสุด", "ประกาศผลสอบครูผู้ช่วย"],
@@ -619,92 +645,72 @@
             moe: { name: "ศธ. (MOE)", ic: "fa-globe", col: "text-slate-600", bg: "bg-slate-600", news_url: "https://www.moe.go.th/category/news", train_url: "https://www.moe.go.th/category/training", news_list: ["รัฐมนตรีสัญจรพบครูทั่วไทย", "นโยบายลดเวลาเรียน เพิ่มทักษะ"], training_list: ["อบรมจรรยาบรรณวิชาชีพ", "Digital Leadership"] }
         };
 
-        // 🛡️ ฐานข้อมูลปฏิทินละเอียดรายวันการศึกษาไทยประจำปี 2569 แบบช่วงวัน (Sequential Range Mapping)
         const EDUCATIONAL_EVENTS = [
-            // มกราคม 2569 (0)
             { start: "2026-0-2", end: "2026-0-9", t: "เปิดทำการหลังปีใหม่ / สรุปงาน Q1", agency: "moe" },
-            { start: "2026-0-5", end: "2026-0-20", t: "เตรียมสอบ O-NET", agency: "obec" },
-            { start: "2026-0-6", end: "2026-0-31", t: "รับสมัครนักเรียนหลายพื้นที่", agency: "obec" },
-            { start: "2026-0-10", end: "2026-0-25", t: "เตรียมข้อมูล NT / RT", agency: "obec" },
-            { start: "2026-0-15", end: "2026-0-15", t: "ส่งรายงานการใช้จ่ายงบประมาณ", agency: "moe" },
             { start: "2026-0-16", end: "2026-0-16", t: "วันครูแห่งชาติ (หยุดทำการ)", agency: "otepc", holiday: true },
-            { start: "2026-0-20", end: "2026-0-31", t: "ตรวจราชการรอบต้นปี", agency: "moe" },
-            { start: "2026-0-1", end: "2026-0-31", t: "TCAS Portfolio / Quota", agency: "mhesi" },
-
-            // กุมภาพันธ์ 2569 (1)
             { start: "2026-1-1", end: "2026-1-15", t: "สอบ O-NET", agency: "obec" },
-            { start: "2026-1-5", end: "2026-1-20", t: "ประเมิน RT ป.1", agency: "obec" },
-            { start: "2026-1-10", end: "2026-1-28", t: "สอบ NT ป.3", agency: "obec" },
-            { start: "2026-1-15", end: "2026-1-28", t: "รับสมัครนักเรียน สพฐ./กทม.", agency: "obec" },
-            { start: "2026-1-1", end: "2026-1-28", t: "ประเมินคุณภาพภายในสถานศึกษา", agency: "onec" },
-            { start: "2026-1-1", end: "2026-1-28", t: "ก.ค.ศ. ติดตามบันทึก PA", agency: "otepc" },
-
-            // มีนาคม 2569 (2)
             { start: "2026-2-1", end: "2026-2-10", t: "สอบปลายภาคเรียน", agency: "obec" },
-            { start: "2026-2-5", end: "2026-2-20", t: "แก้ 0 ร มส", agency: "obec" },
-            { start: "2026-2-10", end: "2026-2-25", t: "สรุปผลการเรียน ปพ. และอนุมัติจบ", agency: "obec" },
-            { start: "2026-2-15", end: "2026-2-31", t: "ปิดภาคเรียนประจำปี", agency: "moe" },
-            { start: "2026-2-20", end: "2026-2-31", t: "จัดตารางสอนปีการศึกษาใหม่", agency: "obec" },
-            { start: "2026-2-1", end: "2026-2-31", t: "รับสมัคร ปวช./ปวส. ประจำปี", agency: "ovec" },
-
-            // เมษายน 2569 (3)
-            { start: "2026-3-1", end: "2026-3-10", t: "จัดซื้อหนังสือเรียนประจำโรงเรียน", agency: "moe" },
-            { start: "2026-3-1", end: "2026-3-20", t: "อบรมครูและข้าราชการใหม่", agency: "obec" },
-            { start: "2026-3-5", end: "2026-3-25", t: "จัดเตรียมห้องเรียนและความปลอดภัย", agency: "obec" },
-            { start: "2026-3-10", end: "2026-3-30", t: "ย้ายครู/แต่งตั้งข้าราชการ", agency: "otepc" },
             { start: "2026-3-13", end: "2026-3-15", t: "เทศกาลวันสงกรานต์ (วันหยุดราชการ)", agency: "moe", holiday: true },
-            { start: "2026-3-1", end: "2026-3-30", t: "TCAS รอบ Admission ทั่วประเทศ", agency: "mhesi" },
-
-            // พฤษภาคม 2569 (4)
-            { start: "2026-4-1", end: "2026-4-10", t: "เตรียมเปิดภาคเรียนและประชุมใหญ่", agency: "obec" },
             { start: "2026-4-15", end: "2026-4-15", t: "วันเปิดภาคเรียน 1/2569 (สพฐ.)", agency: "moe" },
-            { start: "2026-4-15", end: "2026-4-31", t: "กิจกรรมปฐมนิเทศนักเรียนใหม่", agency: "obec" },
-            { start: "2026-4-15", end: "2026-4-31", t: "เก็บข้อมูลและรายงานระบบ DMC", agency: "obec" },
-            { start: "2026-4-1", end: "2026-4-31", t: "ขอรับงบประมาณรายหัวการศึกษา", agency: "moe" },
-
-            // มิถุนายน 2569 (5)
             { start: "2026-5-1", end: "2026-5-15", t: "นิเทศติดตามและเยี่ยมบ้านนักเรียน", agency: "obec" },
-            { start: "2026-5-1", end: "2026-5-30", t: "จัดกิจกรรมบันทึกและขับเคลื่อน PLC", agency: "otepc" },
-            { start: "2026-5-10", end: "2026-5-30", t: "ประเมินและติดตามผลสัมฤทธิ์ทางการเรียน", agency: "onec" },
-            { start: "2026-5-1", end: "2026-5-30", t: "เปิดทุนวิจัยทางการศึกษาของ อว./สอวช.", agency: "mhesi" },
-
-            // กรกฎาคม 2569 (6)
-            { start: "2026-6-1", end: "2026-6-15", t: "สอบกลางภาคเรียนที่ 1", agency: "obec" },
-            { start: "2026-6-10", end: "2026-6-31", t: "วิเคราะห์ผลสอบกลางภาคและคัดกรอง", agency: "obec" },
-            { start: "2026-6-20", end: "2026-6-31", t: "นิเทศภายในห้องเรียนสากล", agency: "obec" },
             { start: "2026-6-28", end: "2026-6-28", t: "วันเฉลิมพระชนมพรรษา (วันหยุดราชการ)", agency: "moe", holiday: true },
-            { start: "2026-6-1", end: "2026-6-31", t: "แข่งขันทักษะทางวิชาการและศิลปหัตถกรรม", agency: "obec" },
-
-            // สิงหาคม 2569 (7)
-            { start: "2026-7-1", end: "2026-7-15", t: "ประเมินและตรวจคุณภาพสถานศึกษาภายใน", agency: "onec" },
             { start: "2026-7-1", end: "2026-7-31", t: "ส่งข้อตกลงในการพัฒนางาน (PA)", agency: "otepc" },
-            { start: "2026-7-10", end: "2026-7-31", t: "ตรวจแผนงบประมาณโครงการโรงเรียน", agency: "moe" },
-            { start: "2026-7-1", end: "2026-7-31", t: "จัดเตรียมคำขอตั้งงบประมาณรายจ่ายประจำปี 2570", agency: "moe" },
-
-            // กันยายน 2569 (8)
-            { start: "2026-8-1", end: "2026-8-15", t: "เร่งรัดการเบิกจ่ายงบประมาณแผ่นดิน", agency: "moe" },
-            { start: "2026-8-15", end: "2026-8-30", t: "ปิดระบบและรายงานงบประมาณประจำปี", agency: "moe" },
-            { start: "2026-8-20", end: "2026-8-30", t: "สรุป KPI รายบุคคลของบุคลากร", agency: "onec" },
-            { start: "2026-8-30", end: "2026-8-30", t: "วันสิ้นปีงบประมาณแผ่นดินประจำปี", agency: "moe" },
-
-            // ตุลาคม 2569 (9)
-            { start: "2026-9-1", end: "2026-9-10", t: "สอบปลายภาคเรียนที่ 1", agency: "obec" },
-            { start: "2026-9-10", end: "2026-9-20", t: "แก้ผลการเรียนและติดตามงานค้าง", agency: "obec" },
+            { start: "2026-8-30", end: "2026-8-30", t: "วันสิ้นปีงบประมาณแผ่นดิน", agency: "moe" },
             { start: "2026-9-15", end: "2026-9-31", t: "ปิดภาคเรียนที่ 1", agency: "moe" },
-            { start: "2026-9-1", end: "2026-9-31", t: "ทำเรื่องขอย้ายข้าราชการครูรอบใหม่", agency: "otepc" },
-
-            // พฤศจิกายน 2569 (10)
-            { start: "2026-10-1", end: "2026-10-10", t: "เตรียมเปิดเทอม 2/2569", agency: "obec" },
-            { start: "2026-10-1", end: "2026-10-15", t: "ปฐมนิเทศแผนการศึกษาภาคเรียนใหม่", agency: "obec" },
             { start: "2026-10-1", end: "2026-10-1", t: "วันเปิดภาคเรียนที่ 2 (สพฐ.)", agency: "moe" },
-            { start: "2026-10-10", end: "2026-10-30", t: "จัดการแข่งขันกีฬาสถานศึกษา", agency: "obec" },
-            { start: "2026-10-1", end: "2026-10-30", t: "จัดการแข่งขันวิชาการกลุ่มสถานศึกษา", agency: "obec" },
+            { start: "2026-11-1", end: "2026-11-15", t: "สอบกลางภาคเรียนที่ 2", agency: "obec" }
+        ];
 
-            // ธันวาคม 2569 (11)
-            { start: "2026-11-1", end: "2026-11-15", t: "สอบกลางภาคเรียนที่ 2", agency: "obec" },
-            { start: "2026-11-1", end: "2026-11-31", t: "สรุปรายงานการปฏิบัติราชการปลายปี", agency: "onec" },
-            { start: "2026-11-10", end: "2026-11-25", t: "เตรียมงบประมาณประจำปี 2570", agency: "moe" },
-            { start: "2026-11-25", end: "2026-11-31", t: "สรุปและประเมิน KPI รายปี", agency: "onec" }
+        // 💡 นำข้อมูล 20 ข้อกลับมาครบถ้วน
+        const PILLARS = [
+            { id: "01", t: "Zero Plagiarism", i: "fa-ban", bg: "rose", d: "สร้างงานใหม่ 100% ปลอดภัยจากการคัดลอกวิชาการ" },
+            { id: "02", t: "Official Sync", i: "fa-sync", bg: "blue", d: "อ้างอิงระเบียบ สพฐ. และ ก.ค.ศ. ล่าสุดเสมอ" },
+            { id: "03", t: "Prompt Shield", i: "fa-user-shield", bg: "emerald", d: "ข้อมูลท่านจะไม่ถูกนำไปใช้เทรน AI ต่อ 100%" },
+            { id: "04", t: "วPA Expert", i: "fa-medal", bg: "amber", d: "เชี่ยวชาญเกณฑ์วิทยฐานะดิจิทัลทุกสายงาน" },
+            { id: "05", t: "Humanizer Thai", i: "fa-pen-fancy", bg: "purple", d: "ภาษาทางการสละสลวยเหมาะสมบริบทครูไทย" },
+            { id: "06", t: "SPS Model", i: "fa-shield-virus", bg: "indigo", d: "ความปลอดภัยโครงสร้างระบบสูง ป้องกันแฮ็ก" },
+            { id: "07", t: "e-GP Ready", i: "fa-file-invoice-dollar", bg: "pink", d: "รองรับระเบียบพัสดุและการจัดซื้อจ้างล่าสุด" },
+            { id: "08", t: "Zero Install", i: "fa-cloud", bg: "sky", d: "ใช้งานผ่านบราวเซอร์ได้ทันที ไม่ต้องลงโปรแกรม" },
+            { id: "09", t: "Template Hub", i: "fa-copy", bg: "teal", d: "คลังแบบฟอร์มราชการกว่า 1,000 รูปแบบ" },
+            { id: "10", t: "Alchemy Logic", i: "fa-flask", bg: "orange", d: "ตรรกะประมวลผลแม่นยำ ออกแบบเพื่องานวิชาการ" },
+            { id: "11", t: "Multimodal AI", i: "fa-eye", bg: "fuchsia", d: "วิเคราะห์ภาพและไฟล์ PDF ขนาดใหญ่ได้" },
+            { id: "12", t: "ITA AA Level", i: "fa-balance-scale", bg: "cyan", d: "สอดคล้องความโปร่งใสระดับสากล AA" },
+            { id: "13", t: "DOPA Validated", i: "fa-database", bg: "lime", d: "มาตรฐานเอกสารทะเบียนราษฎรฉบับจริง" },
+            { id: "14", t: "GIS Integrated", i: "fa-map-marked-alt", bg: "violet", d: "วิเคราะห์บริบทเชิงพื้นที่แม่นยำรายโรงเรียน" },
+            { id: "15", t: "Identity Sync", i: "fa-id-card", bg: "red", d: "AI ปรับสำนวนตามตำแหน่งวิทยฐานะอัตโนมัติ" },
+            { id: "16", t: "K-to-Uni Scale", i: "fa-graduation-cap", bg: "slate", d: "ฐานข้อมูลครอบคลุมทุกระดับชั้นการศึกษา" },
+            { id: "17", t: "Career Aware", i: "fa-briefcase", bg: "stone", d: "แนะแนวเส้นทางความก้าวหน้าวิชาชีพรายบุคคล" },
+            { id: "18", t: "Ethical Audit", i: "fa-clipboard-check", bg: "yellow", d: "ตรวจสอบจริยธรรมและความถูกต้องก่อนส่งงาน" },
+            { id: "19", t: "Realtime Sync", i: "fa-clock", bg: "rose", d: "ฐานข้อมูลอัปเดตทันสถานการณ์รายวัน" },
+            { id: "20", t: "YC Model 2026", i: "fa-users", bg: "indigo", d: "รองรับกระบวนทัศน์การจัดการศึกษาใหม่ปี 2569" }
+        ];
+
+        const AGENTS = [
+            { id: "01", t: "Command Center", i: "fa-compass", u: "1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe", bg: "bg-blue-50 dark:bg-slate-800", ic: "text-blue-600 dark:text-blue-400", d: "- สรุปข่าวสารวงการครูรายวัน<br>- ค้นหาฐานภารกิจกว่า 1,000 รายการ<br>- วางแผนโครงการรายปี<br>- แนะนำ AI ที่เหมาะสมกับงาน" },
+            { id: "02", t: "Smart Hub", i: "fa-bullhorn", u: "1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2", bg: "bg-indigo-50 dark:bg-slate-800", ic: "text-indigo-600 dark:text-indigo-400", d: "- วิเคราะห์บริบทสถานศึกษา<br>- สืบค้นงานวิจัยทางการศึกษา<br>- กำหนดทิศทางยุทธศาสตร์โรงเรียน<br>- เชื่อมโยงนโยบายสู่การปฏิบัติ" },
+            { id: "03", t: "Lesson Designer", i: "fa-pencil-ruler", u: "1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ", bg: "bg-teal-50 dark:bg-slate-800", ic: "text-teal-600 dark:text-teal-400", d: "- ออกแบบแผนการสอน Active Learning<br>- กำหนดจุดประสงค์ KPA ครบถ้วน<br>- สร้างกิจกรรมสื่อการสอนเชิงรุก<br>- ออกแบบเครื่องมือประเมินผล" },
+            { id: "04", t: "Assessment Pro", i: "fa-check-double", u: "1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx", bg: "bg-emerald-50 dark:bg-slate-800", ic: "text-emerald-600 dark:text-emerald-400", d: "- สร้างข้อสอบวัดสมรรถนะ PISA<br>- วิเคราะห์ค่าความยากง่าย (P/R)<br>- สร้างเกณฑ์ประเมิน Rubric<br>- สรุปผลสัมฤทธิ์ทางการเรียน" },
+            { id: "05", t: "Creative Media", i: "fa-palette", u: "1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp", bg: "bg-pink-50 dark:bg-slate-800", ic: "text-pink-600 dark:text-pink-400", d: "- เขียนสคริปต์วิดีโอเพื่อการศึกษา<br>- สร้าง Prompt สำหรับรูปประกอบ<br>- ออกแบบบอร์ดเกม/สื่อทำมือ<br>- โครงร่างนำเสนอ Infographic" },
+            { id: "06", t: "Admin Registrar", i: "fa-briefcase", u: "1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr", bg: "bg-slate-100 dark:bg-slate-800", ic: "text-slate-600 dark:text-slate-400", d: "- ร่างหนังสือราชการทุกรูปแบบ<br>- ตรวจสอบระเบียบ e-GP<br>- จัดทำรายงานการประชุม<br>- ช่วยวางแผนงบประมาณพัสดุ" },
+            { id: "07", t: "Student Support", i: "fa-user-graduate", u: "1GKidsP54FbDt95iFUPYZur-RXFj7cCZc", bg: "bg-fuchsia-50 dark:bg-slate-800", ic: "text-fuchsia-600 dark:text-fuchsia-400", d: "- วิเคราะห์ข้อมูล SDQ นักเรียน<br>- ระบบดูแลช่วยเหลือและเยี่ยมบ้าน<br>- จัดกิจกรรมโฮมรูมสร้างสรรค์<br>- แผนการศึกษาเฉพาะบุคคล (IEP)" },
+            { id: "08", t: "PA Coach", i: "fa-medal", u: "1C_fG8RuW0S3cmlYyIrrbyRAM", bg: "bg-amber-50 dark:bg-slate-800", ic: "text-amber-600 dark:text-amber-400", d: "- ตรวจสอบตัวชี้วัดเกณฑ์ วPA<br>- โค้ชการทำวิจัยในชั้นเรียน (AR)<br>- เตรียมเอกสารประเมินวิทยฐานะ<br>- สรุปผลลัพธ์การเรียนรู้ผู้เรียน" },
+            { id: "09", t: "Tech Assistant", i: "fa-laptop-code", u: "1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM", bg: "bg-cyan-50 dark:bg-slate-800", ic: "text-cyan-600 dark:text-cyan-400", d: "- เขียนโค้ดพัฒนาเว็บโรงเรียน<br>- จัดการระบบ Google Workspace<br>- สร้างสูตร Excel/Sheets ขั้นสูง<br>- แก้ปัญหาและซ่อมบำรุงด้านไอที" },
+            { id: "10", t: "Quality Auditor", i: "fa-clipboard-check", u: "1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc", bg: "bg-rose-50 dark:bg-slate-800", ic: "text-rose-600 dark:text-rose-400", d: "- ตรวจสอบการคัดลอกวิชาการ<br>- ตรวจทานภาษาทางการ (Proofread)<br>- ตรวจสอบความสอดคล้อง PDPA<br>- ประเมินคุณภาพงานก่อนส่ง" }
+        ];
+
+        const MISSIONS = [
+            { id: "admin", name: "งานสารบรรณและธุรการสถานศึกษา", ic: "fa-file-signature", col: "bg-indigo-700", agent: "06", list: ["ร่างหนังสือราชการภายนอก/ภายใน", "แผนปฏิบัติการประจำปี (Action Plan)", "การประเมินตนเอง (SAR)", "ระบบประเมินความโปร่งใส ITA", "คู่มือปฏิบัติงาน (SOP)", "รายงานผลการดำเนินงาน", "วาระการประชุมคณะกรรมการ"] },
+            { id: "acad", name: "งานวิชาการและการออกแบบการเรียนรู้", ic: "fa-book-open", col: "bg-blue-600", agent: "03", list: ["สื่อการสอน Active Learning", "สื่อมัลติมีเดียประกอบบทเรียน", "นวัตกรรมสื่อสร้างสรรค์", "วิจัยเชิงปฏิบัติการในชั้นเรียน (AR)", "แผนการจัดการเรียนรู้ฐานสมรรถนะ", "การประเมินผลการเรียนรู้", "ข้อสอบตามตัวชี้วัด"] },
+            { id: "finance", name: "งานพัสดุ การเงิน และควบคุมงบประมาณ", ic: "fa-calculator", col: "bg-amber-600", agent: "06", list: ["ระบบจัดซื้อจัดจ้าง e-GP", "ทะเบียนคุมสินทรัพย์", "รายงานการเงินรายเดือน", "งบประมาณอุดหนุนรายหัว", "การเบิกจ่ายโครงการ", "กฎหมายการศึกษาที่เกี่ยวข้อง"] },
+            { id: "database", name: "งานข้อมูล สถิติ และระบบสารสนเทศ", ic: "fa-chart-line", col: "bg-cyan-600", agent: "09", list: ["ระบบสารสนเทศ DMC", "สถิติผู้เรียน ปพ.1-3", "วิเคราะห์ข้อมูล O-NET", "การจัดการฐานข้อมูลโรงเรียน", "จัดทำ Infographic สรุปข้อมูล"] },
+            { id: "health", name: "งานดูแลช่วยเหลือนักเรียนและสุขภาวะ", ic: "fa-user-shield", col: "bg-emerald-600", agent: "07", list: ["ระบบดูแลช่วยเหลือนักเรียน", "ประเมินสุขภาพจิต SDQ", "แผนการจัดการศึกษาเฉพาะบุคคล (IEP)", "แผนพฤติกรรม (BIP)", "กิจกรรมโฮมรูมสร้างสรรค์", "ระบบคัดกรองนักเรียนยากจน", "รายงานการเยี่ยมบ้าน"] },
+            { id: "hr", name: "งานวิทยฐานะและการพัฒนาวิชาชีพครู", ic: "fa-medal", col: "bg-rose-600", agent: "08", list: ["ประวัติครู (P-Record)", "การทำข้อตกลง วPA", "คลิปการสอนตามเกณฑ์ วPA", "วิทยฐานะดิจิทัล (DPA)", "การประเมินขั้นเงินเดือน", "แผนพัฒนาตนเอง (ID Plan)"] }
+        ];
+
+        const DAILY_TRICKS = [
+            { text: "ถ่ายคลิปการสอน วPA อย่ากลัวความเงียบ! ก.ค.ศ. ชอบห้องเรียนตามธรรมชาติ หากเด็กหยุดคิดหรือมีจุดขัดข้อง นั่นคือโอกาสทองที่ครูจะได้แสดงทักษะการแก้ปัญหาเฉพาะหน้า ห้ามสั่งคัตเด็ดขาดครับ", tag: "เกณฑ์ วPA & วิทยฐานะดิจิทัล" },
+            { text: "การจัดกลุ่ม PLC ที่ดี ไม่ใช่การนั่งประชุมกันยาวๆ 3 ชั่วโมง แต่คือการแชร์ไอเดียแก้ปัญหาเด็กเพียง 15 นาที แล้วแยกย้ายไปทดลองใช้ ลองใช้ Agent 08 ช่วยเขียนบันทึกการประชุม PLC เพื่อประหยัดเวลาดูสิครับ", tag: "เทคนิคการทำงานอัจฉริยะ" },
+            { text: "AI เป็นผู้ช่วยที่ยอดเยี่ยม แต่อย่าลืมว่า 'ความรักความใส่ใจ' เป็นสิ่งเดียวที่ AI เลียนแบบครูไม่ได้ ปลดปล่อยงานเอกสารให้ AI ทำ แล้วเอาหัวใจของคุณกลับคืนสู่ห้องเรียนกันครับ", tag: "พลังใจและจริยธรรมครูไทย" }
         ];
 
         // --- Core Functions ---
@@ -719,42 +725,105 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function toggleModal(id) { const m = document.getElementById(id); if(m) m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); }
+        function toggleModal(id) { 
+            const m = document.getElementById(id); 
+            if(m) {
+                m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); 
+                if (id === 'search-modal' && m.style.display === 'flex') {
+                    setTimeout(() => document.getElementById('global-search-input').focus(), 100);
+                }
+            }
+        }
+
+        // ✨ Global Search System Function
+        function handleGlobalSearch() {
+            const query = document.getElementById('global-search-input').value.toLowerCase().trim();
+            const container = document.getElementById('search-results-container');
+            
+            if (!query) {
+                container.innerHTML = '<div class="text-center text-slate-400 py-6 text-sm font-bold">พิมพ์คำค้นหาเพื่อเริ่มต้นระบบสืบค้นอัจฉริยะ<br>(เช่น "วPA", "แผนการสอน", "08")</div>';
+                return;
+            }
+
+            let results = [];
+
+            // Search in AGENTS
+            AGENTS.forEach(a => {
+                if (a.t.toLowerCase().includes(query) || a.d.toLowerCase().includes(query) || a.id.includes(query)) {
+                    results.push({
+                        type: 'agent', title: `Agent ${a.id}: ${a.t}`, desc: a.d, icon: a.i, col: 'text-blue-500',
+                        action: `toggleModal('search-modal'); switchTab('gems'); setTimeout(() => launchAgent('${a.id}'), 500);`
+                    });
+                }
+            });
+
+            // Search in MISSIONS
+            MISSIONS.forEach(m => {
+                if(m.name.toLowerCase().includes(query)) {
+                     results.push({
+                        type: 'mission_cat', title: `หมวดหมู่: ${m.name}`, desc: `คลิกเพื่อดู ${m.list.length} ภารกิจในหมวดนี้`, icon: m.ic, col: 'text-indigo-500',
+                        action: `toggleModal('search-modal'); switchTab('catalog'); setTimeout(() => renderMissionFeed('${m.id}'), 500);`
+                    });
+                }
+                m.list.forEach((item) => {
+                    if (item.toLowerCase().includes(query)) {
+                        results.push({
+                            type: 'mission', title: item, desc: `สังกัดหมวด: ${m.name}`, icon: 'fa-tasks', col: 'text-emerald-500',
+                            action: `toggleModal('search-modal'); switchTab('catalog'); setTimeout(() => { renderMissionFeed('${m.id}'); }, 200);`
+                        });
+                    }
+                });
+            });
+
+            if (results.length === 0) {
+                container.innerHTML = '<div class="text-center text-rose-400 py-6 text-sm font-bold"><i class="fas fa-exclamation-circle mb-2 block text-xl"></i>ไม่พบผลลัพธ์ที่ตรงกับคำค้นหา</div>';
+                return;
+            }
+
+            container.innerHTML = results.map(r => `
+                <div aria-label="ผลการค้นหา ${r.title}" onclick="${r.action}" class="p-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 rounded-xl flex items-center gap-4 cursor-pointer hover:border-blue-400 dark:hover:border-blue-400 transition group">
+                    <div class="w-10 h-10 rounded-lg bg-white dark:bg-slate-800 shadow-sm flex items-center justify-center text-lg ${r.col} shrink-0 group-hover:scale-110 transition"><i class="fas ${r.icon}"></i></div>
+                    <div class="text-left flex-grow">
+                        <h4 class="font-bold text-[13px] text-slate-800 dark:text-slate-200 leading-tight">${r.title}</h4>
+                        <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">${r.desc}</p>
+                    </div>
+                    <i class="fas fa-chevron-right ml-auto text-slate-300 dark:text-slate-500 group-hover:text-blue-500"></i>
+                </div>
+            `).join('');
+        }
 
         function launchAgent(id) {
             const links = { "01": "1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe", "02": "1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2", "03": "1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ", "04": "1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx", "05": "1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp", "06": "1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr", "07": "1GKidsP54FbDt95iFUPYZur-RXFj7cCZc", "08": "1C_fG8RuW0S3cmlYyIrrbyRAM", "09": "1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM", "10": "1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc" };
             window.open(`https://gemini.google.com/gem/${links[id] || '1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe'}?usp=sharing`, '_blank');
         }
 
-        // --- THE SPLIT PANE SMART FEED ---
         function renderMissionFeed(trackId) {
             const data = MISSIONS.find(c => c.id === trackId);
             if(!data) return;
             
             document.querySelectorAll('.track-btn').forEach(btn => {
-                btn.classList.remove('bg-blue-50', 'border-blue-500');
-                btn.classList.add('bg-white', 'border-transparent');
+                btn.classList.remove('bg-blue-50', 'border-blue-500', 'dark:bg-slate-700', 'dark:border-blue-500');
+                btn.classList.add('bg-white', 'border-transparent', 'dark:bg-slate-800');
             });
             const activeBtn = document.getElementById(`track-btn-${trackId}`);
             if(activeBtn) {
-                activeBtn.classList.remove('bg-white', 'border-transparent');
-                activeBtn.classList.add('bg-blue-50', 'border-blue-500');
+                activeBtn.classList.remove('bg-white', 'border-transparent', 'dark:bg-slate-800');
+                activeBtn.classList.add('bg-blue-50', 'border-blue-500', 'dark:bg-slate-700', 'dark:border-blue-500');
             }
 
-            document.getElementById('mission-feed-title').innerHTML = `<i class="fas ${data.ic} mr-2 ${data.col.replace('bg-','text-')}"></i> ${data.name}`;
+            document.getElementById('mission-feed-title').innerHTML = `<i class="fas ${data.ic} mr-2 ${data.col.replace('bg-','text-')} dark:text-blue-300"></i> ${data.name}`;
             document.getElementById('mission-feed-badge').innerText = `${data.list.length} ภารกิจ`;
             
             document.getElementById('mission-feed-list').innerHTML = data.list.map((item, i) => `
-                <div class="p-5 bg-white rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center border border-slate-200 hover:border-blue-400 hover:shadow-md transition gap-4">
+                <div class="p-5 bg-white dark:bg-slate-800 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center border border-slate-200 dark:border-slate-700 hover:border-blue-400 hover:shadow-md transition gap-4">
                     <div>
                         <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">ภารกิจที่ ${i+1}</span>
-                        <span class="text-[14.5px] font-bold text-slate-800">${item}</span>
+                        <span class="text-[14.5px] font-bold text-slate-800 dark:text-slate-100">${item}</span>
                     </div>
-                    <button onclick="launchAgent('${data.agent}')" class="px-6 py-2.5 bg-blue-50 text-blue-600 rounded-xl text-[11px] uppercase tracking-wider font-bold shadow-sm hover:bg-blue-600 hover:text-white transition whitespace-nowrap"><i class="fas fa-bolt mr-1"></i> Launch Agent ${data.agent}</button>
+                    <button aria-label="เริ่มทำภารกิจด้วย Agent ${data.agent}" onclick="launchAgent('${data.agent}')" class="px-6 py-2.5 bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300 rounded-xl text-[11px] uppercase tracking-wider font-bold shadow-sm hover:bg-blue-600 hover:text-white transition whitespace-nowrap"><i class="fas fa-bolt mr-1"></i> Launch Agent ${data.agent}</button>
                 </div>`).join('');
         }
 
-        // --- Smart Feeds for Dashboard ---
         function renderDashboardFeeds() {
             const newsFeed = document.getElementById('unified-news-feed');
             const trainFeed = document.getElementById('unified-training-feed');
@@ -771,25 +840,23 @@
             allTrain.sort(() => Math.random() - 0.5);
 
             newsFeed.innerHTML = allNews.slice(0, 40).map(n => `
-                <div class="p-4 bg-white rounded-2xl border border-slate-100 hover:border-blue-400 transition shadow-sm flex flex-col gap-2 group">
+                <div class="p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-blue-400 transition shadow-sm flex flex-col gap-2 group">
                     <div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded text-[9px] font-bold text-white ${n.bg}">${n.org.split(' ')[0]}</span><span class="text-xs text-slate-400 font-medium">Official Update</span></div>
-                    <h5 class="text-[14px] font-bold text-slate-800 leading-snug">${n.title}</h5>
-                    <button onclick="window.open('${n.url}', '_blank')" class="mt-2 self-start px-4 py-1.5 bg-slate-50 text-blue-600 rounded-lg text-[10px] uppercase tracking-wider font-bold group-hover:bg-blue-600 group-hover:text-white transition">อ่านข่าวต้นฉบับ</button>
+                    <h5 class="text-[14px] font-bold text-slate-800 dark:text-slate-200 leading-snug">${n.title}</h5>
+                    <button aria-label="อ่านข่าวต้นฉบับ" onclick="window.open('${n.url}', '_blank')" class="mt-2 self-start px-4 py-1.5 bg-slate-50 dark:bg-slate-700 text-blue-600 dark:text-blue-300 rounded-lg text-[10px] uppercase tracking-wider font-bold group-hover:bg-blue-600 group-hover:text-white transition">อ่านข่าวต้นฉบับ</button>
                 </div>`).join('');
 
             trainFeed.innerHTML = allTrain.slice(0, 40).map(t => `
-                <div class="p-4 bg-white rounded-2xl border border-slate-100 hover:border-amber-400 transition shadow-sm flex flex-col gap-2 group">
+                <div class="p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-amber-400 transition shadow-sm flex flex-col gap-2 group">
                     <div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded text-[9px] font-bold text-white ${t.bg}">${t.org.split(' ')[0]}</span><span class="text-xs text-slate-400 font-medium">Certified Program</span></div>
-                    <h5 class="text-[14px] font-bold text-slate-800 leading-snug">${t.title}</h5>
-                    <button onclick="window.open('${t.url}', '_blank')" class="mt-2 self-start px-4 py-1.5 bg-slate-50 text-amber-600 rounded-lg text-[10px] uppercase tracking-wider font-bold group-hover:bg-amber-500 group-hover:text-white transition">ดูรายละเอียดหลักสูตร</button>
+                    <h5 class="text-[14px] font-bold text-slate-800 dark:text-slate-200 leading-snug">${t.title}</h5>
+                    <button aria-label="ดูรายละเอียดหลักสูตร" onclick="window.open('${t.url}', '_blank')" class="mt-2 self-start px-4 py-1.5 bg-slate-50 dark:bg-slate-700 text-amber-600 dark:text-amber-300 rounded-lg text-[10px] uppercase tracking-wider font-bold group-hover:bg-amber-500 group-hover:text-white transition">ดูรายละเอียดหลักสูตร</button>
                 </div>`).join('');
         }
 
-        // --- Daily Trick Initialization & Rotation ---
         let currentTrickIndex = 0;
         function initDailyTrick() {
-            const day = new Date().getDate();
-            currentTrickIndex = day % DAILY_TRICKS.length;
+            currentTrickIndex = new Date().getDate() % DAILY_TRICKS.length;
             displayTrick(currentTrickIndex);
         }
 
@@ -808,21 +875,18 @@
             showToast("🎲 สลับกลเม็ดถัดไปเรียบร้อยแล้วครับ!");
         }
 
-        // ================= 🛠️ ระบบสลับตรวจหาวันที่และดึงกิจกรรมแบบ Real-time ช่วงวัน =================
         function getEventsForDate(year, month, day) {
             const checkDate = new Date(year, month, day);
             checkDate.setHours(0,0,0,0);
             const dateKey = `${year}-${month}-${day}`;
             let list = [];
 
-            // 1. ดึงข้อมูลส่วนตัว (PRIVATE_EVENTS)
             if (PRIVATE_EVENTS[dateKey]) {
                 PRIVATE_EVENTS[dateKey].forEach(text => {
                     list.push({ text: text, badge: "บันทึกส่วนตัว", bg: "bg-orange-500", isHoliday: false, agency: "private" });
                 });
             }
 
-            // 2. ดึงข้อมูลกิจกรรมการศึกษา 2569 ของทุกสังกัด (EDUCATIONAL_EVENTS)
             EDUCATIONAL_EVENTS.forEach(e => {
                 const startParts = e.start.split('-');
                 const endParts = e.end.split('-');
@@ -842,15 +906,17 @@
                     });
                 }
             });
-
             return list;
         }
 
-        // ================= BULLETPROOF RENDER CALENDAR (ตารางปฏิทินรายเดือน 7 คอลัมน์) =================
         function renderCalendar() {
             const gridArea = document.getElementById('calendar-grid-area');
             const title = document.getElementById('cal-month-title');
             if(!gridArea) return;
+
+            const isDark = document.documentElement.classList.contains('dark');
+            const calBg = document.getElementById('calendar-bg-wrapper');
+            if(calBg) calBg.style.backgroundColor = isDark ? '#1e293b' : '#fefcf5'; 
 
             const monthsTH = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
             title.innerText = `${monthsTH[currentMonth]} ${currentYear + 543}`;
@@ -860,42 +926,36 @@
             const today = new Date();
 
             let gridHtml = "";
-
-            // 1. เพิ่มช่องว่าง (Offset) ก่อนเริ่มวันที่ 1 ของเดือน
             for (let i = 0; i < firstDayIndex; i++) {
                 gridHtml += `<div class="cal-day-cell opacity-0 pointer-events-none"></div>`;
             }
 
-            // 2. เรนเดอร์วันที่ 1 ถึงสิ้นเดือน
             for (let d = 1; d <= totalDays; d++) {
                 const isSelected = (selectedDay === d);
                 const isToday = (today.getFullYear() === currentYear && today.getMonth() === currentMonth && today.getDate() === d);
 
-                // ดึงรายการกิจกรรมทั้งหมดในวันที่ d
                 const dayEvents = getEventsForDate(currentYear, currentMonth, d);
-                
                 const hasHoliday = dayEvents.some(e => e.isHoliday);
                 const hasOfficialEvent = dayEvents.some(e => !e.isHoliday && e.agency !== 'private');
                 const hasPrivateEvent = dayEvents.some(e => e.agency === 'private');
 
                 const currentDayOfWeek = new Date(currentYear, currentMonth, d).getDay();
                 
-                // กำหนดโทนสีพื้นหลัง (วันหยุดราชการ = สีแดงส้มอ่อน)
-                let cellStyle = "bg-white border-amber-100 text-slate-800";
+                let cellStyle = isDark ? "bg-slate-800 border-slate-700 text-slate-200" : "bg-white border-slate-100 text-slate-800";
                 
                 if (hasHoliday) {
-                    cellStyle = "bg-rose-100/70 border-rose-300 text-rose-700 shadow-sm"; // วันหยุดราชการแดงส้มอ่อน
+                    cellStyle = isDark ? "bg-rose-950/40 border-rose-900/50 text-rose-400" : "bg-rose-50 border-rose-200 text-rose-600";
                 } else if (currentDayOfWeek === 0) {
-                    cellStyle = "text-rose-600 bg-rose-50/40"; // วันอาทิตย์
+                    cellStyle = isDark ? "text-rose-400 bg-slate-800" : "text-rose-500 bg-white";
                 } else if (currentDayOfWeek === 6) {
-                    cellStyle = "text-slate-600 bg-slate-100/50"; // วันเสาร์
+                    cellStyle = isDark ? "text-slate-400 bg-slate-800" : "text-slate-500 bg-white";
                 }
 
-                let todayClass = isToday ? "today font-extrabold shadow-inner border-2 border-orange-500" : "";
+                let todayClass = isToday ? "today font-extrabold shadow-inner border-2 border-yellow-500" : "";
                 let selectedClass = isSelected ? "selected shadow-md scale-105" : "";
 
                 gridHtml += `
-                    <div onclick="selectCalendarDay(${d})" class="cal-day-cell ${cellStyle} ${todayClass} ${selectedClass} border p-2 text-center">
+                    <div aria-label="วันที่ ${d}" onclick="selectCalendarDay(${d})" class="cal-day-cell ${cellStyle} ${todayClass} ${selectedClass} border p-2 text-center">
                         <span class="z-10">${d}</span>
                         <div class="flex justify-center gap-1 mt-1 w-full min-h-[6px]">
                             ${hasHoliday ? '<span class="w-1.5 h-1.5 bg-rose-500 rounded-full block"></span>' : ''}
@@ -909,21 +969,17 @@
             updateSelectedDatePanel();
         }
 
-        // อัปเดตข้อมูลกิจกรรมทางแผงฝั่งขวา
         function updateSelectedDatePanel() {
             const monthsTH = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
-            
             document.getElementById('selected-date-badge').innerText = `วันที่ ${selectedDay} ${monthsTH[currentMonth]} ${currentYear + 543}`;
             const panel = document.getElementById('selected-date-events');
-            
-            // ดึงกิจกรรมผ่านระบบตรวจหาช่วงวัน V13.16.01
             const list = getEventsForDate(currentYear, currentMonth, selectedDay);
 
             let html = "";
             if (list.length > 0) {
                 html = list.map(item => `
-                    <div class="p-3 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-between gap-3 font-semibold text-slate-700 shadow-sm ${item.isHoliday ? 'border-l-4 border-l-rose-500 bg-rose-50/20' : 'border-l-4 border-l-blue-500'}">
-                        <span class="text-[13.5px] leading-snug text-slate-800 font-bold">${item.text}</span>
+                    <div class="p-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 rounded-2xl flex items-center justify-between gap-3 font-semibold shadow-sm ${item.isHoliday ? 'border-l-4 border-l-rose-500 bg-rose-50/20 dark:bg-rose-900/20' : 'border-l-4 border-l-yellow-500'}">
+                        <span class="text-[13.5px] leading-snug text-slate-800 dark:text-slate-200 font-bold">${item.text}</span>
                         <span class="text-[9px] px-2 py-0.5 text-white rounded-md shrink-0 uppercase font-black ${item.bg}">${item.badge}</span>
                     </div>
                 `).join('');
@@ -933,7 +989,6 @@
                         <i class="fas fa-check-circle text-emerald-500 text-2xl mb-2 block"></i> ไม่มีกิจกรรมบันทึกไว้ในวันนี้
                     </div>`;
             }
-
             panel.innerHTML = html;
         }
 
@@ -950,6 +1005,9 @@
             const dateKey = `${currentYear}-${currentMonth}-${selectedDay}`;
             if (!PRIVATE_EVENTS[dateKey]) PRIVATE_EVENTS[dateKey] = [];
             PRIVATE_EVENTS[dateKey].push(noteText);
+            
+            // 💾 บันทึกลง LocalStorage
+            localStorage.setItem('digitalSquadPrivateEvents', JSON.stringify(PRIVATE_EVENTS));
 
             noteInput.value = ""; 
             renderCalendar(); 
@@ -972,57 +1030,124 @@
             renderCalendar(); 
         }
 
-        // --- Init ALL Dynamic Components ---
+        // ✨ ฟังก์ชันการส่งออกปฏิทิน (Export to .ICS)
+        function exportCalendarToICS() {
+            let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Digital Squad AI//TH\nCALSCALE:GREGORIAN\n";
+            const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
+            let hasEvents = false;
+
+            for (let d = 1; d <= totalDays; d++) {
+                const events = getEventsForDate(currentYear, currentMonth, d);
+                if (events.length > 0) {
+                    events.forEach(ev => {
+                        hasEvents = true;
+                        const dateStr = `${currentYear}${String(currentMonth+1).padStart(2,'0')}${String(d).padStart(2,'0')}`;
+                        ics += "BEGIN:VEVENT\n";
+                        ics += `DTSTART;VALUE=DATE:${dateStr}\n`;
+                        ics += `DTEND;VALUE=DATE:${dateStr}\n`;
+                        ics += `SUMMARY:${ev.text} [${ev.badge}]\n`;
+                        ics += `DESCRIPTION:${ev.agency === 'private' ? 'บันทึกส่วนตัว' : 'กิจกรรมราชการ/สถานศึกษา'}\n`;
+                        ics += "END:VEVENT\n";
+                    });
+                }
+            }
+            
+            ics += "END:VCALENDAR";
+
+            if (!hasEvents) {
+                showToast("⚠️ ไม่มีกิจกรรมในเดือนนี้ให้ส่งออกครับ");
+                return;
+            }
+
+            const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', `DigitalSquad_Calendar_${currentYear}_${currentMonth+1}.ics`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showToast("📤 ส่งออกปฏิทินสำเร็จ! (สามารถ Import ใน Google Calendar ได้)");
+        }
+
         function initDynamicContent() {
             renderDashboardFeeds(); 
             
             const urg = document.getElementById('urgent-tasks-grid');
             const urgentList = [
-                { t: "ทำแผนปฏิบัติการ 2569", a: "01", col: "text-blue-600", bg: "bg-blue-50" },
-                { t: "วิจัยในชั้นเรียน CAR", a: "04", col: "text-emerald-600", bg: "bg-emerald-50" },
-                { t: "รายงานประเมิน SAR", a: "10", col: "text-purple-600", bg: "bg-purple-50" },
-                { t: "สร้างสื่อ Active Learning", a: "03", col: "text-amber-600", bg: "bg-amber-50" },
-                { t: "ประเมินตัวชี้วัด วPA", a: "08", col: "text-rose-600", bg: "bg-rose-50" },
-                { t: "จัดซื้อจัดจ้าง e-GP", a: "06", col: "text-cyan-600", bg: "bg-cyan-50" },
-                { t: "บันทึกข้อมูลเยี่ยมบ้าน", a: "07", col: "text-orange-600", bg: "bg-orange-50" },
-                { t: "ลงข้อมูล DMC นักเรียน", a: "09", col: "text-slate-600", bg: "bg-slate-100" },
-                { t: "สร้างนวัตกรรมสื่อดิจิทัล", a: "05", col: "text-pink-600", bg: "bg-pink-50" },
-                { t: "เตรียมประเมิน IQA", a: "10", col: "text-teal-600", bg: "bg-teal-50" }
+                { t: "ทำแผนปฏิบัติการ 2569", a: "01", col: "text-blue-500" },
+                { t: "วิจัยในชั้นเรียน CAR", a: "04", col: "text-emerald-500" },
+                { t: "รายงานประเมิน SAR", a: "10", col: "text-purple-500" },
+                { t: "สร้างสื่อ Active Learning", a: "03", col: "text-amber-500" },
+                { t: "ประเมินตัวชี้วัด วPA", a: "08", col: "text-rose-500" },
+                { t: "จัดซื้อจัดจ้าง e-GP", a: "06", col: "text-cyan-500" },
+                { t: "บันทึกข้อมูลเยี่ยมบ้าน", a: "07", col: "text-orange-500" },
+                { t: "ลงข้อมูล DMC นักเรียน", a: "09", col: "text-slate-500" },
+                { t: "สร้างนวัตกรรมสื่อดิจิทัล", a: "05", col: "text-pink-500" },
+                { t: "เตรียมประเมิน IQA", a: "10", col: "text-teal-500" }
             ];
             if(urg) urg.innerHTML = urgentList.map((item, i) => `
-                <div onclick="launchAgent('${item.a}')" class="p-5 ${item.bg} rounded-2xl border border-white hover:border-slate-300 transition-all cursor-pointer group relative overflow-hidden">
-                    <span class="absolute top-2 right-3 text-2xl font-black opacity-20 ${item.col}">${i+1}</span>
-                    <h5 class="text-[13.5px] font-bold text-slate-800 mb-3 pr-4 leading-tight">${item.t}</h5>
-                    <span class="text-[10px] ${item.col} font-bold uppercase bg-white px-2 py-1 rounded-md shadow-sm"><i class="fas fa-bolt mr-1"></i> Agent ${item.a}</span>
-                </div>`).join('');
+                <button aria-label="งานด่วน ${item.t}" onclick="launchAgent('${item.a}')" class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-2xl shadow-sm hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-lg transition-all group text-left w-full active:scale-95 transform hover:-translate-y-1">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-700 shadow-inner border border-slate-100 dark:border-slate-600 flex items-center justify-center text-base ${item.col} font-black shrink-0">${i+1}</div>
+                        <div>
+                            <h5 class="text-[14px] md:text-[15px] font-black text-slate-800 dark:text-slate-100 leading-tight mb-0.5">${item.t}</h5>
+                            <span class="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Agent ${item.a}</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-slate-300 dark:text-slate-600 group-hover:text-blue-500 transition text-sm"></i>
+                </button>`).join('');
 
             const menu = document.getElementById('career-track-menu');
             if(menu) {
                 menu.innerHTML = MISSIONS.map((c, i) => `
-                    <button id="track-btn-${c.id}" onclick="renderMissionFeed('${c.id}')" class="track-btn p-4 bg-white border-l-4 border-transparent hover:bg-slate-50 rounded-xl shadow-sm text-left transition-all flex items-center gap-3 w-full">
+                    <button aria-label="หมวดหมู่ภารกิจ ${c.name}" id="track-btn-${c.id}" onclick="renderMissionFeed('${c.id}')" class="track-btn p-4 bg-white dark:bg-slate-800 border-l-4 border-transparent hover:bg-slate-50 dark:hover:bg-slate-700 rounded-xl shadow-sm text-left transition-all flex items-center gap-3 w-full">
                         <div class="w-10 h-10 rounded-lg ${c.col} text-white flex items-center justify-center text-lg shrink-0"><i class="fas ${c.ic}"></i></div>
-                        <div><h4 class="text-[13px] font-bold text-slate-800 leading-tight">${i+1}. ${c.name}</h4></div>
+                        <div><h4 class="text-[13px] font-bold text-slate-800 dark:text-slate-200 leading-tight">${i+1}. ${c.name}</h4></div>
                     </button>`).join('');
                 renderMissionFeed(MISSIONS[0].id);
             }
 
             const ag = document.getElementById('agent-grid-container');
-            if(ag) ag.innerHTML = AGENTS.map(a => `<div onclick="launchAgent('${a.id}')" class="${a.bg} border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all h-full flex flex-col hover:-translate-y-2 group cursor-pointer relative overflow-hidden"><span class="agent-number-bg">${a.id}</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 ${a.ic} shadow-sm group-hover:scale-110 transition-transform"><i class="fas ${a.i}"></i></div><h3 class="font-black text-[14px] mb-1 text-slate-800 uppercase leading-tight">${a.t}</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT ${a.id}</p><div class="text-[13px] leading-relaxed space-y-1.5 mt-auto pt-3 border-t border-slate-200/50 text-left text-slate-700">${a.d}</div></div>`).join('');
+            if(ag) ag.innerHTML = AGENTS.map(a => `<div aria-label="เข้าใช้งาน ${a.t}" onclick="launchAgent('${a.id}')" class="${a.bg} border border-slate-100 dark:border-slate-700 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all h-full flex flex-col hover:-translate-y-2 group cursor-pointer relative overflow-hidden"><span class="agent-number-bg">${a.id}</span><div class="w-12 h-12 bg-white dark:bg-slate-700 rounded-2xl flex items-center justify-center text-xl mb-4 ${a.ic} shadow-sm group-hover:scale-110 transition-transform"><i class="fas ${a.i}"></i></div><h3 class="font-black text-[14px] mb-1 text-slate-800 dark:text-slate-100 uppercase leading-tight">${a.t}</h3><p class="text-[10px] text-slate-500 dark:text-slate-400 font-bold mb-3 uppercase tracking-wider">AGENT ${a.id}</p><div class="text-[13px] leading-relaxed space-y-1.5 mt-auto pt-3 border-t border-slate-200/50 dark:border-slate-700/50 text-left text-slate-700 dark:text-slate-300">${a.d}</div></div>`).join('');
             
+            // 💡 ปรับการเรนเดอร์ PILLARS ให้เป็น List View แบบกะทัดรัด ประหยัดพื้นที่ อ่านง่าย
             const pl = document.getElementById('about-pillars-grid');
-            if(pl) pl.innerHTML = PILLARS.map(p => `<div class="p-6 rounded-[2.5rem] border border-${p.bg}-100 bg-${p.bg}-50 shadow-sm flex flex-col h-full group text-left transition hover:-translate-y-1"><i class="fas ${p.i} text-${p.bg}-600 mb-4 text-2xl"></i><h4 class="text-[10px] font-black uppercase text-${p.bg}-400 tracking-widest mb-1">PILLAR ${p.id}</h4><p class="text-[16px] font-black text-slate-800 mb-1 leading-tight">${p.t}</p><p class="text-[14px] text-slate-500 font-medium mt-auto leading-tight opacity-90">${p.d}</p></div>`).join('');
+            if(pl) pl.innerHTML = PILLARS.map(p => `
+                <div class="p-4 rounded-2xl border-2 border-white dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm flex items-start gap-4 group hover:border-orange-300 dark:hover:border-blue-500 transition-all hover:shadow-lg hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-xl bg-${p.bg}-50 dark:bg-slate-700 flex items-center justify-center shrink-0 border border-${p.bg}-100 dark:border-slate-600">
+                        <i class="fas ${p.i} text-${p.bg}-500 dark:text-${p.bg}-400 text-xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-[10px] font-black uppercase text-slate-400 dark:text-slate-500 tracking-widest mb-0.5">PILLAR ${p.id}</h4>
+                        <p class="text-[15px] font-black text-slate-800 dark:text-slate-100 leading-tight mb-1">${p.t}</p>
+                        <p class="text-[12px] text-slate-500 dark:text-slate-400 font-medium leading-snug">${p.d}</p>
+                    </div>
+                </div>
+            `).join('');
         }
 
+        // 📈 Lazy Load Charts Function (รอจนกว่า Chart จะโหลดเสร็จ)
         function initStatsCharts() {
             if(chartsInitialized) return;
+            
+            if(typeof Chart === 'undefined') {
+                showToast("⏳ กำลังโหลดไลบรารีวิเคราะห์ข้อมูล (Chart.js)...");
+                setTimeout(initStatsCharts, 1000); 
+                return;
+            }
+            
             const ctx1 = document.getElementById('chart-positions');
             const ctx2 = document.getElementById('chart-agencies');
             if(!ctx1 || !ctx2) return;
             chartsInitialized = true;
-            const config1 = { type: 'pie', data: { labels: ['ครู', 'บริหาร', 'บุคลากร', 'ทั่วไป'], datasets: [{ data: [65, 12, 18, 5], backgroundColor: ['#1e3a8a', '#3b82f6', '#10b981', '#94a3b8'] }] }, options: { maintainAspectRatio: false } };
-            const config2 = { type: 'bar', data: { labels: ['สพฐ', 'กทม', 'สกศ', 'กคศ', 'อว', 'สอวช', 'สอศ', 'ศธ'], datasets: [{ label: 'ผู้ใช้จริง', data: [1800, 1150, 580, 600, 290, 400, 350, 500], backgroundColor: '#3b82f6' }] }, options: { maintainAspectRatio: false } };
-            new Chart(ctx1, config1);
-            new Chart(ctx2, config2);
+            
+            const isDark = document.documentElement.classList.contains('dark');
+            const textColor = isDark ? '#cbd5e1' : '#64748b';
+            Chart.defaults.color = textColor;
+            
+            new Chart(ctx1, { type: 'pie', data: { labels: ['ครู', 'บริหาร', 'บุคลากร', 'ทั่วไป'], datasets: [{ data: [65, 12, 18, 5], backgroundColor: ['#1e3a8a', '#3b82f6', '#10b981', '#94a3b8'], borderColor: isDark ? '#1e293b' : '#ffffff' }] }, options: { maintainAspectRatio: false } });
+            new Chart(ctx2, { type: 'bar', data: { labels: ['สพฐ', 'กทม', 'สกศ', 'กคศ', 'อว', 'สอวช', 'สอศ', 'ศธ'], datasets: [{ label: 'ผู้ใช้จริง', data: [1800, 1150, 580, 600, 290, 400, 350, 500], backgroundColor: '#3b82f6' }] }, options: { maintainAspectRatio: false, scales: { x: { grid: { color: isDark ? '#334155' : '#e2e8f0' } }, y: { grid: { color: isDark ? '#334155' : '#e2e8f0' } } } } });
         }
 
         function showToast(m) { const t = document.getElementById('toast'); if(t) { t.innerText = m; t.className = "show font-bold"; setTimeout(() => t.className = "", 3500); } }
@@ -1038,7 +1163,7 @@
             const users = parseInt(document.getElementById('stat-total-users').innerText.replace(',',''));
             document.getElementById('stat-total-users').innerText = (users + 1).toLocaleString();
             toggleModal('login-modal'); 
-            showToast(`สวัสดีคุณ ${name} (${pos}) สังกัด ${agency} บันทึกข้อมูลสำเร็จ!`); 
+            showToast(`สวัสดีคุณ ${name} (${pos}) สังกัด ${agency} เข้าสู่ระบบสำเร็จ!`); 
         }
 
         window.onload = () => { initDynamicContent(); initDailyTrick(); switchTab('home'); };
