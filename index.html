@@ -55,7 +55,7 @@
     <header class="bg-primary sticky top-0 z-50 shadow-lg px-4">
         <div class="container mx-auto flex items-center justify-between h-16 md:h-24">
             <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchTab('home')">
-                <!-- 📸 เปลี่ยนจากไอคอนทั่วไปเป็น App Icon ที่อัปโหลดใหม่อย่างลงตัว -->
+                <!-- 📸 แสดงผลโลโก้ไอคอนอย่างเสถียร (และแสดงผลถูกต้องตามที่ครูเอแจ้งว่าทำงานแล้ว) -->
                 <img src="app icon.jpg" alt="Digital Squad AI Icon" class="w-10 h-10 md:w-16 md:h-16 rounded-xl shadow-md group-hover:scale-105 transition-transform duration-300 object-cover bg-white p-0.5">
                 <div class="text-left leading-tight">
                     <h1 class="font-black text-sm md:text-xl uppercase tracking-tighter text-white">Digital Squad AI</h1>
@@ -88,7 +88,6 @@
         <!-- ================= TAB: HOME ================= -->
         <div id="tab-home" class="tab-content">
             <!-- Blue Hero Section from V13.12.53 (FROZEN & LOCKED) -->
-            <!-- 📸 ปรับเลย์เอาต์เพื่อแทรก Logo สหวิทยาการขนาดใหญ่อย่างสง่างามทางด้านขวาบนหน้าจอใหญ่ -->
             <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600 flex flex-col lg:flex-row items-center justify-between gap-8">
                 <!-- Background Globe Deco -->
                 <div class="absolute right-[-40px] top-[-40px] text-white opacity-5 text-[20rem] pointer-events-none">
@@ -140,9 +139,9 @@
                     </div>
                 </div>
 
-                <!-- 📸 รูปแบบแสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
+                <!-- 📸 แก้ไขลิงก์เป็น logo.png พร้อมฟังก์ชันสลับดึง logo.jpg อัตโนมัติในกรณีสกุลไฟล์สลับกัน -->
                 <div class="relative z-10 lg:w-1/3 flex justify-center items-center">
-                    <img src="1722c691-e5e3-404d-a743-f3ece48a7225.png" alt="Digital Squad AI Premium Logo" class="max-w-[260px] md:max-w-[300px] rounded-3xl shadow-2xl bg-white p-5 hover:scale-105 transition-transform duration-300 border border-blue-200">
+                    <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Digital Squad AI Premium Logo" class="max-w-[260px] md:max-w-[300px] rounded-3xl shadow-2xl bg-white p-5 hover:scale-105 transition-transform duration-300 border border-blue-200">
                 </div>
             </div>
 
@@ -344,12 +343,12 @@
     </footer>
 
     <!-- Modals -->
-    <!-- 📸 บูรณาการระบบลงทะเบียนให้กลับมามีรายละเอียดสูงครบครันตามสถาปัตยกรรมแบรนด์ระดับสูง -->
+    <!-- 📸 บูรณาการระบบลงทะเบียนให้กลับมามีรายละเอียดสูงครบครันและรูปภาพที่ปลอดภัย 100% -->
     <div id="login-modal" class="modal-overlay" onclick="toggleModal('login-modal')">
         <div class="modal-content text-left max-h-[90vh] overflow-y-auto custom-scrollbar" onclick="event.stopPropagation()">
-            <!-- 📸 นำโลโก้แบรนด์ตัวเต็ม มาจัดวางที่ส่วนบนสุดของ Modal ล็อกอินอย่างหรูหรา -->
+            <!-- 📸 แก้ไขลิงก์เป็น logo.png พร้อมฟังก์ชันสลับดึง logo.jpg ในหน้าต่างลงทะเบียน -->
             <div class="flex justify-center mb-6">
-                <img src="1722c691-e5e3-404d-a743-f3ece48a7225.png" alt="Digital Squad AI Full Logo" class="h-20 object-contain rounded-xl shadow-md border border-slate-100 bg-white p-2">
+                <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Digital Squad AI Full Logo" class="h-20 object-contain rounded-xl shadow-md border border-slate-100 bg-white p-2">
             </div>
             <h3 class="text-2xl font-black uppercase text-primary text-center mb-6">ลงทะเบียนเข้าใช้งาน</h3>
             <form onsubmit="handleLogin(event)" class="space-y-4">
@@ -629,6 +628,7 @@
             }
         }
 
+        // --- Rotate Trick Manual Button ---
         function rotateTrick() {
             currentTrickIndex = (currentTrickIndex + 1) % DAILY_TRICKS.length;
             displayTrick(currentTrickIndex);
