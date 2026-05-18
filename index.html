@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V13.17.01 - Premium Educational Ecosystem</title>
+    <title>Digital Squad AI V13.18.01 - Premium Educational Ecosystem</title>
     
-    <!-- 🛡️ ระบบดาวน์โหลดดีไซน์อัจฉริยะแบบซิงโครนัส ป้องกันการแปลงลิงก์ Markdown และป้องกันสไตล์รวน -->
+    <!-- 🛡️ ระบบดาวน์โหลดดีไซ็น์อัจฉริยะแบบซิงโครนัส ป้องกันการแปลงลิงก์ Markdown และป้องกันสไตล์รวน -->
     <script>
         (function() {
           var tw = document.createElement("script");
@@ -87,9 +87,9 @@
 
         /* ปรับระดับความคมชัดของตารางปฏิทินแบบ 7 คอลัมน์ */
         .cal-day-cell { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 1rem; cursor: pointer; transition: all 0.2s; position: relative; font-weight: 700; font-size: 0.95rem; }
-        .cal-day-cell:hover { background-color: #f1f5f9; }
-        .cal-day-cell.selected { background-color: #1e3a8a !important; color: white !important; }
-        .cal-day-cell.today { border: 2px solid #3b82f6; }
+        .cal-day-cell:hover { background-color: #f5eed3; }
+        .cal-day-cell.selected { background-color: #d97706 !important; color: white !important; }
+        .cal-day-cell.today { border: 2px solid #ea580c; }
     </style>
 </head>
 <body class="font-sans text-slate-800 text-left">
@@ -102,7 +102,7 @@
                 <div class="text-left leading-tight">
                     <h1 class="font-black text-sm md:text-xl uppercase tracking-tighter text-white">Digital Squad AI</h1>
                     <span class="text-blue-200 font-bold text-xs md:text-[15px] block leading-none mt-0.5">เพื่อนครูไทย</span>
-                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.17.01</p>
+                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.18.01</p>
                 </div>
             </div>
             <nav class="hidden lg:flex space-x-8 text-white h-full items-center font-bold">
@@ -129,7 +129,7 @@
         
         <!-- ================= TAB: HOME ================= -->
         <div id="tab-home" class="tab-content">
-            <!-- Blue Hero Section from V13.17.01 (FROZEN & LOCKED) -->
+            <!-- Blue Hero Section from V13.18.01 (FROZEN & LOCKED) -->
             <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600 flex flex-col lg:flex-row items-center justify-between gap-8">
                 <!-- Background Globe Deco -->
                 <div class="absolute right-[-40px] top-[-40px] text-white opacity-5 text-[20rem] pointer-events-none">
@@ -258,7 +258,7 @@
             </div>
         </div>
 
-        <!-- ================= TAB: AI AGENTS (V13.17.01 UPGRADE) ================= -->
+        <!-- ================= TAB: AI AGENTS (V13.18.01 UPGRADE) ================= -->
         <div id="tab-gems" class="tab-content hidden text-center">
              <!-- 📸 อัปเกรดหัวข้อหลักด้านบนเพื่อความมืออาชีพตามคำขอของคุณครูเอ -->
              <div class="mb-8 max-w-5xl mx-auto text-center">
@@ -435,22 +435,23 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- ฝั่งซ้าย: ตารางปฏิทินแบบตาราง 7 วัน (ประหยัดโค้ด สวยงาม มั่นคง) -->
                 <div class="lg:col-span-2 bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden flex flex-col h-full">
-                    <!-- 🛡️ ตรึงหัวข้อปฏิทินสีน้ำเงินเข้มด้วย Inline style เพื่อให้ไม่โปร่งใสทับซ้อนกันเวลากดสลับหน้า -->
-                    <div style="background-color: #1e3a8a !important;" class="bg-primary p-6 text-white flex justify-between items-center">
+                    <!-- 🛡️ ตรึงหัวข้อปฏิทินสีเหลืองส้มอบอุ่นเพื่อลดความตึงเครียดของสายตา -->
+                    <div style="background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%) !important;" class="p-6 text-white flex justify-between items-center">
                         <div>
                             <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white" id="cal-month-title">มกราคม 2569</h2>
-                            <p class="text-blue-300 text-[10px] font-bold uppercase tracking-widest mt-1">Ecosystem Calendar Sync Active</p>
+                            <p class="text-orange-100 text-[10px] font-bold uppercase tracking-widest mt-1">Ecosystem Calendar Sync Active</p>
                         </div>
                         <div class="flex items-center gap-3">
                             <button onclick="changeCalMonth(-1)" class="w-10 h-10 bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition flex items-center justify-center text-sm text-white"><i class="fas fa-chevron-left"></i></button>
-                            <button onclick="resetCalToday()" class="px-4 py-2 bg-white text-primary font-black rounded-full hover:bg-blue-50 transition shadow text-xs uppercase tracking-widest">วันนี้</button>
+                            <button onclick="resetCalToday()" class="px-4 py-2 bg-white text-orange-600 font-black rounded-full hover:bg-orange-50 transition shadow text-xs uppercase tracking-widest">วันนี้</button>
                             <button onclick="changeCalMonth(1)" class="w-10 h-10 bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition flex items-center justify-center text-sm text-white"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
                     
-                    <div class="p-6 bg-slate-50 flex-grow">
+                    <!-- 📸 ปรับแต่งพื้นหลังปฏิทินปูพื้นด้วยสีครีมนุ่มนวลสบายตา #fffbeb -->
+                    <div style="background-color: #fffbeb !important;" class="p-6 flex-grow">
                         <!-- 🛡️ ตรึงหัวตาราง 7 วันด้วย Inline CSS Grid สากล ป้องกันแนวคอลัมน์โย้เย้ไปทางซ้ายมือ 100% -->
-                        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem;" class="text-center text-xs font-black uppercase tracking-wider text-slate-400 mb-4">
+                        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem;" class="text-center text-xs font-black uppercase tracking-wider text-slate-500 mb-4">
                             <div class="text-rose-500 font-bold">อา.</div>
                             <div>จ.</div>
                             <div>อ.</div>
@@ -512,7 +513,7 @@
     </main>
 
     <footer class="bg-white border-t py-12 text-center mt-auto text-slate-400">
-        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800 font-bold">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.17.01 (SUPREME SYNC EDITION)</p>
+        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800 font-bold">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.18.01 (SUPREME SYNC EDITION)</p>
         <p class="text-primary text-[14px] font-black text-center mb-1">ผู้ออกแบบและพัฒนาโปรแกรม โดย : กันตภณ ณพสิษฐ์ (สงวนลิขสิทธิ์)</p>
         <p class="text-slate-400 text-[12px] text-center">© 2026 OFFICIAL EDUCATIONAL HUB. ALL RIGHTS RESERVED.</p>
     </footer>
@@ -706,95 +707,6 @@
             { start: "2026-11-25", end: "2026-11-31", t: "สรุปและประเมิน KPI รายปี", agency: "onec" }
         ];
 
-        // ตารางกิจกรรมส่วนบุคคลที่ผู้ใช้พิมพ์เพิ่มลงระบบ
-        let PRIVATE_EVENTS = {};
-
-        const PILLARS = [
-            { id: "01", t: "Zero Plagiarism", i: "fa-ban", bg: "rose", d: "สร้างงานใหม่ 100% ปลอดภัยจากการคัดลอกวิชาการ" },
-            { id: "02", t: "Official Sync", i: "fa-sync", bg: "blue", d: "อ้างอิงระเบียบ สพฐ. และ ก.ค.ศ. ล่าสุดเสมอ" },
-            { id: "03", t: "Prompt Shield", i: "fa-user-shield", bg: "emerald", d: "ข้อมูลท่านจะไม่ถูกนำไปใช้เทรน AI ต่อ 100%" },
-            { id: "04", t: "วPA Expert", i: "fa-medal", bg: "amber", d: "เชี่ยวชาญเกณฑ์วิทยฐานะดิจิทัลทุกสายงาน" },
-            { id: "05", t: "Humanizer Thai", i: "fa-pen-fancy", bg: "purple", d: "ภาษาทางการสละสลวยเหมาะสมบริบทครูไทย" },
-            { id: "06", t: "SPS Model", i: "fa-shield-virus", bg: "indigo", d: "ความปลอดภัยโครงสร้างระบบสูง ป้องกันแฮ็ก" },
-            { id: "07", t: "e-GP Ready", i: "fa-file-invoice-dollar", bg: "pink", d: "รองรับระเบียบพัสดุและการจัดซื้อจ้างล่าสุด" },
-            { id: "08", t: "Zero Install", i: "fa-cloud", bg: "sky", d: "ใช้งานผ่านบราวเซอร์ได้ทันที ไม่ต้องลงโปรแกรม" },
-            { id: "09", t: "Template Hub", i: "fa-copy", bg: "teal", d: "คลังแบบฟอร์มราชการกว่า 1,000 รูปแบบ" },
-            { id: "10", t: "Alchemy Logic", i: "fa-flask", bg: "orange", d: "ตรรกะประมวลผลแม่นยำ ออกแบบเพื่องานวิชาการ" },
-            { id: "11", t: "Multimodal AI", i: "fa-eye", bg: "fuchsia", d: "วิเคราะห์ภาพและไฟล์ PDF ขนาดใหญ่ได้" },
-            { id: "12", t: "ITA AA Level", i: "fa-balance-scale", bg: "cyan", d: "สอดคล้องความโปร่งใสระดับสากล AA" },
-            { id: "13", t: "DOPA Validated", i: "fa-database", bg: "lime", d: "มาตรฐานเอกสารทะเบียนราษฎรฉบับจริง" },
-            { id: "14", t: "GIS Integrated", i: "fa-map-marked-alt", bg: "violet", d: "วิเคราะห์บริบทเชิงพื้นที่แม่นยำรายโรงเรียน" },
-            { id: "15", t: "Identity Sync", i: "fa-id-card", bg: "red", d: "AI ปรับสำนวนตามตำแหน่งวิทยฐานะอัตโนมัติ" },
-            { id: "16", t: "K-to-Uni Scale", i: "fa-graduation-cap", bg: "slate", d: "ฐานข้อมูลครอบคลุมทุกระดับชั้นการศึกษา" },
-            { id: "17", t: "Career Aware", i: "fa-briefcase", bg: "stone", d: "แนะแนวเส้นทางความก้าวหน้าวิชาชีพรายบุคคล" },
-            { id: "18", t: "Ethical Audit", i: "fa-clipboard-check", bg: "yellow", d: "ตรวจสอบจริยธรรมและความถูกต้องก่อนส่งงาน" },
-            { id: "19", t: "Realtime Sync", i: "fa-clock", bg: "rose", d: "ฐานข้อมูลอัปเดตทันสถานการณ์รายวัน" },
-            { id: "20", t: "YC Model 2026", i: "fa-users", bg: "indigo", d: "รองรับกระบวนทัศน์การจัดการศึกษาใหม่ปี 2569" }
-        ];
-
-        const AGENTS = [
-            { id: "01", t: "Command Center", i: "fa-compass", u: "1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe", bg: "bg-blue-50", ic: "text-blue-600", d: "ค้นหาฐานภารกิจกว่า 1,000 รายการ, วางแผนโครงการรายปี, แนะนำ AI ที่เหมาะสม" },
-            { id: "02", t: "Smart Hub", i: "fa-bullhorn", u: "1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2", bg: "bg-indigo-50", ic: "text-indigo-600", d: "สรุปข่าวสารวงการครูรายวัน, วิเคราะห์บริบทสถานศึกษา, สืบค้นงานวิจัยทางการศึกษา" },
-            { id: "03", t: "Lesson Designer", i: "fa-pencil-ruler", u: "1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ", bg: "bg-teal-50", ic: "text-teal-600", d: "ออกแบบแผนการสอน Active Learning, กำหนดจุดประสงค์ KPA, สร้างกิจกรรมสื่อการสอน" },
-            { id: "04", t: "Assessment Pro", i: "fa-check-double", u: "1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx", bg: "bg-emerald-50", ic: "text-emerald-600", d: "สร้างข้อสอบสมรรถนะ, วิเคราะห์ค่าความยากง่าย P/R, สร้างเกณฑ์ประเมิน Rubric" },
-            { id: "05", t: "Creative Media", i: "fa-palette", u: "1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp", bg: "bg-pink-50", ic: "text-pink-600", d: "เขียนสคริปต์วิดีโอเพื่อการศึกษา, สร้าง Prompt สำหรับสร้างภาพประกอบสื่อ" },
-            { id: "06", t: "Admin Registrar", i: "fa-briefcase", u: "1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr", bg: "bg-slate-100", ic: "text-slate-600", d: "ร่างหนังสือราชการทุกรูปแบบ, ตรวจสอบระเบียบ e-GP, จัดทำรายงานการประชุม" },
-            { id: "07", t: "Student Support", i: "fa-user-graduate", u: "1GKidsP54FbDt95iFUPYZur-RXFj7cCZc", bg: "bg-fuchsia-50", ic: "text-fuchsia-600", d: "ระบบดูแลช่วยเหลือนักเรียน, บันทึกเยี่ยมบ้านและ SDQ, กิจกรรมโฮมรูม" },
-            { id: "08", t: "PA Coach", i: "fa-medal", u: "1C_fG8RuW0S3cmlYyIrrbyRAM", bg: "bg-amber-50", ic: "text-amber-600", d: "ตรวจสอบตัวชี้วัด วPA, วิจัยในชั้นเรียน AR, เตรียมรับประเมินวิทยฐานะ" },
-            { id: "09", t: "Tech Assistant", i: "fa-laptop-code", u: "1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM", bg: "bg-cyan-50", ic: "text-cyan-600", d: "เขียนโค้ดเว็บโรงเรียน, จัดการ Google Workspace, สูตร Excel ขั้นสูง" },
-            { id: "10", t: "Quality Auditor", i: "fa-clipboard-check", u: "1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc", bg: "bg-rose-50", ic: "text-rose-600", d: "ตรวจสอบคัดลอกวิชาการ, ตรวจทานภาษาทางการ (Proofread), ตรวจสอบความสอดคล้อง PDPA" }
-        ];
-
-        // 10 Career Tracks for Strategic Hub (Split Pane Data)
-        const MISSIONS = [
-            { id: "acad", name: "วิชาการและการจัดการเรียนรู้", ic: "fa-book", col: "bg-blue-600", agent: "03", list: ["สื่อการสอน Active Learning", "สื่อมัลติมีเดียประกอบบทเรียน", "นวัตกรรมสื่อสร้างสรรค์", "วิจัยเชิงปฏิบัติการในชั้นเรียน (AR)", "แผนการจัดการเรียนรู้ฐานสมรรถนะ", "การจัดทำสื่อ Canva for Education", "การประเมินผลการเรียนรู้", "ข้อสอบตามตัวชี้วัด", "วิเคราะห์ผู้เรียนรายบุคคล", "รายงานผลสัมฤทธิ์ทางการเรียน"] },
-            { id: "health", name: "สุขภาวะและความปลอดภัย", ic: "fa-heartbeat", col: "bg-emerald-600", agent: "07", list: ["ระบบดูแลช่วยเหลือนักเรียน", "ประเมินสุขภาพจิต SDQ", "แผนการจัดการศึกษาเฉพาะบุคคล (IEP)", "แผนพฤติกรรม (BIP)", "กิจกรรมโฮมรูมสร้างสรรค์", "ระบบคัดกรองนักเรียนยากจน", "รายงานการเยี่ยมบ้าน", "การปฐมพยาบาลในโรงเรียน", "มาตรการความปลอดภัยสถานศึกษา", "โครงการอาหารกลางวัน"] },
-            { id: "admin", name: "บริหารยุทธศาสตร์และ ITA", ic: "fa-user-tie", col: "bg-indigo-700", agent: "02", list: ["แผนยุทธศาสตร์โรงเรียน", "แผนปฏิบัติการประจำปี (Action Plan)", "การประเมินตนเอง (SAR)", "ระบบประเมินความโปร่งใส ITA", "คู่มือปฏิบัติงาน (SOP)", "รายงานผลการดำเนินงาน", "ระบบควบคุมภายใน", "งานสารบรรณโรงเรียน", "คำกล่าวรายงาน/เปิดงาน", "วาระการประชุมคณะกรรมการ"] },
-            { id: "finance", name: "พัสดุ การเงิน และกฎหมาย", ic: "fa-calculator", col: "bg-amber-600", agent: "06", list: ["ระบบจัดซื้อจัดจ้าง e-GP", "ทะเบียนคุมสินทรัพย์", "รายงานการเงินรายเดือน", "งบประมาณอุดหนุนรายหัว", "การเบิกจ่ายโครงการ", "กฎหมายการศึกษาที่เกี่ยวข้อง", "ระเบียบงานพัสดุราชการ", "ข้อตกลงการจ้าง (TOR)", "การตรวจสอบภายใน", "ระเบียบค่าใช้จ่ายไปราชการ"] },
-            { id: "hr", name: "วิทยฐานะและบุคลากร (HR)", ic: "fa-id-card", col: "bg-rose-600", agent: "08", list: ["ประวัติครู (P-Record)", "การทำข้อตกลง วPA", "คลิปการสอนตามเกณฑ์ วPA", "วิทยฐานะดิจิทัล (DPA)", "การประเมินขั้นเงินเดือน", "แผนพัฒนาตนเอง (ID Plan)", "เอกสารขอเครื่องราชอิสริยาภรณ์", "จรรยาบรรณวิชาชีพครู", "สวัสดิการข้าราชการ", "การขอทุนพัฒนาบุคลากร"] },
-            { id: "measure", name: "วัดผล สถิติ และวิจัย", ic: "fa-chart-bar", col: "bg-teal-600", agent: "04", list: ["ระบบสารสนเทศ DMC", "การออกเอกสาร ปพ.", "สถิติผู้เรียน ปพ.1-3", "ข้อสอบมาตรฐาน PISA Style", "วิเคราะห์ค่าความยากง่าย (P/R)", "แบบประเมิน Rubric", "สถิติการมาเรียน", "รายงานผลระดับชาติ (O-NET)", "การจัดทำรายงานสรุปผลการเรียน", "วิจัยประเมินผลโครงการ"] },
-            { id: "higher", name: "อุดมศึกษาและอาชีวศึกษา", ic: "fa-university", col: "bg-purple-600", agent: "05", list: ["หลักสูตรฐานสมรรถนะอาชีวะ", "มาตรฐาน OBE", "เอกสาร มคอ.", "แผนธุรกิจ 1 วิทยาลัย 1 ผลิตภัณฑ์", "โครงการศูนย์ซ่อมสร้าง (Fix It)", "ทวิภาคีและระบบฝึกงาน", "โครงการสิ่งประดิษฐ์คนรุ่นใหม่", "ทุนวิจัย บพค./สกสว.", "การเขียนบทความตีพิมพ์ TCI", "โครงการอาชีวะจิตอาสา"] },
-            { id: "ict", name: "สื่อดิจิทัลและเทคโนโลยี IT", ic: "fa-laptop-code", col: "bg-cyan-600", agent: "09", list: ["การจัดการ Google Workspace", "เว็บไซต์สถานศึกษา", "ระบบเครือข่ายอินเทอร์เน็ตโรงเรียน", "การซ่อมบำรุงคอมพิวเตอร์", "การเขียน Prompt Engineering", "การสร้าง Web App การศึกษา", "ผลิตสื่อวิดีโอเทิดพระเกียรติ", "กราฟิกและ Infographic", "ระบบลงทะเบียนออนไลน์", "การจัดการฐานข้อมูล (SQL/Looker)"] },
-            { id: "network", name: "ชุมชนสัมพันธ์และเครือข่าย", ic: "fa-handshake", col: "bg-pink-600", agent: "01", list: ["โครงการผ้าป่าการศึกษา", "หนังสือเชิญผู้ปกครอง/ชุมชน", "วารสารประชาสัมพันธ์โรงเรียน", "กิจกรรมวันสำคัญทางประเพณี", "เครือข่ายศิษย์เก่า", "รายงานความร่วมมือ MOU", "กิจกรรมจิตอาสา", "ศูนย์เรียนรู้ปรัชญาเศรษฐกิจพอเพียง", "โครงการ To Be Number One", "เครือข่ายผู้ปกครองนักเรียน"] },
-            { id: "quickwin", name: "นโยบายด่วน (Quick Win)", ic: "fa-rocket", col: "bg-yellow-600", agent: "10", list: ["รายงานผล Quick Win", "โครงการลดภาระครู 5 ด้าน", "การขับเคลื่อน 1 อำเภอ 1 ทุน (ODOS)", "นโยบายเรียนดี มีความสุข", "โรงเรียนปลอดบุหรี่ไฟฟ้า", "การแก้ไขปัญหาหนี้สินครู", "โครงการ Soft Power สถานศึกษา", "การจัดการศึกษาเพื่อการมีงานทำ", "โรงเรียนสีเขียว (Green School)", "โครงการโรงเรียนคุณภาพประจำตำบล"] }
-        ];
-
-        // --- DAILY TRICKS DATA (กลเม็ดและความก้าวหน้าของวิชาชีพครูรายวัน) ---
-        const DAILY_TRICKS = [
-            {
-                text: "ถ่ายคลิปการสอน วPA อย่ากลัวความเงียบ! ก.ค.ศ. ชอบห้องเรียนตามธรรมชาติ หากเด็กหยุดคิดหรือมีจุดขัดข้อง นั่นคือโอกาสทองที่ครูจะได้แสดงทักษะการแก้ปัญหาเฉพาะหน้า (ตัวชี้วัดที่ 5) ห้ามสั่งคัตเด็ดขาดครับ",
-                tag: "เกณฑ์ วPA & วิทยฐานะดิจิทัล"
-            },
-            {
-                text: "คลิปแรงบันดาลใจ 10 นาที ไม่ต้องใช้นักแสดงสมทบหรือทำกราฟิกหรูหรา สิ่งที่กรรมการต้องการเห็นคือ 'ข้อมูลเชิงสถิติ' ว่าคะแนนของเด็กก่อนหน้านี้มีปัญหาตรงไหน และแผนการสอนของครูจะช่วยแก้ปัญหานั้นได้อย่างไร พูดให้ตรงประเด็นใน 3 นาทีแรกเลยครับ",
-                tag: "คลิปแรงบันดาลใจ วPA"
-            },
-            {
-                text: "การจัดกลุ่ม PLC ที่ดี ไม่ใช่การนั่งประชุมกันยาวๆ 3 ชั่วโมง แต่คือการแชร์ไอเดียแก้ปัญหาเด็กเพียง 15 นาที แล้วแยกย้ายไปทดลองใช้ ลองใช้ Agent 08 ช่วยเขียนบันทึกการประชุม PLC เพื่อประหยัดเวลาดูสิครับ",
-                tag: "เทคนิคการทำงานอัจฉริยะ"
-            },
-            {
-                text: "อย่าพยายามทำสไลด์ให้สวยจนไม่ได้นอน คณะกรรมการประเมินจาก 'ความเข้าใจของเด็ก' ไม่ใช่สีสันบนหน้าจอ ใช้เทมเพลตมาตรฐานที่อ่านง่าย เน้นภาพชิ้นงานจริงของนักเรียนประกอบดีที่สุด",
-                tag: "การสร้างนวัตกรรมการสอน"
-            },
-            {
-                text: "ครูที่เก่งที่สุดไม่ใช่ครูที่ไม่มีเด็กสอบตก แต่คือครูที่รู้วิธีฉุดกระชากเด็กที่กำลังจะถอดใจให้กลับมามีรอยยิ้มในการเรียนได้อีกครั้ง วันนี้ลองกอดหรือเอ่ยชมเด็กที่เรียนหลังห้องสักคนนะครับ พลังของคุณเปลี่ยนชีวิตเขาได้",
-                tag: "พลังใจและจริยธรรมครูไทย"
-            },
-            {
-                text: "AI เป็นผู้ช่วยที่ยอดเยี่ยม แต่อย่าลืมว่า 'ความรักความใส่ใจและความเข้าใจความรู้สึกเด็ก' เป็นสิ่งเดียวที่ AI เลียนแบบครูไม่ได้ ปลดปล่อยงานเอกสารให้ AI ทำ แล้วเอาหัวใจของคุณกลับคืนสู่ห้องเรียนกันครับ",
-                tag: "พลังใจและจริยธรรมครูไทย"
-            },
-            {
-                text: "การบันทึกผลหลังการสอนที่ดี ควรระบุจำนวนนักเรียนที่ผ่านและไม่ผ่านเกณฑ์อย่างชัดเจน และบันทึกแนวทางแก้ไขนักเรียนที่ไม่ผ่านเกณฑ์นั้นในแผนถัดไปทันที เพื่อแสดงให้เห็นถึงความต่อเนื่องและการพัฒนาผู้เรียนอย่างจริงจังครับ",
-                tag: "เกณฑ์ วPA & วิทยฐานะดิจิทัล"
-            },
-            {
-                text: "จัดระเบียบ Google Drive ประจำสัปดาห์ด้วยโครงสร้างโฟลเดอร์ วPA แยกรายห้องเรียนและรายตัวชี้วัด สะสมผลงานนักเรียนสัปดาห์ละ 3-4 ชิ้น เมื่อถึงเวลาประเมินจะดึงข้อมูลไปใช้ได้ทันทีโดยไม่ต้องรื้อค้นครับ",
-                tag: "เทคนิคการทำงานอัจฉริยะ"
-            }
-        ];
-
         // --- Core Functions ---
         function switchTab(t) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
@@ -896,7 +808,7 @@
             showToast("🎲 สลับกลเม็ดถัดไปเรียบร้อยแล้วครับ!");
         }
 
-        // ================= 🛠️ ระบบสลับตรวจหาวันที่และดึงกิจกรรมแบบ Real-time ช่วงวัน (V13.16.01) =================
+        // ================= 🛠️ ระบบสลับตรวจหาวันที่และดึงกิจกรรมแบบ Real-time ช่วงวัน =================
         function getEventsForDate(year, month, day) {
             const checkDate = new Date(year, month, day);
             checkDate.setHours(0,0,0,0);
@@ -969,17 +881,17 @@
                 const currentDayOfWeek = new Date(currentYear, currentMonth, d).getDay();
                 
                 // กำหนดโทนสีพื้นหลัง (วันหยุดราชการ = สีแดงส้มอ่อน)
-                let cellStyle = "bg-white border-slate-100 text-slate-800";
+                let cellStyle = "bg-white border-amber-100 text-slate-800";
                 
                 if (hasHoliday) {
-                    cellStyle = "bg-rose-50 border-rose-200 text-rose-600"; // วันหยุดราชการแดงส้มอ่อน
+                    cellStyle = "bg-rose-100/70 border-rose-300 text-rose-700 shadow-sm"; // วันหยุดราชการแดงส้มอ่อน
                 } else if (currentDayOfWeek === 0) {
-                    cellStyle = "text-rose-500 bg-rose-50/20"; // วันอาทิตย์
+                    cellStyle = "text-rose-600 bg-rose-50/40"; // วันอาทิตย์
                 } else if (currentDayOfWeek === 6) {
-                    cellStyle = "text-slate-500 bg-slate-50/50"; // วันเสาร์
+                    cellStyle = "text-slate-600 bg-slate-100/50"; // วันเสาร์
                 }
 
-                let todayClass = isToday ? "today font-extrabold shadow-inner border-2 border-blue-500" : "";
+                let todayClass = isToday ? "today font-extrabold shadow-inner border-2 border-orange-500" : "";
                 let selectedClass = isSelected ? "selected shadow-md scale-105" : "";
 
                 gridHtml += `
@@ -1107,8 +1019,10 @@
             const ctx2 = document.getElementById('chart-agencies');
             if(!ctx1 || !ctx2) return;
             chartsInitialized = true;
-            new Chart(ctx1, { type: 'pie', data: { labels: ['ครู', 'บริหาร', 'บุคลากร', 'ทั่วไป'], datasets: [{ data: [65, 12, 18, 5], backgroundColor: ['#1e3a8a', '#3b82f6', '#10b981', '#94a3b8'] }] }, options: { maintainAspectRatio: false } });
-            new Chart(ctx2, { type: 'bar', data: { labels: ['สพฐ', 'กทม', 'สกศ', 'กคศ', 'อว', 'สอวช', 'สอศ', 'ศธ'], datasets: [{ label: 'ผู้ใช้จริง', data: [1800, 1150, 580, 600, 290, 400, 350, 500], backgroundColor: '#3b82f6' }] }, options: { maintainAspectRatio: false } });
+            const config1 = { type: 'pie', data: { labels: ['ครู', 'บริหาร', 'บุคลากร', 'ทั่วไป'], datasets: [{ data: [65, 12, 18, 5], backgroundColor: ['#1e3a8a', '#3b82f6', '#10b981', '#94a3b8'] }] }, options: { maintainAspectRatio: false } };
+            const config2 = { type: 'bar', data: { labels: ['สพฐ', 'กทม', 'สกศ', 'กคศ', 'อว', 'สอวช', 'สอศ', 'ศธ'], datasets: [{ label: 'ผู้ใช้จริง', data: [1800, 1150, 580, 600, 290, 400, 350, 500], backgroundColor: '#3b82f6' }] }, options: { maintainAspectRatio: false } };
+            new Chart(ctx1, config1);
+            new Chart(ctx2, config2);
         }
 
         function showToast(m) { const t = document.getElementById('toast'); if(t) { t.innerText = m; t.className = "show font-bold"; setTimeout(() => t.className = "", 3500); } }
