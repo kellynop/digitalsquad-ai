@@ -344,18 +344,59 @@
     </footer>
 
     <!-- Modals -->
+    <!-- 📸 บูรณาการระบบลงทะเบียนให้กลับมามีรายละเอียดสูงครบครันตามสถาปัตยกรรมแบรนด์ระดับสูง -->
     <div id="login-modal" class="modal-overlay" onclick="toggleModal('login-modal')">
-        <div class="modal-content text-left" onclick="event.stopPropagation()">
+        <div class="modal-content text-left max-h-[90vh] overflow-y-auto custom-scrollbar" onclick="event.stopPropagation()">
             <!-- 📸 นำโลโก้แบรนด์ตัวเต็ม มาจัดวางที่ส่วนบนสุดของ Modal ล็อกอินอย่างหรูหรา -->
             <div class="flex justify-center mb-6">
                 <img src="1722c691-e5e3-404d-a743-f3ece48a7225.png" alt="Digital Squad AI Full Logo" class="h-20 object-contain rounded-xl shadow-md border border-slate-100 bg-white p-2">
             </div>
             <h3 class="text-2xl font-black uppercase text-primary text-center mb-6">ลงทะเบียนเข้าใช้งาน</h3>
             <form onsubmit="handleLogin(event)" class="space-y-4">
-                <div class="space-y-1"><label class="text-xs font-black text-slate-400 uppercase">ชื่อจริง/นามสมมติ</label><input type="text" id="user-name-input" required class="w-full bg-slate-50 border-2 p-4 rounded-xl outline-none focus:border-blue-500 font-bold"></div>
-                <div class="space-y-1"><label class="text-xs font-black text-slate-400 uppercase">ตำแหน่ง</label><select id="user-pos-input" required class="w-full bg-slate-50 border-2 p-4 rounded-xl outline-none focus:border-blue-500 font-bold"><option value="ครูผู้สอน">ครูผู้สอน</option><option value="บริหารสถานศึกษา">บริหารสถานศึกษา</option><option value="บุคลากรทางการศึกษา">บุคลากรทางการศึกษา</option><option value="เจ้าหน้าที่">เจ้าหน้าที่</option><option value="อื่น ๆ">อื่น ๆ</option></select></div>
-                <div class="space-y-1"><label class="text-xs font-black text-slate-400 uppercase">สายงานหลัก</label><select id="user-track-input" required class="w-full bg-slate-50 border-2 p-4 rounded-xl outline-none focus:border-blue-500 font-bold"><option value="acad">วิชาการ/วิจัย</option><option value="student">กิจการนักเรียน</option><option value="hr">บริหารบุคคล</option><option value="supply">พัสดุ/บริหารทั่วไป</option><option value="plan">นโยบายและแผน</option></select></div>
-                <button type="submit" class="w-full bg-primary text-white py-4 rounded-xl font-bold uppercase shadow-lg active:scale-95">บันทึกข้อมูลและเข้าสู่ระบบ</button>
+                <div class="space-y-1">
+                    <label class="text-xs font-black text-slate-400 uppercase">ชื่อจริง / นามสมมติ</label>
+                    <input type="text" id="user-name-input" required class="w-full bg-slate-50 border-2 p-3.5 rounded-xl outline-none focus:border-blue-500 font-bold" placeholder="ระบุชื่อหรือนามแฝงของท่าน">
+                </div>
+                
+                <div class="space-y-1">
+                    <label class="text-xs font-black text-slate-400 uppercase">สังกัดหน่วยงาน</label>
+                    <select id="user-agency-input" required class="w-full bg-slate-50 border-2 p-3.5 rounded-xl outline-none focus:border-blue-500 font-bold">
+                        <option value="obec">สพฐ. (OBEC)</option>
+                        <option value="bma">กทม. (BMA)</option>
+                        <option value="moe">ศธ. (MOE)</option>
+                        <option value="otepc">ก.ค.ศ. (วPA)</option>
+                        <option value="ovec">สอศ. (OVEC)</option>
+                        <option value="onec">สกศ. (ONEC)</option>
+                        <option value="mhesi">อว. (MHESI)</option>
+                        <option value="other">อื่น ๆ</option>
+                    </select>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-black text-slate-400 uppercase">ตำแหน่งหลัก</label>
+                    <select id="user-pos-input" required class="w-full bg-slate-50 border-2 p-3.5 rounded-xl outline-none focus:border-blue-500 font-bold">
+                        <option value="ครูผู้สอน">ครูผู้สอน / ครูประจำชั้น</option>
+                        <option value="บริหาร">ผู้อำนวยการ / รองผู้อำนวยการ</option>
+                        <option value="ธุรการ">ธุรการ / เจ้าหน้าที่</option>
+                        <option value="การเงิน">การเงิน / พัสดุ</option>
+                        <option value="ประเมิน">ฝ่ายวิชาการ / วัดผล</option>
+                        <option value="อื่น ๆ">ตำแหน่งอื่น ๆ</option>
+                    </select>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-black text-slate-400 uppercase">สายงานหลัก / กลุ่มสาระ</label>
+                    <select id="user-track-input" required class="w-full bg-slate-50 border-2 p-3.5 rounded-xl outline-none focus:border-blue-500 font-bold">
+                        <option value="acad">วิชาการ/วิจัย</option>
+                        <option value="student">สุขภาวะ/จิตวิทยา</option>
+                        <option value="admin">บริหาร/ยุทธศาสตร์</option>
+                        <option value="supply">พัสดุ/การเงิน</option>
+                        <option value="hr">บุคคล/วิทยฐานะ</option>
+                        <option value="other">อื่น ๆ</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full bg-primary text-white py-4 rounded-xl font-bold uppercase shadow-lg active:scale-95 mt-4">บันทึกข้อมูลและเข้าสู่ระบบ</button>
             </form>
         </div>
     </div>
@@ -705,14 +746,19 @@
         }
 
         function showToast(m) { const t = document.getElementById('toast'); if(t) { t.innerText = m; t.className = "show font-bold"; setTimeout(() => t.className = "", 3500); } }
+        
         function handleLogin(e) { 
             e.preventDefault(); 
             const name = document.getElementById('user-name-input').value;
-            const pos = document.getElementById('user-pos-input').value;
+            const agencySelect = document.getElementById('user-agency-input');
+            const agency = agencySelect.options[agencySelect.selectedIndex].text;
+            const posSelect = document.getElementById('user-pos-input');
+            const pos = posSelect.options[posSelect.selectedIndex].text;
+            
             const users = parseInt(document.getElementById('stat-total-users').innerText.replace(',',''));
             document.getElementById('stat-total-users').innerText = (users + 1).toLocaleString();
             toggleModal('login-modal'); 
-            showToast(`สวัสดีคุณ ${name} (${pos}) บันทึกข้อมูลสำเร็จ!`); 
+            showToast(`สวัสดีคุณ ${name} (${pos}) สังกัด ${agency} บันทึกข้อมูลสำเร็จ!`); 
         }
 
         window.onload = () => { initDynamicContent(); initDailyTrick(); switchTab('home'); };
