@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V13.14.01 - Premium Educational Ecosystem</title>
+    <title>Digital Squad AI V13.15.01 - Premium Educational Ecosystem</title>
     
-    <!-- 🛡️ ระบบดาวน์โหลดดีไซน์อัจฉริยะแบบไดนามิก ป้องกันการแปลงลิงก์ Markdown ของแชทบอตพัง -->
+    <!-- 🛡️ ระบบดาวน์โหลดดีไซน์อัจฉริยะแบบซิงโครนัส (Synchronous Blocking Load) ป้องกันการแปลงลิงก์ Markdown และป้องกันสไตล์รวน -->
     <script>
         (function() {
           var tw = document.createElement("script");
@@ -40,20 +40,40 @@
     </script>
 
     <style>
+        /* 🛡️ สถิติตัวแปรสีหลักของแบรนด์ (ตรึงสไตล์ถาวรป้องกันปัญหาระบบแสดงผลล้มเหลว) */
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #facc15;
+        }
+
         body { background-color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; padding-bottom: 80px; font-family: 'Sarabun', sans-serif; }
         .allow-select { user-select: text !important; -webkit-user-select: text !important; }
         @media (min-width: 1024px) { body { padding-bottom: 0; } }
+        
+        /* ตรึงสีน้ำเงินเข้มให้แก่แผงนำทางด้านบนอย่างเหนียวแน่น ไม่มีวันโปร่งแสงส่งผลให้ตัวหนังสือซ้อนกัน */
+        .bg-primary { background-color: var(--primary) !important; }
+        .bg-secondary { background-color: var(--secondary) !important; }
+        .text-primary { color: var(--primary) !important; }
+        .text-secondary { color: var(--secondary) !important; }
+        .text-accent { color: var(--accent) !important; }
+        .bg-accent { background-color: var(--accent) !important; }
+
         .nav-link { border-bottom: 3px solid transparent; transition: all 0.3s; cursor: pointer; color: #bfdbfe; font-size: 1.05rem; padding: 1.25rem 0.5rem; font-weight: 700; }
-        .nav-link:hover, .nav-active { border-bottom: 3px solid #60a5fa; color: white; }
+        .nav-link:hover, .nav-active { border-bottom: 3px solid #60a5fa; color: white !important; }
+        
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); display: flex; justify-content: space-around; padding: 0.75rem 0; box-shadow: 0 -4px 20px rgba(0,0,0,0.05); z-index: 1000; border-top: 1px solid #e2e8f0; }
         .bottom-nav-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
         .bottom-nav-item.active { color: #1e3a8a; }
+        
         .tab-content { animation: fadeIn 0.4s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         .modal-content { background: white; border-radius: 2rem; width: 90%; max-width: 480px; padding: 2.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
         .modal-content-lg { max-width: 1100px !important; width: 95%; }
-        #toast { visibility: hidden; min-width: 280px; background-color: #10b981; color: #fff; text-align: center; border-radius: 50px; padding: 1rem 1.5rem; position: fixed; z-index: 100000; left: 50%; bottom: 100px; transform: translateX(-50%) translateY(20px); font-weight: 700; opacity: 0; transition: all 0.4s; }
+        
+        #toast { visibility: hidden; min-width: 300px; background-color: #10b981; color: #fff; text-align: center; border-radius: 50px; padding: 1rem 1.75rem; position: fixed; z-index: 100000; left: 50%; bottom: 100px; transform: translateX(-50%) translateY(20px); font-weight: 700; opacity: 0; transition: all 0.4s; box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4); }
         #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
         .agent-number-bg { position: absolute; top: -10px; right: 10px; font-size: 6rem; font-weight: 900; color: rgba(0,0,0,0.01); z-index: 0; pointer-events: none; }
         
@@ -75,15 +95,16 @@
 </head>
 <body class="font-sans text-slate-800 text-left">
 
-    <!-- Header -->
-    <header class="bg-primary sticky top-0 z-50 shadow-lg px-4">
+    <!-- Header (ตรึงสีน้ำเงินเข้ม bg-primary ด้วย Inline style ป้องกันล่องหนทับซ้อนกัน) -->
+    <header style="background-color: #1e3a8a !important;" class="bg-primary sticky top-0 z-50 shadow-lg px-4">
         <div class="container mx-auto flex items-center justify-between h-16 md:h-24">
             <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchTab('home')">
+                <!-- 📸 แสดงผลโลโก้ไอคอนอย่างเสถียร (และแสดงผลถูกต้องตามที่ครูเอแจ้งว่าทำงานแล้ว) -->
                 <img src="app icon.jpg" alt="Digital Squad AI Icon" class="w-10 h-10 md:w-16 md:h-16 rounded-xl shadow-md group-hover:scale-105 transition-transform duration-300 object-cover bg-white p-0.5">
                 <div class="text-left leading-tight">
                     <h1 class="font-black text-sm md:text-xl uppercase tracking-tighter text-white">Digital Squad AI</h1>
                     <span class="text-blue-200 font-bold text-xs md:text-[15px] block leading-none mt-0.5">เพื่อนครูไทย</span>
-                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.14.01</p>
+                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.15.01</p>
                 </div>
             </div>
             <nav class="hidden lg:flex space-x-8 text-white h-full items-center font-bold">
@@ -110,7 +131,8 @@
         
         <!-- ================= TAB: HOME ================= -->
         <div id="tab-home" class="tab-content">
-            <!-- Blue Hero Section from V13.14.01 (FROZEN & LOCKED) -->
+            <!-- Blue Hero Section from V13.15.01 (FROZEN & LOCKED) -->
+            <!-- 📸 ปรับเลย์เอาต์เพื่อแทรก Logo สหวิทยาการขนาดใหญ่อย่างสง่างามทางด้านขวาบนหน้าจอใหญ่ -->
             <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600 flex flex-col lg:flex-row items-center justify-between gap-8">
                 <!-- Background Globe Deco -->
                 <div class="absolute right-[-40px] top-[-40px] text-white opacity-5 text-[20rem] pointer-events-none">
@@ -162,7 +184,7 @@
                     </div>
                 </div>
 
-                <!-- 📸 แสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
+                <!-- 📸 รูปแบบแสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
                 <div class="relative z-10 lg:w-1/3 flex justify-center items-center">
                     <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Digital Squad AI Premium Logo" class="max-w-[260px] md:max-w-[300px] rounded-3xl shadow-2xl bg-white p-5 hover:scale-105 transition-transform duration-300 border border-blue-200">
                 </div>
@@ -406,7 +428,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- ฝั่งซ้าย: ตารางปฏิทินแบบตาราง 7 วัน (ประหยัดโค้ด สวยงาม มั่นคง) -->
                 <div class="lg:col-span-2 bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden flex flex-col h-full">
-                    <div class="bg-primary p-6 text-white flex justify-between items-center">
+                    <!-- 🛡️ ตรึงหัวข้อปฏิทินสีน้ำเงินเข้มด้วย Inline style เพื่อให้ไม่โปรงใสทับซ้อนกันเวลากดสลับหน้า -->
+                    <div style="background-color: #1e3a8a !important;" class="bg-primary p-6 text-white flex justify-between items-center">
                         <div>
                             <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white" id="cal-month-title">มกราคม 2569</h2>
                             <p class="text-blue-300 text-[10px] font-bold uppercase tracking-widest mt-1">Ecosystem Calendar Sync Active</p>
@@ -419,7 +442,7 @@
                     </div>
                     
                     <div class="p-6 bg-slate-50 flex-grow">
-                        <!-- 🛠️ ตรึงหัวตาราง 7 วันด้วย Inline CSS Grid ป้องกันปฏิทินเบี้ยวโย้ทางซ้ายตั้งแต่เสี้ยววินาทีแรก -->
+                        <!-- 🛡️ ตรึงหัวตาราง 7 วันด้วย Inline CSS Grid สากล ป้องกันแนวคอลัมน์โย้เย้ไปทางซ้ายมือ 100% -->
                         <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem;" class="text-center text-xs font-black uppercase tracking-wider text-slate-400 mb-4">
                             <div class="text-rose-500">อา.</div>
                             <div>จ.</div>
@@ -429,7 +452,7 @@
                             <div>ศ.</div>
                             <div class="text-slate-500 font-bold">ส.</div>
                         </div>
-                        <!-- 🛠️ ตรึงพื้นที่วันในปฏิทินด้วย Inline CSS Grid สากล ประสิทธิภาพสูง ไม่พังแน่นอน -->
+                        <!-- 🛡️ ตรึงพื้นที่วันในปฏิทินด้วย Inline CSS Grid สากล ประสิทธิภาพสูง ไม่พังแน่นอน -->
                         <div id="calendar-grid-area" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem;"></div>
                     </div>
                 </div>
@@ -482,7 +505,7 @@
     </main>
 
     <footer class="bg-white border-t py-12 text-center mt-auto text-slate-400">
-        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.14.01 (SUPREME SYNC EDITION)</p>
+        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.15.01 (SUPREME SYNC EDITION)</p>
         <p class="text-primary text-[14px] font-black text-center mb-1">ผู้ออกแบบและพัฒนาโปรแกรม โดย : กันตภณ ณพสิษฐ์ (สงวนลิขสิทธิ์)</p>
         <p class="text-slate-400 text-[12px] text-center">© 2026 OFFICIAL EDUCATIONAL HUB. ALL RIGHTS RESERVED.</p>
     </footer>
@@ -894,7 +917,7 @@
         function savePrivateEventForSelectedDate() {
             const noteInput = document.getElementById('cal-notes');
             const noteText = noteInput.value.trim();
-            if (!noteText) { alert("กรุณากรอกข้อความก่อนกดบันทึกครับ!"); return; }
+            if (!noteText) { showToast("⚠️ กรุณากรอกข้อความก่อนกดบันทึกครับ!"); return; }
 
             const dateKey = `${currentYear}-${currentMonth}-${selectedDay}`;
             if (!PRIVATE_EVENTS[dateKey]) PRIVATE_EVENTS[dateKey] = [];
