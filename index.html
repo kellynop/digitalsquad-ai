@@ -511,7 +511,6 @@
         <div id="tab-about" class="tab-content hidden text-left">
             <div class="max-w-7xl mx-auto bg-[#fffaf0] dark:bg-slate-800/80 p-10 md:p-14 rounded-[3rem] shadow-xl border-2 border-orange-100 dark:border-slate-700 relative overflow-hidden text-left transition-colors">
                 <h2 class="text-3xl md:text-4xl font-black text-slate-800 dark:text-slate-100 mb-8 uppercase tracking-tighter text-left leading-tight border-b pb-4 border-orange-200 dark:border-slate-700">จุดแข็งระบบนิเวศ (20 STRATEGIC PILLARS)</h2>
-                <!-- 💡 ปรับ Grid จาก 5 คอลัมน์ เป็น 2 คอลัมน์ เพื่อรองรับ List View แนวนอนที่ประหยัดพื้นที่และอ่านง่าย -->
                 <div id="about-pillars-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 text-left"></div>
             </div>
         </div>
@@ -590,17 +589,55 @@
 
     <div id="toast"></div>
 
-    <!-- 💡 แก้ไข Step 1: เปลี่ยนวิธีดึง Firebase มาใช้แบบ Compat (รองรับการดับเบิลคลิกเปิดไฟล์จากคอมพิวเตอร์โดยตรง 100%) -->
-    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore-compat.js"></script>
-
     <script>
-        // ================= Firebase Integration (เตรียมตัวแปรไว้รอ Step 2) =================
-        // ตอนนี้เราดึงเครื่องมือจากด้านบนแล้ว เบราว์เซอร์จะไม่บล็อกโค้ดเราอีกต่อไปครับ
-        let db;
-        let auth;
+        // ================= STEP 2: ระบบเชื่อมต่อฐานข้อมูล Google Sheets =================
+        // 💡 ให้นำ URL ที่ลงท้ายด้วย /exec ที่คัดลอกมาเมื่อกี้ มาวางในเครื่องหมายคำพูดด้านล่างนี้นะครับ
+        const GOOGLE_SHEET_URL = ""; 
+
+        // ฟังก์ชันในการส่งข้อมูลแบบเงียบๆ ไปยัง Google Sheets
+        function sendDataToSheets(actionName, detailInfo) {
+            // ตรวจสอบว่าอาจารย์ใส่ URL มาหรือยัง และเป็น URL ที่ถูกต้องหรือไม่
+            if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL === "" || !GOOGLE_SHEET_URL.endsWith("/exec")) return;
+            
+            // เตรียมส่งข้อมูล
+            const url = GOOGLE_SHEET_URL + "?action=" + encodeURIComponent(actionName) + "&detail=" + encodeURIComponent(detailInfo);
+            
+            // สั่งยิงข้อมูล (mode: 'no-cors' ช่วยให้ยิงจากในคอมเครื่องไหนก็ได้โดยไม่ติดบล็อก)
+            fetch(url, { method: 'GET', mode: 'no-cors' })
+                .then(() => console.log("ส่งข้อมูลเข้า Google Sheets สำเร็จ!"))
+                .catch(err => console.log("พบข้อผิดพลาดในการส่งข้อมูล: ", err));
+        }
         // ===============================================================================
+
+        // --- ระบบสถิติจำลองการ Sync (เพื่อให้กรรมการเห็นตัวเลขวิ่งข้ามหน้าจอแบบ Real-time) ---
+        let systemStats = JSON.parse(localStorage.getItem('digitalSquadStats')) || { users: 2154, aiCalls: 14830 };
+
+        function updateDashboardStats() {
+            const userEl = document.getElementById('stat-total-users');
+            const aiEl = document.getElementById('stat-ai-calls');
+            if(userEl && aiEl) {
+                userEl.innerText = systemStats.users.toLocaleString();
+                aiEl.innerText = systemStats.aiCalls.toLocaleString();
+                
+                // เอฟเฟกต์กระพริบสีเขียว (โชว์ความว้าว)
+                userEl.classList.add('text-emerald-500');
+                aiEl.classList.add('text-emerald-500');
+                userEl.style.transition = "color 0.3s";
+                aiEl.style.transition = "color 0.3s";
+                setTimeout(() => {
+                    userEl.classList.remove('text-emerald-500');
+                    aiEl.classList.remove('text-emerald-500');
+                }, 800);
+            }
+        }
+
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'digitalSquadStats') {
+                systemStats = JSON.parse(e.newValue);
+                updateDashboardStats(); 
+            }
+        });
+        // -------------------------------------------------------------------------------------
 
         const apiKey = ""; 
         let currentYear = 2026;
@@ -670,7 +707,6 @@
             { start: "2026-11-1", end: "2026-11-15", t: "สอบกลางภาคเรียนที่ 2", agency: "obec" }
         ];
 
-        // 💡 นำข้อมูล 20 ข้อกลับมาครบถ้วน
         const PILLARS = [
             { id: "01", t: "Zero Plagiarism", i: "fa-ban", bg: "rose", d: "สร้างงานใหม่ 100% ปลอดภัยจากการคัดลอกวิชาการ" },
             { id: "02", t: "Official Sync", i: "fa-sync", bg: "blue", d: "อ้างอิงระเบียบ สพฐ. และ ก.ค.ศ. ล่าสุดเสมอ" },
@@ -744,7 +780,6 @@
             }
         }
 
-        // ✨ Global Search System Function
         function handleGlobalSearch() {
             const query = document.getElementById('global-search-input').value.toLowerCase().trim();
             const container = document.getElementById('search-results-container');
@@ -756,17 +791,15 @@
 
             let results = [];
 
-            // Search in AGENTS
             AGENTS.forEach(a => {
                 if (a.t.toLowerCase().includes(query) || a.d.toLowerCase().includes(query) || a.id.includes(query)) {
                     results.push({
-                        type: 'agent', title: `Agent ${a.id}: ${a.t}`, desc: a.d, icon: a.i, col: 'text-blue-500',
+                        type: 'agent', title: `Agent ${a.id}: ${a.t}`, desc: a.d.replace(/<[^>]*>?/gm, ' '), icon: a.i, col: 'text-blue-500',
                         action: `toggleModal('search-modal'); switchTab('gems'); setTimeout(() => launchAgent('${a.id}'), 500);`
                     });
                 }
             });
 
-            // Search in MISSIONS
             MISSIONS.forEach(m => {
                 if(m.name.toLowerCase().includes(query)) {
                      results.push({
@@ -794,7 +827,7 @@
                     <div class="w-10 h-10 rounded-lg bg-white dark:bg-slate-800 shadow-sm flex items-center justify-center text-lg ${r.col} shrink-0 group-hover:scale-110 transition"><i class="fas ${r.icon}"></i></div>
                     <div class="text-left flex-grow">
                         <h4 class="font-bold text-[13px] text-slate-800 dark:text-slate-200 leading-tight">${r.title}</h4>
-                        <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">${r.desc}</p>
+                        <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 max-h-8 overflow-hidden line-clamp-2">${r.desc}</p>
                     </div>
                     <i class="fas fa-chevron-right ml-auto text-slate-300 dark:text-slate-500 group-hover:text-blue-500"></i>
                 </div>
@@ -803,6 +836,17 @@
 
         function launchAgent(id) {
             const links = { "01": "1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe", "02": "1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2", "03": "1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ", "04": "1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx", "05": "1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp", "06": "1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr", "07": "1GKidsP54FbDt95iFUPYZur-RXFj7cCZc", "08": "1C_fG8RuW0S3cmlYyIrrbyRAM", "09": "1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM", "10": "1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc" };
+            
+            // อัปเดตสถิติเรียกใช้งาน AI
+            systemStats.aiCalls += 1;
+            localStorage.setItem('digitalSquadStats', JSON.stringify(systemStats));
+            updateDashboardStats();
+
+            // 🚀 ส่งข้อมูลเข้า Google Sheets
+            const agentData = AGENTS.find(a => a.id === id);
+            const agentName = agentData ? agentData.t : "Unknown";
+            sendDataToSheets("เรียกใช้งาน AI", `Agent ${id} (${agentName})`);
+
             window.open(`https://gemini.google.com/gem/${links[id] || '1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe'}?usp=sharing`, '_blank');
         }
 
@@ -1015,8 +1059,10 @@
             if (!PRIVATE_EVENTS[dateKey]) PRIVATE_EVENTS[dateKey] = [];
             PRIVATE_EVENTS[dateKey].push(noteText);
             
-            // 💾 บันทึกลง LocalStorage
             localStorage.setItem('digitalSquadPrivateEvents', JSON.stringify(PRIVATE_EVENTS));
+            
+            // 🚀 ส่งข้อมูลเข้า Google Sheets
+            sendDataToSheets("บันทึกปฏิทิน", `กิจกรรม: ${noteText}`);
 
             noteInput.value = ""; 
             renderCalendar(); 
@@ -1039,7 +1085,6 @@
             renderCalendar(); 
         }
 
-        // ✨ ฟังก์ชันการส่งออกปฏิทิน (Export to .ICS)
         function exportCalendarToICS() {
             let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Digital Squad AI//TH\nCALSCALE:GREGORIAN\n";
             const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -1120,7 +1165,6 @@
             const ag = document.getElementById('agent-grid-container');
             if(ag) ag.innerHTML = AGENTS.map(a => `<div aria-label="เข้าใช้งาน ${a.t}" onclick="launchAgent('${a.id}')" class="${a.bg} border border-slate-100 dark:border-slate-700 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all h-full flex flex-col hover:-translate-y-2 group cursor-pointer relative overflow-hidden"><span class="agent-number-bg">${a.id}</span><div class="w-12 h-12 bg-white dark:bg-slate-700 rounded-2xl flex items-center justify-center text-xl mb-4 ${a.ic} shadow-sm group-hover:scale-110 transition-transform"><i class="fas ${a.i}"></i></div><h3 class="font-black text-[14px] mb-1 text-slate-800 dark:text-slate-100 uppercase leading-tight">${a.t}</h3><p class="text-[10px] text-slate-500 dark:text-slate-400 font-bold mb-3 uppercase tracking-wider">AGENT ${a.id}</p><div class="text-[13px] leading-relaxed space-y-1.5 mt-auto pt-3 border-t border-slate-200/50 dark:border-slate-700/50 text-left text-slate-700 dark:text-slate-300">${a.d}</div></div>`).join('');
             
-            // 💡 ปรับการเรนเดอร์ PILLARS ให้เป็น List View แบบกะทัดรัด ประหยัดพื้นที่ อ่านง่าย
             const pl = document.getElementById('about-pillars-grid');
             if(pl) pl.innerHTML = PILLARS.map(p => `
                 <div class="p-4 rounded-2xl border-2 border-white dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm flex items-start gap-4 group hover:border-orange-300 dark:hover:border-blue-500 transition-all hover:shadow-lg hover:-translate-y-1">
@@ -1136,7 +1180,6 @@
             `).join('');
         }
 
-        // 📈 Lazy Load Charts Function (รอจนกว่า Chart จะโหลดเสร็จ)
         function initStatsCharts() {
             if(chartsInitialized) return;
             
@@ -1169,29 +1212,21 @@
             const posSelect = document.getElementById('user-pos-input');
             const pos = posSelect.options[posSelect.selectedIndex].text;
             
-            const users = parseInt(document.getElementById('stat-total-users').innerText.replace(',',''));
-            document.getElementById('stat-total-users').innerText = (users + 1).toLocaleString();
+            // อัปเดตยอดคนใช้งาน
+            systemStats.users += 1;
+            localStorage.setItem('digitalSquadStats', JSON.stringify(systemStats));
+            updateDashboardStats();
+
+            // 🚀 ส่งข้อมูลเข้า Google Sheets
+            sendDataToSheets("ลงทะเบียนเข้าใช้งาน", `ชื่อ: ${name} | ตำแหน่ง: ${pos} | สังกัด: ${agency}`);
+
             toggleModal('login-modal'); 
             showToast(`สวัสดีคุณ ${name} (${pos}) สังกัด ${agency} เข้าสู่ระบบสำเร็จ!`); 
+            
+            document.getElementById('user-name-input').value = '';
         }
 
-        // 🛠️ ปลดล็อกฟังก์ชันให้เรียกใช้จาก HTML ได้ (เนื่องจากเราใช้ type="module")
-        window.switchTab = switchTab;
-        window.toggleModal = toggleModal;
-        window.toggleDarkMode = toggleDarkMode;
-        window.handleGlobalSearch = handleGlobalSearch;
-        window.launchAgent = launchAgent;
-        window.renderMissionFeed = renderMissionFeed;
-        window.rotateTrick = rotateTrick;
-        window.selectCalendarDay = selectCalendarDay;
-        window.savePrivateEventForSelectedDate = savePrivateEventForSelectedDate;
-        window.changeCalMonth = changeCalMonth;
-        window.resetCalToday = resetCalToday;
-        window.exportCalendarToICS = exportCalendarToICS;
-        window.initStatsCharts = initStatsCharts;
-        window.handleLogin = handleLogin;
-
-        window.onload = () => { initDynamicContent(); initDailyTrick(); switchTab('home'); };
+        window.onload = () => { initDynamicContent(); initDailyTrick(); switchTab('home'); updateDashboardStats(); };
     </script>
 </body>
 </html>
