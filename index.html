@@ -55,7 +55,8 @@
     <header class="bg-primary sticky top-0 z-50 shadow-lg px-4">
         <div class="container mx-auto flex items-center justify-between h-16 md:h-24">
             <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchTab('home')">
-                <div class="w-10 h-10 md:w-14 md:h-14 bg-white rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform text-primary text-xl md:text-3xl font-black"><i class="fas fa-graduation-cap"></i></div>
+                <!-- 📸 เปลี่ยนจากไอคอนทั่วไปเป็น App Icon ที่อัปโหลดใหม่อย่างลงตัว -->
+                <img src="app icon.jpg" alt="Digital Squad AI Icon" class="w-10 h-10 md:w-16 md:h-16 rounded-xl shadow-md group-hover:scale-105 transition-transform duration-300 object-cover bg-white p-0.5">
                 <div class="text-left leading-tight">
                     <h1 class="font-black text-sm md:text-xl uppercase tracking-tighter text-white">Digital Squad AI</h1>
                     <span class="text-blue-200 font-bold text-xs md:text-[15px] block leading-none mt-0.5">เพื่อนครูไทย</span>
@@ -87,13 +88,14 @@
         <!-- ================= TAB: HOME ================= -->
         <div id="tab-home" class="tab-content">
             <!-- Blue Hero Section from V13.12.53 (FROZEN & LOCKED) -->
-            <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600">
+            <!-- 📸 ปรับเลย์เอาต์เพื่อแทรก Logo สหวิทยาการขนาดใหญ่อย่างสง่างามทางด้านขวาบนหน้าจอใหญ่ -->
+            <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600 flex flex-col lg:flex-row items-center justify-between gap-8">
                 <!-- Background Globe Deco -->
                 <div class="absolute right-[-40px] top-[-40px] text-white opacity-5 text-[20rem] pointer-events-none">
                     <i class="fas fa-globe"></i>
                 </div>
                 
-                <div class="relative z-10 text-left">
+                <div class="relative z-10 text-left lg:w-2/3">
                     <span class="bg-yellow-400 text-slate-900 text-xs font-black px-4 py-1.5 rounded-full mb-6 inline-block shadow-lg uppercase tracking-wider">OFFICIAL RELEASE 2026</span>
                     <h2 class="text-2xl md:text-5xl font-black mb-6 leading-tight">Digital Squad AI ระบบนิเวศทางการศึกษาที่สมบูรณ์แบบ</h2>
                     <p class="text-blue-100 text-sm md:text-lg mb-10 max-w-5xl leading-relaxed font-medium">ใช้ Generative AI Agent เป็นที่ปรึกษา พี่เลี้ยง ผู้ช่วย และเครื่องมือช่วยลดภาระ ลดเวลาในการทำงานของครู คืนเวลาครูให้มีเวลาเหลือไปใช้กับการสอน กับนักเรียน และกับการใช้ชีวิตส่วนตัวให้มีคุณภาพมากขึ้น</p>
@@ -136,25 +138,40 @@
                             <p class="text-[12px] text-blue-100 mt-2 font-medium leading-snug">เคร่งครัดจรรยาบรรณวิชาชีพ</p>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Bottom stats bar inside blue section -->
-                    <div class="mt-8 flex flex-col md:flex-row justify-between items-center bg-blue-950/80 p-6 rounded-[2rem] border border-white/10 shadow-xl">
-                        <div class="mb-4 md:mb-0 text-left text-blue-50 font-medium">
-                            <span class="text-yellow-400 font-bold text-sm md:text-base uppercase tracking-wider">
-                                <i class="fas fa-chart-line mr-2"></i> ปริมาณการใช้งานระบบ (Real-time):
-                            </span>
-                            <span class="ml-2 text-sm md:text-base font-bold">
-                                บุคลากรลงทะเบียน <b class="text-white text-lg font-black">2,154</b> ท่าน | เรียกใช้ AI Agent <b class="text-white text-lg font-black">14,830</b> ครั้ง
-                            </span>
-                        </div>
-                        <button onclick="toggleModal('stats-modal'); initStatsCharts();" class="bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-black px-6 py-3 rounded-xl shadow-lg transition active:scale-95 text-xs uppercase tracking-wider flex items-center gap-2">
-                            <i class="fas fa-chart-pie"></i> ดูสถิติทั้งหมด
-                        </button>
-                    </div>
+                <!-- 📸 รูปแบบแสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
+                <div class="relative z-10 lg:w-1/3 flex justify-center items-center">
+                    <img src="1722c691-e5e3-404d-a743-f3ece48a7225.png" alt="Digital Squad AI Premium Logo" class="max-w-[260px] md:max-w-[300px] rounded-3xl shadow-2xl bg-white p-5 hover:scale-105 transition-transform duration-300 border border-blue-200">
                 </div>
             </div>
 
-            <!-- 💡 DAILY TRICKS & INSPIRATION (ใหม่ล่าสุด - โทนสีครีมส้มอบอุ่น) -->
+            <!-- Bottom stats bar (ตรึงค่าข้อมูลอย่างสมบูรณ์แบบต่อจากกล่องน้ำเงิน) -->
+            <div class="mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 bg-white rounded-3xl border border-slate-200 p-6 flex flex-col md:flex-row items-center justify-around gap-6 shadow-sm border-b-4 border-b-blue-100">
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl"><i class="fas fa-users text-blue-600"></i></div>
+                        <div>
+                            <p class="text-xs font-black text-slate-400 uppercase mb-1">คนใช้งานทั้งหมด</p>
+                            <h3 id="stat-total-users" class="text-3xl font-black text-slate-800 tracking-tight">2,154</h3>
+                        </div>
+                    </div>
+                    <div class="w-px h-12 bg-slate-100 hidden md:block"></div>
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl shadow-sm"><i class="fas fa-bolt text-emerald-600"></i></div>
+                        <div>
+                            <p class="text-xs font-black text-slate-400 uppercase mb-1 text-left">เรียกใช้งาน AI</p>
+                            <h3 id="stat-ai-calls" class="text-3xl font-black text-slate-800 tracking-tight">14,830</h3>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="toggleModal('stats-modal'); initStatsCharts();" class="bg-slate-800 text-white rounded-3xl p-6 flex items-center justify-center gap-4 shadow-lg hover:bg-slate-900 active:scale-95 transition-all">
+                    <div class="text-left text-white"><h4 class="text-xl font-black">ดูสถิติทั้งหมด</h4><p class="text-xs text-slate-400 font-bold uppercase tracking-tighter">Analytics Sync</p></div>
+                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl"><i class="fas fa-chart-line text-white"></i></div>
+                </button>
+            </div>
+
+            <!-- 💡 DAILY TRICKS & INSPIRATION (โทนสีครีมส้มอบอุ่น) -->
             <div class="mb-10 bg-[#fffaf0] border-2 border-orange-200 rounded-[2.5rem] p-6 md:p-10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden text-left">
                 <div class="absolute -right-12 -bottom-12 text-orange-200/20 text-9xl pointer-events-none"><i class="fas fa-lightbulb"></i></div>
                 <div class="flex items-start gap-5 relative z-10">
@@ -211,7 +228,7 @@
                     <div class="flex items-start bg-black/20 p-5 rounded-2xl border border-white/5"><i class="fas fa-route text-emerald-300 text-2xl mr-5 mt-1 shrink-0"></i><p class="text-[16px]">- เลือก Agent 02 เพื่อแยกกลุ่มงานและชี้ทางเข้าสู่ระบบปฏิบัติการ</p></div>
                     <div class="flex items-start bg-black/20 p-5 rounded-2xl border border-white/5 border-l-8 border-l-rose-500"><i class="fas fa-clipboard-check text-rose-300 text-2xl mr-5 mt-1 shrink-0"></i><p class="text-[16px]">- เลือก Agent 10 เพื่อตรวจความถูกต้องสมบูรณ์ของทุกงานก่อนส่งออก</p></div>
                 </div>
-            </div>
+             </div>
              <div id="agent-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 text-left"></div>
         </div>
 
@@ -329,6 +346,10 @@
     <!-- Modals -->
     <div id="login-modal" class="modal-overlay" onclick="toggleModal('login-modal')">
         <div class="modal-content text-left" onclick="event.stopPropagation()">
+            <!-- 📸 นำโลโก้แบรนด์ตัวเต็ม มาจัดวางที่ส่วนบนสุดของ Modal ล็อกอินอย่างหรูหรา -->
+            <div class="flex justify-center mb-6">
+                <img src="1722c691-e5e3-404d-a743-f3ece48a7225.png" alt="Digital Squad AI Full Logo" class="h-20 object-contain rounded-xl shadow-md border border-slate-100 bg-white p-2">
+            </div>
             <h3 class="text-2xl font-black uppercase text-primary text-center mb-6">ลงทะเบียนเข้าใช้งาน</h3>
             <form onsubmit="handleLogin(event)" class="space-y-4">
                 <div class="space-y-1"><label class="text-xs font-black text-slate-400 uppercase">ชื่อจริง/นามสมมติ</label><input type="text" id="user-name-input" required class="w-full bg-slate-50 border-2 p-4 rounded-xl outline-none focus:border-blue-500 font-bold"></div>
