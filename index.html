@@ -47,6 +47,12 @@
         
         .spinner { border: 4px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top: 4px solid #fff; width: 20px; height: 20px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* ปรับระดับความคมชัดและนุ่มนวลของตารางปฏิทินใหม่ */
+        .cal-day-cell { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 1rem; cursor: pointer; transition: all 0.2s; position: relative; font-weight: 700; font-size: 0.95rem; }
+        .cal-day-cell:hover { background-color: #f1f5f9; }
+        .cal-day-cell.selected { background-color: #1e3a8a !important; color: white !important; }
+        .cal-day-cell.today { border: 2px solid #3b82f6; }
     </style>
 </head>
 <body class="font-sans text-slate-800 text-left">
@@ -138,7 +144,7 @@
                     </div>
                 </div>
 
-                <!-- 📸 แสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
+                <!-- 📸 รูปแบบแสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
                 <div class="relative z-10 lg:w-1/3 flex justify-center items-center">
                     <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Digital Squad AI Premium Logo" class="max-w-[260px] md:max-w-[300px] rounded-3xl shadow-2xl bg-white p-5 hover:scale-105 transition-transform duration-300 border border-blue-200">
                 </div>
@@ -379,41 +385,72 @@
             </div>
         </div>
 
-        <!-- ================= TAB: CALENDAR ================= -->
+        <!-- ================= TAB: CALENDAR (ตารางปฏิทินรายเดือนอัจฉริยะ 7 คอลัมน์) ================= -->
         <div id="tab-calendar" class="tab-content hidden text-left">
-            <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-slate-200 mb-8">
-                <div class="bg-primary p-8 md:p-12 text-white flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div class="text-center md:text-left">
-                        <h2 class="text-4xl font-black uppercase tracking-tight text-white" id="cal-month-title">มกราคม 2569</h2>
-                        <p class="text-blue-300 font-bold uppercase tracking-widest text-sm mt-1">Educational Timeline Auto-Sync Active</p>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <button onclick="changeCalMonth(-1)" class="w-12 h-12 bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition flex items-center justify-center text-xl text-white"><i class="fas fa-chevron-left"></i></button>
-                        <button onclick="resetCalToday()" class="px-6 h-12 bg-white text-primary font-black rounded-full hover:bg-blue-50 transition shadow-lg text-sm font-black uppercase tracking-widest">วันนี้</button>
-                        <button onclick="changeCalMonth(1)" class="w-12 h-12 bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition flex items-center justify-center text-xl text-white"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
-                <div class="p-4 md:p-10 bg-slate-50 overflow-x-auto">
-                    <div id="calendar-render-area" class="min-w-[900px]"></div>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="bg-white rounded-[2.5rem] p-8 border border-slate-200 shadow-sm text-left">
-                    <h3 class="font-black text-slate-800 mb-6 flex items-center gap-2 text-lg"><i class="fas fa-sticky-note text-orange-500"></i> บันทึกกิจกรรมส่วนตัว</h3>
-                    <textarea id="cal-notes" class="w-full h-40 bg-slate-50 border-2 border-slate-100 p-6 rounded-3xl text-sm font-bold text-slate-700 outline-none focus:border-primary transition" placeholder="พิมพ์กิจกรรมส่วนตัวหรือบันทึกของท่านที่นี่..."></textarea>
-                    <button onclick="savePrivateEvent()" class="mt-6 w-full bg-primary text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg">บันทึกกิจกรรมลง Cloud ส่วนตัว</button>
-                </div>
-                <div class="bg-white rounded-[2.5rem] p-8 border border-slate-200 shadow-sm text-left">
-                    <h3 class="font-black text-slate-800 mb-6 text-lg">สัญลักษณ์สีนำทาง</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="flex items-center gap-3 p-4 bg-rose-50 rounded-2xl border border-rose-100">
-                            <div class="w-6 h-6 bg-rose-500 rounded-lg shadow-sm"></div>
-                            <span class="text-xs font-black text-rose-800 uppercase">วันหยุดราชการ</span>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- ฝั่งซ้าย: ตารางปฏิทินแบบตาราง 7 วัน (ประหยัดโค้ด สวยงาม มั่นคง) -->
+                <div class="lg:col-span-2 bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden flex flex-col h-full">
+                    <div class="bg-primary p-6 text-white flex justify-between items-center">
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white" id="cal-month-title">มกราคม 2569</h2>
+                            <p class="text-blue-300 text-[10px] font-bold uppercase tracking-widest mt-1">Ecosystem Calendar Sync Active</p>
                         </div>
-                        <div class="flex items-center gap-3 p-4 bg-blue-50 rounded-2xl border border-blue-100">
-                            <div class="w-6 h-6 bg-blue-500 rounded-lg shadow-sm"></div>
-                            <span class="text-xs font-black text-blue-800 uppercase">กิจกรรม สพฐ.</span>
+                        <div class="flex items-center gap-3">
+                            <button onclick="changeCalMonth(-1)" class="w-10 h-10 bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition flex items-center justify-center text-sm text-white"><i class="fas fa-chevron-left"></i></button>
+                            <button onclick="resetCalToday()" class="px-4 py-2 bg-white text-primary font-black rounded-full hover:bg-blue-50 transition shadow text-xs uppercase tracking-widest">วันนี้</button>
+                            <button onclick="changeCalMonth(1)" class="w-10 h-10 bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition flex items-center justify-center text-sm text-white"><i class="fas fa-chevron-right"></i></button>
                         </div>
+                    </div>
+                    
+                    <div class="p-6 bg-slate-50 flex-grow">
+                        <!-- วันในรอบสัปดาห์ (Sunday - Saturday) -->
+                        <div class="grid grid-cols-7 gap-2 text-center text-xs font-black uppercase tracking-wider text-slate-400 mb-4">
+                            <div class="text-rose-500">อา.</div>
+                            <div>จ.</div>
+                            <div>อ.</div>
+                            <div>พ.</div>
+                            <div>พฤ.</div>
+                            <div>ศ.</div>
+                            <div class="text-slate-500 font-bold">ส.</div>
+                        </div>
+                        <!-- พื้นที่เรนเดอร์วันที่ตาราง 7 คอลัมน์ (Auto-Render) -->
+                        <div id="calendar-grid-area" class="grid grid-cols-7 gap-2"></div>
+                    </div>
+                </div>
+
+                <!-- ฝั่งขวา: รายละเอียดของกิจกรรมวันที่เลือก และช่องบันทึกส่วนตัว -->
+                <div class="flex flex-col gap-6">
+                    <!-- รายละเอียดกิจกรรมในวันที่คลิกเลือก -->
+                    <div class="bg-white rounded-[2.5rem] p-6 border border-slate-200 shadow-md flex-grow flex flex-col justify-between min-h-[250px]">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4 pb-3 border-b">
+                                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-lg shadow-sm"><i class="fas fa-calendar-day"></i></div>
+                                <div>
+                                    <h4 class="text-slate-800 font-black text-sm uppercase">รายละเอียดกิจกรรม</h4>
+                                    <span id="selected-date-badge" class="text-xs text-slate-400 font-bold">กรุณาเลือกวันที่บนปฏิทิน</span>
+                                </div>
+                            </div>
+                            <div id="selected-date-events" class="space-y-3 max-h-[220px] overflow-y-auto custom-scrollbar pr-2">
+                                <div class="text-center text-slate-400 py-10 font-bold text-xs">
+                                    <i class="fas fa-calendar-alt text-2xl mb-2 block"></i> คลิกที่วันที่ในปฏิทินเพื่อดูกิจกรรม
+                                </div>
+                            </div>
+                        </div>
+                        <!-- แนะนำสีสัญกรณ์นำทางของปฏิทิน -->
+                        <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2 text-[10px] font-black">
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 bg-rose-500 rounded-full block"></span>วันหยุด</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 bg-blue-500 rounded-full block"></span>กิจกรรมสังกัด</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 bg-orange-500 rounded-full block"></span>บันทึกส่วนตัว</span>
+                        </div>
+                    </div>
+
+                    <!-- ฟอร์มพิมพ์บันทึกกิจกรรมส่วนตัวของวันที่เลือก -->
+                    <div class="bg-white rounded-[2.5rem] p-6 border border-slate-200 shadow-md text-left">
+                        <h3 class="font-black text-slate-800 mb-4 flex items-center gap-2 text-sm"><i class="fas fa-sticky-note text-orange-500"></i> บันทึกกิจกรรมส่วนตัวในวันที่เลือก</h3>
+                        <textarea id="cal-notes" class="w-full h-24 bg-slate-50 border-2 border-slate-100 p-4 rounded-2xl text-xs font-bold text-slate-700 outline-none focus:border-primary transition" placeholder="พิมพ์ชื่อกิจกรรมเพื่อบันทึกในวันที่ท่านเลือกบนตารางปฏิทิน..."></textarea>
+                        <button onclick="savePrivateEventForSelectedDate()" class="mt-4 w-full bg-primary text-white py-3 rounded-xl font-black text-[11px] uppercase tracking-widest shadow-md active:scale-95 transition">
+                            <i class="fas fa-save mr-1"></i> บันทึกกิจกรรมลงปฏิทิน
+                        </button>
                     </div>
                 </div>
             </div>
@@ -509,17 +546,19 @@
     <script>
         const apiKey = ""; 
         let currentYear = 2026;
-        let currentMonth = 4;
+        let currentMonth = 4; // เดือนพฤษภาคม (0-indexed คือ พฤษภาคม = 4)
+        let selectedDay = 18; // ตั้งให้เลือกวันปัจจุบัน (18 พฤษภาคม 2569 เป็นวันตั้งต้น)
         let chartsInitialized = false;
 
         // --- MASTER DATAHUB ---
         const MASTER_DATA = {
             obec: { name: "สพฐ. (OBEC)", ic: "fa-university", col: "text-blue-600", bg: "bg-blue-600", news_url: "https://www.obec.go.th/news", train_url: "https://www.obec.go.th/category/news/train",
-                events: [{ d: "2026-0-10", t: "วันเด็กแห่งชาติ" }, { d: "2026-0-16", t: "วันครู (หยุด)" }, { d: "2026-4-16", t: "เปิดภาคเรียน 1/2569" }, { d: "2026-5-18", t: "พิธีไหว้ครู" }],
+                events: [{ d: "2026-0-10", t: "วันเด็กแห่งชาติ" }, { d: "2026-0-16", t: "วันครู (หยุด)", holiday: true }, { d: "2026-4-16", t: "เปิดภาคเรียน 1/2569" }, { d: "2026-5-18", t: "พิธีไหว้ครู" }],
                 news_list: ["ระเบียบการย้ายครู 2569 ฉบับสมบูรณ์", "มาตรการความปลอดภัยเปิดเทอม 2569", "โครงการคอมพิวเตอร์พกพาเพื่อการเรียนรู้", "สรุปคะแนน O-NET ปีล่าสุด", "ประกาศผลสอบครูผู้ช่วย"],
                 training_list: ["AI Literacy สำหรับครูประถม", "Active Learning ฐานสมรรถนะ", "การใช้สื่อดิจิทัลในห้องเรียน", "Coding for primary schools"]
             },
             bma: { name: "กทม. (BMA)", ic: "fa-city", col: "text-emerald-600", bg: "bg-emerald-600", news_url: "https://www.bangkok.go.th/bma-news", train_url: "https://www.bangkok.go.th/bma-hr-train",
+                events: [{ d: "2026-4-18", t: "กิจกรรมปฐมนิเทศก์ข้าราชการครู กทม. ประจำปี" }],
                 news_list: ["ทุนเรียนต่อ ป.เอก ครู กทม.", "โครงการพัฒนากระเป๋านักเรียนดิจิทัล", "สวัสดิการพยาบาล 2569", "รับมือฝุ่น PM2.5 ในโรงเรียน"],
                 training_list: ["BMA Creative Teaching 2026", "ทักษะภาษาอังกฤษเพื่อครู กทม.", "จิตวิทยาเด็กประถม กทม."]
             },
@@ -533,6 +572,9 @@
             ovec: { name: "สอศ. (OVEC)", ic: "fa-tools", col: "text-orange-600", bg: "bg-orange-600", news_url: "https://www.vec.go.th/news", train_url: "https://www.vec.go.th/category/vocational-training", news_list: ["งานอาชีวะแฟร์ 2569", "ผลประเมิน V-NET"], training_list: ["สมรรถนะอาชีวศึกษาใหม่", "ช่างเทคนิค EV"] },
             moe: { name: "ศธ. (MOE)", ic: "fa-globe", col: "text-slate-600", bg: "bg-slate-600", news_url: "https://www.moe.go.th/category/news", train_url: "https://www.moe.go.th/category/training", events: [{ d: "2026-0-1", t: "วันขึ้นปีใหม่", holiday: true }, { d: "2026-3-13", t: "วันสงกรานต์", holiday: true }], news_list: ["รัฐมนตรีสัญจรพบครูทั่วไทย", "นโยบายลดเวลาเรียน เพิ่มทักษะ"], training_list: ["อบรมจรรยาบรรณวิชาชีพ", "Digital Leadership"] }
         };
+
+        // ตารางกิจกรรมส่วนบุคคลที่ผู้ใช้พิมพ์เพิ่มลงระบบ
+        let PRIVATE_EVENTS = {};
 
         const PILLARS = [
             { id: "01", t: "Zero Plagiarism", i: "fa-ban", bg: "rose", d: "สร้างงานใหม่ 100% ปลอดภัยจากการคัดลอกวิชาการ" },
@@ -682,7 +724,6 @@
                 (org.training_list || []).forEach(t => allTrain.push({ title: t, org: org.name, url: org.train_url, col: org.col, bg: org.bg }));
             });
 
-            // Randomize for "Feed" experience
             allNews.sort(() => Math.random() - 0.5);
             allTrain.sort(() => Math.random() - 0.5);
 
@@ -718,66 +759,163 @@
             }
         }
 
-        // --- Rotate Trick Manual Button ---
         function rotateTrick() {
             currentTrickIndex = (currentTrickIndex + 1) % DAILY_TRICKS.length;
             displayTrick(currentTrickIndex);
             showToast("🎲 สลับกลเม็ดถัดไปเรียบร้อยแล้วครับ!");
         }
 
-        // --- List View Calendar ---
+        // ================= NEW RENDER CALENDAR (ตารางปฏิทินรายเดือน 7 คอลัมน์ ประหยัดโค้ด ไม่รวนแน่นอน) =================
         function renderCalendar() {
-            const area = document.getElementById('calendar-render-area');
+            const gridArea = document.getElementById('calendar-grid-area');
             const title = document.getElementById('cal-month-title');
-            if(!area) return;
+            if(!gridArea) return;
+
             const monthsTH = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
-            const dayNames = ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."];
             title.innerText = `${monthsTH[currentMonth]} ${currentYear + 543}`;
-            
-            let html = `<div class="flex flex-col space-y-3">`;
-            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+            // หาจุดเริ่มต้นและวันทั้งหมดของเดือน
+            const firstDayIndex = new Date(currentYear, currentMonth, 1).getDay();
+            const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
             const today = new Date();
-            
-            for(let d=1; d<=daysInMonth; d++) {
-                const currentDate = new Date(currentYear, currentMonth, d);
-                const dayIndex = currentDate.getDay();
-                const dayName = dayNames[dayIndex];
+
+            let gridHtml = "";
+
+            // 1. เพิ่มช่องว่าง (Offset) ก่อนเริ่มวันที่ 1 ของเดือน
+            for (let i = 0; i < firstDayIndex; i++) {
+                gridHtml += `<div class="cal-day-cell opacity-0 pointer-events-none"></div>`;
+            }
+
+            // 2. เรนเดอร์วันที่ 1 ถึงสิ้นเดือน
+            for (let d = 1; d <= totalDays; d++) {
                 const dateKey = `${currentYear}-${currentMonth}-${d}`;
-                
-                let dailyEvents = [];
+                const isSelected = (selectedDay === d);
+                const isToday = (today.getFullYear() === currentYear && today.getMonth() === currentMonth && today.getDate() === d);
+
+                // ตรวจหาอีเวนต์สังกัดรัฐและวันหยุดราชการ
+                let hasHoliday = false;
+                let hasOfficialEvent = false;
+                let hasPrivateEvent = (PRIVATE_EVENTS[dateKey] && PRIVATE_EVENTS[dateKey].length > 0);
+
                 Object.keys(MASTER_DATA).forEach(k => {
                     const found = (MASTER_DATA[k].events || []).filter(e => e.d === dateKey);
-                    found.forEach(f => dailyEvents.push({ ...f, agency: k }));
+                    if (found.length > 0) {
+                        hasOfficialEvent = true;
+                        if (found.some(e => e.holiday)) hasHoliday = true;
+                    }
                 });
-                
-                const isHoliday = dailyEvents.some(e => e.holiday) || dayIndex === 0 || dayIndex === 6;
-                const isToday = (today.getFullYear() === currentYear && today.getMonth() === currentMonth && today.getDate() === d);
-                
-                const bgColor = isHoliday ? 'bg-rose-50 border-l-4 border-rose-500' : 'bg-white border-l-4 border-blue-500';
-                const textColor = isHoliday ? 'text-rose-600' : 'text-blue-700';
 
-                html += `
-                    <div class="${bgColor} rounded-2xl p-4 flex flex-col md:flex-row md:items-center gap-4 transition-all border border-slate-100 shadow-sm hover:shadow-md">
-                        <div class="flex items-center justify-center min-w-[90px] h-14 bg-slate-100/50 rounded-xl font-bold ${textColor}">
-                            <span class="text-sm mr-2 font-bold">${dayName}</span>
-                            <span class="text-2xl">${d}</span>
-                        </div>
-                        <div class="flex-grow space-y-2">
-                            ${dailyEvents.length > 0 ? dailyEvents.map(e => `
-                                <div class="text-[14.5px] font-bold text-slate-800 flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full ${e.holiday ? 'bg-rose-500' : 'bg-blue-500'}"></span>
-                                    ${e.t} ${e.agency ? `<span class="text-[9px] px-2 py-0.5 rounded-md text-white ${MASTER_DATA[e.agency].bg} ml-2 uppercase">${MASTER_DATA[e.agency].name.split(' ')[0]}</span>` : ''}
-                                </div>
-                            `).join('') : '<div class="text-[13px] text-slate-400 font-medium">ไม่มีกิจกรรมทางการศึกษา</div>'}
+                // กำหนดคลาสตกแต่งวันหยุดสุดสัปดาห์ (ส.-อา.)
+                const currentDayOfWeek = new Date(currentYear, currentMonth, d).getDay();
+                let weekendClass = "";
+                if (currentDayOfWeek === 0) weekendClass = "text-rose-500 bg-rose-50/30"; // วันอาทิตย์
+                if (currentDayOfWeek === 6) weekendClass = "text-slate-500 bg-slate-50/50"; // วันเสาร์
+
+                let todayClass = isToday ? "today font-extrabold shadow-sm" : "";
+                let selectedClass = isSelected ? "selected shadow-md scale-105" : "";
+
+                gridHtml += `
+                    <div onclick="selectCalendarDay(${d})" class="cal-day-cell ${weekendClass} ${todayClass} ${selectedClass} border border-slate-100 p-2 text-center">
+                        <span class="z-10">${d}</span>
+                        
+                        <!-- จุดสัญกรณ์นำทางของอีเวนต์กิจกรรมใต้ตัวเลข -->
+                        <div class="flex justify-center gap-1 mt-1 w-full min-h-[6px]">
+                            ${hasHoliday ? '<span class="w-1.5 h-1.5 bg-rose-500 rounded-full block"></span>' : ''}
+                            ${hasOfficialEvent && !hasHoliday ? '<span class="w-1.5 h-1.5 bg-blue-500 rounded-full block"></span>' : ''}
+                            ${hasPrivateEvent ? '<span class="w-1.5 h-1.5 bg-orange-500 rounded-full block"></span>' : ''}
                         </div>
                     </div>`;
             }
-            html += `</div>`;
-            area.innerHTML = html;
+
+            gridArea.innerHTML = gridHtml;
+            updateSelectedDatePanel();
         }
 
-        function changeCalMonth(step) { currentMonth += step; if(currentMonth > 11){ currentMonth = 0; currentYear++; } else if(currentMonth < 0){ currentMonth = 11; currentYear--; } renderCalendar(); }
-        function resetCalToday() { const d = new Date(); currentYear = d.getFullYear(); currentMonth = d.getMonth(); renderCalendar(); }
+        // อัปเดตข้อมูลกิจกรรมทางแผงฝั่งขวา
+        function updateSelectedDatePanel() {
+            const monthsTH = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+            const dateKey = `${currentYear}-${currentMonth}-${selectedDay}`;
+            
+            document.getElementById('selected-date-badge').innerText = `วันที่ ${selectedDay} ${monthsTH[currentMonth]} ${currentYear + 543}`;
+            const panel = document.getElementById('selected-date-events');
+            
+            let html = "";
+            let list = [];
+
+            // 1. ดึงข้อมูลหน่วยงานรัฐ
+            Object.keys(MASTER_DATA).forEach(k => {
+                const found = (MASTER_DATA[k].events || []).filter(e => e.d === dateKey);
+                found.forEach(e => {
+                    list.push({
+                        text: e.t,
+                        badge: MASTER_DATA[k].name.split(' ')[0],
+                        bg: MASTER_DATA[k].bg,
+                        isHoliday: e.holiday
+                    });
+                });
+            });
+
+            // 2. ดึงข้อมูลส่วนบุคคล
+            if (PRIVATE_EVENTS[dateKey]) {
+                PRIVATE_EVENTS[dateKey].forEach(text => {
+                    list.push({ text: text, badge: "บันทึกส่วนตัว", bg: "bg-orange-500", isHoliday: false });
+                });
+            }
+
+            // เรนเดอร์ผลลัพธ์รายการกิจกรรม
+            if (list.length > 0) {
+                html = list.map(item => `
+                    <div class="p-3 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-between gap-3 font-semibold text-slate-700 shadow-sm ${item.isHoliday ? 'border-l-4 border-l-rose-500 bg-rose-50/20' : 'border-l-4 border-l-blue-500'}">
+                        <span class="text-[13.5px] leading-snug">${item.text}</span>
+                        <span class="text-[9px] px-2 py-0.5 text-white rounded-md shrink-0 uppercase font-black ${item.bg}">${item.badge}</span>
+                    </div>
+                `).join('');
+            } else {
+                html = `
+                    <div class="text-center text-slate-400 py-10 font-bold text-xs">
+                        <i class="fas fa-check-circle text-emerald-500 text-2xl mb-2 block"></i> ไม่มีกิจกรรมบันทึกไว้ในวันนี้
+                    </div>`;
+            }
+
+            panel.innerHTML = html;
+        }
+
+        // เลือกวันที่บนปฏิทิน
+        function selectCalendarDay(day) {
+            selectedDay = day;
+            renderCalendar();
+        }
+
+        // ฟังก์ชันเก็บและบันทึกกิจกรรมส่วนบุคคลลงในวันที่ระบุ
+        function savePrivateEventForSelectedDate() {
+            const noteInput = document.getElementById('cal-notes');
+            const noteText = noteInput.value.trim();
+            if (!noteText) { alert("กรุณากรอกข้อความก่อนกดบันทึกครับ!"); return; }
+
+            const dateKey = `${currentYear}-${currentMonth}-${selectedDay}`;
+            if (!PRIVATE_EVENTS[dateKey]) PRIVATE_EVENTS[dateKey] = [];
+            PRIVATE_EVENTS[dateKey].push(noteText);
+
+            noteInput.value = ""; // เคลียร์กล่องพิมพ์
+            renderCalendar(); // สั่งเรนเดอร์ใหม่แสดงจุดอัปเดตสีส้มทันที
+            showToast("📥 บันทึกกิจกรรมส่วนตัวในวันที่เลือกเรียบร้อยแล้วครับ!");
+        }
+
+        function changeCalMonth(step) { 
+            currentMonth += step; 
+            if(currentMonth > 11){ currentMonth = 0; currentYear++; } 
+            else if(currentMonth < 0){ currentMonth = 11; currentYear--; } 
+            selectedDay = 1; // เริ่มต้นที่วันที่ 1 ของเดือนใหม่เพื่อความปลอดภัย
+            renderCalendar(); 
+        }
+
+        function resetCalToday() { 
+            const d = new Date(); 
+            currentYear = d.getFullYear(); 
+            currentMonth = d.getMonth(); 
+            selectedDay = d.getDate(); 
+            renderCalendar(); 
+        }
 
         // --- Init ALL Dynamic Components ---
         function initDynamicContent() {
