@@ -590,17 +590,17 @@
 
     <div id="toast"></div>
 
-    <script type="module">
-        // ================= Firebase Integration (Step 1) =================
-        // ส่วนนี้คือการนำเข้าเครื่องมือ (Library) ของ Firebase แบบ Modules
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, onSnapshot, collection, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <!-- 💡 แก้ไข Step 1: เปลี่ยนวิธีดึง Firebase มาใช้แบบ Compat (รองรับการดับเบิลคลิกเปิดไฟล์จากคอมพิวเตอร์โดยตรง 100%) -->
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore-compat.js"></script>
 
-        // ตัวแปรสำหรับเก็บอุปกรณ์ของ Firebase
+    <script>
+        // ================= Firebase Integration (เตรียมตัวแปรไว้รอ Step 2) =================
+        // ตอนนี้เราดึงเครื่องมือจากด้านบนแล้ว เบราว์เซอร์จะไม่บล็อกโค้ดเราอีกต่อไปครับ
         let db;
         let auth;
-        // ===============================================================
+        // ===============================================================================
 
         const apiKey = ""; 
         let currentYear = 2026;
