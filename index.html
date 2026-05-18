@@ -5,24 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Digital Squad AI V13.12.53 - Premium Educational Ecosystem</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 🛡️ ระบบดาวน์โหลดดีไซน์อัจฉริยะแบบไดนามิก ป้องกันการแปลงลิงก์ Markdown ของแชทบอตพัง -->
+    <script>
+        (function() {
+          var tw = document.createElement("script");
+          var twProtocol = "https:";
+          var twHost = "cdn.tailwindcss.com";
+          tw.src = twProtocol + "//" + twHost;
+          document.head.appendChild(tw);
+
+          var font = document.createElement("link");
+          font.rel = "stylesheet";
+          var fontProtocol = "https:";
+          var fontHost = "fonts.googleapis.com";
+          var fontQuery = "/css2?family=Sarabun:wght@300;400;500;600;700;800;900&display=swap";
+          font.href = fontProtocol + "//" + fontHost + fontQuery;
+          document.head.appendChild(font);
+        })();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Sarabun', 'sans-serif'] },
-                    colors: { primary: '#1e3a8a', secondary: '#3b82f6', accent: '#facc15', cream: '#fff7ed' }
+        // กำหนดธีมดีไซน์และฟอนต์หลักของระบบ
+        setTimeout(function() {
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: { sans: ['Sarabun', 'sans-serif'] },
+                        colors: { primary: '#1e3a8a', secondary: '#3b82f6', accent: '#facc15', cream: '#fff7ed' }
+                    }
                 }
             }
-        }
+        }, 100);
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800;900&display=swap');
-        body { background-color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; padding-bottom: 80px; }
+        body { background-color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; padding-bottom: 80px; font-family: 'Sarabun', sans-serif; }
         .allow-select { user-select: text !important; -webkit-user-select: text !important; }
         @media (min-width: 1024px) { body { padding-bottom: 0; } }
         .nav-link { border-bottom: 3px solid transparent; transition: all 0.3s; cursor: pointer; color: #bfdbfe; font-size: 1.05rem; padding: 1.25rem 0.5rem; font-weight: 700; }
@@ -48,14 +67,14 @@
         .spinner { border: 4px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top: 4px solid #fff; width: 20px; height: 20px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* ปรับระดับความคมชัดและนุ่มนวลของตารางปฏิทินใหม่ */
+        /* ปรับระดับความคมชัดและนุ่มนวลของตารางปฏิทินใหม่ (ประหยัด DOM และโค้ด ไม่รวนแน่นอน) */
         .cal-day-cell { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 1rem; cursor: pointer; transition: all 0.2s; position: relative; font-weight: 700; font-size: 0.95rem; }
         .cal-day-cell:hover { background-color: #f1f5f9; }
         .cal-day-cell.selected { background-color: #1e3a8a !important; color: white !important; }
         .cal-day-cell.today { border: 2px solid #3b82f6; }
     </style>
 </head>
-<body class="font-sans text-slate-800 text-left">
+<body class="text-slate-800 text-left">
 
     <!-- Header -->
     <header class="bg-primary sticky top-0 z-50 shadow-lg px-4">
@@ -94,7 +113,6 @@
         <div id="tab-home" class="tab-content">
             <!-- Blue Hero Section from V13.12.53 (FROZEN & LOCKED) -->
             <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600 flex flex-col lg:flex-row items-center justify-between gap-8">
-                <!-- Background Globe Deco -->
                 <div class="absolute right-[-40px] top-[-40px] text-white opacity-5 text-[20rem] pointer-events-none">
                     <i class="fas fa-globe"></i>
                 </div>
@@ -104,7 +122,6 @@
                     <h2 class="text-2xl md:text-5xl font-black mb-6 leading-tight">Digital Squad AI ระบบนิเวศทางการศึกษาที่สมบูรณ์แบบ</h2>
                     <p class="text-blue-100 text-sm md:text-lg mb-10 max-w-5xl leading-relaxed font-medium">ใช้ Generative AI Agent เป็นที่ปรึกษา พี่เลี้ยง ผู้ช่วย และเครื่องมือช่วยลดภาระ ลดเวลาในการทำงานของครู คืนเวลาครูให้มีเวลาเหลือไปใช้กับการสอน กับนักเรียน และกับการใช้ชีวิตส่วนตัวให้มีคุณภาพมากขึ้น</p>
                     
-                    <!-- 5 translucent glass boxes inside the blue banner -->
                     <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6">
                         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 hover:bg-white/20 transition shadow-lg flex flex-col justify-between">
                             <div>
@@ -144,7 +161,6 @@
                     </div>
                 </div>
 
-                <!-- 📸 รูปแบบแสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
                 <div class="relative z-10 lg:w-1/3 flex justify-center items-center">
                     <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Digital Squad AI Premium Logo" class="max-w-[260px] md:max-w-[300px] rounded-3xl shadow-2xl bg-white p-5 hover:scale-105 transition-transform duration-300 border border-blue-200">
                 </div>
@@ -241,7 +257,6 @@
             
             <!-- 🏆 ฐานปฏิบัติการอัจฉริยะ สำหรับบุคลากรด้านการศึกษา (Restored Header V32) -->
             <div class="bg-gradient-to-br from-blue-900 via-primary to-indigo-950 rounded-[2.5rem] p-8 md:p-12 text-white shadow-xl mb-10 relative overflow-hidden border-b-8 border-blue-950">
-                <!-- Background Decoration -->
                 <div class="absolute right-[-20px] bottom-[-20px] text-white opacity-5 text-[15rem] pointer-events-none">
                     <i class="fas fa-network-wired"></i>
                 </div>
@@ -285,7 +300,6 @@
 
             <!-- 💡 5 ขั้นตอนการทำวิจัยร่วมกับ AI ขั้นสูง (สีพื้นกรอบสีเหลืองส้มสุดพรีเมียม) -->
             <div class="bg-gradient-to-br from-amber-400 via-orange-500 to-amber-600 rounded-[2.5rem] p-6 md:p-10 text-white shadow-xl mb-10 relative overflow-hidden border-b-8 border-orange-700">
-                <!-- Background decoration icon -->
                 <div class="absolute -right-16 -top-16 text-white/10 text-[18rem] pointer-events-none">
                     <i class="fas fa-chart-bar"></i>
                 </div>
@@ -626,42 +640,6 @@
             { id: "quickwin", name: "นโยบายด่วน (Quick Win)", ic: "fa-rocket", col: "bg-yellow-600", agent: "10", list: ["รายงานผล Quick Win", "โครงการลดภาระครู 5 ด้าน", "การขับเคลื่อน 1 อำเภอ 1 ทุน (ODOS)", "นโยบายเรียนดี มีความสุข", "โรงเรียนปลอดบุหรี่ไฟฟ้า", "การแก้ไขปัญหาหนี้สินครู", "โครงการ Soft Power สถานศึกษา", "การจัดการศึกษาเพื่อการมีงานทำ", "โรงเรียนสีเขียว (Green School)", "โครงการโรงเรียนคุณภาพประจำตำบล"] }
         ];
 
-        // --- DAILY TRICKS DATA (กลเม็ดและความก้าวหน้าของวิชาชีพครูรายวัน) ---
-        const DAILY_TRICKS = [
-            {
-                text: "ถ่ายคลิปการสอน วPA อย่ากลัวความเงียบ! ก.ค.ศ. ชอบห้องเรียนตามธรรมชาติ หากเด็กหยุดคิดหรือมีจุดขัดข้อง นั่นคือโอกาสทองที่ครูจะได้แสดงทักษะการแก้ปัญหาเฉพาะหน้า (ตัวชี้วัดที่ 5) ห้ามสั่งคัตเด็ดขาดครับ",
-                tag: "เกณฑ์ วPA & วิทยฐานะดิจิทัล"
-            },
-            {
-                text: "คลิปแรงบันดาลใจ 10 นาที ไม่ต้องใช้นักแสดงสมทบหรือทำกราฟิกหรูหรา สิ่งที่กรรมการต้องการเห็นคือ 'ข้อมูลเชิงสถิติ' ว่าคะแนนของเด็กก่อนหน้านี้มีปัญหาตรงไหน และแผนการสอนของครูจะช่วยแก้ปัญหานั้นได้อย่างไร พูดให้ตรงประเด็นใน 3 นาทีแรกเลยครับ",
-                tag: "คลิปแรงบันดาลใจ วPA"
-            },
-            {
-                text: "การจัดกลุ่ม PLC ที่ดี ไม่ใช่การนั่งประชุมกันยาวๆ 3 ชั่วโมง แต่คือการแชร์ไอเดียแก้ปัญหาเด็กเพียง 15 นาที แล้วแยกย้ายไปทดลองใช้ ลองใช้ Agent 08 ช่วยเขียนบันทึกการประชุม PLC เพื่อประหยัดเวลาดูสิครับ",
-                tag: "เทคนิคการทำงานอัจฉริยะ"
-            },
-            {
-                text: "อย่าพยายามทำสไลด์ให้สวยจนไม่ได้นอน คณะกรรมการประเมินจาก 'ความเข้าใจของเด็ก' ไม่ใช่สีสันบนหน้าจอ ใช้เทมเพลตมาตรฐานที่อ่านง่าย เน้นภาพชิ้นงานจริงของนักเรียนประกอบดีที่สุด",
-                tag: "การสร้างนวัตกรรมการสอน"
-            },
-            {
-                text: "ครูที่เก่งที่สุดไม่ใช่ครูที่ไม่มีเด็กสอบตก แต่คือครูที่รู้วิธีฉุดกระชากเด็กที่กำลังจะถอดใจให้กลับมามีรอยยิ้มในการเรียนได้อีกครั้ง วันนี้ลองกอดหรือเอ่ยชมเด็กที่เรียนหลังห้องสักคนนะครับ พลังของคุณเปลี่ยนชีวิตเขาได้",
-                tag: "พลังใจและจริยธรรมครูไทย"
-            },
-            {
-                text: "AI เป็นผู้ช่วยที่ยอดเยี่ยม แต่อย่าลืมว่า 'ความรักความใส่ใจและความเข้าใจความรู้สึกเด็ก' เป็นสิ่งเดียวที่ AI เลียนแบบครูไม่ได้ ปลดปล่อยงานเอกสารให้ AI ทำ แล้วเอาหัวใจของคุณกลับคืนสู่ห้องเรียนกันครับ",
-                tag: "พลังใจและจริยธรรมครูไทย"
-            },
-            {
-                text: "การบันทึกผลหลังการสอนที่ดี ควรระบุจำนวนนักเรียนที่ผ่านและไม่ผ่านเกณฑ์อย่างชัดเจน และบันทึกแนวทางแก้ไขนักเรียนที่ไม่ผ่านเกณฑ์นั้นในแผนถัดไปทันที เพื่อแสดงให้เห็นถึงความต่อเนื่องและการพัฒนาผู้เรียนอย่างจริงจังครับ",
-                tag: "เกณฑ์ วPA & วิทยฐานะดิจิทัล"
-            },
-            {
-                text: "จัดระเบียบ Google Drive ประจำสัปดาห์ด้วยโครงสร้างโฟลเดอร์ วPA แยกรายห้องเรียนและรายตัวชี้วัด สะสมผลงานนักเรียนสัปดาห์ละ 3-4 ชิ้น เมื่อถึงเวลาประเมินจะดึงข้อมูลไปใช้ได้ทันทีโดยไม่ต้องรื้อค้นครับ",
-                tag: "เทคนิคการทำงานอัจฉริยะ"
-            }
-        ];
-
         // --- Core Functions ---
         function switchTab(t) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
@@ -681,12 +659,11 @@
             window.open(`https://gemini.google.com/gem/${links[id] || '1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe'}?usp=sharing`, '_blank');
         }
 
-        // --- THE SPLIT PANE SMART FEED (V31 Ultimate Fix) ---
+        // --- THE SPLIT PANE SMART FEED ---
         function renderMissionFeed(trackId) {
             const data = MISSIONS.find(c => c.id === trackId);
             if(!data) return;
             
-            // Update Active Styling on Left Pane
             document.querySelectorAll('.track-btn').forEach(btn => {
                 btn.classList.remove('bg-blue-50', 'border-blue-500');
                 btn.classList.add('bg-white', 'border-transparent');
@@ -697,7 +674,6 @@
                 activeBtn.classList.add('bg-blue-50', 'border-blue-500');
             }
 
-            // Render Right Pane List
             document.getElementById('mission-feed-title').innerHTML = `<i class="fas ${data.ic} mr-2 ${data.col.replace('bg-','text-')}"></i> ${data.name}`;
             document.getElementById('mission-feed-badge').innerText = `${data.list.length} ภารกิจ`;
             
@@ -774,7 +750,6 @@
             const monthsTH = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
             title.innerText = `${monthsTH[currentMonth]} ${currentYear + 543}`;
 
-            // หาจุดเริ่มต้นและวันทั้งหมดของเดือน
             const firstDayIndex = new Date(currentYear, currentMonth, 1).getDay();
             const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
             const today = new Date();
@@ -792,7 +767,6 @@
                 const isSelected = (selectedDay === d);
                 const isToday = (today.getFullYear() === currentYear && today.getMonth() === currentMonth && today.getDate() === d);
 
-                // ตรวจหาอีเวนต์สังกัดรัฐและวันหยุดราชการ
                 let hasHoliday = false;
                 let hasOfficialEvent = false;
                 let hasPrivateEvent = (PRIVATE_EVENTS[dateKey] && PRIVATE_EVENTS[dateKey].length > 0);
@@ -805,7 +779,6 @@
                     }
                 });
 
-                // กำหนดคลาสตกแต่งวันหยุดสุดสัปดาห์ (ส.-อา.)
                 const currentDayOfWeek = new Date(currentYear, currentMonth, d).getDay();
                 let weekendClass = "";
                 if (currentDayOfWeek === 0) weekendClass = "text-rose-500 bg-rose-50/30"; // วันอาทิตย์
@@ -817,8 +790,6 @@
                 gridHtml += `
                     <div onclick="selectCalendarDay(${d})" class="cal-day-cell ${weekendClass} ${todayClass} ${selectedClass} border border-slate-100 p-2 text-center">
                         <span class="z-10">${d}</span>
-                        
-                        <!-- จุดสัญกรณ์นำทางของอีเวนต์กิจกรรมใต้ตัวเลข -->
                         <div class="flex justify-center gap-1 mt-1 w-full min-h-[6px]">
                             ${hasHoliday ? '<span class="w-1.5 h-1.5 bg-rose-500 rounded-full block"></span>' : ''}
                             ${hasOfficialEvent && !hasHoliday ? '<span class="w-1.5 h-1.5 bg-blue-500 rounded-full block"></span>' : ''}
@@ -842,7 +813,6 @@
             let html = "";
             let list = [];
 
-            // 1. ดึงข้อมูลหน่วยงานรัฐ
             Object.keys(MASTER_DATA).forEach(k => {
                 const found = (MASTER_DATA[k].events || []).filter(e => e.d === dateKey);
                 found.forEach(e => {
@@ -855,14 +825,12 @@
                 });
             });
 
-            // 2. ดึงข้อมูลส่วนบุคคล
             if (PRIVATE_EVENTS[dateKey]) {
                 PRIVATE_EVENTS[dateKey].forEach(text => {
                     list.push({ text: text, badge: "บันทึกส่วนตัว", bg: "bg-orange-500", isHoliday: false });
                 });
             }
 
-            // เรนเดอร์ผลลัพธ์รายการกิจกรรม
             if (list.length > 0) {
                 html = list.map(item => `
                     <div class="p-3 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-between gap-3 font-semibold text-slate-700 shadow-sm ${item.isHoliday ? 'border-l-4 border-l-rose-500 bg-rose-50/20' : 'border-l-4 border-l-blue-500'}">
@@ -880,13 +848,11 @@
             panel.innerHTML = html;
         }
 
-        // เลือกวันที่บนปฏิทิน
         function selectCalendarDay(day) {
             selectedDay = day;
             renderCalendar();
         }
 
-        // ฟังก์ชันเก็บและบันทึกกิจกรรมส่วนบุคคลลงในวันที่ระบุ
         function savePrivateEventForSelectedDate() {
             const noteInput = document.getElementById('cal-notes');
             const noteText = noteInput.value.trim();
@@ -896,8 +862,8 @@
             if (!PRIVATE_EVENTS[dateKey]) PRIVATE_EVENTS[dateKey] = [];
             PRIVATE_EVENTS[dateKey].push(noteText);
 
-            noteInput.value = ""; // เคลียร์กล่องพิมพ์
-            renderCalendar(); // สั่งเรนเดอร์ใหม่แสดงจุดอัปเดตสีส้มทันที
+            noteInput.value = ""; 
+            renderCalendar(); 
             showToast("📥 บันทึกกิจกรรมส่วนตัวในวันที่เลือกเรียบร้อยแล้วครับ!");
         }
 
@@ -905,7 +871,7 @@
             currentMonth += step; 
             if(currentMonth > 11){ currentMonth = 0; currentYear++; } 
             else if(currentMonth < 0){ currentMonth = 11; currentYear--; } 
-            selectedDay = 1; // เริ่มต้นที่วันที่ 1 ของเดือนใหม่เพื่อความปลอดภัย
+            selectedDay = 1; 
             renderCalendar(); 
         }
 
@@ -919,9 +885,8 @@
 
         // --- Init ALL Dynamic Components ---
         function initDynamicContent() {
-            renderDashboardFeeds(); // Init Dash Feeds
+            renderDashboardFeeds(); 
             
-            // Init Urgent Tasks
             const urg = document.getElementById('urgent-tasks-grid');
             const urgentList = [
                 { t: "ทำแผนปฏิบัติการ 2569", a: "01", col: "text-blue-600", bg: "bg-blue-50" },
@@ -942,7 +907,6 @@
                     <span class="text-[10px] ${item.col} font-bold uppercase bg-white px-2 py-1 rounded-md shadow-sm"><i class="fas fa-bolt mr-1"></i> Agent ${item.a}</span>
                 </div>`).join('');
 
-            // Init 10 Career Track Menu (Left Pane)
             const menu = document.getElementById('career-track-menu');
             if(menu) {
                 menu.innerHTML = MISSIONS.map((c, i) => `
@@ -950,15 +914,12 @@
                         <div class="w-10 h-10 rounded-lg ${c.col} text-white flex items-center justify-center text-lg shrink-0"><i class="fas ${c.ic}"></i></div>
                         <div><h4 class="text-[13px] font-bold text-slate-800 leading-tight">${i+1}. ${c.name}</h4></div>
                     </button>`).join('');
-                // Load first track by default
                 renderMissionFeed(MISSIONS[0].id);
             }
 
-            // Init Agents
             const ag = document.getElementById('agent-grid-container');
             if(ag) ag.innerHTML = AGENTS.map(a => `<div onclick="launchAgent('${a.id}')" class="${a.bg} border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all h-full flex flex-col hover:-translate-y-2 group cursor-pointer relative overflow-hidden"><span class="agent-number-bg">${a.id}</span><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl mb-4 ${a.ic} shadow-sm group-hover:scale-110 transition-transform"><i class="fas ${a.i}"></i></div><h3 class="font-black text-[14px] mb-1 text-slate-800 uppercase leading-tight">${a.t}</h3><p class="text-[10px] text-slate-500 font-bold mb-3 uppercase tracking-wider">AGENT ${a.id}</p><div class="text-[13px] leading-relaxed space-y-1.5 mt-auto pt-3 border-t border-slate-200/50 text-left text-slate-700">${a.d}</div></div>`).join('');
             
-            // Init Pillars
             const pl = document.getElementById('about-pillars-grid');
             if(pl) pl.innerHTML = PILLARS.map(p => `<div class="p-6 rounded-[2.5rem] border border-${p.bg}-100 bg-${p.bg}-50 shadow-sm flex flex-col h-full group text-left transition hover:-translate-y-1"><i class="fas ${p.i} text-${p.bg}-600 mb-4 text-2xl"></i><h4 class="text-[10px] font-black uppercase text-${p.bg}-400 tracking-widest mb-1">PILLAR ${p.id}</h4><p class="text-[16px] font-black text-slate-800 mb-1 leading-tight">${p.t}</p><p class="text-[14px] text-slate-500 font-medium mt-auto leading-tight opacity-90">${p.d}</p></div>`).join('');
         }
