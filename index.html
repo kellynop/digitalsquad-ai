@@ -3,33 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Digital Squad AI V13.19.01 - Premium Educational Ecosystem</title>
+    <title>Digital Squad AI V13.20.01 - Premium Educational Ecosystem</title>
     
-    <!-- 🛡️ ดาวน์โหลดดีไซน์มาตรฐานสากลแบบซิงโครนัส ป้องกันการเกิดอาการหน้าเว็บรวนและปิดโอกาสสไตล์ล้มเหลว -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 🛡️ โหลดฟอนต์ Sarabun และ Font Awesome มาตรฐานสากลจากเซิร์ฟเวอร์หลัก -->
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- 🛡️ ตั้งค่าโครงสร้างสีแบรนด์ Digital Squad ก่อนโหลด Tailwind Play CDN (วิธีที่เสถียรที่สุด ป้องกันหน้าเว็บรวนล้านเปอร์เซ็นต์) -->
     <script>
-        // 🛠️ ตรึงชุดดีไซน์และธีมสีหลักของแบรนด์ Digital Squad ให้เสถียรภาพสูง ป้องกันสไตล์รวน
-        window.tailwind = window.tailwind || {};
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Sarabun', 'sans-serif'] },
-                    colors: { primary: '#1e3a8a', secondary: '#3b82f6', accent: '#facc15', cream: '#fff7ed' }
+        tailwind = {
+            config: {
+                theme: {
+                    extend: {
+                        fontFamily: { sans: ['Sarabun', 'sans-serif'] },
+                        colors: { 
+                            primary: '#1e3a8a', 
+                            secondary: '#3b82f6', 
+                            accent: '#facc15', 
+                            cream: '#fff7ed' 
+                        }
+                    }
                 }
             }
         }
     </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /* 🛡️ สถิติตัวแปรสีหลักของแบรนด์ (ตรึงสไตล์ถาวรป้องกันปัญหาระบบแสดงผลล้มเหลว) */
+        /* 🛡️ ตรึงตัวแปรสีและสไตล์หลังบ้านสำหรับบราวเซอร์ที่ยังโหลดสคริปต์สไตล์ไม่เสร็จ ป้องกันหน้ารวนขาวล่องหน */
         :root {
             --primary: #1e3a8a;
             --secondary: #3b82f6;
             --accent: #facc15;
+            --cream: #fff7ed;
         }
 
         body { background-color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; padding-bottom: 80px; font-family: 'Sarabun', sans-serif; }
@@ -70,7 +77,7 @@
         .spinner { border: 4px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top: 4px solid #fff; width: 20px; height: 20px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* ปรับระดับความคมชัดของตารางปฏิทินแบบ 7 คอลัมน์ */
+        /* ปรับสัดส่วนและสีของปฏิทินตาราง 7 คอลัมน์พรีเมียม */
         .cal-day-cell { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 1rem; cursor: pointer; transition: all 0.2s; position: relative; font-weight: 700; font-size: 0.95rem; }
         .cal-day-cell:hover { background-color: #f5eed3; }
         .cal-day-cell.selected { background-color: #d97706 !important; color: white !important; }
@@ -79,7 +86,7 @@
 </head>
 <body class="font-sans text-slate-800 text-left">
 
-    <!-- Header -->
+    <!-- Header (ล็อกสีพื้นหลังแถบนำทางด้านบนอย่างเหนียวแน่น) -->
     <header style="background-color: #1e3a8a !important;" class="bg-primary sticky top-0 z-50 shadow-lg px-4">
         <div class="container mx-auto flex items-center justify-between h-16 md:h-24">
             <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchTab('home')">
@@ -87,7 +94,7 @@
                 <div class="text-left leading-tight">
                     <h1 class="font-black text-sm md:text-xl uppercase tracking-tighter text-white">Digital Squad AI</h1>
                     <span class="text-blue-200 font-bold text-xs md:text-[15px] block leading-none mt-0.5">เพื่อนครูไทย</span>
-                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.19.01</p>
+                    <p class="text-[8px] md:text-[9px] text-blue-400 tracking-[0.2em] uppercase font-bold opacity-70">Supreme Sync Edition V13.20.01</p>
                 </div>
             </div>
             <nav class="hidden lg:flex space-x-8 text-white h-full items-center font-bold">
@@ -114,7 +121,7 @@
         
         <!-- ================= TAB: HOME ================= -->
         <div id="tab-home" class="tab-content">
-            <!-- Blue Hero Section from V13.19.01 (FROZEN & LOCKED) -->
+            <!-- Blue Hero Section (LOCKED) -->
             <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden mb-8 border-b-8 border-blue-600 flex flex-col lg:flex-row items-center justify-between gap-8">
                 <!-- Background Globe Deco -->
                 <div class="absolute right-[-40px] top-[-40px] text-white opacity-5 text-[20rem] pointer-events-none">
@@ -166,13 +173,12 @@
                     </div>
                 </div>
 
-                <!-- 📸 แสดงผลโลโก้แบรนด์ตัวเต็มอย่างเป็นทางการ โทนพรีเมียมสีสว่างสดใสตัดกับแบนเนอร์สีน้ำเงิน -->
                 <div class="relative z-10 lg:w-1/3 flex justify-center items-center">
                     <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Digital Squad AI Premium Logo" class="max-w-[260px] md:max-w-[300px] rounded-3xl shadow-2xl bg-white p-5 hover:scale-105 transition-transform duration-300 border border-blue-200">
                 </div>
             </div>
 
-            <!-- Bottom stats bar (ตรึงค่าข้อมูลอย่างสมบูรณ์แบบต่อจากกล่องน้ำเงิน) -->
+            <!-- Bottom stats bar (ตรึงค่าสถิติอัปเดตตรงรุ่น) -->
             <div class="mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="md:col-span-2 bg-white rounded-3xl border border-slate-200 p-6 flex flex-col md:flex-row items-center justify-around gap-6 shadow-sm border-b-4 border-b-blue-100">
                     <div class="flex items-center gap-5">
@@ -217,7 +223,7 @@
                 </button>
             </div>
 
-            <!-- News & Training FEEDS (Smart Hub Layout V30) -->
+            <!-- News & Training FEEDS -->
             <div id="dashboard-hubs" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- กระดานข่าว (News Feed) -->
                 <div class="bg-gradient-to-b from-blue-50 to-white rounded-[2.5rem] p-6 md:p-8 border-2 border-blue-100 shadow-sm flex flex-col h-[600px]">
@@ -243,7 +249,7 @@
             </div>
         </div>
 
-        <!-- ================= TAB: AI AGENTS (V13.19.01 UPGRADE) ================= -->
+        <!-- ================= TAB: AI AGENTS ================= -->
         <div id="tab-gems" class="tab-content hidden text-center">
              <!-- 📸 อัปเกรดหัวข้อหลักด้านบนเพื่อความมืออาชีพตามคำขอของคุณครูเอ -->
              <div class="mb-8 max-w-5xl mx-auto text-center">
@@ -268,10 +274,10 @@
              <div id="agent-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 text-left"></div>
         </div>
 
-        <!-- ================= TAB: STRATEGIC HUB (V31 ULTIMATE FIX) ================= -->
+        <!-- ================= TAB: STRATEGIC HUB ================= -->
         <div id="tab-catalog" class="tab-content hidden text-left">
             
-            <!-- 🏆 ฐานปฏิบัติการอัจฉริยะ สำหรับบุคลากรด้านการศึกษา (Restored Header V32) -->
+            <!-- 🏆 ฐานปฏิบัติการอัจฉริยะ สำหรับบุคลากรด้านการศึกษา -->
             <div class="bg-gradient-to-br from-blue-900 via-primary to-indigo-950 rounded-[2.5rem] p-8 md:p-12 text-white shadow-xl mb-10 relative overflow-hidden border-b-8 border-blue-950">
                 <div class="absolute right-[-20px] bottom-[-20px] text-white opacity-5 text-[15rem] pointer-events-none">
                     <i class="fas fa-network-wired"></i>
@@ -385,7 +391,7 @@
                 <div id="urgent-tasks-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"></div>
             </div>
             
-            <!-- SPLIT-PANE SMART FEED FOR 10 TRACKS (V31 Innovation) -->
+            <!-- SPLIT-PANE SMART FEED FOR 10 TRACKS -->
             <div class="mb-14 bg-white rounded-[3rem] p-8 md:p-12 border border-slate-200 shadow-sm">
                 <div class="flex items-center gap-4 mb-8 text-left">
                     <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl shadow-sm"><i class="fas fa-briefcase"></i></div>
@@ -421,10 +427,10 @@
                 <!-- ฝั่งซ้าย: ตารางปฏิทินแบบตาราง 7 วัน (ประหยัดโค้ด สวยงาม มั่นคง) -->
                 <div class="lg:col-span-2 bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden flex flex-col h-full">
                     <!-- 🛡️ ตรึงหัวข้อปฏิทินสีเหลืองส้มอบอุ่นเพื่อลดความตึงเครียดของสายตา -->
-                    <div style="background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%) !important;" class="p-6 text-white flex justify-between items-center">
+                    <div style="background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%) !important;" class="p-6 text-white flex justify-between items-center shadow-md">
                         <div>
                             <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white" id="cal-month-title">มกราคม 2569</h2>
-                            <p class="text-orange-100 text-[10px] font-bold uppercase tracking-widest mt-1">Ecosystem Calendar Sync Active</p>
+                            <p class="text-orange-100 text-[10px] font-bold uppercase tracking-widest mt-1 font-semibold">Ecosystem Calendar Sync Active</p>
                         </div>
                         <div class="flex items-center gap-3">
                             <button onclick="changeCalMonth(-1)" class="w-10 h-10 bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition flex items-center justify-center text-sm text-white"><i class="fas fa-chevron-left"></i></button>
@@ -433,7 +439,7 @@
                         </div>
                     </div>
                     
-                    <!-- 📸 ปรับแต่งพื้นหลังปฏิทินปูพื้นด้วยสีครีมนุ่มนวลสบายตา #fffbeb -->
+                    <!-- 📸 ตารางปฏิทินปูพื้นด้วยสีครีมนุ่มนวลสบายตา #fffbeb -->
                     <div style="background-color: #fffbeb !important;" class="p-6 flex-grow">
                         <!-- 🛡️ ตรึงหัวตาราง 7 วันด้วย Inline CSS Grid สากล ป้องกันแนวคอลัมน์โย้เย้ไปทางซ้ายมือ 100% -->
                         <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem;" class="text-center text-xs font-black uppercase tracking-wider text-slate-500 mb-4">
@@ -497,8 +503,8 @@
         </div>
     </main>
 
-    <footer class="bg-white border-t py-12 text-center mt-auto text-slate-400">
-        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800 font-bold">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.19.01 (SUPREME SYNC EDITION)</p>
+    <footer class="bg-white border-t py-12 text-center mt-auto text-slate-400 font-bold">
+        <p class="uppercase tracking-widest text-[11px] mb-2 text-slate-800">DIGITAL SQUAD AI MASTER ECOSYSTEM | V13.20.01 (SUPREME STABLE EDITION)</p>
         <p class="text-primary text-[14px] font-black text-center mb-1">ผู้ออกแบบและพัฒนาโปรแกรม โดย : กันตภณ ณพสิษฐ์ (สงวนลิขสิทธิ์)</p>
         <p class="text-slate-400 text-[12px] text-center">© 2026 OFFICIAL EDUCATIONAL HUB. ALL RIGHTS RESERVED.</p>
     </footer>
@@ -582,7 +588,7 @@
         let selectedDay = 18; // ตั้งให้เลือกวันปัจจุบัน (18 พฤษภาคม 2569 เป็นวันตั้งต้น)
         let chartsInitialized = false;
 
-        // --- MASTER DATAHUB (สถิติ ข้อมูล และ แหล่งข่าวประชาสัมพันธ์ สอดประสานกับ V13.16.01) ---
+        // --- MASTER DATAHUB ---
         const MASTER_DATA = {
             obec: { name: "สพฐ. (OBEC)", ic: "fa-university", col: "text-blue-600", bg: "bg-blue-600", news_url: "https://www.obec.go.th/news", train_url: "https://www.obec.go.th/category/news/train",
                 news_list: ["ระเบียบการย้ายครู 2569 ฉบับสมบูรณ์", "มาตรการความปลอดภัยเปิดเทอม 2569", "โครงการคอมพิวเตอร์พกพาเพื่อการเรียนรู้", "สรุปคะแนน O-NET ปีล่าสุด", "ประกาศผลสอบครูผู้ช่วย"],
@@ -604,7 +610,7 @@
             moe: { name: "ศธ. (MOE)", ic: "fa-globe", col: "text-slate-600", bg: "bg-slate-600", news_url: "https://www.moe.go.th/category/news", train_url: "https://www.moe.go.th/category/training", news_list: ["รัฐมนตรีสัญจรพบครูทั่วไทย", "นโยบายลดเวลาเรียน เพิ่มทักษะ"], training_list: ["อบรมจรรยาบรรณวิชาชีพ", "Digital Leadership"] }
         };
 
-        // 🛡️ ฐานข้อมูลปฏิทินละเอียดรายวันการศึกษาไทยประจำปี 2569 แบบช่วงวัน (Sequential Range Mapping)
+        // 🛡️ ฐานข้อมูลปฏิทินละเอียดรายวันการศึกษาไทยประจำปี 2569 แบบช่วงวัน
         const EDUCATIONAL_EVENTS = [
             // มกราคม 2569 (0)
             { start: "2026-0-2", end: "2026-0-9", t: "เปิดทำการหลังปีใหม่ / สรุปงาน Q1", agency: "moe" },
@@ -692,7 +698,6 @@
             { start: "2026-11-25", end: "2026-11-31", t: "สรุปและประเมิน KPI รายปี", agency: "onec" }
         ];
 
-        // ตารางกิจกรรมส่วนบุคคลที่ผู้ใช้พิมพ์เพิ่มลงระบบ
         let PRIVATE_EVENTS = {};
 
         const PILLARS = [
@@ -731,7 +736,6 @@
             { id: "10", t: "Quality Auditor", i: "fa-clipboard-check", u: "1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc", bg: "bg-rose-50", ic: "text-rose-600", d: "ตรวจสอบคัดลอกวิชาการ, ตรวจทานภาษาทางการ (Proofread), ตรวจสอบความสอดคล้อง PDPA" }
         ];
 
-        // 10 Career Tracks for Strategic Hub (Split Pane Data)
         const MISSIONS = [
             { id: "acad", name: "วิชาการและการจัดการเรียนรู้", ic: "fa-book", col: "bg-blue-600", agent: "03", list: ["สื่อการสอน Active Learning", "สื่อมัลติมีเดียประกอบบทเรียน", "นวัตกรรมสื่อสร้างสรรค์", "วิจัยเชิงปฏิบัติการในชั้นเรียน (AR)", "แผนการจัดการเรียนรู้ฐานสมรรถนะ", "การจัดทำสื่อ Canva for Education", "การประเมินผลการเรียนรู้", "ข้อสอบตามตัวชี้วัด", "วิเคราะห์ผู้เรียนรายบุคคล", "รายงานผลสัมฤทธิ์ทางการเรียน"] },
             { id: "health", name: "สุขภาวะและความปลอดภัย", ic: "fa-heartbeat", col: "bg-emerald-600", agent: "07", list: ["ระบบดูแลช่วยเหลือนักเรียน", "ประเมินสุขภาพจิต SDQ", "แผนการจัดการศึกษาเฉพาะบุคคล (IEP)", "แผนพฤติกรรม (BIP)", "กิจกรรมโฮมรูมสร้างสรรค์", "ระบบคัดกรองนักเรียนยากจน", "รายงานการเยี่ยมบ้าน", "การปฐมพยาบาลในโรงเรียน", "มาตรการความปลอดภัยสถานศึกษา", "โครงการอาหารกลางวัน"] },
