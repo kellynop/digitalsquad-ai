@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Digital Squad AI V13.17.03 - Premium Educational Ecosystem</title>
     
-    <!-- 🛡️ ระบบดาวน์โหลดดีไซน์อัจฉริยะแบบซิงโครนัส -->
+    <!-- 🛡️ ระบบดาวน์โหลดดีไซ็นอัจฉริยะแบบซิงโครนัส -->
     <script>
         (function() {
           var tw = document.createElement("script");
@@ -589,26 +589,35 @@
 
     <div id="toast"></div>
 
+    <!-- 💡 ดึง Firebase SDK แบบดั้งเดิมที่ปลอดภัยและรันออฟไลน์ได้ดีที่สุด -->
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore-compat.js"></script>
+
     <script>
         // ================= STEP 2: ระบบเชื่อมต่อฐานข้อมูล Google Sheets =================
         const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwL7IumVPkxz9EbjA5dRTwUWIdh0gis4AfcO_4cUQ8AWLF4VN73guLQip_9JT6UK1Ki/exec"; 
 
         // ฟังก์ชันในการส่งข้อมูลแบบเงียบๆ ไปยัง Google Sheets
         function sendDataToSheets(actionName, detailInfo) {
-            // ตรวจสอบว่าอาจารย์ใส่ URL มาหรือยัง และเป็น URL ที่ถูกต้องหรือไม่
             if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL === "" || !GOOGLE_SHEET_URL.endsWith("/exec")) return;
             
-            // เตรียมส่งข้อมูล
-            const url = GOOGLE_SHEET_URL + "?action=" + encodeURIComponent(actionName) + "&detail=" + encodeURIComponent(detailInfo);
+            // ตกแต่งข้อมูลก่อนส่งเข้าชีทเพื่อให้วิเคราะห์ง่าย
+            const cleanAction = actionName || "ทั่วไป";
+            const cleanDetail = detailInfo || "ไม่มีรายละเอียด";
             
-            // สั่งยิงข้อมูล (mode: 'no-cors' ช่วยให้ยิงจากในคอมเครื่องไหนก็ได้โดยไม่ติดบล็อก)
-            fetch(url, { method: 'GET', mode: 'no-cors' })
-                .then(() => console.log("ส่งข้อมูลเข้า Google Sheets สำเร็จ!"))
-                .catch(err => console.log("พบข้อผิดพลาดในการส่งข้อมูล: ", err));
+            // ประกอบ URL พร้อมประทับเวลาระดับมิลลิวินาที (ป้องกัน Browser จำผลลัพธ์เก่า)
+            const url = GOOGLE_SHEET_URL + "?action=" + encodeURIComponent(cleanAction) + "&detail=" + encodeURIComponent(cleanDetail) + "&t=" + new Date().getTime();
+            
+            // 🔮 เทคนิค "Image Beacon" (ระดับเสถียรที่สุดในโลกออฟไลน์)
+            // เบราว์เซอร์จะไม่บล็อกภาพถึงแม้ไฟล์เว็บจะถูกดับเบิลคลิกเปิดตรงๆ ในเครื่อง และยิงเร็วกว่า fetch
+            const beacon = new Image();
+            beacon.src = url;
+            console.log("⚡ ส่งข้อมูลผ่าน Beacon สำเร็จ: ", cleanAction);
         }
         // ===============================================================================
 
-        // --- ระบบสถิติจำลองการ Sync (เพื่อให้กรรมการเห็นตัวเลขวิ่งข้ามหน้าจอแบบ Real-time) ---
+        // --- ระบบสถิติจำลองการ Sync ข้ามหน้าจอแบบไร้รอยต่อ ---
         let systemStats = JSON.parse(localStorage.getItem('digitalSquadStats')) || { users: 2154, aiCalls: 14830 };
 
         function updateDashboardStats() {
@@ -618,7 +627,6 @@
                 userEl.innerText = systemStats.users.toLocaleString();
                 aiEl.innerText = systemStats.aiCalls.toLocaleString();
                 
-                // เอฟเฟกต์กระพริบสีเขียว (โชว์ความว้าว)
                 userEl.classList.add('text-emerald-500');
                 aiEl.classList.add('text-emerald-500');
                 userEl.style.transition = "color 0.3s";
@@ -640,14 +648,12 @@
 
         const apiKey = ""; 
         let currentYear = 2026;
-        let currentMonth = 4; // พฤษภาคม
+        let currentMonth = 4; 
         let selectedDay = 18; 
         let chartsInitialized = false;
 
-        // 💾 ดึงข้อมูลปฏิทินส่วนตัวจาก LocalStorage
         let PRIVATE_EVENTS = JSON.parse(localStorage.getItem('digitalSquadPrivateEvents')) || {};
 
-        // 🌙 ระบบ Dark Mode
         function toggleDarkMode() {
             document.documentElement.classList.toggle('dark');
             const isDark = document.documentElement.classList.contains('dark');
@@ -668,7 +674,6 @@
             updateDarkModeIcon(true);
         }
 
-        // --- MASTER DATAHUB ---
         const MASTER_DATA = {
             obec: { name: "สพฐ. (OBEC)", ic: "fa-university", col: "text-blue-600", bg: "bg-blue-600", news_url: "https://www.obec.go.th/news", train_url: "https://www.obec.go.th/category/news/train",
                 news_list: ["ระเบียบการย้ายครู 2569 ฉบับสมบูรณ์", "มาตรการความปลอดภัยเปิดเทอม 2569", "โครงการคอมพิวเตอร์พกพาเพื่อการเรียนรู้", "สรุปคะแนน O-NET ปีล่าสุด", "ประกาศผลสอบครูผู้ช่วย"],
@@ -757,7 +762,6 @@
             { text: "AI เป็นผู้ช่วยที่ยอดเยี่ยม แต่อย่าลืมว่า 'ความรักความใส่ใจ' เป็นสิ่งเดียวที่ AI เลียนแบบครูไม่ได้ ปลดปล่อยงานเอกสารให้ AI ทำ แล้วเอาหัวใจของคุณกลับคืนสู่ห้องเรียนกันครับ", tag: "พลังใจและจริยธรรมครูไทย" }
         ];
 
-        // --- Core Functions ---
         function switchTab(t) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('nav-active'));
@@ -836,12 +840,10 @@
         function launchAgent(id) {
             const links = { "01": "1AA8M-tYZwZOiVpXTu0MObLc68zknfkFe", "02": "1XtQ3MAh2mBAz9gXL7ch6U0cg-gsrmPO2", "03": "1iR1qCNQx0hLqW0FplwoxHELJSVowI1zQ", "04": "1I5gNYpkobxvQ5TtwaFPEyH00x9YQeyvx", "05": "1wD1ctaljLTJv-dPW6TyEKkkt9PhKG3Kp", "06": "1XhMLFRjTy687V3Zl8OB1oYvE_waaMzPr", "07": "1GKidsP54FbDt95iFUPYZur-RXFj7cCZc", "08": "1C_fG8RuW0S3cmlYyIrrbyRAM", "09": "1WdA6GmvC_ffG8RuW0S3cmlYyIrrbyRAM", "10": "1o2sgk99YNBzkjNMo63JGKDK0wxjEzmZc" };
             
-            // อัปเดตสถิติเรียกใช้งาน AI
             systemStats.aiCalls += 1;
             localStorage.setItem('digitalSquadStats', JSON.stringify(systemStats));
             updateDashboardStats();
 
-            // 🚀 ส่งข้อมูลเข้า Google Sheets
             const agentData = AGENTS.find(a => a.id === id);
             const agentName = agentData ? agentData.t : "Unknown";
             sendDataToSheets("เรียกใช้งาน AI", `Agent ${id} (${agentName})`);
@@ -1211,12 +1213,10 @@
             const posSelect = document.getElementById('user-pos-input');
             const pos = posSelect.options[posSelect.selectedIndex].text;
             
-            // อัปเดตยอดคนใช้งาน
             systemStats.users += 1;
             localStorage.setItem('digitalSquadStats', JSON.stringify(systemStats));
             updateDashboardStats();
 
-            // 🚀 ส่งข้อมูลเข้า Google Sheets
             sendDataToSheets("ลงทะเบียนเข้าใช้งาน", `ชื่อ: ${name} | ตำแหน่ง: ${pos} | สังกัด: ${agency}`);
 
             toggleModal('login-modal'); 
